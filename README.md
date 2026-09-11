@@ -212,14 +212,3 @@ in the PDF. After heavy edits, export and skim the pages:
 ```bash
 bun run export <lab-number>
 ```
-
-## Pushing this to GitHub
-
-```bash
-git init
-git add .
-git commit -m "Slidev theme and lab 1"
-git branch -M main
-git remote add origin git@github.com:<you>/giu-slides.git
-git push -u origin main
-```
