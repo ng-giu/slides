@@ -57,8 +57,7 @@ alt: Two people building and shopping in an online store
 
 - We build a simplified Airbnb clone across the semester.
 - You learn full-stack development by doing.
-- By the end you build your own project, in collaboration with the fintech course.
-
+- By the end you build your own project.
 ---
 layout: media
 image: /img/illustrations/hourglass.png
