@@ -242,36 +242,23 @@ icon: assignment
 title: Assignment
 ---
 
-**Part 1 — tooling.** Two interactive GitHub Skills courses. Each one runs inside a
-real repository on your own account and checks your work as you go.
+Besides the project and its deliverables, there are **3 assignments** for the
+course.
 
-- [Introduction to GitHub](https://github.com/skills/introduction-to-github)
-- [Introduction to Git](https://github.com/skills/introduction-to-git) — CLI and VS Code
-- [Full exercise catalogue](https://skills.github.com/) — optional, once you finish
+They are meant to both refresh anyone who already knows these topics and
+introduce them to anyone who does not.
 
 ::right::
 
-**Part 2 — JavaScript.** Practise on the Exercism JavaScript track. Solve exercises in
-the browser, or install the CLI and work locally in VS Code.
+There will be **3 assignments** this semester (in addition to the project and its
+deliverables):
 
-- [JavaScript track](https://exercism.org/tracks/javascript)
-- [CLI install walkthrough](https://exercism.org/cli-walkthrough)
-- [Working locally](https://exercism.org/docs/using/solving-exercises/working-locally) — the download, test, submit loop
-- [CLI source and releases](https://github.com/exercism/cli)
+1. Get familiar with Git, GitHub, VS Code, shell basics, and the full development setup used in this course.
+2. Get familiar with JavaScript as a language.
+3. Get familiar with HTML and CSS, and with JavaScript linked to them.
 
----
-layout: default
-icon: assignment
----
-
-# Deadline and submission
-
-- **Deadline:** the Week 3 lab, two weeks from now.
-- **Submission opens next week,** not this week.
-- **Submit:** links to your two GitHub Skills repositories, and a link to your Exercism profile.
-
-Both parts are free. Neither needs a paid account, and neither needs anything installed
-beyond the tools you set up today.
+Deadlines and further details will be shared soon. For now, start working on
+Assignment 1.
 
 ---
 layout: refs
