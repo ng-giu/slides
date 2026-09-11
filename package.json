@@ -3,9 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "slidev labs/lab-01.md --open",
-    "lab1": "slidev labs/lab-01.md --open",
-    "export": "slidev export labs/lab-01.md --output dist/lab-01.pdf"
+    "lab": "sh scripts/deck.sh dev",
+    "export": "sh scripts/deck.sh export",
+    "dev": "sh scripts/deck.sh dev 1"
   },
   "dependencies": {
     "@slidev/cli": "^51.0.0",

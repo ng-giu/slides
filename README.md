@@ -4,9 +4,13 @@ Slidev decks for GIU lab courses. Content lives in Markdown, design lives in one
 
 ```bash
 bun install
-bun run lab1          # dev server for labs/lab-01.md
-bun run export        # PDF into dist/
+bun run lab 1         # dev server for labs/lab-01.md
+bun run export 1      # PDF into dist/lab-01.pdf
 ```
+
+Both scripts take the lab number as an argument and zero-pad it, so `bun run lab 2`
+and `bun run lab 02` both open `labs/lab-02.md`. `bun run dev` is shorthand for
+lab 1.
 
 PDF export needs a browser binary once:
 
@@ -20,6 +24,7 @@ bunx playwright install chromium
 labs/          one Markdown file per lab — this is the only place content lives
 labs/public/   images, served at the site root (/img/logos/git.png)
 theme/         the GIU theme: layouts, components, tokens
+scripts/       deck.sh — resolves a lab number to its deck for the bun scripts
 ```
 
 Assets live in `labs/public/` rather than the repo root because Slidev resolves its
@@ -205,7 +210,7 @@ Slidev will not warn you when a slide runs past its bottom edge — it just clip
 in the PDF. After heavy edits, export and skim the pages:
 
 ```bash
-bun run export
+bun run export <lab-number>
 ```
 
 ## Pushing this to GitHub
