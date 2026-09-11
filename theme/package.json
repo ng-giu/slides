@@ -1,0 +1,16 @@
+{
+  "name": "slidev-theme-giu",
+  "version": "0.1.0",
+  "type": "module",
+  "keywords": ["slidev-theme", "slidev", "giu"],
+  "engines": { "slidev": ">=51.0.0" },
+  "slidev": {
+    "defaults": {
+      "aspectRatio": "16/9",
+      "canvasWidth": 980,
+      "highlighter": "shiki",
+      "lineNumbers": true,
+      "fonts": { "sans": "Poppins", "mono": "JetBrains Mono", "weights": "300,400,500,600" }
+    }
+  }
+}

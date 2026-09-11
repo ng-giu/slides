@@ -1,0 +1,299 @@
+/* ---------------------------------------------------------------
+   slidev-theme-giu — design tokens
+   Edit these six values to re-skin every deck in the repo.
+   --------------------------------------------------------------- */
+:root {
+  --giu-black: #000000;
+  --giu-ink: #2b2b2b;
+  --giu-muted: #6f6f6f;
+  --giu-red: #e2001a;
+  --giu-gold: #e8a33d;
+  --giu-paper: #ffffff;
+  --giu-rule: #e7e7e7;
+
+  --giu-pad-x: 3.4rem;
+  --giu-pad-top: 2.9rem;
+  --giu-pad-bottom: 3.6rem;
+}
+
+/* --- base slide ------------------------------------------------ */
+.slidev-layout {
+  height: 100%;
+  box-sizing: border-box;
+  background: var(--giu-paper);
+  color: var(--giu-ink);
+  font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  padding: var(--giu-pad-top) var(--giu-pad-x) var(--giu-pad-bottom);
+  position: relative;
+}
+
+.slidev-layout h1 {
+  font-size: 1.95rem;
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--giu-black);
+  margin: 0 0 1.1rem;
+  max-width: 22ch;
+}
+
+.slidev-layout h2 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--giu-black);
+  margin: 1.4rem 0 0.5rem;
+}
+
+.slidev-layout p { margin: 0 0 0.75rem; max-width: 72ch; }
+/* UnoCSS's preflight resets list-style to none, so markers have to be put back
+   explicitly or every bulleted and numbered list on every slide renders bare. */
+.slidev-layout ul { list-style: disc; margin: 0 0 0.8rem; padding-left: 1.15rem; }
+.slidev-layout ol { list-style: decimal; margin: 0 0 0.8rem; padding-left: 1.35rem; }
+.slidev-layout ol ol { list-style: lower-alpha; margin-bottom: 0; }
+.slidev-layout ul ul { list-style: circle; margin-bottom: 0; }
+.slidev-layout li { margin-bottom: 0.42rem; max-width: 72ch; }
+.slidev-layout ul > li::marker { color: var(--giu-red); }
+.slidev-layout ol > li::marker { color: var(--giu-muted); font-weight: 600; }
+.slidev-layout strong { font-weight: 600; color: var(--giu-black); }
+
+.slidev-layout a {
+  color: var(--giu-red);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  word-break: break-word;
+}
+
+.slidev-layout table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.6rem 0 1rem;
+  font-size: 0.88rem;
+}
+.slidev-layout th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--giu-black);
+  border-bottom: 2px solid var(--giu-black);
+  padding: 0.45rem 0.7rem 0.45rem 0;
+}
+.slidev-layout td {
+  border-bottom: 1px solid var(--giu-rule);
+  padding: 0.45rem 0.7rem 0.45rem 0;
+  vertical-align: top;
+}
+.slidev-layout td:first-child { width: 4.6rem; white-space: nowrap; color: var(--giu-red); font-weight: 600; }
+
+.slidev-layout blockquote {
+  border-left: 3px solid var(--giu-gold);
+  padding: 0.15rem 0 0.15rem 0.9rem;
+  margin: 0.8rem 0;
+  color: var(--giu-muted);
+  font-style: normal;
+}
+
+/* --- footer ---------------------------------------------------- */
+.giu-footer {
+  position: absolute;
+  left: var(--giu-pad-x);
+  right: var(--giu-pad-x);
+  bottom: 1.5rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 1.4rem;
+  font-size: 0.62rem;
+  color: var(--giu-red);
+  letter-spacing: 0.005em;
+}
+.giu-footer__sep { opacity: 0.55; padding: 0 0.28rem; }
+.giu-footer__page { color: var(--giu-red); font-variant-numeric: tabular-nums; min-width: 1.5rem; text-align: right; }
+
+/* --- cover ----------------------------------------------------- */
+.giu-cover { display: flex; flex-direction: column; justify-content: space-between; }
+.giu-cover h1 {
+  font-size: 3.35rem;
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  max-width: 15ch;
+  margin: 0;
+}
+.giu-cover__eyebrow { color: var(--giu-muted); font-size: 0.8rem; margin-bottom: 1.1rem; }
+.giu-cover__logo { height: 5rem; width: auto; }
+
+/* --- section divider ------------------------------------------- */
+.giu-section { display: flex; flex-direction: column; justify-content: center; }
+.giu-section__icon {
+  position: absolute;
+  top: var(--giu-pad-top);
+  left: var(--giu-pad-x);
+  font-size: 2.9rem;
+}
+.giu-section__dot {
+  position: absolute;
+  top: var(--giu-pad-top);
+  right: var(--giu-pad-x);
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--giu-black);
+}
+/* Slide types where the student does something get the gold accent. */
+.giu-section[data-type="activity"] .giu-section__dot,
+.giu-section[data-type="assignment"] .giu-section__dot { background: var(--giu-gold); }
+.giu-section h1 {
+  font-size: 2.9rem;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  max-width: 16ch;
+  margin: 0;
+}
+.giu-section__rule { width: 3.5rem; height: 4px; background: var(--giu-red); margin-bottom: 1.5rem; }
+.giu-section__sub { color: var(--giu-muted); margin-top: 1rem; font-size: 1rem; }
+
+/* --- people grid ----------------------------------------------- */
+.giu-people__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.1rem 1.6rem;
+  margin-top: 0.6rem;
+}
+.giu-person { border-top: 2px solid var(--giu-black); padding-top: 0.55rem; }
+.giu-person__role { color: var(--giu-red); font-size: 0.68rem; margin-bottom: 0.28rem; }
+.giu-person__name { font-weight: 600; color: var(--giu-black); font-size: 0.95rem; line-height: 1.25; }
+.giu-person__meta { color: var(--giu-muted); font-size: 0.74rem; margin-top: 0.2rem; line-height: 1.45; word-break: break-word; }
+
+/* --- split / image layouts ------------------------------------- */
+.giu-split__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.8rem; align-items: start; }
+.giu-split__grid.is-wide-right { grid-template-columns: 0.85fr 1.15fr; }
+.giu-media { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; height: 100%; min-height: 0; }
+.giu-media > * { min-height: 0; }
+.giu-media.is-left { grid-template-columns: 1fr 1fr; }
+.giu-media__img { width: 100%; height: auto; max-height: 100%; min-height: 0; object-fit: contain; }
+.giu-media__body { align-self: center; }
+
+/* --- activity -------------------------------------------------- */
+/* Inline task inside a content slide. */
+.giu-activity { border-left: 4px solid var(--giu-gold); padding-left: 1.4rem; margin-left: -1.4rem; }
+.giu-activity__head { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.6rem; }
+.giu-activity__head .giu-icon { font-size: 1.15rem; color: var(--giu-black); }
+.giu-activity__label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--giu-black);
+}
+
+/* Full activity slide: the mark carries the meaning, so no rule and no chip. */
+.giu-activity-slide__head { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.2rem; }
+.giu-activity-slide__head .giu-icon { font-size: 2.6rem; position: relative; top: -0.15rem; }
+.giu-activity-slide__head h1 { margin: 0; }
+.giu-activity-slide__label {
+  color: var(--giu-gold);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+.is-dense .giu-activity-slide__head .giu-icon { font-size: 2rem; }
+
+/* --- references ------------------------------------------------ */
+/* Groups flow down one column then into the next. break-inside keeps a group
+   whole; without it a list splits across the gutter and reads as two groups. */
+.giu-refs__body { columns: var(--giu-refs-columns, 2); column-gap: 2.6rem; }
+.giu-refs h2 {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--giu-muted);
+  margin: 1rem 0 0.3rem;
+  break-after: avoid;
+}
+.giu-refs__body > :first-child { margin-top: 0; }
+.giu-refs ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  break-inside: avoid;
+}
+.giu-refs li {
+  border-bottom: 1px solid var(--giu-rule);
+  padding: 0.32rem 0;
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  max-width: none;
+  color: var(--giu-muted);
+}
+.giu-refs li a { font-weight: 500; }
+/* Spans the gutter, so it reads as a note on the whole slide rather than a
+   trailing item of whichever group happens to land last. */
+.giu-refs__note {
+  column-span: all;
+  font-size: 0.72rem;
+  color: var(--giu-muted);
+  margin-top: 1.1rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--giu-rule);
+}
+.is-dense.giu-refs li { font-size: 0.72rem; padding: 0.24rem 0; }
+
+/* --- closing --------------------------------------------------- */
+.giu-end { display: flex; flex-direction: column; justify-content: center; }
+.giu-end h1 { font-size: 3.6rem; letter-spacing: -0.035em; margin: 0; }
+.giu-end__sub { color: var(--giu-muted); font-size: 1.15rem; margin-top: 0.6rem; }
+.giu-end.has-image {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 2.5rem;
+  align-items: center;
+  min-height: 0;
+}
+.giu-end.has-image > * { min-height: 0; }
+.giu-end.has-image h1 { font-size: 3rem; }
+.giu-end__img { width: 100%; height: auto; max-height: 100%; object-fit: contain; }
+
+/* --- slide-type marks ------------------------------------------- */
+.giu-icon { display: block; flex: none; font-size: 2.2rem; color: var(--giu-black); }
+/* On a content slide the mark sits above the heading. */
+.giu-slide-icon { font-size: 1.9rem; margin-bottom: 0.5rem; }
+.is-dense .giu-slide-icon { font-size: 1.5rem; margin-bottom: 0.35rem; }
+
+/* --- tool marks (one per tool slide) ---------------------------- */
+.giu-toollogo { height: 2.2rem; width: auto; display: block; margin: 0 0 0.9rem; }
+.slidev-layout.is-dense .giu-toollogo { height: 1.7rem; margin-bottom: 0.6rem; }
+
+/* --- images written as markdown -------------------------------- */
+/* Capped so a large export can never silently run off the slide.
+   The canvas is 28rem tall inside the padding; 17rem leaves room for text. */
+/* A paragraph that only holds an image is a figure, not prose, so it is not
+   bound by the 72ch measure — otherwise wide diagrams sit off-centre. */
+.slidev-layout p:has(> img) { max-width: 100%; }
+.slidev-layout p > img {
+  display: block;
+  max-width: 100%;
+  max-height: 19rem;
+  height: auto;
+  margin: 0.4rem auto 0.8rem;
+}
+
+/* --- density escape hatch -------------------------------------- */
+.slidev-layout.is-dense { font-size: 0.82rem; }
+.slidev-layout.is-dense h1 { font-size: 1.6rem; margin-bottom: 0.8rem; }
+.slidev-layout.is-dense li { margin-bottom: 0.28rem; }
+.slidev-layout.is-dense table { font-size: 0.78rem; }
+.slidev-layout.is-dense th,
+.slidev-layout.is-dense td { padding: 0.28rem 0.6rem 0.28rem 0; }
+.slidev-layout.is-dense pre.shiki,
+.slidev-layout.is-dense .slidev-code {
+  font-size: 0.6rem;
+  line-height: 1.45;
+  padding: 0.6rem 0.7rem;
+}

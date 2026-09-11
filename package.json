@@ -1,0 +1,19 @@
+{
+  "name": "giu-slides",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "slidev labs/lab-01.md --open",
+    "lab1": "slidev labs/lab-01.md --open",
+    "export": "slidev export labs/lab-01.md --output dist/lab-01.pdf"
+  },
+  "dependencies": {
+    "@slidev/cli": "^51.0.0",
+    "@slidev/types": "^51.0.0",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@iconify-json/lucide": "^1.2.131",
+    "playwright-chromium": "^1.49.0"
+  }
+}

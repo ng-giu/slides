@@ -1,0 +1,60 @@
+/* Code surfaces. Shiki does the highlighting; this only sets the frame. */
+
+.slidev-layout .slidev-code-wrapper,
+.slidev-layout .shiki {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.slidev-layout pre.shiki,
+.slidev-layout .slidev-code {
+  background: #f7f7f8 !important;
+  border: 1px solid var(--giu-rule);
+  border-radius: 3px;
+  padding: 0.85rem 0.95rem;
+  font-size: 0.72rem;
+  line-height: 1.62;
+  overflow: auto;
+  margin: 0 0 0.7rem;
+}
+
+/* Filename tag sits flush on top of the block it labels */
+.giu-filetag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.66rem;
+  color: var(--giu-muted);
+  background: #f0f0f1;
+  border: 1px solid var(--giu-rule);
+  border-bottom: none;
+  border-radius: 3px 3px 0 0;
+  padding: 0.2rem 0.55rem;
+  position: relative;
+  top: 1px;
+}
+.giu-filetag + .slidev-code-wrapper pre.shiki,
+.giu-filetag + pre.shiki {
+  border-top-left-radius: 0;
+}
+
+/* Line numbers */
+.slidev-layout .slidev-code .line-numbers,
+.slidev-layout code .line-number {
+  color: #b4b4b8;
+}
+
+/* Inline code inside prose */
+.slidev-layout :not(pre) > code {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.85em;
+  background: #f2f2f3;
+  border-radius: 2px;
+  padding: 0.08em 0.32em;
+  color: var(--giu-black);
+}
+
+/* Shell blocks read as commands, not source: no line numbers, tighter */
+.slidev-layout .giu-shell pre.shiki {
+  background: #111111 !important;
+  border-color: #111111;
+  color: #f2f2f2;
+}
