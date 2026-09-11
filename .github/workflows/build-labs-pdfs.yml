@@ -1,0 +1,57 @@
+name: Build Lab PDFs
+
+on:
+  push:
+    paths:
+      - "labs/**/*.md"
+      - "labs/public/**"
+      - "theme/**"
+      - "scripts/**"
+      - "package.json"
+      - "bun.lock"
+      - ".github/workflows/build-labs-pdfs.yml"
+  workflow_dispatch:
+
+jobs:
+  build-pdfs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Install Chromium
+        run: bunx playwright install --with-deps chromium
+
+      - name: Export all lab PDFs
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+
+          labs=(labs/lab-*.md)
+          if [ "${#labs[@]}" -eq 0 ]; then
+            echo "No lab decks found in labs/"
+            exit 1
+          fi
+
+          for lab in "${labs[@]}"; do
+            num="${lab##*/}"
+            num="${num#lab-}"
+            num="${num%.md}"
+            echo "Exporting lab $num from $lab"
+            bun run export "$num"
+          done
+
+      - name: Upload PDF artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: lab-pdfs-${{ github.sha }}
+          path: dist/*.pdf
+          if-no-files-found: error
