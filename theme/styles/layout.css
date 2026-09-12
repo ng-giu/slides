@@ -297,3 +297,16 @@
   line-height: 1.45;
   padding: 0.6rem 0.7rem;
 }
+
+/* --- dev-UI patch: orphaned Goto results ------------------------
+   Slidev's `g` shortcut toggles showGotoDialog directly instead of calling
+   the dialog's own close(), so closing with `g` never clears the search text.
+   The dialog slides off-screen (-top-20) but its results list is still
+   rendered, leaving a headless, cropped list hanging over the editor with no
+   way to dismiss it. The input is disabled exactly when the dialog is closed,
+   so use that to hide the stale list.
+   Upstream: @slidev/client/internals/Goto.vue + setup/shortcuts.ts ('goto').
+   --------------------------------------------------------------- */
+#slidev-goto-dialog:has(#slidev-goto-input:disabled) .autocomplete-list {
+  display: none;
+}
