@@ -144,6 +144,39 @@ tab again soon.
 </Activity>
 
 ---
+layout: split
+title: Open the folder in VS Code
+---
+
+You'll do this every time you come back to this project.
+
+<Activity label="Start from VS Code">
+
+1. Open VS Code.
+   Windows: search "VS Code" in the Start Menu.
+   Mac: search it with Spotlight, or find it in Launchpad.
+2. Click **File → Open Folder...**
+   (or the **Open Folder** button on the Welcome screen).
+3. Find your repo folder and select it.
+4. Click **Select Folder** (Windows) or **Open** (Mac).
+
+</Activity>
+
+::right::
+
+<Activity label="Or start from your files">
+
+1. Open your file manager
+   (File Explorer on Windows, Finder on Mac).
+2. Find your repo folder.
+3. Right-click it → **Open with Code**,
+   if you see that option.
+
+Or just drag the folder onto an open VS Code window.
+
+</Activity>
+
+---
 layout: section
 icon: code
 sub: Now everything happens in the terminal.
@@ -336,6 +369,7 @@ dense: true
 
 | Problem | Fix |
 |---|---|
+| VS Code opens but your project isn't there | See **Open the folder in VS Code**. |
 | `git` or `node` says "not found" | Close and reopen your terminal. |
 | Windows: `ls` doesn't work | Use Git Bash, or type `dir` instead. |
 | `Cannot find module` | Node can't find the file where you are. `cd` to it, or give the full path. |
