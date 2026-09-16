@@ -1,17 +1,24 @@
 #!/bin/sh
-# Resolve a deck kind + number to a file and hand it to slidev.
-#   deck.sh dev    lab        <n>  -> slidev labs/lab-0n.md --open
-#   deck.sh export lab        <n>  -> slidev export labs/lab-0n.md --output dist/lab-0n.pdf
-#   deck.sh dev    assignment <n>  -> slidev labs/assignment-0n.md --open
-#   deck.sh export assignment <n>  -> slidev export labs/assignment-0n.md --output dist/assignment-0n.pdf
+# Resolve a course + deck kind + number to a file and hand it to slidev.
 #
-# Numbers are written unpadded on the command line (`2`) and padded here, so
-# `bun run lab 2` and `bun run lab 02` both find labs/lab-02.md.
+# Usage:
+#   deck.sh dev    lab        [course] <n>      -> slidev courses/<course>/lab-0n.md --open
+#   deck.sh export lab        [course] <n|all>  -> slidev export courses/<course>/lab-0n.md --output dist/<course>/lab-0n.pdf
+#   deck.sh dev    assignment [course] <n>      -> slidev courses/<course>/assignment-0n.md --open
+#   deck.sh export assignment [course] <n|all>  -> slidev export courses/<course>/assignment-0n.md --output dist/<course>/assignment-0n.pdf
+#
+# If [course] is omitted, it defaults to 'ebd' for backward compatibility.
+# Numbers are written unpadded on the command line (`2`) and padded here (`02`).
 set -e
+
+PATH="./node_modules/.bin:$PATH"
 
 mode=$1
 kind=$2
-num=${3:-}
+arg3=${3:-}
+arg4=${4:-}
+
+DEFAULT_COURSE="ebd"
 
 case $mode in
   dev)    action=dev ;;
@@ -24,27 +31,75 @@ case $kind in
   *) echo "deck.sh: unknown kind '$kind' (expected lab or assignment)" >&2; exit 2 ;;
 esac
 
-usage="bun run $kind <number>"
+# Resolve course and num/target
+if [ -n "$arg4" ]; then
+  course=$(echo "$arg3" | tr '[:upper:]' '[:lower:]')
+  target=$arg4
+elif [ -n "$arg3" ]; then
+  case $arg3 in
+    all|[0-9]*)
+      course="$DEFAULT_COURSE"
+      target=$arg3
+      ;;
+    *)
+      course=$(echo "$arg3" | tr '[:upper:]' '[:lower:]')
+      echo "usage: bun run $kind $course <number>   (e.g. bun run $kind $course 1)" >&2
+      exit 1
+      ;;
+  esac
+else
+  echo "usage: bun run $kind [course] <number>   (e.g. bun run $kind ica 1 or bun run $kind 1)" >&2
+  exit 1
+fi
 
-case $num in
+course_dir="courses/$course"
+if [ ! -d "$course_dir" ]; then
+  echo "deck.sh: course '$course' not found in courses/ (expected $course_dir)" >&2
+  echo "available courses: $(find courses -mindepth 1 -maxdepth 1 -type d -exec basename {} \; 2>/dev/null | tr '\n' ' ')" >&2
+  exit 1
+fi
+
+out_dir="dist/$course"
+
+# Handle export all
+if [ "$action" = export ] && [ "$target" = "all" ]; then
+  mkdir -p "$out_dir"
+  count=0
+  for f in "$course_dir"/$kind-*.md; do
+    [ -f "$f" ] || continue
+    base=$(basename "$f" .md)
+    echo "Exporting $base for course $course..."
+    slidev export "$f" --output "$out_dir/$base.pdf"
+    count=$((count + 1))
+  done
+  if [ "$count" -eq 0 ]; then
+    echo "No $kind decks found in $course_dir" >&2
+    exit 1
+  fi
+  echo "Successfully exported $count deck(s) to $out_dir/"
+  exit 0
+fi
+
+# Validate numeric target
+case $target in
   ""|*[!0-9]*)
-    echo "usage: $usage   (e.g. ${usage%<number>}2)" >&2
+    echo "usage: bun run $kind [course] <number>   (e.g. bun run $kind $course 1)" >&2
     exit 1
     ;;
 esac
 
-n=$(printf %02d "$num")
-deck="labs/$kind-$n.md"
+n=$(printf %02d "$target")
+deck="$course_dir/$kind-$n.md"
 
 if [ ! -f "$deck" ]; then
-  echo "no deck for $kind $num — expected $deck" >&2
-  echo "available: $(ls labs/$kind-*.md 2>/dev/null | tr '\n' ' ')" >&2
+  echo "no deck for $kind $target in course '$course' — expected $deck" >&2
+  echo "available in $course: $(ls "$course_dir"/$kind-*.md 2>/dev/null | xargs -n 1 basename 2>/dev/null | tr '\n' ' ')" >&2
   exit 1
 fi
 
 if [ "$action" = dev ]; then
   exec slidev "$deck" --open
 else
-  mkdir -p dist
-  exec slidev export "$deck" --output "dist/$kind-$n.pdf"
+  mkdir -p "$out_dir"
+  exec slidev export "$deck" --output "$out_dir/$kind-$n.pdf"
 fi

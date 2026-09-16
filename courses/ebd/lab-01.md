@@ -1,5 +1,5 @@
 ---
-theme: ../theme
+theme: ../../theme
 title: BINF 503 - Lab 1 - Intro & Environment Setup
 courseTitle: Electronic Business Development
 course: BINF 503

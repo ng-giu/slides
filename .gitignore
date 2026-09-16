@@ -22,6 +22,8 @@ Thumbs.db
 .env.*
 !.env.example
 
+# lock files
+yarn.lock
 
 # refrence data
 ReferenceData/
