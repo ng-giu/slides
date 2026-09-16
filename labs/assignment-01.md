@@ -19,15 +19,47 @@ icon: intro
 
 # What this is
 
-- Getting VS Code, Git, and Node.js installed and talking to each other.
-- Making your first commits and your first push.
-- **Not** real JavaScript yet — that's Assignment 2. This is the plumbing.
-- Follow these slides front to back. About 2 hours, start to submit.
+- Install VS Code, Git, and Node.js.
+- Make your first commit and your first push.
+- Follow these slides in order. About 2 hours.
+
+---
+layout: refs
+title: Want to learn first? (optional)
+columns: 2
+---
+
+## Git
+
+- Watch: [Git Tutorial for Beginners (1 hour)](https://www.youtube.com/watch?v=8JJ101D3knE)
+- Read: [Git documentation](https://git-scm.com/doc)
+
+## GitHub
+
+- Watch: [Git & GitHub Crash Course](https://www.youtube.com/watch?v=mAFoROnOfHs)
+- Read: [GitHub Docs](https://docs.github.com/en)
+
+## VS Code
+
+- Watch: [VS Code in 7 Minutes](https://www.youtube.com/watch?v=ZngV3QqOEB0)
+- Read: [VS Code documentation](https://code.visualstudio.com/docs)
+
+## Shell / Terminal
+
+- Watch: [Command Line Crash Course](https://www.youtube.com/watch?v=uwAqEzhyjtw)
+- Read: [MDN — command line basics](https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line)
+
+## Node.js
+
+- Watch: [Node.js Full Tutorial for Beginners](https://www.youtube.com/watch?v=RLtyhwFtXQA)
+- Read: [Node.js documentation](https://nodejs.org/en/docs)
+
+<div class="giu-refs__note">Optional. Watch or read before Step 1 if you want to understand things first.</div>
 
 ---
 layout: section
 icon: tools
-sub: Install once, verify twice
+sub: Install it. Then check it works.
 ---
 
 # Setup
@@ -39,10 +71,11 @@ wideRight: true
 ---
 
 1. **VS Code** — code.visualstudio.com
-2. **Git** (Windows: this also gives you Git Bash) — git-scm.com/downloads
+2. **Git** — git-scm.com/downloads
+   (Windows: this also installs Git Bash)
 3. **Node.js**, the **LTS** version — nodejs.org
 
-<div class="giu-refs__note">Windows: if a terminal or VS Code was already open when you installed Node.js, close and reopen it. It can't see a command that didn't exist when it launched.</div>
+<div class="giu-refs__note">Windows: close and reopen your terminal after installing. It needs a restart to see new programs.</div>
 
 ::right::
 
@@ -55,8 +88,8 @@ git --version
 node -v
 ```
 
-Both must print a version. "Not found" means the install
-didn't finish, or your terminal needs restarting.
+You should see a version number for each. If not,
+restart your terminal.
 
 </Activity>
 
@@ -65,19 +98,19 @@ layout: activity
 title: Set your git identity
 ---
 
-**Your first commit fails without this.** Run it once, ever, per machine:
+**Do this once.** Without it, your first commit will fail:
 
 ```bash
 git config --global user.name "Your Name"
 git config --global user.email "your.email@student.giu-uni.de"
 ```
 
-Then create a **GitHub account** if you don't already have one: github.com
+Then make a **GitHub account** if you don't have one: github.com
 
 ---
 layout: section
 icon: code
-sub: "“Use this template,” not fork — forks are public on the parent repo"
+sub: Click "Use this template." Not Fork.
 ---
 
 # Get the repo
@@ -91,10 +124,10 @@ wideRight: true
 On the assignment's GitHub page:
 
 1. Click **Use this template → Create a new repository**.
-2. Name it whatever you like — it's now yours, under your account.
+2. Pick any name you like.
 
-This matters more than it looks: the assignment later identifies you by
-**which GitHub account owns the repo**, not by the repo's name.
+Keep it on **your own GitHub account**. That's how we know
+the repo is yours.
 
 ::right::
 
@@ -102,18 +135,18 @@ This matters more than it looks: the assignment later identifies you by
 
 1. Open VS Code.
 2. Click the **Source Control** icon in the sidebar.
-3. Click **Clone Repository**, paste your repo's URL.
-4. Pick a folder, open it.
+3. Click **Clone Repository**. Paste your repo's URL.
+4. Pick a folder, then open it.
 
-Use this button, not `git clone` in the terminal — you'll
-use this same tab again later, for a real commit.
+Use this button, not the terminal. You'll use this same
+tab again soon.
 
 </Activity>
 
 ---
 layout: section
 icon: code
-sub: "cd, node, commit, push — all from the terminal now"
+sub: Now everything happens in the terminal.
 ---
 
 # Work through it
@@ -123,57 +156,57 @@ layout: activity
 title: Sanity check
 ---
 
-From your project's terminal:
+This folder only has one file to run right now. Run it:
 
 ```bash
 node init.js
 ```
 
-It checks your Node version, your git identity, and that you actually
-cloned this repo (a ZIP download has no git remote). Each failure prints
-its own fix. Don't move on until it prints:
+It checks that everything is set up right. If something is
+wrong, it tells you how to fix it.
 
-```
-Everything looks good.
-```
+If it's all good, it creates a new file: `step1/hi.js`.
 
 ---
 layout: split
-title: "Step 1 — paths"
+title: Step 1
 dense: true
 ---
 
-Run this **from the repo root, on purpose**:
+Run this:
 
 ```bash
-node step1/hi.js
+node hi.js
 ```
 
-```
-Could not read greeting.txt.
+**It will fail**, with a big red error. Look for this line:
 
-Your terminal is currently in: /.../my-repo
-It looked for the file at:     /.../my-repo/greeting.txt
-The file actually lives at:    /.../my-repo/step1/greeting.txt
+```
+Error: Cannot find module '/.../hi.js'
 ```
 
-A relative path is resolved from wherever your **terminal** currently is —
-not from wherever the script file happens to sit on disk.
+Node looked for `hi.js` right where you are. It's not
+there — it's inside `step1/`.
 
 ::right::
 
-<Activity label="The fix">
+<Activity label="Two ways to fix it">
 
 ```bash
 cd step1
 node hi.js
 ```
 
-```
-Hello, traveler. You found the right folder.
+or, without moving, give the full path:
+
+```bash
+node step1/hi.js
 ```
 
-Same file. Only your terminal's location changed.
+```
+Hello! You made it to step1.
+Created step2/okay.js
+```
 
 </Activity>
 
@@ -182,23 +215,23 @@ layout: activity
 title: Step 2
 ---
 
-Same idea, no trap this time — just `cd` practice.
+Get back to the project's root folder (tip: **Terminal → New
+Terminal** in VS Code always opens a fresh one there). Then:
 
 ```bash
-cd ..
 cd step2
 node okay.js
 ```
 
 ```
 okay.
-Two folders down, zero folders lost. On to the real assignment.
+Created assignment/generate.js
 ```
 
 ---
 layout: section
 icon: assignment
-sub: A trial generated from who you are on GitHub
+sub: A small challenge made just for you
 ---
 
 # The assignment
@@ -208,25 +241,17 @@ layout: default
 dense: true
 ---
 
-# generate.js — how your trial gets made
+# Run generate.js
 
-```
-remote-url  →  parse the OWNER  →  seed  →  question.md
-```
-
-`generate.js` reads `git remote get-url origin`, takes the account that
-**owns** the repo (not its name — you chose that), and hashes it into a
-seed. Everyone gets a different seed; nobody can get yours without your
-GitHub account.
+Back to the root folder again, then:
 
 ```bash
-cd ..
 cd assignment
 node generate.js
 ```
 
 ```
-⚔ Your name, adventurer? > Nour
+Your name, adventurer? > Nour
 Your student ID? > 13003429
 Choose your class: [1] Warrior [2] Mage [3] Rogue > 1
 
@@ -234,18 +259,22 @@ A wild Sand Kraken blocks your path near the Nile.
 question.md written.
 ```
 
-Your answers are flavor. The parts that get graded — the multiplier, the
-warcry — come only from your seed, so re-running `generate.js` a hundred
-times never changes what solves your trial.
+This makes a small challenge just for you. Everyone in
+class gets a different one.
+
+You can run it again if you want. Your challenge stays
+the same.
 
 ---
 layout: activity
 title: Write solution.js
 ---
 
-Open `assignment/question.md` — it now has **your** exact instructions:
-a required computation and an exact required line of text. Create
-`assignment/solution.js` that prints exactly what it asks for, in order.
+Open `assignment/question.md`. It tells you exactly what
+to print.
+
+Create `assignment/solution.js` in the same folder. Make
+it print what `question.md` asks, in the same order.
 
 Check it:
 
@@ -253,8 +282,7 @@ Check it:
 node solution.js
 ```
 
-Keep the JavaScript itself trivial — variables, arithmetic,
-`console.log`. That's the whole point of this assignment.
+Keep it simple: variables, math, and `console.log`.
 
 ---
 layout: split
@@ -262,11 +290,10 @@ title: "Commit twice, two ways"
 wideRight: true
 ---
 
-VS Code and Git are two different things wearing the same interface. This
-assignment wants you to notice that, so you'll commit **twice**, two ways.
+You will commit **two times**, in two different ways.
 
-Both routes run the exact same Git underneath. The Source Control tab is
-buttons over `git add` / `git commit` / `git push`.
+Both do the same thing. The Source Control tab is just
+buttons for `git add`, `git commit`, and `git push`.
 
 ::right::
 
@@ -298,8 +325,7 @@ Fill in the form (link on the CMS) with:
 - Your GitHub username
 - Your repo's URL
 
-Push **before** you submit — the grader clones what's on GitHub, not
-what's on your laptop.
+Push **before** you submit. We only check what's on GitHub.
 
 ---
 layout: default
@@ -310,28 +336,11 @@ dense: true
 
 | Problem | Fix |
 |---|---|
-| `git` / `node` "not found" | Reopen your terminal (or VS Code) after installing. |
-| Windows: `ls` doesn't work | Use Git Bash, or `dir` in PowerShell / Command Prompt. |
-| `node step1/hi.js` seems to work from the root | It shouldn't — make sure you're running the file at `step1/hi.js`, unmodified. |
-| `init.js` / `generate.js` can't find a git remote / owner | You likely downloaded a ZIP instead of cloning. Go back to **Get the repo**. |
-
----
-layout: refs
-title: Install and reference links
----
-
-## Install
-
-- [VS Code](https://code.visualstudio.com/)
-- [Git — downloads](https://git-scm.com/downloads)
-- [Node.js](https://nodejs.org/)
-
-## Git and GitHub
-
-- [Git documentation](https://git-scm.com/doc)
-- [GitHub Docs](https://docs.github.com/en)
-
-<div class="giu-refs__note">Full JavaScript references come with Lab 1 and Assignment 2 — nothing here requires writing real JavaScript yet.</div>
+| `git` or `node` says "not found" | Close and reopen your terminal. |
+| Windows: `ls` doesn't work | Use Git Bash, or type `dir` instead. |
+| `Cannot find module` | Node can't find the file where you are. `cd` to it, or give the full path. |
+| A step's file is missing | Each step is created by the one before it. Run `init.js`, then `hi.js`, then `okay.js`, in order. |
+| `init.js` or `generate.js` shows a git error | You may have downloaded a ZIP, not cloned it. Go back to **Get the repo**. |
 
 ---
 layout: end
