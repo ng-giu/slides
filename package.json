@@ -3,9 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "lab": "sh scripts/deck.sh dev",
-    "export": "sh scripts/deck.sh export",
-    "dev": "sh scripts/deck.sh dev 1"
+    "lab": "sh scripts/deck.sh dev lab",
+    "export": "sh scripts/deck.sh export lab",
+    "assignment": "sh scripts/deck.sh dev assignment",
+    "export:assignment": "sh scripts/deck.sh export assignment",
+    "dev": "sh scripts/deck.sh dev lab 1"
   },
   "dependencies": {
     "@slidev/cli": "^51.0.0",

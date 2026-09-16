@@ -4,13 +4,19 @@ Slidev decks for GIU lab courses. Content lives in Markdown, design lives in one
 
 ```bash
 bun install
-bun run lab 1         # dev server for labs/lab-01.md
-bun run export 1      # PDF into dist/lab-01.pdf
+bun run lab 1                 # dev server for labs/lab-01.md
+bun run export 1              # PDF into dist/lab-01.pdf
+bun run assignment 1          # dev server for labs/assignment-01.md
+bun run export:assignment 1   # PDF into dist/assignment-01.pdf
 ```
 
-Both scripts take the lab number as an argument and zero-pad it, so `bun run lab 2`
-and `bun run lab 02` both open `labs/lab-02.md`. `bun run dev` is shorthand for
+Each script takes a number and zero-pads it, so `bun run lab 2` and `bun run lab 02`
+both open `labs/lab-02.md`, same for `assignment`. `bun run dev` is shorthand for
 lab 1.
+
+There are two deck kinds, both living in `labs/` and sharing the same theme:
+`lab-0N.md` for weekly lab sessions, `assignment-0N.md` for a self-paced,
+front-to-back walkthrough of an assignment.
 
 PDF export needs a browser binary once:
 
@@ -21,7 +27,7 @@ bunx playwright install chromium
 ## Layout
 
 ```
-labs/          one Markdown file per lab — this is the only place content lives
+labs/          one Markdown file per lab/assignment deck — the only place content lives
 labs/public/   images, served at the site root (/img/logos/git.png)
 theme/         the GIU theme: layouts, components, tokens
 scripts/       deck.sh — resolves a lab number to its deck for the bun scripts
