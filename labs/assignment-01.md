@@ -121,7 +121,7 @@ title: Create your copy
 wideRight: true
 ---
 
-On the assignment's GitHub page:
+Open the template: [github.com/ng-giu/ebd-w26-assignment1](https://github.com/ng-giu/ebd-w26-assignment1)
 
 1. Click **Use this template → Create a new repository**.
 2. Pick any name you like.
@@ -318,7 +318,7 @@ layout: activity
 title: Submit
 ---
 
-Fill in the form (link on the CMS) with:
+Fill in the form: [forms.gle/1f44aaXxVKVtTfgZ8](https://forms.gle/1f44aaXxVKVtTfgZ8)
 
 - Your name
 - Your student ID
@@ -345,7 +345,7 @@ dense: true
 ---
 layout: end
 image: /img/illustrations/thank-you.png
-sub: Submit your repo link on the CMS form
+sub: "Submit: forms.gle/1f44aaXxVKVtTfgZ8"
 ---
 
 # Questions?
