@@ -79,9 +79,52 @@ wideRight: true
 
 ::right::
 
-<Activity label="Verify">
+<Activity label="Open a terminal">
 
-Open a terminal (VS Code: **Terminal → New Terminal**) and run:
+1. Open VS Code.
+2. Click **Terminal** in the top menu bar.
+3. Click **New Terminal**.
+
+A panel opens at the bottom of the window — that's
+the terminal. Click inside it, type, then press
+**Enter** to run.
+
+</Activity>
+
+---
+layout: split
+title: Commands vs. files
+---
+
+**Commands** go in the terminal:
+
+```bash
+node init.js
+git commit -m "message"
+```
+
+Type it, press **Enter**, it runs.
+
+<div class="giu-refs__note">"Terminal," "shell," "command line," "CLI" all mean the same thing — just different names people use for it.</div>
+
+::right::
+
+**Code and text** go in a file, never in the terminal.
+Write it in the editor.
+
+To see your files:
+
+- Look at the **Explorer** sidebar (the file list on
+  the left), or
+- In the terminal, type `ls` (Mac/Linux/Git Bash) or
+  `dir` (Windows).
+
+---
+layout: activity
+title: Verify the install
+---
+
+In that terminal, run:
 
 ```bash
 git --version
@@ -89,9 +132,7 @@ node -v
 ```
 
 You should see a version number for each. If not,
-restart your terminal.
-
-</Activity>
+restart your terminal (or all of VS Code).
 
 ---
 layout: activity
@@ -188,6 +229,9 @@ sub: Now everything happens in the terminal.
 layout: activity
 title: Sanity check
 ---
+
+Open a terminal (**Terminal → New Terminal**) — since your
+project is open in VS Code, it starts right there.
 
 This folder only has one file to run right now. Run it:
 
@@ -306,8 +350,12 @@ title: Write solution.js
 Open `assignment/question.md`. It tells you exactly what
 to print.
 
-Create `assignment/solution.js` in the same folder. Make
-it print what `question.md` asks, in the same order.
+Create `assignment/solution.js` in the same folder:
+right-click **assignment** in the Explorer sidebar →
+**New File** → type the name → Enter. Write your code
+in the editor, not the terminal.
+
+Make it print what `question.md` asks, in the same order.
 
 Check it:
 
@@ -370,6 +418,7 @@ dense: true
 | Problem | Fix |
 |---|---|
 | VS Code opens but your project isn't there | See **Open the folder in VS Code**. |
+| Don't see a terminal | Click **Terminal → New Terminal** in the top menu. |
 | `git` or `node` says "not found" | Close and reopen your terminal. |
 | Windows: `ls` doesn't work | Use Git Bash, or type `dir` instead. |
 | `Cannot find module` | Node can't find the file where you are. `cd` to it, or give the full path. |
