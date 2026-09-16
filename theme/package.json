@@ -4,6 +4,9 @@
   "type": "module",
   "keywords": ["slidev-theme", "slidev", "giu"],
   "engines": { "slidev": ">=51.0.0" },
+  "dependencies": {
+    "qrcode": "^1.5.4"
+  },
   "slidev": {
     "defaults": {
       "aspectRatio": "16/9",

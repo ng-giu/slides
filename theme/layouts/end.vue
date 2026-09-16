@@ -1,5 +1,7 @@
 <script setup lang="ts">
-defineProps<{ sub?: string; image?: string }>()
+import QrCode from '../components/QrCode.vue'
+
+defineProps<{ sub?: string; image?: string; qr?: boolean }>()
 </script>
 
 <template>
@@ -8,7 +10,8 @@ defineProps<{ sub?: string; image?: string }>()
       <slot />
       <div v-if="sub" class="giu-end__sub">{{ sub }}</div>
     </div>
-    <img v-if="image" class="giu-end__img" :src="image" alt="" />
+    <QrCode v-if="image && qr" class="giu-end__img" :value="image" />
+    <img v-else-if="image" class="giu-end__img" :src="image" alt="" />
     <GiuFooter />
   </div>
 </template>

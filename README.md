@@ -77,12 +77,12 @@ Markdown `#`.
 | `people` | Contacts grid, one `<PersonCard>` per person | `title` |
 | `section` | Chapter divider | `icon`, `sub` |
 | `default` | Heading plus prose, bullets, or a table | `icon`, `dense` |
-| `media` | Illustration beside text | `image`, `side`, `alt` |
+| `media` | Illustration beside text | `image`, `side`, `alt`, `qr` |
 | `split` | Two columns, `::right::` for the second | `title`, `icon`, `file`, `wideRight`, `dense` |
 | `code` | Full-width code with a filename tag | `title`, `file`, `dense` |
 | `activity` | A whole slide given over to one task | `title`, `label`, `dense` |
 | `refs` | Grouped link list | `title`, `icon`, `columns`, `dense` |
-| `end` | Closing slide | `sub`, `image` |
+| `end` | Closing slide | `sub`, `image`, `qr` |
 
 `dense: true` shrinks type, tables and code on a slide that is running long. Use it instead of rewriting the layout.
 
@@ -182,6 +182,29 @@ at 19rem tall so a large export cannot silently run off the bottom of a slide.
 ```markdown
 ![The six phases of the life cycle](/img/diagrams/sdlc.png)
 ```
+
+## QR codes
+
+`media` and `end` both take a `qr: true` flag. When set, `image:` is read as
+a link instead of a picture, and a QR code encoding that link is drawn in
+the image's spot — same size, same position, same `object-fit: contain`
+behaviour.
+
+```markdown
+---
+layout: media
+image: https://forms.gle/your-form-id
+side: right
+qr: true
+---
+
+# Scan to submit
+```
+
+The code is built as an inline SVG on the fly, purely in the browser —
+nothing is fetched over the network and no image file is ever written to
+the repo. This works the same in `slidev dev`, in a static build, and in a
+PDF export, since export just screenshots the built page.
 
 ## Code slides
 
