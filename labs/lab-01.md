@@ -21,7 +21,7 @@ title: Contacts
 <PersonCard role="Teaching Assistant" name="Mr. Nour Gaser" email="nour.aly@giu-uni.de" room="M2.419" />
 <PersonCard role="Teaching Assistant" name="Mr. Omar Alaa" email="omar.alaaeldin@giu-uni.de" room="M2.419" />
 <PersonCard role="Teaching Assistant" name="Ms. Mariam Khalid" email="mariam.khalid@giu-uni.de" room="M2.414" />
-<PersonCard role="Teaching Assistant" name="Mr. Younis" email="TBD" room="M2.506" />
+<PersonCard role="Teaching Assistant" name="Mr. Younes" email="younes.zied@giu-uni.de" room="M2.506" />
 <PersonCard role="Teaching Assistant" name="Mr. Mahmoud" email="TBD" room="M2.506" />
 
 ---
