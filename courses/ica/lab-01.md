@@ -18,10 +18,11 @@ title: Contacts
 ---
 
 <PersonCard role="Course Instructor" name="Dr. Nourhan Hamdi" email="nourhan.hamdi@giu-uni.de" room="M2.312" />
-<PersonCard role="Teaching Assistant" name="Mr. Nour Gaser" email="nour.aly@giu-uni.de" room="M2.412" />
-<PersonCard role="Teaching Assistant" name="Ms. Mariam Khalid" email="mariam.khalid@giu-uni.de" room="M2.412" />
-<PersonCard role="Teaching Assistant" name="Mr. Ahmed Elnagar" email="ahmed.elnager@giu-uni.de" room="M1.402" />
-<PersonCard role="Teaching Assistant" name="Ms. Menna Khalid" email="mennatallah.khaled@giu-uni.de" room="M1.402" />
+<PersonCard role="Teaching Assistant" name="Mr. Nour Gaser" email="nour.aly@giu-uni.de" room="M2.419" />
+<PersonCard role="Teaching Assistant" name="Ms. Menna Khalid" email="TBD" room="M1.###" />
+<PersonCard role="Teaching Assistant" name="Ms. Shorouk Salah" email="TBD" room="M1.###" />
+<PersonCard role="Teaching Assistant" name="Mr. Mahmoud" email="TBD" room="M2.506" />
+<PersonCard role="Teaching Assistant" name="Mr. Younes" email="younes.zied@giu-uni.de" room="M2.506" />
 
 ---
 layout: media
