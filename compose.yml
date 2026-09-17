@@ -33,14 +33,14 @@ services:
   #     - VIRTUAL_HOST=${EBD_LAB_02_HOST:-${LAB_02_HOST:-lab2.ebd.nourgaser.com}}
   #     - LETSENCRYPT_HOST=${EBD_LAB_02_HOST:-${LAB_02_HOST:-lab2.ebd.nourgaser.com}}
 
-  # ebd-assignment-01:
-  #   <<: *slidev-base
-  #   container_name: ebd-assignment-01
-  #   command: ["assignment", "ebd", "1"]
-  #   environment:
-  #     - VIRTUAL_PORT=3030
-  #     - VIRTUAL_HOST=${EBD_ASSIGNMENT_01_HOST:-${ASSIGNMENT_01_HOST:-assignment1.ebd.nourgaser.com}}
-  #     - LETSENCRYPT_HOST=${EBD_ASSIGNMENT_01_HOST:-${ASSIGNMENT_01_HOST:-assignment1.ebd.nourgaser.com}}
+  ebd-assignment-01:
+    <<: *slidev-base
+    container_name: ebd-assignment-01
+    command: ["assignment", "ebd", "1"]
+    environment:
+      - VIRTUAL_PORT=3030
+      - VIRTUAL_HOST=${EBD_ASSIGNMENT_01_HOST:-${ASSIGNMENT_01_HOST:-assignment1.ebd.nourgaser.com}}
+      - LETSENCRYPT_HOST=${EBD_ASSIGNMENT_01_HOST:-${ASSIGNMENT_01_HOST:-assignment1.ebd.nourgaser.com}}
 
   # ===========================================================================
   # ICA (Information & Communication Architecture) Decks
