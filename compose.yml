@@ -12,35 +12,56 @@ x-slidev-base: &slidev-base
   # No volume bind mounts - edits in the Slidev in-browser editor stay ephemeral to the container
 
 services:
-  lab-01:
+  # ===========================================================================
+  # EBD (Electronic Business Development) Decks
+  # ===========================================================================
+  ebd-lab-01:
     <<: *slidev-base
     container_name: ebd-lab-01
-    command: ["lab", "1"]
+    command: ["lab", "ebd", "1"]
     environment:
       - VIRTUAL_PORT=3030
-      - VIRTUAL_HOST=${LAB_01_HOST:-lab1.ebd.nourgaser.com}
-      - LETSENCRYPT_HOST=${LAB_01_HOST:-lab1.ebd.nourgaser.com}
+      - VIRTUAL_HOST=${EBD_LAB_01_HOST:-${LAB_01_HOST:-lab1.ebd.nourgaser.com}}
+      - LETSENCRYPT_HOST=${EBD_LAB_01_HOST:-${LAB_01_HOST:-lab1.ebd.nourgaser.com}}
 
-  # ---------------------------------------------------------------------------
-  # Extensible service templates: uncomment and adjust when deploying new decks
-  # ---------------------------------------------------------------------------
-  # lab-02:
+  # ebd-lab-02:
   #   <<: *slidev-base
   #   container_name: ebd-lab-02
-  #   command: ["lab", "2"]
+  #   command: ["lab", "ebd", "2"]
   #   environment:
   #     - VIRTUAL_PORT=3030
-  #     - VIRTUAL_HOST=${LAB_02_HOST:-lab2.ebd.nourgaser.com}
-  #     - LETSENCRYPT_HOST=${LAB_02_HOST:-lab2.ebd.nourgaser.com}
+  #     - VIRTUAL_HOST=${EBD_LAB_02_HOST:-${LAB_02_HOST:-lab2.ebd.nourgaser.com}}
+  #     - LETSENCRYPT_HOST=${EBD_LAB_02_HOST:-${LAB_02_HOST:-lab2.ebd.nourgaser.com}}
 
-  # assignment-01:
+  # ebd-assignment-01:
   #   <<: *slidev-base
   #   container_name: ebd-assignment-01
-  #   command: ["assignment", "1"]
+  #   command: ["assignment", "ebd", "1"]
   #   environment:
   #     - VIRTUAL_PORT=3030
-  #     - VIRTUAL_HOST=${ASSIGNMENT_01_HOST:-assignment1.ebd.nourgaser.com}
-  #     - LETSENCRYPT_HOST=${ASSIGNMENT_01_HOST:-assignment1.ebd.nourgaser.com}
+  #     - VIRTUAL_HOST=${EBD_ASSIGNMENT_01_HOST:-${ASSIGNMENT_01_HOST:-assignment1.ebd.nourgaser.com}}
+  #     - LETSENCRYPT_HOST=${EBD_ASSIGNMENT_01_HOST:-${ASSIGNMENT_01_HOST:-assignment1.ebd.nourgaser.com}}
+
+  # ===========================================================================
+  # ICA (Information & Communication Architecture) Decks
+  # ===========================================================================
+  # ica-lab-01:
+  #   <<: *slidev-base
+  #   container_name: ica-lab-01
+  #   command: ["lab", "ica", "1"]
+  #   environment:
+  #     - VIRTUAL_PORT=3030
+  #     - VIRTUAL_HOST=${ICA_LAB_01_HOST:-lab1.ica.nourgaser.com}
+  #     - LETSENCRYPT_HOST=${ICA_LAB_01_HOST:-lab1.ica.nourgaser.com}
+
+  # ica-lab-02:
+  #   <<: *slidev-base
+  #   container_name: ica-lab-02
+  #   command: ["lab", "ica", "2"]
+  #   environment:
+  #     - VIRTUAL_PORT=3030
+  #     - VIRTUAL_HOST=${ICA_LAB_02_HOST:-lab2.ica.nourgaser.com}
+  #     - LETSENCRYPT_HOST=${ICA_LAB_02_HOST:-lab2.ica.nourgaser.com}
 
 networks:
   nginx-proxy:

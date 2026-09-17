@@ -5,3 +5,7 @@ dist
 .github
 *.pdf
 hello.js
+.env
+.env.*
+!.env.example
+ReferenceData/

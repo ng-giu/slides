@@ -1,10 +1,10 @@
-name: Build Lab PDFs
+name: Build Course PDFs
 
 on:
   push:
     paths:
-      - "labs/**/*.md"
-      - "labs/public/**"
+      - "courses/**/*.md"
+      - "courses/**/public/**"
       - "theme/**"
       - "scripts/**"
       - "package.json"
@@ -32,29 +32,45 @@ jobs:
       - name: Install Chromium
         run: bunx playwright install --with-deps chromium
 
-      - name: Export all lab PDFs
+      - name: Export all course PDFs
         shell: bash
         run: |
           set -euo pipefail
           shopt -s nullglob
 
-          labs=(labs/lab-*.md)
-          if [ "${#labs[@]}" -eq 0 ]; then
-            echo "No lab decks found in labs/"
+          courses=(courses/*)
+          if [ "${#courses[@]}" -eq 0 ]; then
+            echo "No courses found in courses/"
             exit 1
           fi
 
-          for lab in "${labs[@]}"; do
-            num="${lab##*/}"
-            num="${num#lab-}"
-            num="${num%.md}"
-            echo "Exporting lab $num from $lab"
-            bun run export "$num"
+          for cdir in "${courses[@]}"; do
+            [ -d "$cdir" ] || continue
+            course="${cdir##*/}"
+            echo "=== Processing course: $course ==="
+
+            for f in "$cdir"/lab-*.md; do
+              [ -f "$f" ] || continue
+              num="${f##*/}"
+              num="${num#lab-}"
+              num="${num%.md}"
+              echo "Exporting lab $num for $course"
+              bun run export "$course" "$num"
+            done
+
+            for f in "$cdir"/assignment-*.md; do
+              [ -f "$f" ] || continue
+              num="${f##*/}"
+              num="${num#assignment-}"
+              num="${num%.md}"
+              echo "Exporting assignment $num for $course"
+              bun run export:assignment "$course" "$num"
+            done
           done
 
       - name: Upload PDF artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: lab-pdfs-${{ github.sha }}
-          path: dist/*.pdf
+          name: course-pdfs-${{ github.sha }}
+          path: dist/**/*.pdf
           if-no-files-found: error

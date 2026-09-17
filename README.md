@@ -4,19 +4,28 @@ Slidev decks for GIU lab courses. Content lives in Markdown, design lives in one
 
 ```bash
 bun install
-bun run lab 1                 # dev server for labs/lab-01.md
-bun run export 1              # PDF into dist/lab-01.pdf
-bun run assignment 1          # dev server for labs/assignment-01.md
-bun run export:assignment 1   # PDF into dist/assignment-01.pdf
+
+# Dev server
+bun run lab 1                 # dev server for courses/ebd/lab-01.md (default: ebd)
+bun run lab ica 1             # dev server for courses/ica/lab-01.md
+bun run lab ica 2             # dev server for courses/ica/lab-02.md
+bun run assignment 1          # dev server for courses/ebd/assignment-01.md
+
+# Export PDF
+bun run export 1              # PDF into dist/ebd/lab-01.pdf
+bun run export ica 1          # PDF into dist/ica/lab-01.pdf
+bun run export ica all        # export all ICA lab PDFs
+bun run export:assignment 1   # PDF into dist/ebd/assignment-01.pdf
 ```
 
-Each script takes a number and zero-pads it, so `bun run lab 2` and `bun run lab 02`
-both open `labs/lab-02.md`, same for `assignment`. `bun run dev` is shorthand for
-lab 1.
+Each script takes an optional `[course]` (defaults to `ebd` for backward compatibility)
+and a number that is automatically zero-padded, so `bun run lab ica 2` and
+`bun run lab ica 02` both open `courses/ica/lab-02.md`. `bun run dev` is shorthand
+for EBD Lab 1.
 
-There are two deck kinds, both living in `labs/` and sharing the same theme:
-`lab-0N.md` for weekly lab sessions, `assignment-0N.md` for a self-paced,
-front-to-back walkthrough of an assignment.
+There are two deck kinds, living inside each course folder under `courses/<course>/`
+and sharing the same theme: `lab-0N.md` for weekly lab sessions, `assignment-0N.md`
+for a self-paced, front-to-back walkthrough of an assignment.
 
 PDF export needs a browser binary once:
 
@@ -27,15 +36,23 @@ bunx playwright install chromium
 ## Layout
 
 ```
-labs/          one Markdown file per lab/assignment deck — the only place content lives
-labs/public/   images, served at the site root (/img/logos/git.png)
-theme/         the GIU theme: layouts, components, tokens
-scripts/       deck.sh — resolves a lab number to its deck for the bun scripts
+courses/
+  ebd/             Electronic Business Development
+    lab-01.md
+    assignment-01.md
+    public/        course assets, served at site root (/img/...)
+  ica/             Information & Communication Architecture
+    lab-01.md      Lab 1: User Stories & Acceptance Criteria
+    lab-02.md      Lab 2: UI/UX & Figma
+    public/        course assets, served at site root (/img/...)
+theme/             the GIU theme: layouts, components, tokens
+scripts/           deck.sh — multi-course resolver for bun scripts
+dist/              exported PDFs organized by course (dist/ebd/, dist/ica/)
 ```
 
-Assets live in `labs/public/` rather than the repo root because Slidev resolves its
-public folder relative to the deck it is given (`labs/lab-01.md`), not to the working
-directory. A file at `labs/public/img/x.png` is referenced as `/img/x.png`.
+Assets live in `courses/<course>/public/` rather than the repo root because Slidev resolves
+its public folder relative to the deck it is given (`courses/ebd/lab-01.md`), not to the
+working directory. A file at `courses/ebd/public/img/x.png` is referenced as `/img/x.png`.
 
 Images are grouped by what they are, not by which lab uses them, so they stay
 reusable as labs are added:
@@ -239,5 +256,5 @@ Slidev will not warn you when a slide runs past its bottom edge — it just clip
 in the PDF. After heavy edits, export and skim the pages:
 
 ```bash
-bun run export <lab-number>
+bun run export [course] <lab-number>   # e.g. bun run export ica 1 or bun run export 1
 ```

@@ -1,5 +1,5 @@
 ---
-theme: ../theme
+theme: ../../theme
 title: BINF 503 - Assignment 1 - Environment Setup and Development Basics
 courseTitle: Electronic Business Development
 course: BINF 503
