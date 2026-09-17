@@ -1,0 +1,48 @@
+# Base configuration anchor for Slidev deck containers
+x-slidev-base: &slidev-base
+  build:
+    context: .
+    dockerfile: Dockerfile
+  image: ebd-slides:latest
+  restart: unless-stopped
+  expose:
+    - "3030"
+  networks:
+    - nginx-proxy
+  # No volume bind mounts - edits in the Slidev in-browser editor stay ephemeral to the container
+
+services:
+  lab-01:
+    <<: *slidev-base
+    container_name: ebd-lab-01
+    command: ["lab", "1"]
+    environment:
+      - VIRTUAL_PORT=3030
+      - VIRTUAL_HOST=${LAB_01_HOST:-lab1.ebd.nourgaser.com}
+      - LETSENCRYPT_HOST=${LAB_01_HOST:-lab1.ebd.nourgaser.com}
+
+  # ---------------------------------------------------------------------------
+  # Extensible service templates: uncomment and adjust when deploying new decks
+  # ---------------------------------------------------------------------------
+  # lab-02:
+  #   <<: *slidev-base
+  #   container_name: ebd-lab-02
+  #   command: ["lab", "2"]
+  #   environment:
+  #     - VIRTUAL_PORT=3030
+  #     - VIRTUAL_HOST=${LAB_02_HOST:-lab2.ebd.nourgaser.com}
+  #     - LETSENCRYPT_HOST=${LAB_02_HOST:-lab2.ebd.nourgaser.com}
+
+  # assignment-01:
+  #   <<: *slidev-base
+  #   container_name: ebd-assignment-01
+  #   command: ["assignment", "1"]
+  #   environment:
+  #     - VIRTUAL_PORT=3030
+  #     - VIRTUAL_HOST=${ASSIGNMENT_01_HOST:-assignment1.ebd.nourgaser.com}
+  #     - LETSENCRYPT_HOST=${ASSIGNMENT_01_HOST:-assignment1.ebd.nourgaser.com}
+
+networks:
+  nginx-proxy:
+    name: nginx-proxy
+    external: true
