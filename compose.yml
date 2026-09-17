@@ -45,14 +45,14 @@ services:
   # ===========================================================================
   # ICA (Information & Communication Architecture) Decks
   # ===========================================================================
-  # ica-lab-01:
-  #   <<: *slidev-base
-  #   container_name: ica-lab-01
-  #   command: ["lab", "ica", "1"]
-  #   environment:
-  #     - VIRTUAL_PORT=3030
-  #     - VIRTUAL_HOST=${ICA_LAB_01_HOST:-lab1.ica.nourgaser.com}
-  #     - LETSENCRYPT_HOST=${ICA_LAB_01_HOST:-lab1.ica.nourgaser.com}
+  ica-lab-01:
+    <<: *slidev-base
+    container_name: ica-lab-01
+    command: ["lab", "ica", "1"]
+    environment:
+      - VIRTUAL_PORT=3030
+      - VIRTUAL_HOST=${ICA_LAB_01_HOST:-lab1.ica.nourgaser.com}
+      - LETSENCRYPT_HOST=${ICA_LAB_01_HOST:-lab1.ica.nourgaser.com}
 
   # ica-lab-02:
   #   <<: *slidev-base
