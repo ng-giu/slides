@@ -270,6 +270,16 @@
 .giu-toollogo { height: 2.2rem; width: auto; display: block; margin: 0 0 0.9rem; }
 .slidev-layout.is-dense .giu-toollogo { height: 1.7rem; margin-bottom: 0.6rem; }
 
+/* --- inline tool mentions, e.g. `<Tool name="vscode" />` -------- */
+.giu-tool {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.giu-tool__icon { flex: none; width: 1em; height: 1em; }
+
 /* --- images written as markdown -------------------------------- */
 /* Capped so a large export can never silently run off the slide.
    The canvas is 28rem tall inside the padding; 17rem leaves room for text. */

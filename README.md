@@ -175,6 +175,7 @@ the list is long — students otherwise read a wall of links as homework.
 | `<Activity>` | An in-lab task inside a content slide — carries the same mark as the `activity` layout |
 | `<ToolLogo>` | The real product mark on a tool slide |
 | `<FileTag>` | Filename label above a code block |
+| `<Tool>` | Inline mention of a tool, e.g. in a sentence — icon plus name, in its brand color |
 
 ```markdown
 <ToolLogo src="/img/logos/vscode.png" alt="Visual Studio Code" />
@@ -190,6 +191,18 @@ the list is long — students otherwise read a wall of links as homework.
 ```
 
 Leave blank lines inside `<Activity>`, or Markdown will not format what is in it.
+
+### Mentioning a tool inline
+
+`<Tool name="vscode" />` drops an icon and the tool's name into a sentence, colored
+so it reads as that tool at a glance — handy in instructions that mix several
+tools (`Open <Tool name="vscode" />, then run it with <Tool name="nodejs" />`).
+
+Icons come from [Simple Icons](https://simpleicons.org) through the same UnoCSS
+icon preset the slide-type marks use. To add a tool, add one line to the map in
+`theme/components/Tool.vue` — find its slug on simpleicons.org and write the
+`i-simple-icons-*` class out in full, for the same reason as the slide-type icons
+above.
 
 ## Images
 
