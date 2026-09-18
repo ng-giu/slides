@@ -219,9 +219,9 @@ title: Functions & arrays
 
 1. Create an array `grades = [40, 55, 78, 90, 100]`.
 2. Write a function `passed(grade)` that returns `true` if `grade >= 50`.
-3. Use `grades.filter(passed)` — you're handing your own function to `filter` as a callback.
+3. Use `grades.filter(passed)`to create a new array of passing grades — you're handing your own function to `filter` as a callback.
 4. Write the same check again, this time as an inline arrow function: `grades.filter(g => g >= 50)`.
-5. Bonus: use `map` to create a "+5 bonus" version of `grades`, and `forEach` to print the final list.
+5. Use `map` to create a "+5 bonus" version of `grades`, and `forEach` to print the final list.
 
 ---
 layout: section
