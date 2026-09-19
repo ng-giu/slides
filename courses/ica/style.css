@@ -1,0 +1,16 @@
+/* ==========================================================================
+   ICA Course Theme — Blueprint & Systems Architecture Identity
+   Preserves the clean white-paper editorial layout while giving ICA a
+   distinctive Cobalt Blue and Architecture Teal accent identity.
+   ========================================================================== */
+
+:root {
+  /* ICA signature accents (replacing EBD's Red & Gold) */
+  --giu-red: #1d4ed8;    /* Blueprint Cobalt Blue */
+  --giu-gold: #0d9488;   /* Architecture Teal */
+}
+
+/* Subtle accent polish for ICA elements */
+.giu-activity__label {
+  color: var(--giu-gold);
+}
