@@ -8,6 +8,10 @@
   /* ICA signature accents (replacing EBD's Red & Gold) */
   --giu-red: #1d4ed8;    /* Blueprint Cobalt Blue */
   --giu-gold: #0d9488;   /* Architecture Teal */
+
+  /* Cover slide geometric pattern accents */
+  --giu-cover-accent1: #0d9488;  /* Architecture Teal outer border */
+  --giu-cover-accent2: #1d4ed8;  /* Blueprint Cobalt Blue inner diamonds */
 }
 
 /* Subtle accent polish for ICA elements */

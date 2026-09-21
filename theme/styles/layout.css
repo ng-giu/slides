@@ -11,6 +11,10 @@
   --giu-paper: #ffffff;
   --giu-rule: #e7e7e7;
 
+  --giu-cover-accent1: #DA9C04;
+  --giu-cover-accent2: #2252D9;
+  --giu-cover-shape: #D21119;
+
   --giu-pad-x: 3.4rem;
   --giu-pad-top: 2.9rem;
   --giu-pad-bottom: 3.6rem;
@@ -100,30 +104,82 @@
   position: absolute;
   left: var(--giu-pad-x);
   right: var(--giu-pad-x);
-  bottom: 1.5rem;
+  bottom: 1.41rem;
   display: flex;
   align-items: baseline;
   justify-content: flex-end;
-  gap: 1.4rem;
-  font-size: 0.62rem;
+  gap: 2.8rem;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.58rem;
+  font-weight: 400;
   color: var(--giu-red);
   letter-spacing: 0.005em;
+  z-index: 1;
 }
-.giu-footer__sep { opacity: 0.55; padding: 0 0.28rem; }
-.giu-footer__page { color: var(--giu-red); font-variant-numeric: tabular-nums; min-width: 1.5rem; text-align: right; }
+.giu-footer__sep { opacity: 0.55; padding: 0 0.45rem; }
+.giu-footer__page { color: var(--giu-red); font-variant-numeric: tabular-nums; min-width: 1rem; text-align: right; }
 
 /* --- cover ----------------------------------------------------- */
-.giu-cover { display: flex; flex-direction: column; justify-content: space-between; }
+.giu-cover {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 7.58rem;
+  padding-bottom: 0;
+  overflow: hidden;
+}
+.giu-cover__title,
+.giu-cover__logo,
+.giu-cover__logo-wrap {
+  position: relative;
+  z-index: 1;
+}
+.giu-cover__title {
+  margin-left: -0.06rem;
+}
 .giu-cover h1 {
-  font-size: 3.35rem;
+  font-size: 3.34rem;
   font-weight: 600;
-  line-height: 1.02;
-  letter-spacing: -0.035em;
-  max-width: 15ch;
+  line-height: 3.442rem;
+  letter-spacing: -0.033em;
+  max-width: 32.8rem;
   margin: 0;
 }
 .giu-cover__eyebrow { color: var(--giu-muted); font-size: 0.8rem; margin-bottom: 1.1rem; }
-.giu-cover__logo { height: 5rem; width: auto; }
+.giu-cover__logo-wrap {
+  margin-bottom: 5.02rem;
+  margin-left: 0.71rem;
+}
+.giu-cover__logo { height: 1.95rem; width: auto; display: block; }
+
+.giu-cover__pattern {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 83.65%;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+.giu-cover__pattern--group1 {
+  aspect-ratio: 652 / 744;
+}
+.giu-cover__pattern--group3 {
+  aspect-ratio: 1343 / 1343;
+  height: 150%;
+  top: -50%;
+  right: -30%;
+}
+.giu-pattern__accent1 {
+  fill: var(--giu-cover-accent1, #DA9C04);
+}
+.giu-pattern__accent2 {
+  fill: var(--giu-cover-accent2, #2252D9);
+}
+.giu-pattern__shape {
+  fill: var(--giu-cover-shape, #D21119);
+}
 
 /* --- section divider ------------------------------------------- */
 .giu-section { display: flex; flex-direction: column; justify-content: center; }
