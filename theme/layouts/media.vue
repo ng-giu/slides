@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import QrCode from '../components/QrCode.vue'
 
-defineProps<{ image: string; side?: 'left' | 'right'; alt?: string; qr?: boolean }>()
+defineProps<{ image: string; side?: 'left' | 'right'; alt?: string; qr?: boolean; dense?: boolean }>()
 </script>
 
 <template>
-  <div class="slidev-layout">
+  <div class="slidev-layout" :class="{ 'is-dense': dense }">
     <div class="giu-media">
       <QrCode v-if="qr && side === 'left'" class="giu-media__img" :value="image" />
       <img
