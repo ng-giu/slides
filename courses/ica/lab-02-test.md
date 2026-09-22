@@ -348,7 +348,7 @@ wideRight: true
   </div>
 
   <div class="text-[0.7rem] bg-white p-2.5 rounded-lg border border-slate-200 text-slate-600">
-    💡 <strong>Follow along:</strong> Open your Figma workspace to watch and replicate each interaction in real-time.
+    💡 <strong>Stay focused: </strong>concentrate on every action, and ask if something isn't clear."
   </div>
 </div>
 
