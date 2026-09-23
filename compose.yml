@@ -42,6 +42,15 @@ services:
       - VIRTUAL_HOST=${EBD_ASSIGNMENT_01_HOST:-${ASSIGNMENT_01_HOST:-assignment1.ebd.nourgaser.com}}
       - LETSENCRYPT_HOST=${EBD_ASSIGNMENT_01_HOST:-${ASSIGNMENT_01_HOST:-assignment1.ebd.nourgaser.com}}
 
+  ebd-assignment-02:
+    <<: *slidev-base
+    container_name: ebd-assignment-02
+    command: ["assignment", "ebd", "2"]
+    environment:
+      - VIRTUAL_PORT=3030
+      - VIRTUAL_HOST=${EBD_ASSIGNMENT_02_HOST:-assignment2.ebd.nourgaser.com}
+      - LETSENCRYPT_HOST=${EBD_ASSIGNMENT_02_HOST:-assignment2.ebd.nourgaser.com}
+
   # ===========================================================================
   # ICA (Information & Communication Architecture) Decks
   # ===========================================================================
@@ -54,14 +63,14 @@ services:
       - VIRTUAL_HOST=${ICA_LAB_01_HOST:-lab1.ica.nourgaser.com}
       - LETSENCRYPT_HOST=${ICA_LAB_01_HOST:-lab1.ica.nourgaser.com}
 
-  # ica-lab-02:
-  #   <<: *slidev-base
-  #   container_name: ica-lab-02
-  #   command: ["lab", "ica", "2"]
-  #   environment:
-  #     - VIRTUAL_PORT=3030
-  #     - VIRTUAL_HOST=${ICA_LAB_02_HOST:-lab2.ica.nourgaser.com}
-  #     - LETSENCRYPT_HOST=${ICA_LAB_02_HOST:-lab2.ica.nourgaser.com}
+  ica-lab-02:
+    <<: *slidev-base
+    container_name: ica-lab-02
+    command: ["lab", "ica", "2"]
+    environment:
+      - VIRTUAL_PORT=3030
+      - VIRTUAL_HOST=${ICA_LAB_02_HOST:-lab2.ica.nourgaser.com}
+      - LETSENCRYPT_HOST=${ICA_LAB_02_HOST:-lab2.ica.nourgaser.com}
 
 networks:
   nginx-proxy:
