@@ -23,9 +23,9 @@ title: Contacts
 
 <PersonCard role="Course Instructor" name="Dr. Nourhan Hamdi" email="nourhan.hamdi@giu-uni.de" room="M2.312" />
 <PersonCard role="Teaching Assistant" name="Mr. Nour Gaser" email="nour.aly@giu-uni.de" room="M2.419" />
-<PersonCard role="Teaching Assistant" name="Ms. Menna Khalid" email="TBD" room="M1.###" />
-<PersonCard role="Teaching Assistant" name="Ms. Shorouk Salah" email="TBD" room="M1.###" />
-<PersonCard role="Teaching Assistant" name="Mr. Mahmoud" email="TBD" room="M2.506" />
+<PersonCard role="Teaching Assistant" name="Ms. Menna Khalid" email="mennatallah.khaled@giu-uni.de" room="M2.437" />
+<PersonCard role="Teaching Assistant" name="Ms. Shorouk Salah" email="shorouk.metwally@giu-uni.de" room="M2.437" />
+<PersonCard role="Teaching Assistant" name="Mr. Mahmoud" email="mahmoud.amer@giu-uni.de" room="M2.506" />
 <PersonCard role="Teaching Assistant" name="Mr. Younes Zied" email="younes.zied@giu-uni.de" room="M2.506" />
 
 ---
@@ -402,32 +402,36 @@ dense: true
 <div class="p-2.5 rounded-xl border border-rose-200 bg-rose-50/60 flex flex-col justify-between h-full">
   <div>
     <div class="flex items-center justify-between mb-1.5">
-      <span class="px-2 py-0.5 rounded text-[0.6rem] font-bold bg-rose-600 text-white uppercase tracking-wider">DON'T: Screaming Banner</span>
-      <span class="text-[0.62rem] text-rose-800 font-semibold">Inconsistent & Buried CTA</span>
+      <span class="px-2 py-0.5 rounded text-[0.6rem] font-bold bg-rose-600 text-white uppercase tracking-wider">DON'T: Extreme Breakdown</span>
+      <span class="text-[0.62rem] text-rose-800 font-semibold">Container Breaches & Lost CTA</span>
     </div>
-    <div class="p-2 bg-white rounded-lg border border-rose-200 shadow-sm mb-1.5 text-xs">
-      <div class="bg-red-600 text-white font-black text-center py-1 text-[0.7rem] uppercase rounded mb-1.5">SIGN UP NOW!</div>
-      <div class="space-y-1 mb-1.5">
-        <div class="p-1 px-1.5 rounded border border-slate-300 text-[0.58rem] text-slate-700 bg-slate-50 w-full">name@domain.com (wide)</div>
-        <div class="p-1 px-1.5 rounded border border-slate-300 text-[0.58rem] text-slate-700 bg-slate-50 w-28">•••••••• (narrow)</div>
+    <div class="p-2 bg-[#fef08a] rounded-lg border-2 border-dashed border-red-500 shadow-sm mb-1.5 text-xs relative">
+      <div class="-mx-3 -mt-2 bg-red-600 text-white font-black text-center py-1 text-[0.7rem] uppercase tracking-wider shadow">🚨 SIGN UP RIGHT NOW! 🚨</div>
+      <div class="text-[0.52rem] font-bold text-red-900 -ml-2 my-0.5 whitespace-nowrap">ENTER YOUR COMPLETE EMAIL ADDRESS:</div>
+      <div class="space-y-1 mb-1">
+        <div class="p-1 px-1.5 border-2 border-red-600 text-[0.55rem] font-bold text-black bg-white w-[108%] -mr-3 shadow-sm">name@domain.com (SPILLS OUT!)</div>
+        <div class="flex justify-end">
+          <div class="p-0.5 px-1 border border-slate-400 text-[0.5rem] bg-slate-200 text-slate-600 w-20">•••• (tiny)</div>
+        </div>
       </div>
-      <div class="flex justify-center mb-1">
-        <button class="px-3 py-0.5 bg-slate-300 text-slate-700 text-[0.58rem] font-medium rounded-full">sign up</button>
+      <button class="w-[104%] -ml-1 py-1 bg-amber-500 text-black text-[0.58rem] font-black uppercase mb-1 border border-black shadow">🔥 50% OFF CLICK HERE FIRST 🔥</button>
+      <div class="flex items-center justify-between pt-0.5">
+        <button class="px-1.5 py-0.2 bg-slate-400 text-slate-800 text-[0.45rem] rounded">submit</button>
+        <span class="text-[0.45rem] text-rose-800 italic">already have account?</span>
       </div>
-      <div class="text-[0.52rem] text-center text-slate-400">already have an account?</div>
     </div>
     <ul class="text-[0.68rem] text-slate-700 pl-3 space-y-0.5">
-      <li><strong>Screaming Banner:</strong> Giant red header creates alarm and steals all focus.</li>
-      <li><strong>Mismatched Widths & Tiny CTA:</strong> Random field widths; tiny muted CTA gets buried.</li>
+      <li><strong>Container Breach:</strong> Banner and inputs literally break out of phone margins.</li>
+      <li><strong>Inverted Weights:</strong> Giant promo button drowns out the microscopic submit CTA.</li>
     </ul>
   </div>
   <div class="text-[0.64rem] text-rose-800 font-medium pt-1 border-t border-rose-200">
-    Result: Visual anxiety & buried primary action
+    Result: Severe disorientation, visual stress & lost conversion
   </div>
 </div>
 
 <!--
-Notice the common student mistakes on the right: an aggressive red banner at the top shouts for attention, inputs have mismatched arbitrary widths instead of stretching to container margins, and the actual submit button is a tiny, muted gray pill completely lost at the bottom.
+On the right is an extreme failure of hierarchy and spatial discipline: the header banner and inputs literally spill out of the phone frame boundaries, the background is a jarring sickly yellow, and secondary discount buttons shout at maximum volume while the actual submit button is microscopic.
 -->
 
 ---
@@ -469,32 +473,32 @@ dense: true
 <div class="p-2.5 rounded-xl border border-rose-200 bg-rose-50/60 flex flex-col justify-between h-full">
   <div>
     <div class="flex items-center justify-between mb-1.5">
-      <span class="px-2 py-0.5 rounded text-[0.6rem] font-bold bg-rose-600 text-white uppercase tracking-wider">DON'T: Solid Gray & Neon</span>
-      <span class="text-[0.62rem] text-rose-800 font-semibold">FAILS WCAG (1.4:1)</span>
+      <span class="px-2 py-0.5 rounded text-[0.6rem] font-bold bg-rose-600 text-white uppercase tracking-wider">DON'T: Toxic Palette Fail</span>
+      <span class="text-[0.62rem] text-rose-800 font-semibold">100% WCAG Violation (1.1:1)</span>
     </div>
-    <div class="p-2 bg-white rounded-lg border border-rose-200 shadow-sm mb-1.5 text-xs">
-      <div class="text-[0.55rem] text-slate-400 font-bold uppercase">AppLogo</div>
-      <div class="text-xs font-bold text-slate-900 leading-tight">Welcome Back</div>
-      <div class="text-[0.58rem] text-slate-400 mb-1.5">Solid fills & washed-out CTA</div>
+    <div class="p-2 bg-[#ecfccb] rounded-lg border-2 border-fuchsia-600 shadow-sm mb-1.5 text-xs">
+      <div class="text-[0.55rem] text-lime-400 font-black uppercase">AppLogo (Invisible)</div>
+      <div class="text-xs font-black text-lime-300 leading-tight">Welcome Back (0% Contrast)</div>
+      <div class="text-[0.55rem] text-amber-300 mb-1">Illegible text on toxic chartreuse fill</div>
       <div class="space-y-1 mb-1.5">
-        <div class="p-1 px-1.5 bg-slate-400 text-slate-200 text-[0.58rem] rounded">user@example.com (solid fill)</div>
-        <div class="p-1 px-1.5 bg-slate-400 text-slate-200 text-[0.58rem] rounded">•••••••••••• (solid fill)</div>
+        <div class="p-1 px-1.5 bg-[#450a0a] text-[#1c1917] text-[0.58rem] font-bold rounded">Black text on Maroon (1.1:1 ratio)</div>
+        <div class="p-1 px-1.5 bg-slate-300 text-slate-400 text-[0.58rem] rounded">Gray on Gray (1.3:1 invisible)</div>
       </div>
-      <button class="w-full py-1 bg-lime-400 text-white text-[0.65rem] font-bold rounded mb-1 shadow-sm">Sign In (1.4:1 white on lime)</button>
-      <div class="text-[0.55rem] text-center text-slate-300">Forgot password?</div>
+      <button class="w-full py-1.5 bg-[#84cc16] text-white text-[0.65rem] font-black uppercase rounded shadow mb-1">SIGN IN (1.4:1 WHITE ON LIME)</button>
+      <div class="text-[0.52rem] text-center text-yellow-300 font-bold">Forgot password? (Fails WCAG)</div>
     </div>
     <ul class="text-[0.68rem] text-slate-700 pl-3 space-y-0.5">
-      <li><strong>Solid Gray Blocks:</strong> Heavy filled rectangles look like disabled shapes.</li>
-      <li><strong>Neon Lime on White:</strong> White text on lime green has 1.4:1 ratio; completely unreadable.</li>
+      <li><strong>Catastrophic Contrast:</strong> Black on maroon (1.1:1) & white on neon lime (1.4:1).</li>
+      <li><strong>Garish Toxic Palette:</strong> Clash of neon chartreuse, maroon & lime green strains eyes.</li>
     </ul>
   </div>
   <div class="text-[0.64rem] text-rose-800 font-medium pt-1 border-t border-rose-200">
-    Result: Catastrophic contrast failure & illegible button
+    Result: Immediate eye fatigue; fails WCAG across all elements
   </div>
 </div>
 
 <!--
-A classic blunder seen every year is picking neon lime green for buttons with white text—creating an illegible 1.4:1 contrast ratio that fails WCAG AA. Additionally, filling inputs with solid dark gray rectangles strips their input affordance and makes them look disabled.
+Contrast isn't just about black and white—it's about usability. The extreme example on the right pairs a toxic chartreuse background with black text on dark maroon inputs, followed by the classic student mistake: pure white text on a bright neon lime green button. It fails WCAG AA across 100% of its elements.
 -->
 
 ---
@@ -539,35 +543,38 @@ dense: true
 <div class="p-2.5 rounded-xl border border-rose-200 bg-rose-50/60 flex flex-col justify-between h-full">
   <div>
     <div class="flex items-center justify-between mb-1.5">
-      <span class="px-2 py-0.5 rounded text-[0.6rem] font-bold bg-rose-600 text-white uppercase tracking-wider">DON'T: Shape & Asset Chaos</span>
-      <span class="text-[0.62rem] text-rose-800 font-semibold">Reinventing Wheels</span>
+      <span class="px-2 py-0.5 rounded text-[0.6rem] font-bold bg-rose-600 text-white uppercase tracking-wider">DON'T: Chaos & Out of Frame</span>
+      <span class="text-[0.62rem] text-rose-800 font-semibold">Inverted Flow & Asset Clashing</span>
     </div>
-    <div class="p-2 bg-white rounded-lg border border-rose-200 shadow-sm mb-1.5 text-xs">
-      <div class="text-xs font-bold text-slate-900 mb-0.5">Welcome Back</div>
-      <div class="text-[0.55rem] text-rose-600 mb-1">Sharp 0px inputs mixed with pill CTA</div>
+    <div class="p-2 bg-[#fef3c7] rounded-lg border-2 border-purple-600 shadow-sm mb-1.5 text-xs relative">
+      <div class="text-xs font-black text-purple-900 mb-0.5">Welcome Back</div>
+      <div class="text-[0.52rem] text-rose-600 mb-1 font-bold">Password first & spills out of container!</div>
       <div class="space-y-1 mb-1.5">
-        <div class="p-1 px-1.5 rounded-none border border-slate-400 text-[0.58rem] text-slate-700">Email (sharp 0px box)</div>
-        <div class="p-1 px-1.5 rounded-none border border-slate-400 text-[0.58rem] text-slate-700">Password (sharp 0px box)</div>
+        <div class="w-[112%] -mr-4 p-1 px-1.5 rounded-none border-2 border-dashed border-red-600 bg-white text-[0.55rem] font-bold text-red-700 shadow">Password First (Spills Past Frame!) ⚠️</div>
+        <div class="w-[90%] -ml-1 p-1 px-1.5 rounded-none border border-black bg-yellow-100 text-[0.55rem] text-black">Email Address (Asked Second)</div>
       </div>
-      <button class="w-full py-1 bg-yellow-400 text-black text-[0.65rem] font-semibold rounded-full mb-1">sign in</button>
-      <div class="flex items-center justify-center gap-3 py-0.5 border-t border-slate-100">
-        <div class="bg-slate-300 border border-slate-400 px-1.5 text-[0.52rem] font-bold text-slate-800">G (grey box)</div>
-        <div class="w-4 h-4 rounded-full bg-blue-600 text-white text-[0.52rem] flex items-center justify-center font-bold">f</div>
+      <div class="grid grid-cols-2 gap-1 mb-1">
+        <button class="py-1 bg-red-600 text-white text-[0.58rem] font-bold rounded-none">CANCEL ALL</button>
+        <button class="py-1 bg-blue-700 text-white text-[0.58rem] font-bold rounded-full">Sign In</button>
       </div>
-      <div class="text-[0.5rem] text-center text-slate-400 mt-0.5">sign in with google? sign in facebook?</div>
+      <div class="flex items-center justify-center gap-2 py-0.5 border-t border-purple-200">
+        <div class="border-2 border-gray-500 bg-gray-300 px-1 text-[0.48rem] font-mono text-black">🖼️ [G.jpg gray box]</div>
+        <div class="w-6 h-3 rounded-full bg-blue-600 text-white text-[0.5rem] flex items-center justify-center font-black scale-y-75">f</div>
+      </div>
+      <div class="text-[0.46rem] text-center text-purple-800 font-serif italic mt-0.5">sign in with google? sign in facebook? or don't sign in?</div>
     </div>
     <ul class="text-[0.68rem] text-slate-700 pl-3 space-y-0.5">
-      <li><strong>Shape Clashing:</strong> Mixing sharp 0px boxes with full rounded pills breaks cohesion.</li>
-      <li><strong>Unclipped Pasted Assets:</strong> Raw screenshot artifacts & floating unstyled questions.</li>
+      <li><strong>Container Breach & Inverted Flow:</strong> Password asked first & spills out; Email asked second.</li>
+      <li><strong>Shape & Asset Chaos:</strong> 0px boxes mixed with pills; unclipped screenshots & conflicting CTAs.</li>
     </ul>
   </div>
   <div class="text-[0.64rem] text-rose-800 font-medium pt-1 border-t border-rose-200">
-    Result: Amateur aesthetic & broken design system consistency
+    Result: Total user distrust, high misclick rates & broken mental model
   </div>
 </div>
 
 <!--
-Look at how consistency breaks down on the right: the designer mixed 0px sharp rectangular inputs with a full rounded pill button, pasted a Google logo with an unclipped gray background next to a circular Facebook icon, and dumped unstyled text with question marks at the bottom. A design system requires unified corner radii, properly clipped SVG icons, and consistent spacing rhythm.
+Consistency creates trust. On the right, password is asked before email and literally spills out past the phone screen, sharp 0px inputs clash with pill buttons, a red Cancel button competes equally with Sign In, and an unclipped Google screenshot sits next to a distorted Facebook logo. This represents the ultimate breakdown of design systems.
 -->
 
 ---
