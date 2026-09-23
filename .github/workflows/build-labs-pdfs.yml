@@ -33,40 +33,11 @@ jobs:
         run: bunx playwright install --with-deps chromium
 
       - name: Export all course PDFs
-        shell: bash
-        run: |
-          set -euo pipefail
-          shopt -s nullglob
-
-          courses=(courses/*)
-          if [ "${#courses[@]}" -eq 0 ]; then
-            echo "No courses found in courses/"
-            exit 1
-          fi
-
-          for cdir in "${courses[@]}"; do
-            [ -d "$cdir" ] || continue
-            course="${cdir##*/}"
-            echo "=== Processing course: $course ==="
-
-            for f in "$cdir"/lab-*.md; do
-              [ -f "$f" ] || continue
-              num="${f##*/}"
-              num="${num#lab-}"
-              num="${num%.md}"
-              echo "Exporting lab $num for $course"
-              bun run export "$course" "$num"
-            done
-
-            for f in "$cdir"/assignment-*.md; do
-              [ -f "$f" ] || continue
-              num="${f##*/}"
-              num="${num#assignment-}"
-              num="${num%.md}"
-              echo "Exporting assignment $num for $course"
-              bun run export:assignment "$course" "$num"
-            done
-          done
+        # Uses the same script as `bun run export:all` locally, so CI and a
+        # developer's machine cannot drift. deck.sh's `all` branch exports
+        # every deck by filename, which means a deck whose name is not
+        # `<kind>-<number>.md` no longer fails the whole build.
+        run: bun run export:all
 
       - name: Upload PDF artifacts
         uses: actions/upload-artifact@v4
