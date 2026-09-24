@@ -80,9 +80,9 @@ dense: true
 *Visual Communication & Sensory Controls*
 
 - **Focus areas:**
-  - Typography scales and readability hierarchy.
-  - Color systems and accessibility contrast.
-  - Layout grids, component states, and interactive affordances.
+  - Typography scales.
+  - Color systems.
+  - Layout grids.
 
 > **Core Question:**  
 > *"How does it look and communicate visually?"*
@@ -146,7 +146,7 @@ icon: lifecycle
 sub: Evaluating and constructing digital interfaces through fundamental heuristics
 ---
 
-# 02 — Heuristics & interface anatomy
+# 02 — rules of thumb & interface anatomy
 
 ---
 layout: default
