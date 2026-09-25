@@ -41,6 +41,7 @@ courses/
     lab-01.md
     assignment-01.md
     public/        course assets, served at site root (/img/...)
+    snippets/      runnable code the decks pull in, one folder per lab
   ica/             Information & Communication Architecture
     lab-01.md      Lab 1: User Stories & Acceptance Criteria
     lab-02.md      Lab 2: UI/UX & Figma
@@ -61,6 +62,7 @@ reusable as labs are added:
 img/illustrations/   scene-setting art (rules, hourglass, thank-you, ...)
 img/diagrams/        information graphics (sdlc, ...)
 img/logos/           product marks for tool slides (git, vscode, ...)
+img/screenshots/     captures of real tools, generated (thunder-get, ...)
 ```
 
 ## Editing a deck
@@ -94,7 +96,7 @@ Markdown `#`.
 | `people` | Contacts grid, one `<PersonCard>` per person | `title` |
 | `section` | Chapter divider | `icon`, `sub` |
 | `default` | Heading plus prose, bullets, or a table | `icon`, `dense` |
-| `media` | Illustration beside text | `image`, `side`, `alt`, `qr` |
+| `media` | Illustration beside text | `image` or `tools`, `side`, `alt`, `qr` |
 | `split` | Two columns, `::right::` for the second | `title`, `icon`, `file`, `wideRight`, `dense` |
 | `code` | Full-width code with a filename tag | `title`, `file`, `dense` |
 | `activity` | A whole slide given over to one task | `title`, `label`, `dense` |
@@ -173,9 +175,11 @@ the list is long — students otherwise read a wall of links as homework.
 |---|---|
 | `<PersonCard>` | One person in the contacts grid |
 | `<Activity>` | An in-lab task inside a content slide — carries the same mark as the `activity` layout |
-| `<ToolLogo>` | The real product mark on a tool slide |
+| `<ToolLogo>` | The real product mark on a tool slide — `src` for an image, or `name` for a tool from `theme/tools.ts` |
 | `<FileTag>` | Filename label above a code block |
 | `<Tool>` | Inline mention of a tool, e.g. in a sentence — icon plus name, in its brand color |
+| `<HttpExchange>` | One HTTP round trip drawn: client, request (method, URL, body), response (status, body), server |
+| `<Flow>` | A left-to-right chain of steps: request layers, a middleware pipeline |
 
 ```markdown
 <ToolLogo src="/img/logos/vscode.png" alt="Visual Studio Code" />
@@ -200,9 +204,53 @@ tools (`Open <Tool name="vscode" />, then run it with <Tool name="nodejs" />`).
 
 Icons come from [Simple Icons](https://simpleicons.org) through the same UnoCSS
 icon preset the slide-type marks use. To add a tool, add one line to the map in
-`theme/components/Tool.vue` — find its slug on simpleicons.org and write the
+`theme/tools.ts` — find its slug on simpleicons.org and write the
 `i-simple-icons-*` class out in full, for the same reason as the slide-type icons
-above.
+above. A tool Simple Icons lacks (Thunder Client) borrows a Lucide mark.
+
+### Big tool marks instead of logo files
+
+The same map draws a tool's mark at any size, so a tool slide needs no image
+file. On a `media` slide, `tools:` takes the image's spot:
+
+```markdown
+---
+layout: media
+tools: [nodejs, express]
+side: right
+---
+
+# Node.js + Express
+```
+
+`<ToolLogo name="npm" />` draws a single mark inline, at the size of an image logo.
+
+### Drawing a request
+
+`<HttpExchange>` shows what travels between client and server, with the real
+method, URL and JSON. Leave the props out for a generic picture of the idea.
+
+```markdown
+<HttpExchange method="POST" url="/api/listings"
+  body='{ "title": "Beach House" }'
+  status="201 Created" response='{ "id": 4, "title": "Beach House" }' />
+```
+
+### Drawing a chain of steps
+
+`<Flow>` reads its steps from the slide's frontmatter, where quotes inside code
+need no escaping:
+
+```markdown
+---
+layout: default
+layers:
+  - { title: Route, code: 'app.get("/api/listings/:id", getListing)', sub: Maps a URL to a controller }
+  - { title: Controller, code: "getListing(req, res)" }
+---
+
+<Flow :steps="$frontmatter.layers" back="The response travels back up" />
+```
 
 ## Images
 
@@ -242,8 +290,10 @@ Never paste code into a deck. Keep the real file on disk and pull it in, so the
 slide and the code students clone cannot drift apart:
 
 ```markdown
-<<< ../snippets/lab-09/App.jsx {1-8}
+<<< @/snippets/lab-09/App.jsx {1-8}
 ```
+
+`@/` is the course folder, so that reads `courses/<course>/snippets/lab-09/App.jsx`.
 
 `{1-8}` highlights those lines. Wrap a section of the source in `// #region name`
 and `// #endregion name` to pull just that part, which is usually better than
@@ -251,11 +301,37 @@ showing a whole file — a full file will overflow the slide long before it beco
 unreadable:
 
 ```markdown
-<<< ../snippets/lab-09/App.jsx#routes
+<<< @/snippets/lab-09/App.jsx#routes
 ```
 
-Best case, `snippets/` is a symlink or git submodule pointing at the semester's
-real course repo.
+Regions cannot nest: Slidev ends a region at the first `#endregion` of any name.
+Add a language after the region (`#top txt`) to show a file as plain text — useful
+for a comments-only exercise, which Shiki would otherwise grey out entirely.
+
+Each `snippets/lab-NN/` folder is a small runnable project (`package.json`,
+`.gitignore`), so the code on the slides is code that has actually run. EBD Labs 3
+and 4 share one: `lab-03/` is where Lab 3 ends, `lab-04/starter.js` is the
+comments-only exercise, and `lab-04/server.js` is the full solution.
+
+## Screenshots of real tools
+
+The Thunder Client screenshots in `img/screenshots/` are generated, not taken
+by hand: a script drives a real VS Code with Thunder Client, sends real
+requests to the Lab 4 solution in `snippets/lab-04/`, draws the numbered
+highlight boxes, and writes the PNGs.
+
+```bash
+bun run screenshots
+```
+
+It needs Docker, and runs everything inside the Playwright image. Do not run the
+VS Code part on the host: a second VS Code there kills a remote-tunnel session.
+The first run downloads VS Code, Thunder Client and Express into
+`.cache/screenshots/` (gitignored); later runs reuse them.
+
+To change a shot, edit `scripts/screenshots/shoot.mjs`: each shot fills in a
+request, lists the elements to number, and names its file. The numbers are keyed
+in the slide caption rather than written on the image, so labels never collide.
 
 ## Re-skinning
 
