@@ -226,6 +226,10 @@
 /* --- split / image layouts ------------------------------------- */
 .giu-split__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.8rem; align-items: start; }
 .giu-split__grid.is-wide-right { grid-template-columns: 0.85fr 1.15fr; }
+/* Grid items default to min-width: auto, so a long code line would widen its
+   column past the slide edge, and in a PDF export widen the whole print page:
+   every slide then renders shrunk, with black bars right and bottom. */
+.giu-split__grid > * { min-width: 0; }
 .giu-media { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; height: 100%; min-height: 0; }
 .giu-media > * { min-height: 0; }
 .giu-media.is-left { grid-template-columns: 1fr 1fr; }
@@ -325,6 +329,23 @@
 /* --- tool marks (one per tool slide) ---------------------------- */
 .giu-toollogo { height: 2.2rem; width: auto; display: block; margin: 0 0 0.9rem; }
 .slidev-layout.is-dense .giu-toollogo { height: 1.7rem; margin-bottom: 0.6rem; }
+/* Drawn from the icon set by name: same box as an image mark... */
+.giu-toollogo--mark { width: max-content; font-size: 2.2rem; line-height: 1; }
+.slidev-layout.is-dense .giu-toollogo--mark { font-size: 1.7rem; }
+.giu-toollogo__icon { display: block; width: 1em; height: 1em; }
+/* ...or large, labelled, standing in for a media slide's picture */
+.giu-toollogo--mark.is-lg {
+  height: auto;
+  margin: 0;
+  font-size: 7.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+.giu-toollogo__label { font-size: 1.05rem; font-weight: 600; letter-spacing: 0.01em; }
+.giu-media__tools { display: flex; align-items: center; justify-content: center; gap: 3.5rem; }
+.giu-media__tools:has(> :nth-child(3)) .giu-toollogo--mark.is-lg { font-size: 5.5rem; }
 
 /* --- inline tool mentions, e.g. `<Tool name="vscode" />` -------- */
 .giu-tool {
@@ -335,6 +356,139 @@
   white-space: nowrap;
 }
 .giu-tool__icon { flex: none; width: 1em; height: 1em; }
+
+/* --- HTTP round trip, e.g. `<HttpExchange method="GET" ... />` ----- */
+.giu-http {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr 6.5rem;
+  align-items: center;
+  gap: 1.2rem;
+  margin: 0.6rem 0 0.4rem;
+}
+.giu-http__end {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--giu-black);
+}
+.giu-http__icon { font-size: 3.4rem; color: var(--giu-black); }
+.giu-http__wire { display: flex; flex-direction: column; gap: 1.6rem; min-width: 0; }
+.giu-http__leg { display: flex; flex-direction: column; gap: 0.35rem; }
+.giu-http__tag {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--giu-muted);
+}
+.giu-http__line { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+.giu-http__method,
+.giu-http__status {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.12rem 0.5rem;
+  border-radius: 3px;
+  color: #fff;
+  background: var(--giu-ink);
+}
+.giu-http__method.is-get { background: #1f8a4c; }
+.giu-http__method.is-post { background: var(--giu-gold); }
+.giu-http__method.is-put,
+.giu-http__method.is-patch { background: var(--giu-cover-accent2); }
+.giu-http__method.is-delete { background: var(--giu-red); }
+.giu-http__status.is-ok { background: #1f8a4c; }
+.giu-http__status.is-error { background: var(--giu-red); }
+.slidev-layout .giu-http__url { font-size: 0.8rem; background: none; padding: 0; }
+.giu-http__json {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.62rem;
+  line-height: 1.5;
+  background: #f7f7f8;
+  border: 1px solid var(--giu-rule);
+  border-radius: 3px;
+  padding: 0.4rem 0.6rem;
+  margin: 0;
+  white-space: pre-wrap;
+  color: var(--giu-ink);
+}
+/* A drawn line with a head, pointing at the server or back at the client */
+.giu-http__arrow { position: relative; height: 2px; background: var(--giu-black); margin: 0.25rem 0; }
+.giu-http__arrow::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  border: 6px solid transparent;
+}
+.giu-http__arrow.is-right::after { right: -2px; border-left: 9px solid var(--giu-black); border-right: 0; }
+.giu-http__arrow.is-left::after { left: -2px; border-right: 9px solid var(--giu-black); border-left: 0; }
+
+/* --- step chains, e.g. `<Flow :steps="..." />` -------------------- */
+.giu-flow { margin: 0.5rem 0 1rem; }
+.giu-flow__row { display: flex; align-items: stretch; }
+.giu-flow__step {
+  flex: 1 1 0;
+  min-width: 0;
+  border-top: 3px solid var(--giu-black);
+  padding-top: 0.5rem;
+}
+.giu-flow__title { color: var(--giu-red); font-weight: 600; font-size: 0.8rem; margin-bottom: 0.3rem; }
+.slidev-layout .giu-flow__code {
+  display: block;
+  font-size: 0.6rem;
+  line-height: 1.4;
+  padding: 0.2rem 0.35rem;
+  margin-bottom: 0.3rem;
+  word-break: break-word;
+}
+.giu-flow__sub { color: var(--giu-muted); font-size: 0.68rem; line-height: 1.4; }
+/* The hand-off between two steps: a short line and head on the top rule */
+.giu-flow__arrow { position: relative; flex: 0 0 1.6rem; }
+.giu-flow__arrow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0.25rem;
+  right: 0.35rem;
+  height: 3px;
+  background: var(--giu-rule);
+}
+.giu-flow__arrow::after {
+  content: '';
+  position: absolute;
+  top: -4.5px;
+  right: 0.15rem;
+  border: 6px solid transparent;
+  border-left: 9px solid var(--giu-black);
+  border-right: 0;
+}
+.giu-flow__back {
+  position: relative;
+  margin-top: 0.9rem;
+  height: 2px;
+  background: var(--giu-muted);
+  text-align: center;
+}
+.giu-flow__back::before {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: -5px;
+  border: 6px solid transparent;
+  border-right: 9px solid var(--giu-muted);
+  border-left: 0;
+}
+.giu-flow__back span {
+  position: relative;
+  top: -0.62rem;
+  background: var(--giu-paper);
+  padding: 0 0.6rem;
+  font-size: 0.68rem;
+  color: var(--giu-muted);
+}
 
 /* --- images written as markdown -------------------------------- */
 /* Capped so a large export can never silently run off the slide.
