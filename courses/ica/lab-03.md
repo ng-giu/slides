@@ -75,7 +75,7 @@ dense: true
       </div>
       <h3 class="text-xs font-bold text-slate-900 mb-1">IA Diagram</h3>
       <div class="p-2 rounded-lg bg-white border border-teal-200 text-[0.6rem] font-mono text-teal-950 space-y-0.5">
-        <div class="font-bold text-teal-700">📦 Restaurant Card</div>
+        <div class="font-bold text-teal-700">Entity: Restaurant Card</div>
         <div class="text-slate-500 pl-1.5">├── title: string</div>
         <div class="text-slate-500 pl-1.5">├── rating: float</div>
         <div class="text-slate-500 pl-1.5">└── eta: string</div>
@@ -93,9 +93,9 @@ dense: true
       </div>
       <h3 class="text-xs font-bold text-slate-900 mb-1">Site Map</h3>
       <div class="p-2 rounded-lg bg-white border border-blue-200 text-[0.6rem] font-mono text-blue-950 space-y-0.5">
-        <div class="font-bold text-blue-700">🏠 Home</div>
-        <div class="pl-2 text-slate-600">└── 🍔 Food Feed</div>
-        <div class="pl-4 text-slate-500">└── 📋 Menu View</div>
+        <div class="font-bold text-blue-700">Screen: Home</div>
+        <div class="pl-2 text-slate-600">└── Feed: Food Delivery</div>
+        <div class="pl-4 text-slate-500">└── Detail: Restaurant Menu</div>
       </div>
     </div>
     <div class="text-[0.6rem] text-blue-800 font-semibold pt-1 mt-1.5 border-t border-blue-200">Screen Hierarchy</div>
@@ -129,7 +129,7 @@ dense: true
       <div class="p-2 rounded-lg bg-white border border-amber-300 shadow-2xs space-y-0.5">
         <div class="w-full h-4.5 rounded bg-amber-500 flex items-center justify-center text-[0.55rem] font-bold text-white">Talabat Food</div>
         <div class="text-[0.58rem] font-bold text-slate-800 truncate">Burger Republic</div>
-        <div class="text-[0.5rem] text-slate-500">★ 4.7 • 20-35m • Free</div>
+        <div class="text-[0.5rem] text-slate-500">Rating 4.7 • 20-35m • Free</div>
       </div>
     </div>
     <div class="text-[0.6rem] text-amber-800 font-semibold pt-1 mt-1.5 border-t border-amber-200">Production Interface</div>
@@ -187,8 +187,9 @@ dense: true
         </div>
       </div>
     </div>
-    <div class="mt-2 text-[0.62rem] font-bold text-red-600 bg-red-50 p-1.5 rounded border border-red-200">
-      🚫 Rule: Zero static groups (<kbd class="px-1 py-0.2 rounded bg-slate-200 font-mono text-[0.58rem]">Ctrl+G</kbd>). Always use Auto-Layout (<kbd class="px-1 py-0.2 rounded bg-slate-200 font-mono text-[0.58rem]">Shift+A</kbd>).
+    <div class="mt-2 text-[0.62rem] font-bold text-red-700 bg-red-50 p-1.5 rounded border border-red-200 flex items-center gap-1.5">
+      <span class="px-1.5 py-0.2 rounded bg-red-200 text-red-900 font-mono text-[0.55rem] uppercase font-bold">Rule</span>
+      <span>Zero static groups (<kbd class="px-1 py-0.2 rounded bg-slate-200 font-mono text-[0.58rem]">Ctrl+G</kbd>). Always use Auto-Layout (<kbd class="px-1 py-0.2 rounded bg-slate-200 font-mono text-[0.58rem]">Shift+A</kbd>).</span>
     </div>
   </div>
   <!-- Right: Figma Inspector Replica -->
@@ -196,7 +197,7 @@ dense: true
     <div>
       <div class="flex items-center justify-between border-b border-slate-700 pb-1.5 mb-2">
         <span class="text-[0.68rem] font-bold text-slate-200 flex items-center gap-1.5">
-          <span class="text-purple-400 font-bold">❖</span>
+          <svg class="w-3.5 h-3.5 text-blue-400 inline" viewBox="0 0 16 16" fill="currentColor"><path d="M2 3h12a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm0 6h12a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1z"/></svg>
           <span>Auto Layout Controls</span>
         </span>
         <span class="text-[0.55rem] font-mono px-1.5 py-0.2 rounded bg-slate-800 text-slate-400">Shift + A</span>
@@ -271,8 +272,8 @@ dense: true
       <h4 class="font-bold text-slate-900 mb-1.5">Fixed Sizing</h4>
       <!-- Visual Widget -->
       <div class="p-2 rounded-lg bg-white border border-slate-200 flex flex-col items-center justify-center my-1.5">
-        <div class="w-full py-1 text-center rounded bg-slate-100 border border-slate-300 font-mono text-[0.62rem] text-slate-700 font-bold flex items-center justify-center gap-1">
-          <span>🔒</span>
+        <div class="w-full py-1 text-center rounded bg-slate-100 border border-slate-300 font-mono text-[0.62rem] text-slate-700 font-bold flex items-center justify-center gap-1.5">
+          <span class="text-[0.52rem] uppercase font-bold px-1 py-0.2 rounded bg-slate-200 text-slate-600">Locked</span>
           <span>Fixed: 393 px</span>
         </div>
         <div class="text-[0.52rem] text-slate-500 mt-1">Width stays strictly constant</div>
@@ -350,71 +351,110 @@ dense: true
 
 # Component systems: Master vs. Instances
 
-<div class="p-3 rounded-2xl border border-purple-200 bg-purple-50/40 mt-1">
-  <!-- Top: Master Component -->
-  <div class="p-2.5 rounded-xl bg-purple-900 text-white flex items-center justify-between shadow-xs">
-    <div class="flex items-center gap-2">
-      <span class="text-base text-purple-300">❖</span>
-      <div>
-        <div class="text-xs font-bold flex items-center gap-1.5">
-          <span>Main Component (Master)</span>
-          <span class="text-[0.55rem] font-mono px-1.5 py-0.2 rounded bg-purple-800 text-purple-200">Page 3 (Assets)</span>
+<div class="grid grid-cols-2 gap-3 mt-1 text-[0.68rem]">
+  <!-- Left: Master Component (The Blueprint) -->
+  <div class="p-3 rounded-xl border-2 border-purple-400 bg-purple-50/30 flex flex-col justify-between">
+    <div>
+      <div class="flex items-center justify-between pb-1.5 mb-2 border-b border-purple-200">
+        <div class="flex items-center gap-1.5">
+          <span class="px-2 py-0.5 rounded bg-purple-700 text-white font-bold text-[0.6rem] flex items-center gap-1">
+            <span>❖</span>
+            <span>Master Component</span>
+          </span>
+          <span class="font-bold text-purple-950 text-xs">The Blueprint</span>
         </div>
-        <div class="text-[0.58rem] text-purple-200 mt-0.5">Single source of truth for layout, padding, radii, and styles.</div>
+        <span class="font-mono text-[0.56rem] px-1.5 py-0.5 rounded bg-purple-100 text-purple-800">Ctrl + Alt + K</span>
+      </div>
+      <div class="text-[0.62rem] text-purple-900 mb-2">Single source of truth. Lives strictly on <strong>Page 3 (Assets)</strong>.</div>
+      <!-- Visual Blueprint Specimen Card -->
+      <div class="p-2.5 rounded-lg border-2 border-dashed border-purple-400 bg-white shadow-2xs">
+        <div class="flex items-center justify-between text-[0.52rem] font-mono text-purple-700 mb-1">
+          <span class="font-bold">❖ RestaurantCard (Master)</span>
+          <span>Auto-Layout: Col</span>
+        </div>
+        <div class="w-full h-11 rounded bg-purple-100 border border-purple-200 flex items-center justify-center text-[0.55rem] font-mono text-purple-700">
+          [Image: 140px Fixed Height, Fill Width]
+        </div>
+        <div class="mt-1.5 space-y-1">
+          <div class="h-3 w-3/4 rounded bg-purple-200 flex items-center px-1 text-[0.5rem] font-mono text-purple-800">[Title Slot: Hug]</div>
+          <div class="flex justify-between items-center text-[0.5rem] font-mono text-purple-600">
+            <span>[Tags / ETA Slot]</span>
+            <span class="px-1 py-0.2 rounded bg-purple-100 text-purple-700 font-bold">[Rating Slot]</span>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="text-right">
-      <span class="text-[0.58rem] font-mono px-2 py-0.5 rounded bg-purple-800 text-purple-200 border border-purple-700">Ctrl + Alt + K</span>
-      <div class="text-[0.52rem] text-purple-300 mt-0.5">Edit once ➔ Updates everywhere</div>
+    <div class="mt-2 text-[0.58rem] text-purple-900 bg-purple-100/80 p-1.5 rounded border border-purple-200">
+      <strong>Global cascade:</strong> Edit geometry, radii, or padding here ➔ <strong>all screens update instantly</strong>.
     </div>
   </div>
-  <!-- Inheritance Flow Arrows -->
-  <div class="flex items-center justify-center gap-2 my-1.5 text-purple-600 font-mono text-[0.62rem] font-bold">
-    <span>↓ Automatic Global Synchronization ↓</span>
-  </div>
-  <!-- Bottom: 3 Component Instances -->
-  <div class="grid grid-cols-3 gap-2">
-    <div class="p-2 rounded-lg bg-white border border-purple-200 shadow-2xs">
-      <div class="flex items-center justify-between mb-1">
-        <span class="text-[0.62rem] font-bold text-slate-800 flex items-center gap-1">
-          <span class="text-purple-600">◇</span>
-          <span>Screen 1: Home</span>
-        </span>
-        <span class="text-[0.52rem] font-bold text-slate-400">Instance</span>
+
+  <!-- Right: Instances (Live Screen Clones) -->
+  <div class="p-3 rounded-xl border border-slate-300 bg-slate-50 flex flex-col justify-between">
+    <div>
+      <div class="flex items-center justify-between pb-1.5 mb-2 border-b border-slate-200">
+        <div class="flex items-center gap-1.5">
+          <span class="px-2 py-0.5 rounded bg-slate-700 text-white font-bold text-[0.6rem] flex items-center gap-1">
+            <span>◇</span>
+            <span>Instances</span>
+          </span>
+          <span class="font-bold text-slate-900 text-xs">Screen Clones</span>
+        </div>
+        <span class="font-mono text-[0.56rem] px-1.5 py-0.5 rounded bg-slate-200 text-slate-700">Alt + Drag</span>
       </div>
-      <div class="text-[0.55rem] text-slate-500">Overrides: Title, Photo</div>
+      <div class="text-[0.62rem] text-slate-600 mb-2">Deployed on <strong>Page 4 (Screens)</strong>. Inherits layout, accepts overrides.</div>
+      <!-- 2 Live Instances Stack -->
+      <div class="space-y-1.5">
+        <!-- Instance A -->
+        <div class="p-2 rounded-lg bg-white border border-slate-200 shadow-2xs flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-10 h-9 rounded bg-amber-500 text-white font-bold text-[0.5rem] flex items-center justify-center shrink-0">Burger</div>
+            <div>
+              <div class="font-bold text-slate-800 text-[0.6rem] flex items-center gap-1">
+                <span class="text-purple-600">◇</span>
+                <span>Burger Republic</span>
+              </div>
+              <div class="text-[0.52rem] text-slate-500">American • 20-35 mins • Free</div>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="px-1.5 py-0.5 rounded bg-amber-50 text-amber-800 font-bold text-[0.52rem]">4.7</span>
+            <div class="text-[0.48rem] text-slate-400 mt-0.5">Screen 1 (Home)</div>
+          </div>
+        </div>
+        <!-- Instance B -->
+        <div class="p-2 rounded-lg bg-white border border-slate-200 shadow-2xs flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-10 h-9 rounded bg-orange-600 text-white font-bold text-[0.5rem] flex items-center justify-center shrink-0">Pizza</div>
+            <div>
+              <div class="font-bold text-slate-800 text-[0.6rem] flex items-center gap-1">
+                <span class="text-purple-600">◇</span>
+                <span>Papa John's Pizza</span>
+              </div>
+              <div class="text-[0.52rem] text-slate-500">Italian • 15-25 mins • Free</div>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="px-1.5 py-0.5 rounded bg-amber-50 text-amber-800 font-bold text-[0.52rem]">4.5</span>
+            <div class="text-[0.48rem] text-slate-400 mt-0.5">Screen 2 (Feed)</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="p-2 rounded-lg bg-white border border-purple-200 shadow-2xs">
-      <div class="flex items-center justify-between mb-1">
-        <span class="text-[0.62rem] font-bold text-slate-800 flex items-center gap-1">
-          <span class="text-purple-600">◇</span>
-          <span>Screen 2: Feed</span>
-        </span>
-        <span class="text-[0.52rem] font-bold text-slate-400">Instance</span>
-      </div>
-      <div class="text-[0.55rem] text-slate-500">Overrides: ETA, Rating</div>
-    </div>
-    <div class="p-2 rounded-lg bg-white border border-purple-200 shadow-2xs">
-      <div class="flex items-center justify-between mb-1">
-        <span class="text-[0.62rem] font-bold text-slate-800 flex items-center gap-1">
-          <span class="text-purple-600">◇</span>
-          <span>Screen 3: Menu</span>
-        </span>
-        <span class="text-[0.52rem] font-bold text-slate-400">Instance</span>
-      </div>
-      <div class="text-[0.55rem] text-slate-500">Overrides: Price, Items</div>
+    <div class="mt-2 text-[0.58rem] text-slate-700 bg-white p-1.5 rounded border border-slate-200">
+      <strong>Allowed overrides:</strong> Restaurant title, food photo, ETA, price, and rating pills.
     </div>
   </div>
 </div>
 
-<div class="mt-2 grid grid-cols-2 gap-2 text-[0.66rem]">
-  <div class="p-2 rounded-xl border border-emerald-200 bg-emerald-50/70 text-emerald-950 flex items-center gap-2">
-    <span class="text-base font-bold text-emerald-600">✓</span>
-    <div><strong>Permitted Overrides:</strong> Text label copy, photography fills, and icon colors.</div>
+<div class="mt-2 grid grid-cols-2 gap-2 text-[0.64rem]">
+  <div class="p-1.5 rounded-lg border border-emerald-200 bg-emerald-50/70 text-emerald-950 flex items-center gap-2">
+    <span class="px-1.5 py-0.2 rounded bg-emerald-200 text-emerald-900 font-bold text-[0.55rem] uppercase">Do</span>
+    <div>Override content directly inside screen instances without touching geometry.</div>
   </div>
-  <div class="p-2 rounded-xl border border-red-200 bg-red-50/70 text-red-950 flex items-center gap-2">
-    <span class="text-base font-bold text-red-600">✕</span>
-    <div><strong>Anti-Pattern:</strong> Never "Detach Instance". Detaching destroys reusability forever.</div>
+  <div class="p-1.5 rounded-lg border border-red-200 bg-red-50/70 text-red-950 flex items-center gap-2">
+    <span class="px-1.5 py-0.2 rounded bg-red-200 text-red-900 font-bold text-[0.55rem] uppercase">Don't</span>
+    <div>Never <strong>Detach Instance</strong> (<kbd class="px-1 py-0.2 rounded bg-slate-200 font-mono text-[0.52rem]">Ctrl+Alt+B</kbd>). It destroys the design system.</div>
   </div>
 </div>
 
@@ -503,8 +543,9 @@ dense: true
       <div class="text-[0.6rem] text-slate-500">American, Sandwiches • 20–35 mins • EGP 22.99 Delivery</div>
     </div>
   </div>
-  <div class="flex items-center gap-2 text-[0.62rem] font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded-lg border border-amber-200">
-    <span>★ 4.7 (1k+)</span>
+  <div class="flex items-center gap-1.5 text-[0.62rem] font-bold text-amber-800 bg-amber-50 px-2 py-1 rounded-lg border border-amber-200">
+    <span class="text-[0.55rem] uppercase font-bold text-amber-600">Rating</span>
+    <span>4.7 (1k+)</span>
   </div>
 </div>
 
@@ -534,51 +575,151 @@ dense: true
     <span><strong>Core:</strong> Screens 1 & 2 (100% Credit) • <strong>Screen 3:</strong> Bonus (+Extra Credit)</span>
   </div>
   <div class="flex items-center gap-1.5 font-mono text-[0.6rem]">
-    <a href="https://www.figma.com/community/file/1685465148190554592" target="_blank" class="px-2 py-0.5 rounded bg-white border border-indigo-200 text-indigo-700 font-bold hover:bg-indigo-50 no-underline shadow-2xs" style="text-decoration: none;">🎨 Figma Starter ↗</a>
-    <a href="https://drive.google.com/file/d/16Q8km7oc1fVimUW-6GjubpxlQoFVw47g/view?usp=sharing" target="_blank" class="px-2 py-0.5 rounded bg-white border border-amber-300 text-amber-800 font-bold hover:bg-amber-50 no-underline shadow-2xs" style="text-decoration: none;">📄 Brand Guide ↗</a>
+    <a href="https://www.figma.com/community/file/1685465148190554592" target="_blank" class="px-2 py-0.5 rounded bg-white border border-indigo-200 text-indigo-700 font-bold hover:bg-indigo-50 no-underline shadow-2xs" style="text-decoration: none;">Figma Starter Kit ↗</a>
+    <a href="https://drive.google.com/file/d/16Q8km7oc1fVimUW-6GjubpxlQoFVw47g/view?usp=sharing" target="_blank" class="px-2 py-0.5 rounded bg-white border border-amber-300 text-amber-800 font-bold hover:bg-amber-50 no-underline shadow-2xs" style="text-decoration: none;">Brand Guidelines ↗</a>
   </div>
 </div>
 
 <div class="grid grid-cols-3 gap-3 text-[0.68rem]">
   <!-- Screen 1: Home -->
-  <div class="p-2 rounded-xl border border-slate-200 bg-white flex flex-col items-center justify-between shadow-xs">
-    <div class="w-full flex items-center justify-between mb-1">
-      <span class="font-bold text-slate-900 text-[0.68rem]">1. Home Screen</span>
-      <span class="text-[0.55rem] font-bold px-1.5 py-0.2 rounded bg-blue-100 text-blue-800">Mandatory (50%)</span>
+  <div class="p-2.5 rounded-xl border border-slate-200 bg-white flex flex-col justify-between shadow-xs">
+    <div>
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="font-bold text-slate-900 text-[0.68rem]">1. Home Screen</span>
+        <span class="text-[0.52rem] font-bold px-1.5 py-0.2 rounded bg-blue-100 text-blue-800">Mandatory (50%)</span>
+      </div>
+      <!-- Stylized UI Wireframe / Specimen -->
+      <div class="h-44 w-full rounded-lg bg-slate-50 border border-slate-200 p-2 flex flex-col justify-between">
+        <!-- Search -->
+        <div class="w-full py-1 px-2 rounded bg-white border border-slate-200 flex items-center justify-between text-[0.5rem] text-slate-400">
+          <span>Search food, groceries...</span>
+          <span class="text-orange-500 font-bold text-[0.48rem]">Search</span>
+        </div>
+        <!-- 5 Category Services Grid -->
+        <div class="grid grid-cols-5 gap-1 text-center text-[0.45rem] font-bold">
+          <div class="p-1 rounded bg-orange-100 text-orange-800">Food</div>
+          <div class="p-1 rounded bg-blue-100 text-blue-800">Mart</div>
+          <div class="p-1 rounded bg-emerald-100 text-emerald-800">Market</div>
+          <div class="p-1 rounded bg-purple-100 text-purple-800">Dine</div>
+          <div class="p-1 rounded bg-slate-200 text-slate-700">More</div>
+        </div>
+        <!-- Promo Banner -->
+        <div class="w-full py-1 px-2 rounded bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold text-[0.5rem] flex items-center justify-between shadow-2xs">
+          <span>Summer Specials</span>
+          <span class="bg-white/20 px-1 rounded text-[0.45rem]">50% OFF</span>
+        </div>
+        <!-- Reusable Card Instance -->
+        <div class="p-1 rounded bg-white border border-slate-200 flex items-center gap-1.5 shadow-2xs">
+          <div class="w-8 h-6 rounded bg-slate-200 flex items-center justify-center text-[0.42rem] text-slate-500 font-bold shrink-0">Photo</div>
+          <div class="flex-1">
+            <div class="font-bold text-slate-800 text-[0.5rem]">Burger Republic</div>
+            <div class="text-[0.42rem] text-slate-400">20-35m • Free Delivery</div>
+          </div>
+          <span class="text-[0.45rem] font-bold text-amber-700 bg-amber-50 px-1 rounded">4.7</span>
+        </div>
+        <!-- Bottom Nav -->
+        <div class="pt-1 border-t border-slate-200 flex justify-around text-[0.48rem] text-slate-400">
+          <span class="text-orange-600 font-bold">Home</span>
+          <span>Orders</span>
+          <span>Account</span>
+        </div>
+      </div>
     </div>
-    <div class="h-44 w-full flex justify-center overflow-hidden rounded-lg bg-slate-50 border border-slate-200 my-1">
-      <img src="/screens/home.jpg" class="h-full object-cover object-top" />
-    </div>
-    <div class="w-full text-center text-[0.55rem] text-slate-500 font-medium">
-      Search • 5 Services • Promo Carousel • Bottom Nav
+    <div class="w-full text-center text-[0.52rem] text-slate-500 font-mono mt-1.5 pt-1 border-t border-slate-100">
+      Search • 5 Services • Promo • Bottom Nav
     </div>
   </div>
 
   <!-- Screen 2: Food Delivery -->
-  <div class="p-2 rounded-xl border border-teal-200 bg-white flex flex-col items-center justify-between shadow-xs">
-    <div class="w-full flex items-center justify-between mb-1">
-      <span class="font-bold text-slate-900 text-[0.68rem]">2. Food Delivery</span>
-      <span class="text-[0.55rem] font-bold px-1.5 py-0.2 rounded bg-teal-100 text-teal-800">Mandatory (50%)</span>
+  <div class="p-2.5 rounded-xl border border-teal-200 bg-white flex flex-col justify-between shadow-xs">
+    <div>
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="font-bold text-slate-900 text-[0.68rem]">2. Food Delivery</span>
+        <span class="text-[0.52rem] font-bold px-1.5 py-0.2 rounded bg-teal-100 text-teal-800">Mandatory (50%)</span>
+      </div>
+      <!-- Stylized UI Wireframe / Specimen -->
+      <div class="h-44 w-full rounded-lg bg-teal-50/30 border border-teal-200 p-2 flex flex-col justify-between">
+        <!-- Filter Pills Row -->
+        <div class="flex gap-1 text-[0.45rem]">
+          <span class="px-1.5 py-0.5 rounded-full bg-teal-600 text-white font-bold">All (42)</span>
+          <span class="px-1.5 py-0.5 rounded-full bg-white border border-teal-200 text-teal-800 font-medium">Fast Delivery</span>
+          <span class="px-1.5 py-0.5 rounded-full bg-white border border-teal-200 text-teal-800 font-medium">Top Rated</span>
+        </div>
+        <!-- Deals Row -->
+        <div class="grid grid-cols-2 gap-1 text-[0.48rem]">
+          <div class="p-1 rounded bg-orange-100 text-orange-900 font-bold text-center border border-orange-200">Deals 30% Off</div>
+          <div class="p-1 rounded bg-teal-100 text-teal-900 font-bold text-center border border-teal-200">Free Delivery</div>
+        </div>
+        <!-- Card Instance 1 -->
+        <div class="p-1 rounded bg-white border border-slate-200 flex items-center justify-between text-[0.5rem] shadow-2xs">
+          <div>
+            <div class="font-bold text-slate-800">Burger Republic</div>
+            <div class="text-[0.42rem] text-slate-400">American • 20-35 mins</div>
+          </div>
+          <span class="text-[0.45rem] font-bold text-teal-700 bg-teal-50 px-1 rounded">Rating 4.7</span>
+        </div>
+        <!-- Card Instance 2 -->
+        <div class="p-1 rounded bg-white border border-slate-200 flex items-center justify-between text-[0.5rem] shadow-2xs">
+          <div>
+            <div class="font-bold text-slate-800">Papa John's Pizza</div>
+            <div class="text-[0.42rem] text-slate-400">Italian • 15-25 mins</div>
+          </div>
+          <span class="text-[0.45rem] font-bold text-teal-700 bg-teal-50 px-1 rounded">Rating 4.5</span>
+        </div>
+        <!-- Bottom Nav -->
+        <div class="pt-1 border-t border-teal-100 flex justify-around text-[0.48rem] text-slate-400">
+          <span>Home</span>
+          <span class="text-teal-600 font-bold">Food</span>
+          <span>Account</span>
+        </div>
+      </div>
     </div>
-    <div class="h-44 w-full flex justify-center overflow-hidden rounded-lg bg-slate-50 border border-teal-200 my-1">
-      <img src="/screens/food_delivery.jpg" class="h-full object-cover object-top" />
-    </div>
-    <div class="w-full text-center text-[0.55rem] text-slate-500 font-medium">
-      Deals Row • Restaurant Feed • Cuisines • Filter Pills
+    <div class="w-full text-center text-[0.52rem] text-teal-700 font-mono mt-1.5 pt-1 border-t border-teal-100">
+      Filter Pills • Deals Carousel • Card Feed
     </div>
   </div>
 
   <!-- Screen 3: Menu [Bonus] -->
-  <div class="p-2 rounded-xl border-2 border-emerald-400 bg-emerald-50/40 flex flex-col items-center justify-between shadow-xs">
-    <div class="w-full flex items-center justify-between mb-1">
-      <span class="font-bold text-emerald-950 text-[0.68rem]">3. Restaurant Menu</span>
-      <span class="text-[0.55rem] font-bold px-1.5 py-0.2 rounded bg-emerald-600 text-white">★ BONUS (+Extra)</span>
+  <div class="p-2.5 rounded-xl border-2 border-emerald-400 bg-emerald-50/30 flex flex-col justify-between shadow-xs">
+    <div>
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="font-bold text-emerald-950 text-[0.68rem]">3. Restaurant Menu</span>
+        <span class="text-[0.52rem] font-bold px-1.5 py-0.2 rounded bg-emerald-600 text-white">BONUS (+Extra)</span>
+      </div>
+      <!-- Stylized UI Wireframe / Specimen -->
+      <div class="h-44 w-full rounded-lg bg-white border border-emerald-200 p-2 flex flex-col justify-between">
+        <!-- Hero Header -->
+        <div class="w-full py-1.5 px-2 rounded bg-gradient-to-r from-emerald-600 to-teal-700 text-white flex items-center justify-between text-[0.48rem] font-bold shadow-2xs">
+          <span>← Back to Feed</span>
+          <span class="bg-white/20 px-1 rounded">Share</span>
+        </div>
+        <!-- Floating Info Card -->
+        <div class="p-1 rounded bg-emerald-50 border border-emerald-200 text-[0.5rem] shadow-2xs">
+          <div class="flex items-center justify-between font-bold text-emerald-950">
+            <span>Burger Republic</span>
+            <span class="text-emerald-700">Rating 4.7</span>
+          </div>
+          <div class="text-[0.42rem] text-slate-500">American • Free Delivery • 20-35 mins</div>
+        </div>
+        <!-- 2-Col Dish Grid -->
+        <div class="grid grid-cols-2 gap-1 text-[0.46rem]">
+          <div class="p-1 rounded bg-slate-50 border border-slate-200">
+            <div class="font-bold text-slate-800">Classic Burger</div>
+            <div class="text-orange-600 font-bold text-[0.42rem]">EGP 120</div>
+          </div>
+          <div class="p-1 rounded bg-slate-50 border border-slate-200">
+            <div class="font-bold text-slate-800">Cheese Fries</div>
+            <div class="text-orange-600 font-bold text-[0.42rem]">EGP 45</div>
+          </div>
+        </div>
+        <!-- Sticky Order CTA -->
+        <div class="w-full py-1 rounded bg-emerald-600 text-white font-bold text-[0.5rem] text-center shadow-xs">
+          View Cart (2 items) • EGP 165
+        </div>
+      </div>
     </div>
-    <div class="h-44 w-full flex justify-center overflow-hidden rounded-lg bg-slate-50 border border-emerald-300 my-1">
-      <img src="/screens/menu.jpg" class="h-full object-cover object-top" />
-    </div>
-    <div class="w-full text-center text-[0.55rem] text-emerald-900 font-medium">
-      Hero Banner • Floating Card • 2-Col Dish Grid • Sticky Order
+    <div class="w-full text-center text-[0.52rem] text-emerald-800 font-mono mt-1.5 pt-1 border-t border-emerald-200">
+      Hero Banner • Floating Card • 2-Col Grid • CTA
     </div>
   </div>
 </div>
@@ -753,13 +894,13 @@ dense: true
       <span class="px-2.5 py-0.5 rounded-full text-[0.6rem] font-bold uppercase tracking-wider bg-blue-600 text-white">Sprint Active</span>
       <span class="text-[0.65rem] text-slate-600 font-medium">Screens 1 & 2 (Mandatory) + Screen 3 (Bonus)</span>
     </div>
-    <span class="text-xs font-mono font-bold text-blue-700 bg-white px-2 py-0.5 rounded border border-blue-200 shadow-xs">⏱️ 45–50 Mins</span>
+    <span class="text-xs font-mono font-bold text-blue-700 bg-white px-2 py-0.5 rounded border border-blue-200 shadow-xs">45–50 Mins</span>
   </div>
   <div class="grid grid-cols-2 gap-2">
     <a href="https://www.figma.com/community/file/1685465148190554592" target="_blank" class="p-2 rounded-xl bg-white border border-indigo-200 hover:border-indigo-400 hover:shadow-xs transition flex items-center justify-between no-underline" style="text-decoration: none;">
       <div>
         <div class="text-[0.65rem] font-bold text-indigo-900 flex items-center gap-1">
-          <span>🎨 Figma Community Starter Kit</span>
+          <span>Figma Community Starter Kit</span>
         </div>
         <div class="text-[0.56rem] text-slate-500 mt-0.5">Wireframes, sitemap, tokens & student workspace</div>
       </div>
@@ -768,7 +909,7 @@ dense: true
     <a href="https://drive.google.com/file/d/16Q8km7oc1fVimUW-6GjubpxlQoFVw47g/view?usp=sharing" target="_blank" class="p-2 rounded-xl bg-white border border-amber-200 hover:border-amber-400 hover:shadow-xs transition flex items-center justify-between no-underline" style="text-decoration: none;">
       <div>
         <div class="text-[0.65rem] font-bold text-amber-900 flex items-center gap-1">
-          <span>📄 Brand & Typography Guide (PDF)</span>
+          <span>Brand & Typography Guide (PDF)</span>
         </div>
         <div class="text-[0.56rem] text-slate-500 mt-0.5">Poppins scale, official HEX colors & 8pt grid tokens</div>
       </div>
@@ -778,39 +919,51 @@ dense: true
 </div>
 
 <div class="mt-2 grid grid-cols-3 gap-2.5 text-[0.68rem]">
-  <!-- Screen 1 Mini Card -->
-  <div class="p-2 rounded-xl border border-slate-200 bg-white flex items-center gap-2.5 shadow-xs">
-    <img src="/screens/home.jpg" class="h-16 w-10 rounded border border-slate-200 object-cover object-top shrink-0 shadow-2xs" />
+  <!-- Screen 1 Deliverable Card -->
+  <div class="p-2.5 rounded-xl border border-slate-200 bg-white shadow-xs flex flex-col justify-between">
     <div>
-      <div class="flex items-center gap-1 mb-0.5">
-        <span class="font-bold text-slate-900 text-[0.65rem]">1. Home</span>
-        <span class="text-[0.5rem] font-bold px-1 py-0.2 rounded bg-blue-100 text-blue-800">Mandatory</span>
+      <div class="flex items-center justify-between mb-1">
+        <span class="font-bold text-slate-900 text-[0.68rem]">1. Home Screen</span>
+        <span class="text-[0.52rem] font-bold px-1.5 py-0.2 rounded bg-blue-100 text-blue-800">Mandatory (50%)</span>
       </div>
-      <div class="text-[0.56rem] text-slate-500">Search, 5 Services, Promo Carousel, Bottom Nav</div>
+      <div class="text-[0.56rem] text-slate-600 leading-snug">
+        Search bar frame, 5-service category grid, promo specials banner, and bottom navigation bar.
+      </div>
+    </div>
+    <div class="mt-2 text-[0.52rem] font-mono text-slate-400 pt-1 border-t border-slate-100">
+      Scope: 4 Auto-Layout Containers
     </div>
   </div>
 
-  <!-- Screen 2 Mini Card -->
-  <div class="p-2 rounded-xl border border-teal-200 bg-white flex items-center gap-2.5 shadow-xs">
-    <img src="/screens/food_delivery.jpg" class="h-16 w-10 rounded border border-teal-200 object-cover object-top shrink-0 shadow-2xs" />
+  <!-- Screen 2 Deliverable Card -->
+  <div class="p-2.5 rounded-xl border border-teal-200 bg-white shadow-xs flex flex-col justify-between">
     <div>
-      <div class="flex items-center gap-1 mb-0.5">
-        <span class="font-bold text-slate-900 text-[0.65rem]">2. Food Delivery</span>
-        <span class="text-[0.5rem] font-bold px-1 py-0.2 rounded bg-teal-100 text-teal-800">Mandatory</span>
+      <div class="flex items-center justify-between mb-1">
+        <span class="font-bold text-teal-950 text-[0.68rem]">2. Food Delivery</span>
+        <span class="text-[0.52rem] font-bold px-1.5 py-0.2 rounded bg-teal-100 text-teal-800">Mandatory (50%)</span>
       </div>
-      <div class="text-[0.56rem] text-slate-500">Deals Row, Feed Cards, Cuisines, Filter Pills</div>
+      <div class="text-[0.56rem] text-slate-600 leading-snug">
+        Horizontal filter pills, deals carousel, and vertical feed of reusable Restaurant Cards.
+      </div>
+    </div>
+    <div class="mt-2 text-[0.52rem] font-mono text-teal-600 pt-1 border-t border-teal-100">
+      Scope: Component Instance Reuse
     </div>
   </div>
 
-  <!-- Screen 3 Mini Card [Bonus] -->
-  <div class="p-2 rounded-xl border-2 border-emerald-400 bg-emerald-50/50 flex items-center gap-2.5 shadow-xs">
-    <img src="/screens/menu.jpg" class="h-16 w-10 rounded border border-emerald-300 object-cover object-top shrink-0 shadow-2xs" />
+  <!-- Screen 3 Deliverable Card [Bonus] -->
+  <div class="p-2.5 rounded-xl border-2 border-emerald-400 bg-emerald-50/40 shadow-xs flex flex-col justify-between">
     <div>
-      <div class="flex items-center gap-1 mb-0.5">
-        <span class="font-bold text-emerald-950 text-[0.65rem]">3. Menu</span>
-        <span class="text-[0.5rem] font-bold px-1 py-0.2 rounded bg-emerald-600 text-white">★ BONUS</span>
+      <div class="flex items-center justify-between mb-1">
+        <span class="font-bold text-emerald-950 text-[0.68rem]">3. Restaurant Menu</span>
+        <span class="text-[0.52rem] font-bold px-1.5 py-0.2 rounded bg-emerald-600 text-white">BONUS (+Extra)</span>
       </div>
-      <div class="text-[0.56rem] text-emerald-900">Hero Banner, 2-Col Dish Grid, Sticky Order</div>
+      <div class="text-[0.56rem] text-emerald-950 leading-snug">
+        Hero banner, floating info card, 2-column food dish grid, and sticky bottom order CTA.
+      </div>
+    </div>
+    <div class="mt-2 text-[0.52rem] font-mono text-emerald-700 pt-1 border-t border-emerald-200">
+      Scope: Overlap & 2-Col Grid
     </div>
   </div>
 </div>
@@ -827,8 +980,8 @@ dense: true
 
 ## Lab 03 Core Resources
 
-- <a href="https://www.figma.com/community/file/1685465148190554592" target="_blank" class="no-underline" style="text-decoration: none;">🎨 <strong>Figma Community — Official Talabat ICA Starter Kit</strong></a> — wireframes, IA sitemap & student workspace
-- <a href="https://drive.google.com/file/d/16Q8km7oc1fVimUW-6GjubpxlQoFVw47g/view?usp=sharing" target="_blank" class="no-underline" style="text-decoration: none;">📄 <strong>Google Drive — Talabat Brand & Typography Guidelines (PDF)</strong></a> — official Poppins scale & design tokens
+- <a href="https://www.figma.com/community/file/1685465148190554592" target="_blank" class="no-underline" style="text-decoration: none;"><strong>Figma Community — Official Talabat ICA Starter Kit</strong></a> — wireframes, IA sitemap & student workspace
+- <a href="https://drive.google.com/file/d/16Q8km7oc1fVimUW-6GjubpxlQoFVw47g/view?usp=sharing" target="_blank" class="no-underline" style="text-decoration: none;"><strong>Google Drive — Talabat Brand & Typography Guidelines (PDF)</strong></a> — official Poppins scale & design tokens
 
 ## Figma Official Documentation
 
