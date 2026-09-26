@@ -63,69 +63,82 @@ dense: true
 
 # The architecture pipeline: From IA to UI
 
-In Information & Communication Architecture, visual design is never arbitrary; every container traces directly back to architectural data nodes:
+<div class="text-[0.72rem] text-slate-500 mb-2">Every visual container in Figma traces directly back to an architectural data node:</div>
 
-<div class="grid grid-cols-4 gap-3 mt-3 text-[0.7rem]">
-  <div class="p-3 rounded-lg border border-slate-200 bg-slate-50 flex flex-col justify-between">
+<div class="grid grid-cols-4 gap-2.5 mt-1 text-[0.68rem]">
+  <!-- Step 1 -->
+  <div class="p-2.5 rounded-xl border border-teal-200 bg-teal-50/40 flex flex-col justify-between">
     <div>
-      <span class="text-[0.62rem] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-teal-100 text-teal-800">01. Logic</span>
-      <h3 class="text-xs font-bold text-slate-900 mt-2 mb-1">IA Diagram</h3>
-      <p class="text-slate-600 leading-relaxed">
-        Detailed content nodes, data attributes, and functional priorities per screen.
-      </p>
-      <div class="mt-2 text-[0.63rem] font-mono text-teal-700 bg-teal-50/50 p-1.5 rounded border border-teal-200">
-        Card: Image, Title, Rating, ETA
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="text-[0.6rem] font-bold px-2 py-0.5 rounded bg-teal-100 text-teal-800 uppercase tracking-wider">Step 01</span>
+        <span class="text-[0.58rem] font-mono text-teal-700">Data Model</span>
+      </div>
+      <h3 class="text-xs font-bold text-slate-900 mb-1">IA Diagram</h3>
+      <div class="p-2 rounded-lg bg-white border border-teal-200 text-[0.6rem] font-mono text-teal-950 space-y-0.5">
+        <div class="font-bold text-teal-700">📦 Restaurant Card</div>
+        <div class="text-slate-500 pl-1.5">├── title: string</div>
+        <div class="text-slate-500 pl-1.5">├── rating: float</div>
+        <div class="text-slate-500 pl-1.5">└── eta: string</div>
       </div>
     </div>
-    <div class="text-[0.63rem] text-slate-500 pt-1 border-t border-slate-200">Content Model</div>
+    <div class="text-[0.6rem] text-teal-800 font-semibold pt-1 mt-1.5 border-t border-teal-200">Content Attributes</div>
   </div>
 
-  <div class="p-3 rounded-lg border border-slate-200 bg-slate-50 flex flex-col justify-between">
+  <!-- Step 2 -->
+  <div class="p-2.5 rounded-xl border border-blue-200 bg-blue-50/40 flex flex-col justify-between">
     <div>
-      <span class="text-[0.62rem] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-blue-100 text-blue-800">02. Discovery</span>
-      <h3 class="text-xs font-bold text-slate-900 mt-2 mb-1">Site Map</h3>
-      <p class="text-slate-600 leading-relaxed">
-        Hierarchical inventory of all screens and application pathways.
-      </p>
-      <div class="mt-2 text-[0.63rem] font-mono text-blue-700 bg-blue-50/50 p-1.5 rounded border border-blue-200">
-        Home > Feed > Menu > Item
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="text-[0.6rem] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800 uppercase tracking-wider">Step 02</span>
+        <span class="text-[0.58rem] font-mono text-blue-700">Navigation</span>
+      </div>
+      <h3 class="text-xs font-bold text-slate-900 mb-1">Site Map</h3>
+      <div class="p-2 rounded-lg bg-white border border-blue-200 text-[0.6rem] font-mono text-blue-950 space-y-0.5">
+        <div class="font-bold text-blue-700">🏠 Home</div>
+        <div class="pl-2 text-slate-600">└── 🍔 Food Feed</div>
+        <div class="pl-4 text-slate-500">└── 📋 Menu View</div>
       </div>
     </div>
-    <div class="text-[0.63rem] text-slate-500 pt-1 border-t border-slate-200">User Journey Paths</div>
+    <div class="text-[0.6rem] text-blue-800 font-semibold pt-1 mt-1.5 border-t border-blue-200">Screen Hierarchy</div>
   </div>
 
-  <div class="p-3 rounded-lg border border-slate-200 bg-slate-50 flex flex-col justify-between">
+  <!-- Step 3 -->
+  <div class="p-2.5 rounded-xl border border-indigo-200 bg-indigo-50/40 flex flex-col justify-between">
     <div>
-      <span class="text-[0.62rem] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-indigo-100 text-indigo-800">03. Blueprint</span>
-      <h3 class="text-xs font-bold text-slate-900 mt-2 mb-1">Wireframe</h3>
-      <p class="text-slate-600 leading-relaxed">
-        Grayscale spatial blueprint mapping IA data nodes to geometric bounding boxes without styling.
-      </p>
-      <div class="mt-2 text-[0.63rem] font-mono text-indigo-700 bg-indigo-50/50 p-1.5 rounded border border-indigo-200">
-        Spatial Layout Boxes & Flow
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="text-[0.6rem] font-bold px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 uppercase tracking-wider">Step 03</span>
+        <span class="text-[0.58rem] font-mono text-indigo-700">Geometry</span>
+      </div>
+      <h3 class="text-xs font-bold text-slate-900 mb-1">Wireframe</h3>
+      <div class="p-2 rounded-lg bg-slate-100 border border-indigo-200 flex flex-col gap-1 items-center justify-center text-[0.55rem] text-slate-500">
+        <div class="w-full h-4.5 bg-slate-300 rounded flex items-center justify-center font-mono text-slate-600">Image Box</div>
+        <div class="w-full h-2.5 bg-slate-200 rounded"></div>
+        <div class="w-3/4 h-2 bg-slate-200 rounded self-start"></div>
       </div>
     </div>
-    <div class="text-[0.63rem] text-slate-500 pt-1 border-t border-slate-200">Spatial Geometry</div>
+    <div class="text-[0.6rem] text-indigo-800 font-semibold pt-1 mt-1.5 border-t border-indigo-200">Spatial Layout Boxes</div>
   </div>
 
-  <div class="p-3 rounded-lg border border-slate-200 bg-slate-50 flex flex-col justify-between">
+  <!-- Step 4 -->
+  <div class="p-2.5 rounded-xl border border-amber-200 bg-amber-50/40 flex flex-col justify-between">
     <div>
-      <span class="text-[0.62rem] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-amber-100 text-amber-800">04. Production</span>
-      <h3 class="text-xs font-bold text-slate-900 mt-2 mb-1">Auto-Layout UI</h3>
-      <p class="text-slate-600 leading-relaxed">
-        Responsive, componentized interface adhering to 8pt grid, design tokens, and typography systems.
-      </p>
-      <div class="mt-2 text-[0.63rem] font-mono text-amber-700 bg-amber-50/50 p-1.5 rounded border border-amber-200">
-        Production Components
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="text-[0.6rem] font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800 uppercase tracking-wider">Step 04</span>
+        <span class="text-[0.58rem] font-mono text-amber-700">Figma UI</span>
+      </div>
+      <h3 class="text-xs font-bold text-slate-900 mb-1">Auto-Layout UI</h3>
+      <div class="p-2 rounded-lg bg-white border border-amber-300 shadow-2xs space-y-0.5">
+        <div class="w-full h-4.5 rounded bg-amber-500 flex items-center justify-center text-[0.55rem] font-bold text-white">Talabat Food</div>
+        <div class="text-[0.58rem] font-bold text-slate-800 truncate">Burger Republic</div>
+        <div class="text-[0.5rem] text-slate-500">★ 4.7 • 20-35m • Free</div>
       </div>
     </div>
-    <div class="text-[0.63rem] text-slate-500 pt-1 border-t border-slate-200">Production Interface</div>
+    <div class="text-[0.6rem] text-amber-800 font-semibold pt-1 mt-1.5 border-t border-amber-200">Production Interface</div>
   </div>
 </div>
 
-<div class="mt-3 p-2 rounded-lg border border-teal-200 bg-teal-50 text-[0.7rem] text-teal-900 flex items-center justify-between">
-  <div><strong>Course Connection:</strong> This exact traceability pipeline is required for <strong>Project Deliverable 1 (PD1)</strong> and <strong>Deliverable 2 (PD2)</strong>.</div>
-  <span class="px-2 py-0.5 rounded bg-teal-200 text-teal-900 font-bold text-[0.63rem]">Project Standard</span>
+<div class="mt-2.5 p-2 rounded-xl border border-teal-200 bg-teal-50/80 text-[0.68rem] text-teal-950 flex items-center justify-between">
+  <div><strong>Course Traceability:</strong> Step 1 & 2 = <strong>PD1 (Information Architecture)</strong> ➔ Step 3 & 4 = <strong>PD2 (Figma Mobile UI)</strong>.</div>
+  <span class="px-2 py-0.5 rounded bg-teal-200 text-teal-900 font-bold text-[0.58rem]">Direct Parity</span>
 </div>
 
 <!--
@@ -141,54 +154,100 @@ sub: Mastering Auto-Layout hierarchies, bounding frames, and responsive containe
 # 02 — Auto-Layout & containers
 
 ---
-layout: split
-title: What is an Auto-Layout Container?
+layout: default
 icon: tools
 dense: true
 ---
 
-### The Container Mental Model
-*Structural encapsulation for modern UI*
+# Auto-Layout container mechanics
 
-- **Definition:**  
-  A **Container** is an Auto-Layout Frame (<kbd class="px-1 py-0.2 rounded bg-slate-200 font-mono text-xs">Shift + A</kbd>) that groups, aligns, and spaces child elements mathematically.
-- **Why Containers Matter:**
-  - **Eliminates pixel nudging:** Spacing and alignment calculate automatically as content changes.
-  - **Guarantees responsiveness:** When screen dimensions change, layout reflows predictably.
-  - **Direct CSS parity:** A Figma Auto-Layout container directly mirrors CSS Flexbox (<code class="text-xs">display: flex</code>).
-
-> **Key Rule:**  
-> Never use loose shapes or basic groups (<kbd class="px-1 py-0.2 rounded bg-slate-200 font-mono text-xs">Ctrl + G</kbd>) for layouts. Always use Auto-Layout Frames.
-
-::right::
-
-### Auto-Layout Parameters
-*The four core configuration axes*
-
-<div class="space-y-1.5 text-[0.7rem] mt-0.5">
-  <div class="p-2 rounded-lg border border-slate-200 bg-slate-50">
-    <div class="font-bold text-blue-700">1. Flow Direction</div>
-    <div class="text-slate-600"><strong>Vertical (Column)</strong> stacks children top-to-bottom. <strong>Horizontal (Row)</strong> arranges children left-to-right.</div>
+<div class="grid grid-cols-2 gap-3.5 mt-1 text-[0.68rem]">
+  <!-- Left: Visual Container Box Model -->
+  <div class="p-3 rounded-xl border border-slate-200 bg-slate-50 flex flex-col justify-between">
+    <div>
+      <div class="flex items-center gap-1.5 mb-1.5">
+        <span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold text-[0.6rem]">Mental Model</span>
+        <span class="font-bold text-xs text-slate-900">Auto-Layout = CSS Flexbox</span>
+      </div>
+      <p class="text-[0.68rem] text-slate-600 mb-2">Eliminates manual pixel-nudging: positions, spaces, and aligns children mathematically.</p>
+      <!-- Visual Box Model Diagram -->
+      <div class="p-2.5 rounded-lg border-2 border-dashed border-blue-400 bg-blue-50/60 relative">
+        <div class="text-[0.55rem] font-bold text-blue-700 uppercase tracking-wider mb-2">Container Boundary (Frame)</div>
+        <div class="flex gap-2 items-center justify-center p-2 rounded bg-white border border-blue-200 shadow-2xs">
+          <div class="px-3 py-1.5 rounded bg-slate-200 text-[0.62rem] font-bold text-slate-800">Child A</div>
+          <div class="text-[0.6rem] font-bold text-teal-600 flex flex-col items-center">
+            <span>↔</span>
+            <span class="text-[0.5rem]">Gap (8px)</span>
+          </div>
+          <div class="px-3 py-1.5 rounded bg-slate-200 text-[0.62rem] font-bold text-slate-800">Child B</div>
+        </div>
+        <div class="mt-1.5 flex justify-between text-[0.52rem] text-blue-700 font-medium px-1">
+          <span>◀ Inset: 16px</span>
+          <span>Inset: 16px ▶</span>
+        </div>
+      </div>
+    </div>
+    <div class="mt-2 text-[0.62rem] font-bold text-red-600 bg-red-50 p-1.5 rounded border border-red-200">
+      🚫 Rule: Zero static groups (<kbd class="px-1 py-0.2 rounded bg-slate-200 font-mono text-[0.58rem]">Ctrl+G</kbd>). Always use Auto-Layout (<kbd class="px-1 py-0.2 rounded bg-slate-200 font-mono text-[0.58rem]">Shift+A</kbd>).
+    </div>
   </div>
-
-  <div class="p-2 rounded-lg border border-slate-200 bg-slate-50">
-    <div class="font-bold text-teal-700">2. Item Spacing (Gap)</div>
-    <div class="text-slate-600">Mathematical distance between adjacent child layers (e.g., <code>8px</code>, <code>16px</code> adhering to the 8pt spatial grid).</div>
-  </div>
-
-  <div class="p-2 rounded-lg border border-slate-200 bg-slate-50">
-    <div class="font-bold text-slate-800">3. Padding (Internal Inset)</div>
-    <div class="text-slate-600">Clearance between the container boundary and its children (Top, Bottom, Left, Right).</div>
-  </div>
-
-  <div class="p-2 rounded-lg border border-slate-200 bg-slate-50">
-    <div class="font-bold text-indigo-700">4. Alignment Matrix</div>
-    <div class="text-slate-600">9-point anchor box dictating child distribution (Top-Left, Center, Space-Between).</div>
+  <!-- Right: Figma Inspector Replica -->
+  <div class="p-3 rounded-xl border border-slate-300 bg-slate-900 text-slate-100 flex flex-col justify-between shadow-sm font-sans">
+    <div>
+      <div class="flex items-center justify-between border-b border-slate-700 pb-1.5 mb-2">
+        <span class="text-[0.68rem] font-bold text-slate-200 flex items-center gap-1.5">
+          <span class="text-purple-400 font-bold">❖</span>
+          <span>Auto Layout Controls</span>
+        </span>
+        <span class="text-[0.55rem] font-mono px-1.5 py-0.2 rounded bg-slate-800 text-slate-400">Shift + A</span>
+      </div>
+      <!-- Direction & Alignment -->
+      <div class="grid grid-cols-2 gap-2 mb-2">
+        <!-- Flow Direction -->
+        <div>
+          <div class="text-[0.56rem] text-slate-400 mb-1">Flow Direction</div>
+          <div class="flex rounded bg-slate-800 p-0.5 border border-slate-700">
+            <div class="flex-1 py-1 text-center rounded bg-blue-600 text-white font-bold text-[0.58rem]">↓ Column</div>
+            <div class="flex-1 py-1 text-center text-slate-400 font-medium text-[0.58rem]">→ Row</div>
+          </div>
+        </div>
+        <!-- Alignment Matrix -->
+        <div>
+          <div class="text-[0.56rem] text-slate-400 mb-1">Alignment Matrix (9-pt)</div>
+          <div class="w-14 h-8 rounded bg-slate-800 border border-slate-700 grid grid-cols-3 grid-rows-3 gap-0.5 p-1 mx-auto items-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-600 mx-auto"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-blue-400 mx-auto"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-600 mx-auto"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-600 mx-auto"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-600 mx-auto"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-600 mx-auto"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-600 mx-auto"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-600 mx-auto"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-600 mx-auto"></span>
+          </div>
+        </div>
+      </div>
+      <!-- Spacing and Padding -->
+      <div class="grid grid-cols-2 gap-2 text-[0.62rem]">
+        <div class="p-1.5 rounded bg-slate-800 border border-slate-700 flex items-center justify-between">
+          <span class="text-slate-400">Item Gap</span>
+          <span class="font-mono font-bold text-teal-400">8 px</span>
+        </div>
+        <div class="p-1.5 rounded bg-slate-800 border border-slate-700 flex items-center justify-between">
+          <span class="text-slate-400">Padding</span>
+          <span class="font-mono font-bold text-blue-400">12 px</span>
+        </div>
+      </div>
+    </div>
+    <div class="pt-1.5 mt-2 border-t border-slate-800 text-[0.56rem] text-slate-400 flex items-center justify-between">
+      <span>Figma Design Sidebar Inspector</span>
+      <span class="text-emerald-400 font-bold">8pt Grid Ready</span>
+    </div>
   </div>
 </div>
 
 <!--
-Containers are the fundamental building blocks of all modern software interfaces. In Figma, an Auto-Layout frame is the design equivalent of a flexbox container in CSS.
+Containers are the fundamental building blocks of modern UI. Shift + A turns elements into flexbox containers.
 -->
 
 ---
@@ -199,43 +258,76 @@ dense: true
 
 # Sizing dynamics: Fixed vs. Hug vs. Fill
 
-How containers and child layers behave along their layout axes dictates overall interface responsiveness:
+<div class="text-[0.72rem] text-slate-500 mb-1.5">How containers behave along their layout axes dictates mobile responsiveness:</div>
 
-<div class="grid grid-cols-3 gap-3 text-[0.7rem] mt-3">
-  <div class="p-2.5 rounded-lg border border-slate-200 bg-slate-50 flex flex-col justify-between">
+<div class="grid grid-cols-3 gap-3 text-[0.68rem] mt-1">
+  <!-- Fixed Sizing -->
+  <div class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 flex flex-col justify-between">
     <div>
-      <span class="px-1.5 py-0.5 rounded text-[0.58rem] font-bold bg-slate-200 text-slate-800">Fixed</span>
-      <h4 class="font-bold text-slate-900 mt-1.5 mb-1">Fixed Sizing</h4>
-      <p class="text-slate-600 leading-tight">Dimensions stay constant in absolute pixels regardless of parent or child sizing.</p>
-      <div class="mt-2 text-slate-700"><strong>Use cases:</strong> Phone screen frames (393px), avatar circles (40px), icons.</div>
+      <div class="flex items-center justify-between mb-1">
+        <span class="px-2 py-0.5 rounded text-[0.58rem] font-bold bg-slate-200 text-slate-800">Fixed</span>
+        <span class="text-[0.55rem] font-mono text-slate-500">Rigid</span>
+      </div>
+      <h4 class="font-bold text-slate-900 mb-1.5">Fixed Sizing</h4>
+      <!-- Visual Widget -->
+      <div class="p-2 rounded-lg bg-white border border-slate-200 flex flex-col items-center justify-center my-1.5">
+        <div class="w-full py-1 text-center rounded bg-slate-100 border border-slate-300 font-mono text-[0.62rem] text-slate-700 font-bold flex items-center justify-center gap-1">
+          <span>🔒</span>
+          <span>Fixed: 393 px</span>
+        </div>
+        <div class="text-[0.52rem] text-slate-500 mt-1">Width stays strictly constant</div>
+      </div>
+      <div class="text-[0.6rem] text-slate-600"><strong>Use cases:</strong> Phone frames, avatars, icons.</div>
     </div>
-    <div class="text-[0.62rem] text-red-600 font-semibold pt-1 border-t border-slate-200">Avoid on text containers</div>
+    <div class="text-[0.58rem] text-red-600 font-semibold pt-1 border-t border-slate-200">Avoid on text containers</div>
   </div>
-
-  <div class="p-2.5 rounded-lg border border-blue-200 bg-blue-50/50 flex flex-col justify-between">
+  <!-- Hug Contents -->
+  <div class="p-2.5 rounded-xl border border-blue-200 bg-blue-50/50 flex flex-col justify-between">
     <div>
-      <span class="px-1.5 py-0.5 rounded text-[0.58rem] font-bold bg-blue-100 text-blue-800">Hug</span>
-      <h4 class="font-bold text-slate-900 mt-1.5 mb-1">Hug Contents</h4>
-      <p class="text-slate-600 leading-tight">Container boundary wraps tightly around children plus padding.</p>
-      <div class="mt-2 text-slate-700"><strong>Use cases:</strong> Buttons, category pills, tags, notification badges.</div>
+      <div class="flex items-center justify-between mb-1">
+        <span class="px-2 py-0.5 rounded text-[0.58rem] font-bold bg-blue-100 text-blue-800">Hug</span>
+        <span class="text-[0.55rem] font-mono text-blue-700">Intrinsic</span>
+      </div>
+      <h4 class="font-bold text-slate-900 mb-1.5">Hug Contents</h4>
+      <!-- Visual Widget -->
+      <div class="p-2 rounded-lg bg-white border border-blue-200 flex flex-col items-center justify-center my-1.5">
+        <div class="px-3 py-1 rounded-full bg-blue-600 text-white font-bold text-[0.6rem] flex items-center gap-1.5 shadow-2xs">
+          <span class="text-blue-200 font-mono text-[0.55rem]">→</span>
+          <span>Order Now</span>
+          <span class="text-blue-200 font-mono text-[0.55rem]">←</span>
+        </div>
+        <div class="text-[0.52rem] text-blue-700 mt-1">Shrinks boundary around child text</div>
+      </div>
+      <div class="text-[0.6rem] text-slate-600"><strong>Use cases:</strong> Buttons, category pills, badges.</div>
     </div>
-    <div class="text-[0.62rem] text-blue-700 font-semibold pt-1 border-t border-blue-200">Expands dynamically with text</div>
+    <div class="text-[0.58rem] text-blue-700 font-semibold pt-1 border-t border-blue-200">Expands dynamically with text</div>
   </div>
-
-  <div class="p-2.5 rounded-lg border border-teal-200 bg-teal-50/50 flex flex-col justify-between">
+  <!-- Fill Container -->
+  <div class="p-2.5 rounded-xl border border-teal-200 bg-teal-50/50 flex flex-col justify-between">
     <div>
-      <span class="px-1.5 py-0.5 rounded text-[0.58rem] font-bold bg-teal-100 text-teal-800">Fill</span>
-      <h4 class="font-bold text-slate-900 mt-1.5 mb-1">Fill Container</h4>
-      <p class="text-slate-600 leading-tight">Stretches to consume 100% of available space along parent's layout axis.</p>
-      <div class="mt-2 text-slate-700"><strong>Use cases:</strong> Food cards, search inputs, mobile primary CTA buttons.</div>
+      <div class="flex items-center justify-between mb-1">
+        <span class="px-2 py-0.5 rounded text-[0.58rem] font-bold bg-teal-100 text-teal-800">Fill</span>
+        <span class="text-[0.55rem] font-mono text-teal-700">Elastic</span>
+      </div>
+      <h4 class="font-bold text-slate-900 mb-1.5">Fill Container</h4>
+      <!-- Visual Widget -->
+      <div class="p-2 rounded-lg bg-white border border-teal-200 flex flex-col items-center justify-center my-1.5">
+        <div class="w-full py-1 text-center rounded bg-teal-600 text-white font-bold text-[0.6rem] flex items-center justify-between px-2 shadow-2xs">
+          <span class="text-teal-200 font-mono text-[0.55rem]">◀</span>
+          <span>100% Parent Width</span>
+          <span class="text-teal-200 font-mono text-[0.55rem]">▶</span>
+        </div>
+        <div class="text-[0.52rem] text-teal-700 mt-1">Stretches to consume full screen width</div>
+      </div>
+      <div class="text-[0.6rem] text-slate-600"><strong>Use cases:</strong> Feed cards, search inputs, carousels.</div>
     </div>
-    <div class="text-[0.62rem] text-teal-700 font-semibold pt-1 border-t border-teal-200">Enables responsive elasticity</div>
+    <div class="text-[0.58rem] text-teal-700 font-semibold pt-1 border-t border-teal-200">Guarantees screen responsiveness</div>
   </div>
 </div>
 
-<div class="mt-2.5 p-2 rounded-lg border border-indigo-200 bg-indigo-50/70 text-[0.68rem] text-indigo-950 flex items-center justify-between">
-  <div><strong>The Golden Resizing Formula:</strong> Screen = Fixed Width | Card = Fill Width + Hug Height | Inner Text = Fill Width | Button = Hug Width</div>
-  <span class="px-1.5 py-0.5 rounded bg-indigo-200 text-indigo-900 font-bold text-[0.6rem]">Rule</span>
+<div class="mt-2 p-2 rounded-xl border border-indigo-200 bg-indigo-50/80 text-[0.66rem] text-indigo-950 flex items-center justify-between">
+  <div><strong>The Golden Rule:</strong> Screen = <code>Fixed</code> | Cards = <code>Fill</code> | Inner Text = <code>Fill</code> | Buttons = <code>Hug</code></div>
+  <span class="px-2 py-0.5 rounded bg-indigo-200 text-indigo-900 font-bold text-[0.58rem]">Formula</span>
 </div>
 
 <!--
@@ -251,44 +343,79 @@ sub: Architecting modular, reusable UI building blocks and understanding master-
 # 03 — Component systems
 
 ---
-layout: split
-title: Main Components vs. Instances
+layout: default
 icon: tools
 dense: true
 ---
 
-### Main Component (Master)
-*The definitive architectural blueprint*
+# Component systems: Master vs. Instances
 
-<div class="p-2 rounded-lg border border-purple-200 bg-purple-50/60 text-[0.7rem] mb-2">
-  <span class="px-1.5 py-0.5 rounded text-[0.58rem] font-bold bg-purple-200 text-purple-900">Master Blueprint</span>
-  <p class="text-purple-950 mt-1 leading-tight font-medium">The single source of truth for structure, layout, styles, and Auto-Layout rules.</p>
+<div class="p-3 rounded-2xl border border-purple-200 bg-purple-50/40 mt-1">
+  <!-- Top: Master Component -->
+  <div class="p-2.5 rounded-xl bg-purple-900 text-white flex items-center justify-between shadow-xs">
+    <div class="flex items-center gap-2">
+      <span class="text-base text-purple-300">❖</span>
+      <div>
+        <div class="text-xs font-bold flex items-center gap-1.5">
+          <span>Main Component (Master)</span>
+          <span class="text-[0.55rem] font-mono px-1.5 py-0.2 rounded bg-purple-800 text-purple-200">Page 3 (Assets)</span>
+        </div>
+        <div class="text-[0.58rem] text-purple-200 mt-0.5">Single source of truth for layout, padding, radii, and styles.</div>
+      </div>
+    </div>
+    <div class="text-right">
+      <span class="text-[0.58rem] font-mono px-2 py-0.5 rounded bg-purple-800 text-purple-200 border border-purple-700">Ctrl + Alt + K</span>
+      <div class="text-[0.52rem] text-purple-300 mt-0.5">Edit once ➔ Updates everywhere</div>
+    </div>
+  </div>
+  <!-- Inheritance Flow Arrows -->
+  <div class="flex items-center justify-center gap-2 my-1.5 text-purple-600 font-mono text-[0.62rem] font-bold">
+    <span>↓ Automatic Global Synchronization ↓</span>
+  </div>
+  <!-- Bottom: 3 Component Instances -->
+  <div class="grid grid-cols-3 gap-2">
+    <div class="p-2 rounded-lg bg-white border border-purple-200 shadow-2xs">
+      <div class="flex items-center justify-between mb-1">
+        <span class="text-[0.62rem] font-bold text-slate-800 flex items-center gap-1">
+          <span class="text-purple-600">◇</span>
+          <span>Screen 1: Home</span>
+        </span>
+        <span class="text-[0.52rem] font-bold text-slate-400">Instance</span>
+      </div>
+      <div class="text-[0.55rem] text-slate-500">Overrides: Title, Photo</div>
+    </div>
+    <div class="p-2 rounded-lg bg-white border border-purple-200 shadow-2xs">
+      <div class="flex items-center justify-between mb-1">
+        <span class="text-[0.62rem] font-bold text-slate-800 flex items-center gap-1">
+          <span class="text-purple-600">◇</span>
+          <span>Screen 2: Feed</span>
+        </span>
+        <span class="text-[0.52rem] font-bold text-slate-400">Instance</span>
+      </div>
+      <div class="text-[0.55rem] text-slate-500">Overrides: ETA, Rating</div>
+    </div>
+    <div class="p-2 rounded-lg bg-white border border-purple-200 shadow-2xs">
+      <div class="flex items-center justify-between mb-1">
+        <span class="text-[0.62rem] font-bold text-slate-800 flex items-center gap-1">
+          <span class="text-purple-600">◇</span>
+          <span>Screen 3: Menu</span>
+        </span>
+        <span class="text-[0.52rem] font-bold text-slate-400">Instance</span>
+      </div>
+      <div class="text-[0.55rem] text-slate-500">Overrides: Price, Items</div>
+    </div>
+  </div>
 </div>
 
-<ul class="text-[0.7rem] text-slate-600 space-y-1 pl-3.5 list-disc">
-  <li><strong>Storage Rule:</strong> Keep all Main Components on a designated <strong>Components / Assets</strong> page. Never place a Main Component directly inside a screen frame.</li>
-  <li><strong>Instant Propagation:</strong> Updating the master immediately cascades changes across all screens in the file.</li>
-  <li><strong>Shortcut:</strong> Select Frame → <kbd class="px-1 py-0.2 rounded bg-slate-200 font-mono text-xs">Ctrl + Alt + K</kbd></li>
-</ul>
-
-::right::
-
-### Component Instance (Copy)
-*The deployed consumer in screens*
-
-<div class="p-2 rounded-lg border border-slate-200 bg-slate-50 text-[0.7rem] mb-2">
-  <span class="px-1.5 py-0.5 rounded text-[0.58rem] font-bold bg-slate-200 text-slate-800">Screen Instance</span>
-  <p class="text-slate-900 mt-1 leading-tight font-medium">A linked copy placed inside screen mockups, feeds, and user journeys.</p>
-</div>
-
-<ul class="text-[0.7rem] text-slate-600 space-y-1 pl-3.5 list-disc">
-  <li><strong>Inheritance:</strong> Inherits padding, gap, radius, and layout direction from master.</li>
-  <li><strong>Permitted Overrides:</strong> Text label copy, photography fills, and color tints.</li>
-  <li><strong>Prohibited:</strong> Cannot delete inner layers or alter auto-layout axis without detaching.</li>
-</ul>
-
-<div class="p-1.5 rounded-lg border border-red-200 bg-red-50 text-[0.65rem] text-red-900 mt-2">
-  <strong>Anti-Pattern:</strong> Never right-click and "Detach Instance". Detaching cuts the umbilical cord to the design system forever.
+<div class="mt-2 grid grid-cols-2 gap-2 text-[0.66rem]">
+  <div class="p-2 rounded-xl border border-emerald-200 bg-emerald-50/70 text-emerald-950 flex items-center gap-2">
+    <span class="text-base font-bold text-emerald-600">✓</span>
+    <div><strong>Permitted Overrides:</strong> Text label copy, photography fills, and icon colors.</div>
+  </div>
+  <div class="p-2 rounded-xl border border-red-200 bg-red-50/70 text-red-950 flex items-center gap-2">
+    <span class="text-base font-bold text-red-600">✕</span>
+    <div><strong>Anti-Pattern:</strong> Never "Detach Instance". Detaching destroys reusability forever.</div>
+  </div>
 </div>
 
 <!--
@@ -304,56 +431,80 @@ sub: Step-by-step construction of a reusable Restaurant Card component and its m
 # 04 — TA live demonstration
 
 ---
-layout: split
-title: Live Demo — Building Reusable Components
+layout: default
 icon: tools
 dense: true
-wideRight: true
 ---
 
-### Demo Objectives
-*Step-by-step technical execution*
+# Live demo: Building reusable mobile cards
 
-1. **Auto-Layout Card Construction:**
-   - Construct a **Restaurant Item Card** using nested Auto-Layout containers with Fill Container width.
-2. **Master Component Promotion:**
-   - Convert to Main Component and store on the designated Assets canvas.
-3. **Multi-Screen Deployment:**
-   - Place instances across Screen 1 (Home) and Screen 2 (Food Delivery) with content overrides (+ Bonus Screen 3: Menu).
-
-::right::
-
-### Step-by-Step Technical Protocol
-
-<div class="space-y-2 text-[0.7rem]">
-  <div class="p-2 rounded-lg border border-slate-200 bg-slate-50">
-    <div class="flex items-center justify-between mb-0.5">
-      <span class="font-bold text-slate-900">Step 1: Nested Auto-Layout Assembly</span>
-      <span class="text-[0.6rem] font-bold px-1.5 py-0.2 rounded bg-blue-100 text-blue-800">Auto-Layout</span>
+<div class="grid grid-cols-3 gap-2.5 mt-1 text-[0.68rem]">
+  <!-- Step 1 -->
+  <div class="p-2.5 rounded-xl border border-blue-200 bg-blue-50/50 flex flex-col justify-between">
+    <div>
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="text-[0.6rem] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800">STEP 1</span>
+        <span class="text-[0.55rem] font-mono text-blue-600">Shift + A</span>
+      </div>
+      <h4 class="font-bold text-slate-900 mb-1">Assemble Auto-Layout</h4>
+      <ul class="text-[0.62rem] text-slate-600 space-y-1 pl-3 list-disc">
+        <li>Food Image: Fixed <code>140px</code>, Width <code>Fill</code></li>
+        <li>Content Frame: Gap <code>8px</code>, Padding <code>12px</code></li>
+        <li>Card Container: Width <code>Fill Container</code></li>
+      </ul>
     </div>
-    <div class="text-slate-600">
-      Place food image (Fixed height 140px, Fill Container width). Group Title, Rating badge, and Delivery fee in a body frame (Vertical, 8px gap, 12px padding). Set card container to <code>Fill Container</code>.
-    </div>
+    <div class="text-[0.58rem] font-semibold text-blue-700 pt-1 mt-1 border-t border-blue-200">Container Elasticity</div>
   </div>
 
-  <div class="p-2 rounded-lg border border-slate-200 bg-slate-50">
-    <div class="flex items-center justify-between mb-0.5">
-      <span class="font-bold text-teal-800">Step 2: Componentize & Store</span>
-      <span class="text-[0.6rem] font-bold px-1.5 py-0.2 rounded bg-teal-100 text-teal-800">Component</span>
+  <!-- Step 2 -->
+  <div class="p-2.5 rounded-xl border border-purple-200 bg-purple-50/50 flex flex-col justify-between">
+    <div>
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="text-[0.6rem] font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-800">STEP 2</span>
+        <span class="text-[0.55rem] font-mono text-purple-600">Ctrl + Alt + K</span>
+      </div>
+      <h4 class="font-bold text-slate-900 mb-1">Promote to Master</h4>
+      <ul class="text-[0.62rem] text-slate-600 space-y-1 pl-3 list-disc">
+        <li>Select outer card frame</li>
+        <li>Create Master: <kbd class="px-1 py-0.2 rounded bg-purple-100 font-mono text-[0.55rem]">Ctrl+Alt+K</kbd></li>
+        <li>Cut & Paste onto <strong>Page 3 (Assets)</strong></li>
+      </ul>
     </div>
-    <div class="text-slate-600">
-      Select card frame → press <kbd class="px-1 py-0.2 rounded bg-slate-200 font-mono">Ctrl+Alt+K</kbd>. Move master to Page 3 (Assets). Name it <strong>Restaurant Card</strong>.
-    </div>
+    <div class="text-[0.58rem] font-semibold text-purple-700 pt-1 mt-1 border-t border-purple-200">Master Separation</div>
   </div>
 
-  <div class="p-2 rounded-lg border border-slate-200 bg-slate-50">
-    <div class="flex items-center justify-between mb-0.5">
-      <span class="font-bold text-indigo-800">Step 3: Deploy Instances & Override</span>
-      <span class="text-[0.6rem] font-bold px-1.5 py-0.2 rounded bg-indigo-100 text-indigo-800">Reusability</span>
+  <!-- Step 3 -->
+  <div class="p-2.5 rounded-xl border border-teal-200 bg-teal-50/50 flex flex-col justify-between">
+    <div>
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="text-[0.6rem] font-bold px-2 py-0.5 rounded bg-teal-100 text-teal-800">STEP 3</span>
+        <span class="text-[0.55rem] font-mono text-teal-600">Alt + Drag</span>
+      </div>
+      <h4 class="font-bold text-slate-900 mb-1">Deploy & Override</h4>
+      <ul class="text-[0.62rem] text-slate-600 space-y-1 pl-3 list-disc">
+        <li>Deploy instance to <strong>Screen 1, 2, & 3</strong></li>
+        <li>Verify card stretches with <code>Fill Container</code></li>
+        <li>Override restaurant name, image, and ratings</li>
+      </ul>
     </div>
-    <div class="text-slate-600">
-      Duplicate instances into Screen 1 (Home) and Screen 2 (Food Delivery), with preview for Bonus Screen 3 (Menu). Override names, photos, and ratings. Verify cards stretch smoothly with Fill Container.
+    <div class="text-[0.58rem] font-semibold text-teal-700 pt-1 mt-1 border-t border-teal-200">Instance Deployment</div>
+  </div>
+</div>
+
+<!-- Visual Specimen Card -->
+<div class="mt-2.5 p-2 rounded-xl border border-slate-200 bg-white shadow-xs flex items-center justify-between">
+  <div class="flex items-center gap-3">
+    <div class="w-14 h-12 rounded-lg bg-amber-500 flex items-center justify-center font-bold text-white text-xs">talabat</div>
+    <div>
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-bold text-slate-900">Burger Republic</span>
+        <span class="px-1.5 py-0.2 rounded text-[0.52rem] font-bold bg-purple-100 text-purple-800">talabat pro</span>
+      </div>
+      <div class="text-[0.6rem] text-slate-500">American, Sandwiches • 20–35 mins • EGP 22.99 Delivery</div>
     </div>
+  </div>
+  <div class="flex items-center gap-2 text-[0.62rem] font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded-lg border border-amber-200">
+    <span>★ 4.7 (1k+)</span>
   </div>
 </div>
 
@@ -377,7 +528,7 @@ dense: true
 
 # Graded In-Class Assignment: Wireframe-to-UI Translation
 
-<div class="p-2 rounded-lg border border-amber-200 bg-amber-50 text-[0.67rem] text-amber-900 flex items-center justify-between mb-2.5">
+<div class="p-2 rounded-lg border border-amber-200 bg-amber-50 text-[0.67rem] text-amber-900 flex items-center justify-between mb-2">
   <div class="flex items-center gap-1.5">
     <span class="px-1.5 py-0.5 rounded bg-amber-200 text-amber-900 font-bold text-[0.58rem]">GRADED</span>
     <span><strong>Core:</strong> Screens 1 & 2 (100% Credit) • <strong>Screen 3:</strong> Bonus (+Extra Credit)</span>
@@ -388,55 +539,46 @@ dense: true
   </div>
 </div>
 
-<div class="grid grid-cols-3 gap-3 text-[0.7rem]">
-  <div class="p-2.5 rounded-lg border border-slate-200 bg-slate-50 flex flex-col justify-between">
-    <div>
-      <div class="flex items-center justify-between mb-1">
-        <span class="font-bold text-slate-900">Screen 1: Home</span>
-        <span class="text-[0.58rem] font-bold px-1.5 py-0.2 rounded bg-blue-100 text-blue-800">Mandatory</span>
-      </div>
-      <ul class="list-disc pl-3.5 space-y-0.5 text-slate-600 text-[0.68rem]">
-        <li>Location header & Search input bar.</li>
-        <li>5 Service icons grid (Food, Mart, Groceries...).</li>
-        <li>Promo banner carousel (Buy 1 get 1 free).</li>
-        <li>Redeem points/vouchers & bottom navigation.</li>
-      </ul>
+<div class="grid grid-cols-3 gap-3 text-[0.68rem]">
+  <!-- Screen 1: Home -->
+  <div class="p-2 rounded-xl border border-slate-200 bg-white flex flex-col items-center justify-between shadow-xs">
+    <div class="w-full flex items-center justify-between mb-1">
+      <span class="font-bold text-slate-900 text-[0.68rem]">1. Home Screen</span>
+      <span class="text-[0.55rem] font-bold px-1.5 py-0.2 rounded bg-blue-100 text-blue-800">Mandatory (50%)</span>
     </div>
-    <div class="text-[0.62rem] text-blue-700 font-semibold pt-1 border-t border-slate-200">Core Deliverable (50%)</div>
+    <div class="h-44 w-full flex justify-center overflow-hidden rounded-lg bg-slate-50 border border-slate-200 my-1">
+      <img src="/screens/home.jpg" class="h-full object-cover object-top" />
+    </div>
+    <div class="w-full text-center text-[0.55rem] text-slate-500 font-medium">
+      Search • 5 Services • Promo Carousel • Bottom Nav
+    </div>
   </div>
 
-  <div class="p-2.5 rounded-lg border border-teal-200 bg-teal-50/50 flex flex-col justify-between">
-    <div>
-      <div class="flex items-center justify-between mb-1">
-        <span class="font-bold text-slate-900">Screen 2: Food Delivery</span>
-        <span class="text-[0.58rem] font-bold px-1.5 py-0.2 rounded bg-teal-100 text-teal-800">Mandatory</span>
-      </div>
-      <ul class="list-disc pl-3.5 space-y-0.5 text-slate-600 text-[0.68rem]">
-        <li>Header with Back, address, and favorites.</li>
-        <li>Deals promo row & top rated restaurant cards.</li>
-        <li>Cuisine category circles (Syrian, Pizza...).</li>
-        <li>Filter pill bar (Sort by, Offers, Rating 4.0+).</li>
-      </ul>
+  <!-- Screen 2: Food Delivery -->
+  <div class="p-2 rounded-xl border border-teal-200 bg-white flex flex-col items-center justify-between shadow-xs">
+    <div class="w-full flex items-center justify-between mb-1">
+      <span class="font-bold text-slate-900 text-[0.68rem]">2. Food Delivery</span>
+      <span class="text-[0.55rem] font-bold px-1.5 py-0.2 rounded bg-teal-100 text-teal-800">Mandatory (50%)</span>
     </div>
-    <div class="text-[0.62rem] text-teal-700 font-semibold pt-1 border-t border-teal-200">Core Deliverable (50%)</div>
+    <div class="h-44 w-full flex justify-center overflow-hidden rounded-lg bg-slate-50 border border-teal-200 my-1">
+      <img src="/screens/food_delivery.jpg" class="h-full object-cover object-top" />
+    </div>
+    <div class="w-full text-center text-[0.55rem] text-slate-500 font-medium">
+      Deals Row • Restaurant Feed • Cuisines • Filter Pills
+    </div>
   </div>
 
-  <div class="p-2.5 rounded-lg border-2 border-emerald-400 bg-emerald-50/60 flex flex-col justify-between shadow-sm">
-    <div>
-      <div class="flex items-center justify-between mb-1">
-        <span class="font-bold text-emerald-950">Screen 3: Restaurant Menu</span>
-        <span class="text-[0.58rem] font-bold px-1.5 py-0.2 rounded bg-emerald-600 text-white">★ BONUS SCREEN</span>
-      </div>
-      <ul class="list-disc pl-3.5 space-y-0.5 text-slate-700 text-[0.68rem]">
-        <li>Hero cover photo with action buttons.</li>
-        <li>Floating restaurant card (Rating, ETA, Fee).</li>
-        <li>Deals row & sticky category tabs (Picks 🔥).</li>
-        <li>2-column dish card feed & sticky order bar.</li>
-      </ul>
+  <!-- Screen 3: Menu [Bonus] -->
+  <div class="p-2 rounded-xl border-2 border-emerald-400 bg-emerald-50/40 flex flex-col items-center justify-between shadow-xs">
+    <div class="w-full flex items-center justify-between mb-1">
+      <span class="font-bold text-emerald-950 text-[0.68rem]">3. Restaurant Menu</span>
+      <span class="text-[0.55rem] font-bold px-1.5 py-0.2 rounded bg-emerald-600 text-white">★ BONUS (+Extra)</span>
     </div>
-    <div class="text-[0.62rem] text-emerald-800 font-bold pt-1 border-t border-emerald-200 flex justify-between items-center">
-      <span>Bonus Deliverable</span>
-      <span class="text-[0.58rem] font-bold px-1.5 py-0.2 rounded bg-emerald-200 text-emerald-900">+Extra Grade</span>
+    <div class="h-44 w-full flex justify-center overflow-hidden rounded-lg bg-slate-50 border border-emerald-300 my-1">
+      <img src="/screens/menu.jpg" class="h-full object-cover object-top" />
+    </div>
+    <div class="w-full text-center text-[0.55rem] text-emerald-900 font-medium">
+      Hero Banner • Floating Card • 2-Col Dish Grid • Sticky Order
     </div>
   </div>
 </div>
@@ -455,65 +597,69 @@ dense: true
 
 Your submission will be evaluated out of 100% across four core architectural pillars:
 
-<div class="grid grid-cols-4 gap-2.5 mt-2 text-[0.67rem]">
-  <div class="p-2 rounded-lg border border-slate-200 bg-slate-50 flex flex-col justify-between">
+<div class="grid grid-cols-4 gap-2.5 mt-2 text-[0.68rem]">
+  <!-- Pillar 1 -->
+  <div class="p-2.5 rounded-xl border border-blue-200 bg-blue-50/40 flex flex-col justify-between">
     <div>
-      <div class="flex items-center justify-between mb-1">
-        <span class="font-bold text-blue-700">Pillar 1: UI/UX (Lab 02)</span>
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="font-bold text-blue-900 text-xs">Pillar 1: UI/UX</span>
         <span class="px-1.5 py-0.5 rounded text-[0.56rem] font-bold bg-blue-100 text-blue-800">25%</span>
       </div>
-      <ul class="text-slate-600 pl-3 space-y-0.5">
-        <li><strong>Visual Hierarchy:</strong> Clear focal priorities, dominant headlines, legible metadata.</li>
-        <li><strong>WCAG AA Contrast:</strong> Minimum 4.5:1 text contrast ratio across all elements.</li>
-        <li><strong>8pt Grid:</strong> Consistent 8pt spatial rhythm (8px, 16px, 24px) on all gaps and padding.</li>
+      <ul class="text-slate-600 pl-3 space-y-1 text-[0.62rem] list-disc">
+        <li><strong>Visual Dominance:</strong> Scannable titles & badges</li>
+        <li><strong>WCAG AA:</strong> Minimum <code>4.5:1</code> body text contrast</li>
+        <li><strong>8pt Spatial Grid:</strong> 8px / 16px / 24px rhythm</li>
       </ul>
     </div>
-    <div class="text-[0.62rem] text-blue-700 font-medium pt-1 border-t border-slate-200">UX Core Principles</div>
+    <div class="text-[0.6rem] text-blue-700 font-bold pt-1.5 mt-1 border-t border-blue-200">UX Foundations</div>
   </div>
 
-  <div class="p-2 rounded-lg border border-slate-200 bg-slate-50 flex flex-col justify-between">
+  <!-- Pillar 2 -->
+  <div class="p-2.5 rounded-xl border border-teal-200 bg-teal-50/40 flex flex-col justify-between">
     <div>
-      <div class="flex items-center justify-between mb-1">
-        <span class="font-bold text-teal-700">Pillar 2: Auto-Layout</span>
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="font-bold text-teal-900 text-xs">Pillar 2: Auto-Layout</span>
         <span class="px-1.5 py-0.5 rounded text-[0.56rem] font-bold bg-teal-100 text-teal-800">25%</span>
       </div>
-      <ul class="text-slate-600 pl-3 space-y-0.5">
-        <li><strong>Zero Loose Shapes:</strong> 100% of elements inside Auto-Layout frames. Zero static groups.</li>
-        <li><strong>Resizing Mechanics:</strong> Correct Hug on buttons/chips and Fill on cards/inputs.</li>
-        <li><strong>Responsiveness:</strong> Resizing screen width adapts smoothly without breaking.</li>
+      <ul class="text-slate-600 pl-3 space-y-1 text-[0.62rem] list-disc">
+        <li><strong>Zero Static Groups:</strong> 100% inside <code>Shift+A</code></li>
+        <li><strong>Sizing Rules:</strong> Hug buttons, Fill cards</li>
+        <li><strong>Elasticity:</strong> Stretches cleanly 393px ➔ 420px</li>
       </ul>
     </div>
-    <div class="text-[0.62rem] text-teal-700 font-medium pt-1 border-t border-slate-200">Container Elasticity</div>
+    <div class="text-[0.6rem] text-teal-700 font-bold pt-1.5 mt-1 border-t border-teal-200">Container Elasticity</div>
   </div>
 
-  <div class="p-2.5 rounded-lg border border-slate-200 bg-slate-50 flex flex-col justify-between">
+  <!-- Pillar 3 -->
+  <div class="p-2.5 rounded-xl border border-indigo-200 bg-indigo-50/40 flex flex-col justify-between">
     <div>
-      <div class="flex items-center justify-between mb-1">
-        <span class="font-bold text-indigo-700">Pillar 3: Components</span>
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="font-bold text-indigo-900 text-xs">Pillar 3: Components</span>
         <span class="px-1.5 py-0.5 rounded text-[0.56rem] font-bold bg-indigo-100 text-indigo-800">25%</span>
       </div>
-      <ul class="text-slate-600 pl-3 space-y-0.5">
-        <li><strong>Master Separation:</strong> Main Components stored cleanly on Page 3; zero masters inside screens.</li>
-        <li><strong>Instance Usage:</strong> Screens contain strictly component instances.</li>
-        <li><strong>Component Reuse:</strong> Bottom Nav and Card components reused across Core Screens 1 & 2.</li>
+      <ul class="text-slate-600 pl-3 space-y-1 text-[0.62rem] list-disc">
+        <li><strong>Master Separation:</strong> Masters on Page 3</li>
+        <li><strong>Strict Instances:</strong> Only <code>◇</code> inside screens</li>
+        <li><strong>Component Reuse:</strong> Shared Nav & Cards</li>
       </ul>
     </div>
-    <div class="text-[0.62rem] text-indigo-700 font-medium pt-1 border-t border-slate-200">System Reusability</div>
+    <div class="text-[0.6rem] text-indigo-700 font-bold pt-1.5 mt-1 border-t border-indigo-200">System Reusability</div>
   </div>
 
-  <div class="p-2.5 rounded-lg border border-slate-200 bg-slate-50 flex flex-col justify-between">
+  <!-- Pillar 4 -->
+  <div class="p-2.5 rounded-xl border border-amber-200 bg-amber-50/40 flex flex-col justify-between">
     <div>
-      <div class="flex items-center justify-between mb-1">
-        <span class="font-bold text-amber-700">Pillar 4: Brand Identity</span>
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="font-bold text-amber-900 text-xs">Pillar 4: Brand</span>
         <span class="px-1.5 py-0.5 rounded text-[0.56rem] font-bold bg-amber-100 text-amber-800">25%</span>
       </div>
-      <ul class="text-slate-600 pl-3 space-y-0.5">
-        <li><strong>Color System:</strong> Faithful application of Talabat Orange (<code>#FF5A00</code>), Dark Slate, and whites.</li>
-        <li><strong>Shape Language:</strong> Uniform corner radii (8px buttons, 12px cards).</li>
-        <li><strong>Curated Assets:</strong> Consistent photography and icons from the starter template.</li>
+      <ul class="text-slate-600 pl-3 space-y-1 text-[0.62rem] list-disc">
+        <li><strong>Colors:</strong> Talabat Orange (<code>#FF5A00</code>), Slate</li>
+        <li><strong>Typography:</strong> Official Poppins system</li>
+        <li><strong>Corner Radii:</strong> Consistent 8px / 12px</li>
       </ul>
     </div>
-    <div class="text-[0.6rem] text-amber-700 font-medium pt-1 border-t border-slate-200 flex items-center justify-between">
+    <div class="text-[0.58rem] text-amber-700 font-medium pt-1.5 mt-1 border-t border-amber-200 flex items-center justify-between">
       <span>Visual Polish</span>
       <a href="https://drive.google.com/file/d/16Q8km7oc1fVimUW-6GjubpxlQoFVw47g/view?usp=sharing" target="_blank" class="no-underline font-bold text-amber-800" style="text-decoration: none;">Brand Guide ↗</a>
     </div>
@@ -540,25 +686,37 @@ dense: true
 wideRight: true
 ---
 
-<div class="grid grid-cols-2 gap-2 text-[0.66rem]">
-  <div class="p-2 rounded-lg border border-slate-200 bg-slate-50">
-    <div class="font-bold text-blue-700 mb-0.5">1. Resizing Stress Test</div>
-    <p class="text-slate-600 leading-tight">Drag screen width from 393px to 420px. Do cards and inputs stretch smoothly using <code>Fill Container</code> without manual tweaking?</p>
+<div class="grid grid-cols-2 gap-2.5 text-[0.66rem]">
+  <div class="p-2.5 rounded-xl border border-blue-200 bg-blue-50/50">
+    <div class="font-bold text-blue-900 mb-0.5 flex items-center gap-1.5">
+      <span class="text-blue-600 font-bold">1.</span>
+      <span>Width Stress Test</span>
+    </div>
+    <p class="text-slate-600 leading-tight">Drag screen width <code>393px ➔ 420px</code>. Cards & inputs must stretch smoothly via <code>Fill Container</code>.</p>
   </div>
 
-  <div class="p-2 rounded-lg border border-slate-200 bg-slate-50">
-    <div class="font-bold text-teal-700 mb-0.5">2. Master Component Audit</div>
-    <p class="text-slate-600 leading-tight">Confirm that all screens contain strictly component instances, proving zero master components were placed inside screens.</p>
+  <div class="p-2.5 rounded-xl border border-teal-200 bg-teal-50/50">
+    <div class="font-bold text-teal-900 mb-0.5 flex items-center gap-1.5">
+      <span class="text-teal-600 font-bold">2.</span>
+      <span>Master Separation</span>
+    </div>
+    <p class="text-slate-600 leading-tight">Screens contain strictly instances (<code>◇</code>). Zero master components (<code>❖</code>) on Page 4.</p>
   </div>
 
-  <div class="p-2 rounded-lg border border-slate-200 bg-slate-50">
-    <div class="font-bold text-indigo-700 mb-0.5">3. Multi-Screen Reusability Check</div>
-    <p class="text-slate-600 leading-tight">Confirm that Screen 2 (Food Delivery) and Bonus Screen 3 (Menu) reuse Bottom Nav and Card components from Page 3.</p>
+  <div class="p-2.5 rounded-xl border border-indigo-200 bg-indigo-50/50">
+    <div class="font-bold text-indigo-900 mb-0.5 flex items-center gap-1.5">
+      <span class="text-indigo-600 font-bold">3.</span>
+      <span>Multi-Screen Reuse</span>
+    </div>
+    <p class="text-slate-600 leading-tight">Screen 2 & Bonus Screen 3 reuse Bottom Nav and Card components from Page 3.</p>
   </div>
 
-  <div class="p-2 rounded-lg border border-slate-200 bg-slate-50">
-    <div class="font-bold text-emerald-700 mb-0.5">4. WCAG AA & 8pt Rhythm</div>
-    <p class="text-slate-600 leading-tight">Confirm all text copy is easily readable against backgrounds and that all padding and gaps are multiples of 8 (8/16/24px).</p>
+  <div class="p-2.5 rounded-xl border border-emerald-200 bg-emerald-50/50">
+    <div class="font-bold text-emerald-900 mb-0.5 flex items-center gap-1.5">
+      <span class="text-emerald-600 font-bold">4.</span>
+      <span>WCAG AA & 8pt Rhythm</span>
+    </div>
+    <p class="text-slate-600 leading-tight">Contrast ≥ 4.5:1 on body text; all paddings/gaps adhere strictly to 8pt multiples.</p>
   </div>
 </div>
 
@@ -619,27 +777,41 @@ dense: true
   </div>
 </div>
 
-<div class="mt-2.5 grid grid-cols-3 gap-2.5 text-[0.68rem]">
-  <div class="p-2 rounded-lg border border-slate-200 bg-white">
-    <div class="flex items-center justify-between mb-0.5">
-      <span class="font-bold text-slate-900">1. Screen 1: Home</span>
-      <span class="text-[0.55rem] font-bold px-1.5 py-0.2 rounded bg-blue-100 text-blue-800">Mandatory</span>
+<div class="mt-2 grid grid-cols-3 gap-2.5 text-[0.68rem]">
+  <!-- Screen 1 Mini Card -->
+  <div class="p-2 rounded-xl border border-slate-200 bg-white flex items-center gap-2.5 shadow-xs">
+    <img src="/screens/home.jpg" class="h-16 w-10 rounded border border-slate-200 object-cover object-top shrink-0 shadow-2xs" />
+    <div>
+      <div class="flex items-center gap-1 mb-0.5">
+        <span class="font-bold text-slate-900 text-[0.65rem]">1. Home</span>
+        <span class="text-[0.5rem] font-bold px-1 py-0.2 rounded bg-blue-100 text-blue-800">Mandatory</span>
+      </div>
+      <div class="text-[0.56rem] text-slate-500">Search, 5 Services, Promo Carousel, Bottom Nav</div>
     </div>
-    <p class="text-slate-600 text-[0.62rem]">Location bar, search, 5 service icons, promo carousel, redeem cards, bottom nav.</p>
   </div>
-  <div class="p-2 rounded-lg border border-slate-200 bg-white">
-    <div class="flex items-center justify-between mb-0.5">
-      <span class="font-bold text-slate-900">2. Screen 2: Food Delivery</span>
-      <span class="text-[0.55rem] font-bold px-1.5 py-0.2 rounded bg-teal-100 text-teal-800">Mandatory</span>
+
+  <!-- Screen 2 Mini Card -->
+  <div class="p-2 rounded-xl border border-teal-200 bg-white flex items-center gap-2.5 shadow-xs">
+    <img src="/screens/food_delivery.jpg" class="h-16 w-10 rounded border border-teal-200 object-cover object-top shrink-0 shadow-2xs" />
+    <div>
+      <div class="flex items-center gap-1 mb-0.5">
+        <span class="font-bold text-slate-900 text-[0.65rem]">2. Food Delivery</span>
+        <span class="text-[0.5rem] font-bold px-1 py-0.2 rounded bg-teal-100 text-teal-800">Mandatory</span>
+      </div>
+      <div class="text-[0.56rem] text-slate-500">Deals Row, Feed Cards, Cuisines, Filter Pills</div>
     </div>
-    <p class="text-slate-600 text-[0.62rem]">Back/heart bar, deals row, top rated restaurant feed, cuisine circles, filter pills.</p>
   </div>
-  <div class="p-2 rounded-lg border-2 border-emerald-400 bg-emerald-50/50 shadow-sm">
-    <div class="flex items-center justify-between mb-0.5">
-      <span class="font-bold text-emerald-950">3. Screen 3: Menu</span>
-      <span class="text-[0.55rem] font-bold px-1.5 py-0.2 rounded bg-emerald-600 text-white">★ BONUS</span>
+
+  <!-- Screen 3 Mini Card [Bonus] -->
+  <div class="p-2 rounded-xl border-2 border-emerald-400 bg-emerald-50/50 flex items-center gap-2.5 shadow-xs">
+    <img src="/screens/menu.jpg" class="h-16 w-10 rounded border border-emerald-300 object-cover object-top shrink-0 shadow-2xs" />
+    <div>
+      <div class="flex items-center gap-1 mb-0.5">
+        <span class="font-bold text-emerald-950 text-[0.65rem]">3. Menu</span>
+        <span class="text-[0.5rem] font-bold px-1 py-0.2 rounded bg-emerald-600 text-white">★ BONUS</span>
+      </div>
+      <div class="text-[0.56rem] text-emerald-900">Hero Banner, 2-Col Dish Grid, Sticky Order</div>
     </div>
-    <p class="text-slate-600 text-[0.62rem]">Hero banner, floating info card, deals row, category tabs, dish feed, sticky order bar.</p>
   </div>
 </div>
 
