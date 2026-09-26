@@ -136,10 +136,7 @@ dense: true
   </div>
 </div>
 
-<div class="mt-2.5 p-2 rounded-xl border border-teal-200 bg-teal-50/80 text-[0.68rem] text-teal-950 flex items-center justify-between">
-  <div><strong>Course Traceability:</strong> Step 1 & 2 = <strong>PD1 (Information Architecture)</strong> ➔ Step 3 & 4 = <strong>PD2 (Figma Mobile UI)</strong>.</div>
-  <span class="px-2 py-0.5 rounded bg-teal-200 text-teal-900 font-bold text-[0.58rem]">Direct Parity</span>
-</div>
+
 
 <!--
 In Information and Communication Architecture, UI design is never random decorating. Every single container you build in Figma traces directly back to an IA data node and a wireframe blueprint.
@@ -208,8 +205,8 @@ dense: true
         <div>
           <div class="text-[0.56rem] text-slate-400 mb-1">Flow Direction</div>
           <div class="flex rounded bg-slate-800 p-0.5 border border-slate-700">
-            <div class="flex-1 py-1 text-center rounded bg-blue-600 text-white font-bold text-[0.58rem]">↓ Column</div>
-            <div class="flex-1 py-1 text-center text-slate-400 font-medium text-[0.58rem]">→ Row</div>
+            <div class="flex-1 py-1 text-center text-slate-400 font-medium text-[0.58rem]">↓ Column</div>
+            <div class="flex-1 py-1 text-center rounded bg-blue-600 text-white font-bold text-[0.58rem]">→ Row</div>
           </div>
         </div>
         <!-- Alignment Matrix -->
@@ -217,10 +214,10 @@ dense: true
           <div class="text-[0.56rem] text-slate-400 mb-1">Alignment Matrix (9-pt)</div>
           <div class="w-14 h-8 rounded bg-slate-800 border border-slate-700 grid grid-cols-3 grid-rows-3 gap-0.5 p-1 mx-auto items-center">
             <span class="w-1.5 h-1.5 rounded-full bg-slate-600 mx-auto"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-600 mx-auto"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-600 mx-auto"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-600 mx-auto"></span>
             <span class="w-1.5 h-1.5 rounded-full bg-blue-400 mx-auto"></span>
-            <span class="w-1.5 h-1.5 rounded-full bg-slate-600 mx-auto"></span>
-            <span class="w-1.5 h-1.5 rounded-full bg-slate-600 mx-auto"></span>
-            <span class="w-1.5 h-1.5 rounded-full bg-slate-600 mx-auto"></span>
             <span class="w-1.5 h-1.5 rounded-full bg-slate-600 mx-auto"></span>
             <span class="w-1.5 h-1.5 rounded-full bg-slate-600 mx-auto"></span>
             <span class="w-1.5 h-1.5 rounded-full bg-slate-600 mx-auto"></span>
@@ -236,7 +233,7 @@ dense: true
         </div>
         <div class="p-1.5 rounded bg-slate-800 border border-slate-700 flex items-center justify-between">
           <span class="text-slate-400">Padding</span>
-          <span class="font-mono font-bold text-blue-400">12 px</span>
+          <span class="font-mono font-bold text-blue-400">16 px</span>
         </div>
       </div>
     </div>
@@ -367,19 +364,20 @@ dense: true
       </div>
       <div class="text-[0.62rem] text-purple-900 mb-2">Single source of truth. Lives strictly on <strong>Page 3 (Assets)</strong>.</div>
       <!-- Visual Blueprint Specimen Card -->
-      <div class="p-2.5 rounded-lg border-2 border-dashed border-purple-400 bg-white shadow-2xs">
+      <div class="p-2.5 rounded-lg border-2 border-dashed border-purple-500 bg-white shadow-2xs">
         <div class="flex items-center justify-between text-[0.52rem] font-mono text-purple-700 mb-1">
           <span class="font-bold">❖ RestaurantCard (Master)</span>
-          <span>Auto-Layout: Col</span>
+          <span>Page 3: Assets</span>
         </div>
-        <div class="w-full h-11 rounded bg-purple-100 border border-purple-200 flex items-center justify-center text-[0.55rem] font-mono text-purple-700">
-          [Image: 140px Fixed Height, Fill Width]
+        <div class="w-full h-12 rounded bg-purple-100 border border-purple-300 flex items-center justify-center text-[0.55rem] font-mono text-purple-800 font-bold">
+          [Image: Fill Width x 140px]
         </div>
-        <div class="mt-1.5 space-y-1">
+        <div class="mt-1.5 space-y-0.5">
           <div class="h-3 w-3/4 rounded bg-purple-200 flex items-center px-1 text-[0.5rem] font-mono text-purple-800">[Title Slot: Hug]</div>
-          <div class="flex justify-between items-center text-[0.5rem] font-mono text-purple-600">
-            <span>[Tags / ETA Slot]</span>
-            <span class="px-1 py-0.2 rounded bg-purple-100 text-purple-700 font-bold">[Rating Slot]</span>
+          <div class="text-[0.48rem] font-mono text-purple-600">[Cuisine • ETA Slot]</div>
+          <div class="flex justify-between items-center text-[0.48rem] font-mono text-purple-700 pt-0.5">
+            <span>[Delivery Fee Slot]</span>
+            <span class="px-1 py-0.2 rounded bg-purple-100 text-purple-800 font-bold">[Rating Slot]</span>
           </div>
         </div>
       </div>
@@ -402,41 +400,53 @@ dense: true
         </div>
         <span class="font-mono text-[0.56rem] px-1.5 py-0.5 rounded bg-slate-200 text-slate-700">Alt + Drag</span>
       </div>
-      <div class="text-[0.62rem] text-slate-600 mb-2">Deployed on <strong>Page 4 (Screens)</strong>. Inherits layout, accepts overrides.</div>
-      <!-- 2 Live Instances Stack -->
-      <div class="space-y-1.5">
+      <div class="text-[0.62rem] text-slate-600 mb-2">Deployed on <strong>Page 4 (Screens)</strong>. Same geometry; localized overrides.</div>
+      <!-- 2 Live Instances (Identical Vertical Layout) -->
+      <div class="grid grid-cols-2 gap-2">
         <!-- Instance A -->
-        <div class="p-2 rounded-lg bg-white border border-slate-200 shadow-2xs flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <div class="w-10 h-9 rounded bg-amber-500 text-white font-bold text-[0.5rem] flex items-center justify-center shrink-0">Burger</div>
-            <div>
-              <div class="font-bold text-slate-800 text-[0.6rem] flex items-center gap-1">
-                <span class="text-purple-600">◇</span>
-                <span>Burger Republic</span>
+        <div class="p-2 rounded-lg bg-white border border-slate-200 shadow-2xs flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-[0.48rem] font-mono text-slate-400 mb-1">
+              <span class="font-bold text-slate-700 flex items-center gap-0.5"><span class="text-purple-600">◇</span> Card</span>
+              <span>Screen 1</span>
+            </div>
+            <div class="w-full h-12 rounded bg-amber-500 text-white font-bold text-[0.52rem] flex items-center justify-center shadow-2xs">
+              Burger Photo
+            </div>
+            <div class="mt-1.5 space-y-0.5">
+              <div class="font-bold text-slate-900 text-[0.56rem] truncate">Burger Republic</div>
+              <div class="text-[0.46rem] text-slate-500 truncate">American • 25m</div>
+              <div class="flex justify-between items-center text-[0.46rem] pt-0.5">
+                <span class="text-emerald-700 font-medium">Free Delivery</span>
+                <span class="px-1 rounded bg-amber-50 text-amber-800 font-bold">4.7</span>
               </div>
-              <div class="text-[0.52rem] text-slate-500">American • 20-35 mins • Free</div>
             </div>
           </div>
-          <div class="text-right">
-            <span class="px-1.5 py-0.5 rounded bg-amber-50 text-amber-800 font-bold text-[0.52rem]">4.7</span>
-            <div class="text-[0.48rem] text-slate-400 mt-0.5">Screen 1 (Home)</div>
+          <div class="mt-1 pt-0.5 border-t border-slate-100 text-[0.44rem] text-purple-700 font-mono text-center">
+            Override: Copy & Photo
           </div>
         </div>
         <!-- Instance B -->
-        <div class="p-2 rounded-lg bg-white border border-slate-200 shadow-2xs flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <div class="w-10 h-9 rounded bg-orange-600 text-white font-bold text-[0.5rem] flex items-center justify-center shrink-0">Pizza</div>
-            <div>
-              <div class="font-bold text-slate-800 text-[0.6rem] flex items-center gap-1">
-                <span class="text-purple-600">◇</span>
-                <span>Papa John's Pizza</span>
+        <div class="p-2 rounded-lg bg-white border border-slate-200 shadow-2xs flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-[0.48rem] font-mono text-slate-400 mb-1">
+              <span class="font-bold text-slate-700 flex items-center gap-0.5"><span class="text-purple-600">◇</span> Card</span>
+              <span>Screen 2</span>
+            </div>
+            <div class="w-full h-12 rounded bg-orange-600 text-white font-bold text-[0.52rem] flex items-center justify-center shadow-2xs">
+              Pizza Photo
+            </div>
+            <div class="mt-1.5 space-y-0.5">
+              <div class="font-bold text-slate-900 text-[0.56rem] truncate">Papa John's Pizza</div>
+              <div class="text-[0.46rem] text-slate-500 truncate">Italian • 20m</div>
+              <div class="flex justify-between items-center text-[0.46rem] pt-0.5">
+                <span class="text-emerald-700 font-medium">Free Delivery</span>
+                <span class="px-1 rounded bg-amber-50 text-amber-800 font-bold">4.5</span>
               </div>
-              <div class="text-[0.52rem] text-slate-500">Italian • 15-25 mins • Free</div>
             </div>
           </div>
-          <div class="text-right">
-            <span class="px-1.5 py-0.5 rounded bg-amber-50 text-amber-800 font-bold text-[0.52rem]">4.5</span>
-            <div class="text-[0.48rem] text-slate-400 mt-0.5">Screen 2 (Feed)</div>
+          <div class="mt-1 pt-0.5 border-t border-slate-100 text-[0.44rem] text-purple-700 font-mono text-center">
+            Override: Copy & Photo
           </div>
         </div>
       </div>
@@ -580,146 +590,58 @@ dense: true
   </div>
 </div>
 
-<div class="grid grid-cols-3 gap-3 text-[0.68rem]">
+<div class="grid grid-cols-3 gap-3 text-[0.7rem]">
   <!-- Screen 1: Home -->
-  <div class="p-2.5 rounded-xl border border-slate-200 bg-white flex flex-col justify-between shadow-xs">
+  <div class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 flex flex-col justify-between shadow-xs">
     <div>
       <div class="flex items-center justify-between mb-1.5">
-        <span class="font-bold text-slate-900 text-[0.68rem]">1. Home Screen</span>
-        <span class="text-[0.52rem] font-bold px-1.5 py-0.2 rounded bg-blue-100 text-blue-800">Mandatory (50%)</span>
+        <span class="font-bold text-slate-900">Screen 1: Home</span>
+        <span class="text-[0.55rem] font-bold px-1.5 py-0.2 rounded bg-blue-100 text-blue-800">Mandatory (50%)</span>
       </div>
-      <!-- Stylized UI Wireframe / Specimen -->
-      <div class="h-44 w-full rounded-lg bg-slate-50 border border-slate-200 p-2 flex flex-col justify-between">
-        <!-- Search -->
-        <div class="w-full py-1 px-2 rounded bg-white border border-slate-200 flex items-center justify-between text-[0.5rem] text-slate-400">
-          <span>Search food, groceries...</span>
-          <span class="text-orange-500 font-bold text-[0.48rem]">Search</span>
-        </div>
-        <!-- 5 Category Services Grid -->
-        <div class="grid grid-cols-5 gap-1 text-center text-[0.45rem] font-bold">
-          <div class="p-1 rounded bg-orange-100 text-orange-800">Food</div>
-          <div class="p-1 rounded bg-blue-100 text-blue-800">Mart</div>
-          <div class="p-1 rounded bg-emerald-100 text-emerald-800">Market</div>
-          <div class="p-1 rounded bg-purple-100 text-purple-800">Dine</div>
-          <div class="p-1 rounded bg-slate-200 text-slate-700">More</div>
-        </div>
-        <!-- Promo Banner -->
-        <div class="w-full py-1 px-2 rounded bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold text-[0.5rem] flex items-center justify-between shadow-2xs">
-          <span>Summer Specials</span>
-          <span class="bg-white/20 px-1 rounded text-[0.45rem]">50% OFF</span>
-        </div>
-        <!-- Reusable Card Instance -->
-        <div class="p-1 rounded bg-white border border-slate-200 flex items-center gap-1.5 shadow-2xs">
-          <div class="w-8 h-6 rounded bg-slate-200 flex items-center justify-center text-[0.42rem] text-slate-500 font-bold shrink-0">Photo</div>
-          <div class="flex-1">
-            <div class="font-bold text-slate-800 text-[0.5rem]">Burger Republic</div>
-            <div class="text-[0.42rem] text-slate-400">20-35m • Free Delivery</div>
-          </div>
-          <span class="text-[0.45rem] font-bold text-amber-700 bg-amber-50 px-1 rounded">4.7</span>
-        </div>
-        <!-- Bottom Nav -->
-        <div class="pt-1 border-t border-slate-200 flex justify-around text-[0.48rem] text-slate-400">
-          <span class="text-orange-600 font-bold">Home</span>
-          <span>Orders</span>
-          <span>Account</span>
-        </div>
-      </div>
+      <ul class="list-disc pl-3.5 space-y-1 text-slate-600 text-[0.66rem]">
+        <li>Location header & search input bar frame.</li>
+        <li>5 service category icons grid (Food, Mart, Groceries...).</li>
+        <li>Promotional banner carousel (Buy 1 Get 1 Free).</li>
+        <li>Redeem points / vouchers card & bottom navigation bar.</li>
+      </ul>
     </div>
-    <div class="w-full text-center text-[0.52rem] text-slate-500 font-mono mt-1.5 pt-1 border-t border-slate-100">
-      Search • 5 Services • Promo • Bottom Nav
-    </div>
+    <div class="text-[0.62rem] text-blue-700 font-semibold pt-1 mt-2 border-t border-slate-200">Core Deliverable (50%)</div>
   </div>
 
   <!-- Screen 2: Food Delivery -->
-  <div class="p-2.5 rounded-xl border border-teal-200 bg-white flex flex-col justify-between shadow-xs">
+  <div class="p-2.5 rounded-xl border border-teal-200 bg-teal-50/50 flex flex-col justify-between shadow-xs">
     <div>
       <div class="flex items-center justify-between mb-1.5">
-        <span class="font-bold text-slate-900 text-[0.68rem]">2. Food Delivery</span>
-        <span class="text-[0.52rem] font-bold px-1.5 py-0.2 rounded bg-teal-100 text-teal-800">Mandatory (50%)</span>
+        <span class="font-bold text-slate-900">Screen 2: Food Delivery</span>
+        <span class="text-[0.55rem] font-bold px-1.5 py-0.2 rounded bg-teal-100 text-teal-800">Mandatory (50%)</span>
       </div>
-      <!-- Stylized UI Wireframe / Specimen -->
-      <div class="h-44 w-full rounded-lg bg-teal-50/30 border border-teal-200 p-2 flex flex-col justify-between">
-        <!-- Filter Pills Row -->
-        <div class="flex gap-1 text-[0.45rem]">
-          <span class="px-1.5 py-0.5 rounded-full bg-teal-600 text-white font-bold">All (42)</span>
-          <span class="px-1.5 py-0.5 rounded-full bg-white border border-teal-200 text-teal-800 font-medium">Fast Delivery</span>
-          <span class="px-1.5 py-0.5 rounded-full bg-white border border-teal-200 text-teal-800 font-medium">Top Rated</span>
-        </div>
-        <!-- Deals Row -->
-        <div class="grid grid-cols-2 gap-1 text-[0.48rem]">
-          <div class="p-1 rounded bg-orange-100 text-orange-900 font-bold text-center border border-orange-200">Deals 30% Off</div>
-          <div class="p-1 rounded bg-teal-100 text-teal-900 font-bold text-center border border-teal-200">Free Delivery</div>
-        </div>
-        <!-- Card Instance 1 -->
-        <div class="p-1 rounded bg-white border border-slate-200 flex items-center justify-between text-[0.5rem] shadow-2xs">
-          <div>
-            <div class="font-bold text-slate-800">Burger Republic</div>
-            <div class="text-[0.42rem] text-slate-400">American • 20-35 mins</div>
-          </div>
-          <span class="text-[0.45rem] font-bold text-teal-700 bg-teal-50 px-1 rounded">Rating 4.7</span>
-        </div>
-        <!-- Card Instance 2 -->
-        <div class="p-1 rounded bg-white border border-slate-200 flex items-center justify-between text-[0.5rem] shadow-2xs">
-          <div>
-            <div class="font-bold text-slate-800">Papa John's Pizza</div>
-            <div class="text-[0.42rem] text-slate-400">Italian • 15-25 mins</div>
-          </div>
-          <span class="text-[0.45rem] font-bold text-teal-700 bg-teal-50 px-1 rounded">Rating 4.5</span>
-        </div>
-        <!-- Bottom Nav -->
-        <div class="pt-1 border-t border-teal-100 flex justify-around text-[0.48rem] text-slate-400">
-          <span>Home</span>
-          <span class="text-teal-600 font-bold">Food</span>
-          <span>Account</span>
-        </div>
-      </div>
+      <ul class="list-disc pl-3.5 space-y-1 text-slate-600 text-[0.66rem]">
+        <li>Navigation header with back button and delivery address.</li>
+        <li>Horizontal deals promo row & cuisine category pills.</li>
+        <li>Filter pill bar (Sort by, Offers, Fast Delivery).</li>
+        <li>Vertical restaurant feed using component instances.</li>
+      </ul>
     </div>
-    <div class="w-full text-center text-[0.52rem] text-teal-700 font-mono mt-1.5 pt-1 border-t border-teal-100">
-      Filter Pills • Deals Carousel • Card Feed
-    </div>
+    <div class="text-[0.62rem] text-teal-700 font-semibold pt-1 mt-2 border-t border-teal-200">Core Deliverable (50%)</div>
   </div>
 
   <!-- Screen 3: Menu [Bonus] -->
-  <div class="p-2.5 rounded-xl border-2 border-emerald-400 bg-emerald-50/30 flex flex-col justify-between shadow-xs">
+  <div class="p-2.5 rounded-xl border-2 border-emerald-400 bg-emerald-50/60 flex flex-col justify-between shadow-xs">
     <div>
       <div class="flex items-center justify-between mb-1.5">
-        <span class="font-bold text-emerald-950 text-[0.68rem]">3. Restaurant Menu</span>
-        <span class="text-[0.52rem] font-bold px-1.5 py-0.2 rounded bg-emerald-600 text-white">BONUS (+Extra)</span>
+        <span class="font-bold text-emerald-950">Screen 3: Restaurant Menu</span>
+        <span class="text-[0.55rem] font-bold px-1.5 py-0.2 rounded bg-emerald-600 text-white">BONUS (+Extra)</span>
       </div>
-      <!-- Stylized UI Wireframe / Specimen -->
-      <div class="h-44 w-full rounded-lg bg-white border border-emerald-200 p-2 flex flex-col justify-between">
-        <!-- Hero Header -->
-        <div class="w-full py-1.5 px-2 rounded bg-gradient-to-r from-emerald-600 to-teal-700 text-white flex items-center justify-between text-[0.48rem] font-bold shadow-2xs">
-          <span>← Back to Feed</span>
-          <span class="bg-white/20 px-1 rounded">Share</span>
-        </div>
-        <!-- Floating Info Card -->
-        <div class="p-1 rounded bg-emerald-50 border border-emerald-200 text-[0.5rem] shadow-2xs">
-          <div class="flex items-center justify-between font-bold text-emerald-950">
-            <span>Burger Republic</span>
-            <span class="text-emerald-700">Rating 4.7</span>
-          </div>
-          <div class="text-[0.42rem] text-slate-500">American • Free Delivery • 20-35 mins</div>
-        </div>
-        <!-- 2-Col Dish Grid -->
-        <div class="grid grid-cols-2 gap-1 text-[0.46rem]">
-          <div class="p-1 rounded bg-slate-50 border border-slate-200">
-            <div class="font-bold text-slate-800">Classic Burger</div>
-            <div class="text-orange-600 font-bold text-[0.42rem]">EGP 120</div>
-          </div>
-          <div class="p-1 rounded bg-slate-50 border border-slate-200">
-            <div class="font-bold text-slate-800">Cheese Fries</div>
-            <div class="text-orange-600 font-bold text-[0.42rem]">EGP 45</div>
-          </div>
-        </div>
-        <!-- Sticky Order CTA -->
-        <div class="w-full py-1 rounded bg-emerald-600 text-white font-bold text-[0.5rem] text-center shadow-xs">
-          View Cart (2 items) • EGP 165
-        </div>
-      </div>
+      <ul class="list-disc pl-3.5 space-y-1 text-slate-700 text-[0.66rem]">
+        <li>Hero cover photo header with back & share actions.</li>
+        <li>Floating restaurant card (rating, delivery ETA, pricing).</li>
+        <li>2-column dish card grid feed with food photos & prices.</li>
+        <li>Sticky bottom order / "View Cart" CTA button.</li>
+      </ul>
     </div>
-    <div class="w-full text-center text-[0.52rem] text-emerald-800 font-mono mt-1.5 pt-1 border-t border-emerald-200">
-      Hero Banner • Floating Card • 2-Col Grid • CTA
+    <div class="text-[0.62rem] text-emerald-800 font-bold pt-1 mt-2 border-t border-emerald-200 flex justify-between items-center">
+      <span>Bonus Deliverable</span>
+      <span class="text-[0.56rem] font-bold px-1.5 py-0.2 rounded bg-emerald-200 text-emerald-900">+Extra Grade</span>
     </div>
   </div>
 </div>
