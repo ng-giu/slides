@@ -18,3 +18,13 @@
 .giu-activity__label {
   color: var(--giu-gold);
 }
+
+/* Ensure no-underline utility overrides theme-level a tag underline */
+.slidev-layout a.no-underline,
+.slidev-layout a[class*="no-underline"],
+.slidev-layout a[style*="text-decoration: none"],
+.no-underline,
+.no-underline * {
+  text-decoration: none !important;
+}
+
