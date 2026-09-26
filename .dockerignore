@@ -9,3 +9,7 @@ hello.js
 .env.*
 !.env.example
 ReferenceData/
+
+# screenshot tooling downloads (VS Code, Thunder Client) and scratch files
+.cache/
+temp/

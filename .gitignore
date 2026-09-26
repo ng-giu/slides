@@ -5,6 +5,9 @@ node_modules/
 dist/
 .slidev/
 
+# downloads for scripts/screenshots.sh (VS Code, Thunder Client, Express)
+.cache/
+
 # logs
 *.log
 npm-debug.log*

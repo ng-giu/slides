@@ -8,7 +8,8 @@
     "assignment": "sh scripts/deck.sh dev assignment",
     "export:assignment": "sh scripts/deck.sh export assignment",
     "export:all": "sh scripts/export-all.sh",
-    "dev": "sh scripts/deck.sh dev lab 1"
+    "dev": "sh scripts/deck.sh dev lab 1",
+    "screenshots": "sh scripts/screenshots.sh"
   },
   "dependencies": {
     "@slidev/cli": "^51.0.0",

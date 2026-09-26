@@ -58,3 +58,18 @@
   border-color: #111111;
   color: #f2f2f2;
 }
+
+/* Line highlighting (`<<< file {4,8}`). Slidev dims every other line to 30%,
+   unreadable on a light background, projected or printed. Dim a little, and
+   mark the highlighted lines with a full-width gold band instead. */
+.slidev-layout .slidev-code .slidev-code-dishonored {
+  opacity: 0.7;
+}
+.slidev-layout .slidev-code .line.slidev-code-highlighted {
+  display: inline-block;
+  width: calc(100% + 1.9rem);
+  margin: 0 -0.95rem;
+  padding: 0 0.95rem 0 calc(0.95rem - 3px);
+  background: rgba(232, 163, 61, 0.14);
+  border-left: 3px solid var(--giu-gold);
+}
