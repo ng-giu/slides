@@ -895,6 +895,15 @@ The template link is active. Duplicate it to your drafts and begin Phase 1.
 -->
 
 ---
+layout: media
+image: https://forms.cloud.microsoft/r/yjFVqM1WDm
+side: right
+qr: true
+---
+
+# Submission
+
+---
 layout: refs
 icon: references
 dense: true
