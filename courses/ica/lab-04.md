@@ -12,7 +12,7 @@ layout: cover
 
 <h1 style="max-width:70% " >Information & Communication Architecture — Lab 4 — Interactive Prototyping in Figma</h1>
 <!--
-Welcome to Lab 04! Today we turn our static screens from Lab 03 into a working, clickable mobile prototype. We will learn how to connect screens, show bottom sheets and popups, keep headers fixed in place while scrolling, and test our flow like a real app.
+Welcome to Lab 04! Today we expand our mobile application into a complete multi-restaurant interactive prototype. You will source missing assets, build 3 restaurant screens using a master template, and wire all feed cards with native navigation, back stacks, and fixed headers.
 -->
 
 ---
@@ -39,12 +39,11 @@ dense: true
 
 | Duration | Topic |
 |---|---|
-| 10 min | Prototyping Basics: Clicks, transitions, and back buttons |
-| 10 min | Overlays & Bottom Sheets: Showing popups without leaving the page |
-| 10 min | Scrolling & Fixed Headers: Keeping top bars fixed while lists scroll |
-| 10 min | TA Live Demo: Target prototype walkthrough & live preview |
-| 45 min | **Graded In-Class Sprint:** Build your clickable prototype |
-| 5 min | Self-Check Checklist & Grading Walkthrough |
+| 15 min | Prototyping Basics: Multi-card connections, back navigation & animations |
+| 15 min | Scrolling & Fixed Headers: Sticky navigation bars & content scrolling |
+| 10 min | TA Live Demo: 4-restaurant interactive reference prototype walkthrough |
+| 45 min | **Graded In-Class Sprint:** Source assets, build 3 screens & wire 4 restaurants |
+| 5 min | Microsoft Forms Submission & TA Checkoff |
 
 ---
 layout: section
@@ -90,7 +89,7 @@ dense: true
             <span class="w-5 h-5 rounded-full bg-teal-600 text-white font-bold text-[0.6rem] flex items-center justify-center">2</span>
             <div>
               <div class="font-bold text-slate-900 text-[0.62rem]">Action (What should happen?)</div>
-              <div class="text-[0.52rem] text-slate-500"><code>Navigate to</code> (change screen), <code>Open overlay</code> (popup), or <code>Back</code></div>
+              <div class="text-[0.52rem] text-slate-500"><code>Navigate to</code> (change screen) or <code>Back</code> (return to previous screen)</div>
             </div>
           </div>
           <span class="text-[0.55rem] font-mono px-1.5 py-0.2 rounded bg-teal-50 text-teal-700">What</span>
@@ -166,103 +165,10 @@ In Figma, prototyping lets you test user journeys before writing a single line o
 ---
 layout: section
 icon: tools
-sub: Opening popups, options, and bottom sheets without leaving your screen
----
-
-# 02 — Overlays & bottom sheets
-
----
-layout: default
-icon: tools
-dense: true
----
-
-# Full screen vs. Overlays: When to use which?
-
-<div class="grid grid-cols-2 gap-3.5 mt-1 text-[0.68rem]">
-  <!-- Left: The Architectural Tradeoff -->
-  <div class="p-3 rounded-xl border border-slate-200 bg-slate-50 flex flex-col justify-between">
-    <div>
-      <div class="flex items-center gap-1.5 mb-1.5">
-        <span class="px-2 py-0.5 rounded bg-purple-100 text-purple-800 font-bold text-[0.6rem]">Key Decision</span>
-        <span class="font-bold text-xs text-slate-900">Switch screens vs. Open a popup</span>
-      </div>
-      <p class="text-[0.68rem] text-slate-600 mb-2">When a user taps an item, should they move to a whole new screen or open a popup on top?</p>
-      <!-- Comparison Matrix -->
-      <div class="space-y-1.5">
-        <div class="p-2 rounded-lg bg-white border border-slate-200 shadow-2xs">
-          <div class="flex items-center justify-between mb-0.5">
-            <span class="font-bold text-slate-900 text-[0.62rem]">Full Screen: Navigate to</span>
-            <span class="text-[0.52rem] px-1 py-0.2 rounded bg-slate-100 text-slate-600 font-mono">New Screen</span>
-          </div>
-          <p class="text-[0.55rem] text-slate-500 leading-tight">Replaces the entire screen with a new page. Use this for main journeys (e.g. Home ➔ Food Delivery ➔ Restaurant Menu).</p>
-        </div>
-        <div class="p-2 rounded-lg bg-white border-2 border-purple-300 shadow-2xs">
-          <div class="flex items-center justify-between mb-0.5">
-            <span class="font-bold text-purple-950 text-[0.62rem]">Overlay: Open overlay</span>
-            <span class="text-[0.52rem] px-1 py-0.2 rounded bg-purple-100 text-purple-800 font-mono font-bold">Popup on Top</span>
-          </div>
-          <p class="text-[0.55rem] text-slate-600 leading-tight">Floats on top of the screen and dims the background. Use this for quick choices (e.g. customizing a burger) without losing your spot on the menu.</p>
-        </div>
-      </div>
-    </div>
-    <div class="mt-2 text-[0.6rem] text-purple-900 bg-purple-50 p-1.5 rounded border border-purple-200 flex items-center justify-between">
-      <span><strong>Rule of Thumb:</strong> Main pages use <strong>Navigate to</strong>. Options & sheets use <strong>Open overlay</strong>.</span>
-      <span class="font-mono text-[0.55rem] px-1.5 py-0.2 rounded bg-purple-200 text-purple-900 font-bold">Bottom Sheet</span>
-    </div>
-  </div>
-  <!-- Right: Figma Overlay Inspector Specimen -->
-  <div class="p-3 rounded-xl border border-slate-300 bg-slate-900 text-slate-100 flex flex-col justify-between shadow-sm font-sans">
-    <div>
-      <div class="flex items-center justify-between border-b border-slate-700 pb-1.5 mb-2">
-        <span class="text-[0.68rem] font-bold text-slate-200 flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5 text-purple-400 inline" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H4z"/></svg>
-          <span>Figma Settings for Overlays</span>
-        </span>
-        <span class="text-[0.55rem] font-mono px-1.5 py-0.2 rounded bg-slate-800 text-purple-300">Open overlay</span>
-      </div>
-      <!-- Config Controls -->
-      <div class="space-y-1.5 text-[0.62rem]">
-        <div class="p-1.5 rounded bg-slate-800 border border-slate-700 flex items-center justify-between">
-          <span class="text-slate-400">Target Frame</span>
-          <span class="font-mono font-bold text-purple-300 truncate max-w-[140px]">Item_Customizer_Modal</span>
-        </div>
-        <div class="p-1.5 rounded bg-slate-800 border border-slate-700 flex items-center justify-between">
-          <span class="text-slate-400">Position</span>
-          <span class="font-mono font-bold text-blue-400">Bottom Center (slides up from bottom)</span>
-        </div>
-        <div class="p-1.5 rounded bg-slate-800 border border-slate-700 flex items-center justify-between">
-          <span class="text-slate-400">Close when clicking outside</span>
-          <span class="text-emerald-400 font-bold font-mono">Checked (tap outside to close)</span>
-        </div>
-        <div class="p-1.5 rounded bg-slate-800 border border-slate-700 flex items-center justify-between">
-          <span class="text-slate-400">Add background overlay</span>
-          <span class="font-mono font-bold text-amber-400">50% Black (dims the background)</span>
-        </div>
-        <div class="p-1.5 rounded bg-slate-800 border border-slate-700 flex items-center justify-between">
-          <span class="text-slate-400">Animation</span>
-          <span class="font-mono font-bold text-teal-400">Move In ➔ From Bottom (300ms)</span>
-        </div>
-      </div>
-    </div>
-    <div class="pt-1.5 mt-2 border-t border-slate-800 text-[0.56rem] text-slate-400 flex items-center justify-between">
-      <span>Standard Mobile Bottom Sheet</span>
-      <span class="text-emerald-400 font-bold">Native App Feel</span>
-    </div>
-  </div>
-</div>
-
-<!--
-Bottom sheets let users customize items without leaving the menu. Dimming the background keeps their focus on the choice while preserving their scroll position.
--->
-
----
-layout: section
-icon: tools
 sub: Keeping top headers fixed in place while content scrolls smoothly
 ---
 
-# 03 — Scrolling & fixed headers
+# 02 — Scrolling & fixed headers
 
 ---
 layout: default
@@ -339,94 +245,22 @@ Fixed positioning prevents the top navigation and status bar from scrolling away
 ---
 layout: section
 icon: tools
-sub: Live demonstration of the completed reference prototype you will build today
+sub: Live demonstration of the completed 4-restaurant reference prototype you will build today
 ---
 
-# 04 — TA live demonstration
-
----
-layout: default
-icon: tools
-dense: true
----
-
-# TA live demo: The target prototype you will build
-
-<div class="text-[0.72rem] text-slate-500 mb-1.5">Watch the TA test the completed reference prototype live in Figma Present mode:</div>
-
-<div class="grid grid-cols-3 gap-2.5 mt-1 text-[0.68rem]">
-  <!-- Step 1 -->
-  <div class="p-2.5 rounded-xl border border-blue-200 bg-blue-50/50 flex flex-col justify-between">
-    <div>
-      <div class="flex items-center justify-between mb-1.5">
-        <span class="text-[0.6rem] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800">BEHAVIOR 1</span>
-        <span class="text-[0.55rem] font-mono text-blue-600">Navigate to</span>
-      </div>
-      <h4 class="font-bold text-slate-900 mb-1">3-Screen Navigation Flow</h4>
-      <ul class="text-[0.62rem] text-slate-600 space-y-1 pl-3 list-disc">
-        <li>Tap "Food" on Home ➔ smoothly slides into <strong>Restaurant Feed</strong></li>
-        <li>Tap "Burger Republic" ➔ slides into <strong>Restaurant Menu</strong></li>
-        <li>Tap Back arrow ➔ steps backward one screen using <code>Back</code></li>
-      </ul>
-    </div>
-    <div class="text-[0.58rem] font-semibold text-blue-700 pt-1 mt-1 border-t border-blue-200">Continuous Navigation</div>
-  </div>
-
-  <!-- Step 2 -->
-  <div class="p-2.5 rounded-xl border border-purple-200 bg-purple-50/50 flex flex-col justify-between">
-    <div>
-      <div class="flex items-center justify-between mb-1.5">
-        <span class="text-[0.6rem] font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-800">BEHAVIOR 2</span>
-        <span class="text-[0.55rem] font-mono text-purple-600">Open overlay</span>
-      </div>
-      <h4 class="font-bold text-slate-900 mb-1">Customizer Bottom Sheet</h4>
-      <ul class="text-[0.62rem] text-slate-600 space-y-1 pl-3 list-disc">
-        <li>Tap <code>+</code> on burger card ➔ bottom sheet slides up smoothly</li>
-        <li>Notice background dims to <code>50% Black</code> behind the sheet</li>
-        <li>Tap outside dark area (or "Add to Cart") ➔ sheet dismisses</li>
-      </ul>
-    </div>
-    <div class="text-[0.58rem] font-semibold text-purple-700 pt-1 mt-1 border-t border-purple-200">Popup Bottom Sheet</div>
-  </div>
-
-  <!-- Step 3 -->
-  <div class="p-2.5 rounded-xl border border-teal-200 bg-teal-50/50 flex flex-col justify-between">
-    <div>
-      <div class="flex items-center justify-between mb-1.5">
-        <span class="text-[0.6rem] font-bold px-2 py-0.5 rounded bg-teal-100 text-teal-800">BEHAVIOR 3</span>
-        <span class="text-[0.55rem] font-mono text-teal-600">Fixed & Scroll</span>
-      </div>
-      <h4 class="font-bold text-slate-900 mb-1">Scrolling & Fixed Headers</h4>
-      <ul class="text-[0.62rem] text-slate-600 space-y-1 pl-3 list-disc">
-        <li>Notice top status bar & address header stay locked when scrolling</li>
-        <li>Food items scroll vertically underneath the pinned header</li>
-        <li>Cuisine categories row swipes horizontally across the screen</li>
-      </ul>
-    </div>
-    <div class="text-[0.58rem] font-semibold text-teal-700 pt-1 mt-1 border-t border-teal-200">Native App Feel</div>
-  </div>
-</div>
-
-<!-- Reference Prototype Demonstration Callout -->
-<div class="mt-2.5 p-2 rounded-xl border border-indigo-200 bg-indigo-50/70 shadow-xs flex items-center justify-between">
-  <div class="flex items-center gap-2 text-[0.62rem] text-indigo-950">
-    <span class="px-2 py-0.5 rounded bg-indigo-600 text-white font-bold font-mono">Reference Prototype</span>
-    <span>Observe touch targets, background dimming, and scrolling behavior before you build!</span>
-  </div>
-  <span class="text-[0.58rem] font-mono px-2 py-0.5 rounded bg-white text-indigo-700 font-bold border border-indigo-200">Live Figma Demo</span>
-</div>
+# 03 — TA live demonstration
 
 <!--
-TAs: Open the provided reference prototype in Figma Presentation mode (fullscreen). Walk students through the 3 screens, open the customizer sheet, demonstrate tapping the background to close, and show how the top header remains fixed during scroll.
+TAs: Switch to Figma Presentation mode to showcase the provided reference prototype. Walk students through Home ➔ Food Delivery ➔ tapping through all 4 distinct restaurant cards (Burger Republic + 3 newly built restaurants), demonstrate smooth push transitions, back navigation, and show fixed headers staying pinned during vertical and horizontal scroll.
 -->
 
 ---
 layout: section
 icon: activity
-sub: 45-minute hands-on studio — Connect your screens into a clickable mobile prototype
+sub: 45-minute hands-on sprint — Source assets, build 3 missing restaurant screens, and wire the complete flow
 ---
 
-# 05 — Graded in-class sprint
+# 04 — Graded in-class sprint
 
 ---
 layout: default
@@ -434,54 +268,54 @@ icon: activity
 dense: true
 ---
 
-# Graded In-Class Sprint: Build Your Clickable Prototype
+# Graded In-Class Sprint: Multi-Screen Prototype Assembly
 
 <div class="p-2 rounded-lg border border-amber-200 bg-amber-50 text-[0.67rem] text-amber-900 flex items-center justify-between mb-2">
   <div class="flex items-center gap-1.5">
     <span class="px-1.5 py-0.5 rounded bg-amber-200 text-amber-900 font-bold text-[0.58rem]">GRADED</span>
-    <span><strong>What you will build:</strong> Screens 1 ➔ 2 ➔ 3 (Navigation) + Dish Customizer (Popup Sheet)</span>
+    <span><strong>What you will build:</strong> Home + Food Delivery + 4 Working Restaurant Screens (1 Provided + 3 Built & Wired)</span>
   </div>
   <div class="flex items-center gap-1.5 font-mono text-[0.6rem]">
-    <a href="https://www.figma.com/community/file/1685465148190554592" target="_blank" class="px-2 py-0.5 rounded bg-white border border-indigo-200 text-indigo-700 font-bold hover:bg-indigo-50 no-underline shadow-2xs" style="text-decoration: none;">Figma Workspace ↗</a>
+    <a href="https://www.figma.com/community/file/1688178288499788693" target="_blank" class="px-2 py-0.5 rounded bg-white border border-indigo-200 text-indigo-700 font-bold hover:bg-indigo-50 no-underline shadow-2xs" style="text-decoration: none;">Figma Workspace ↗</a>
   </div>
 </div>
 
 <div class="grid grid-cols-3 gap-3 text-[0.7rem]">
-  <!-- Task 1: Navigation Journey -->
+  <!-- Task 1: Asset Sourcing & Screen Building -->
   <div class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 flex flex-col justify-between shadow-xs">
     <div>
       <div class="flex items-center justify-between mb-1.5">
-        <span class="font-bold text-slate-900">1. Connect the Screens</span>
+        <span class="font-bold text-slate-900">1. Sourcing & Assembly</span>
         <span class="text-[0.55rem] font-bold px-1.5 py-0.2 rounded bg-blue-100 text-blue-800">Part 1 (30%)</span>
       </div>
       <ul class="list-disc pl-3.5 space-y-1 text-slate-600 text-[0.66rem]">
-        <li>Screen 1: "Food" tile links to Screen 2.</li>
-        <li>Screen 2: "Burger Republic" card links to Screen 3.</li>
-        <li>Screens 2 & 3: Top header back arrows set to <code>Back</code>.</li>
-        <li>Animation: <code>Push / Slide In</code> (300ms) for smooth sliding.</li>
+        <li>Duplicate the reference restaurant screen for 3 new brands.</li>
+        <li>Source assets: 1 Logo, 1 Hero Cover & 2 Dishes per restaurant.</li>
+        <li>Override titles, cuisine pills, delivery info & prices.</li>
+        <li>Match the 3 new screens to the 3 missing feed cards.</li>
       </ul>
     </div>
-    <div class="text-[0.62rem] text-blue-700 font-semibold pt-1 mt-2 border-t border-slate-200">Forward & Backward Navigation</div>
+    <div class="text-[0.62rem] text-blue-700 font-semibold pt-1 mt-2 border-t border-slate-200">Asset Gathering & Overrides</div>
   </div>
 
-  <!-- Task 2: Modal Customizer Sheet -->
+  <!-- Task 2: Multi-Card Routing & Back Stack -->
   <div class="p-2.5 rounded-xl border border-purple-200 bg-purple-50/50 flex flex-col justify-between shadow-xs">
     <div>
       <div class="flex items-center justify-between mb-1.5">
-        <span class="font-bold text-slate-900">2. Add the Bottom Sheet</span>
+        <span class="font-bold text-slate-900">2. Multi-Card Routing</span>
         <span class="text-[0.55rem] font-bold px-1.5 py-0.2 rounded bg-purple-100 text-purple-800">Part 2 (40%)</span>
       </div>
       <ul class="list-disc pl-3.5 space-y-1 text-slate-600 text-[0.66rem]">
-        <li>Burger item <code>+</code> button opens sheet with <code>Open overlay</code>.</li>
-        <li>Position: <code>Bottom Center</code>; Animation: <code>Move In</code> (Bottom).</li>
-        <li>Dimming: Check <code>50% Black</code> background overlay.</li>
-        <li>Dismissal: Check <code>Close when clicking outside</code> + CTA close.</li>
+        <li>Screen 1: "Food" category tile links to Food Delivery feed.</li>
+        <li>Screen 2: Wire all 4 restaurant cards to their distinct pages.</li>
+        <li>All 4 Screens: Set top back arrows to native <code>Back</code> action.</li>
+        <li>Transitions: <code>Push / Slide In</code> (300ms Ease Out) with preserved state.</li>
       </ul>
     </div>
-    <div class="text-[0.62rem] text-purple-700 font-semibold pt-1 mt-2 border-t border-purple-200">Popup Bottom Sheet</div>
+    <div class="text-[0.62rem] text-purple-700 font-semibold pt-1 mt-2 border-t border-purple-200">Multi-Destination Flow</div>
   </div>
 
-  <!-- Task 3: Viewport Physics & Polish -->
+  <!-- Task 3: Scrolling & Fixed Bars -->
   <div class="p-2.5 rounded-xl border border-teal-200 bg-teal-50/50 flex flex-col justify-between shadow-xs">
     <div>
       <div class="flex items-center justify-between mb-1.5">
@@ -489,18 +323,18 @@ dense: true
         <span class="text-[0.55rem] font-bold px-1.5 py-0.2 rounded bg-teal-100 text-teal-800">Part 3 (30%)</span>
       </div>
       <ul class="list-disc pl-3.5 space-y-1 text-slate-600 text-[0.66rem]">
-        <li>Lock Top Status Bar & Address Header: <code>Fixed</code>.</li>
-        <li>Lock Bottom Navigation Bar: <code>Fixed</code>.</li>
-        <li>Menu items scroll vertically underneath the headers.</li>
-        <li>Cuisine categories row scrolls horizontally: <code>Horizontal</code>.</li>
+        <li>Top Status Bar & Navigation Header: <code>Fixed</code> on all screens.</li>
+        <li>Bottom Navigation Bar on Home & Feed: <code>Fixed</code>.</li>
+        <li>Menu lists scroll vertically underneath headers on all 4 screens.</li>
+        <li>Cuisine categories row set to <code>Horizontal</code> scroll.</li>
       </ul>
     </div>
-    <div class="text-[0.62rem] text-teal-700 font-semibold pt-1 mt-2 border-t border-teal-200">Native App Feel</div>
+    <div class="text-[0.62rem] text-teal-700 font-semibold pt-1 mt-2 border-t border-teal-200">Native Mobile Feel</div>
   </div>
 </div>
 
 <!--
-You have 45 minutes for this graded assignment. Connect all 3 screens, configure the popup bottom sheet, set up scrolling, and run the self-check tests before calling a TA.
+You have 45 minutes for this graded assignment. Source assets for the 3 missing restaurants, assemble their screens using the template, wire all 4 cards to their destinations, and run self-check tests.
 -->
 
 ---
@@ -518,137 +352,69 @@ Your prototype will be evaluated out of 100% across four simple checks (25 point
   <div class="p-2.5 rounded-xl border border-blue-200 bg-blue-50/40 flex flex-col justify-between">
     <div>
       <div class="flex items-center justify-between mb-1.5">
-        <span class="font-bold text-blue-900 text-xs">1. Navigation</span>
+        <span class="font-bold text-blue-900 text-xs">1. Sourcing & UI</span>
         <span class="px-1.5 py-0.5 rounded text-[0.56rem] font-bold bg-blue-100 text-blue-800">25%</span>
       </div>
       <ul class="text-slate-600 pl-3 space-y-1 text-[0.62rem] list-disc">
-        <li><strong>Continuous Flow:</strong> 1 ➔ 2 ➔ 3 works without broken wires</li>
-        <li><strong>Back Action:</strong> Back arrows use native <code>Back</code> action</li>
-        <li><strong>Starting Point:</strong> Screen 1 set as Flow Starting Point</li>
+        <li><strong>3 Built Screens:</strong> Assembled from the master template</li>
+        <li><strong>Sourced Assets:</strong> Unique logos, hero covers & dishes</li>
+        <li><strong>Clean Layout:</strong> Auto-Layout structure preserved</li>
       </ul>
     </div>
-    <div class="text-[0.6rem] text-blue-700 font-bold pt-1.5 mt-1 border-t border-blue-200">Smooth Navigation</div>
+    <div class="text-[0.6rem] text-blue-700 font-bold pt-1.5 mt-1 border-t border-blue-200">Screen Assembly</div>
   </div>
 
   <!-- Pillar 2 -->
   <div class="p-2.5 rounded-xl border border-purple-200 bg-purple-50/40 flex flex-col justify-between">
     <div>
       <div class="flex items-center justify-between mb-1.5">
-        <span class="font-bold text-purple-900 text-xs">2. Bottom Sheet</span>
+        <span class="font-bold text-purple-900 text-xs">2. 4-Card Routing</span>
         <span class="px-1.5 py-0.5 rounded text-[0.56rem] font-bold bg-purple-100 text-purple-800">25%</span>
       </div>
       <ul class="text-slate-600 pl-3 space-y-1 text-[0.62rem] list-disc">
-        <li><strong>Positioning:</strong> Sheet opens at <code>Bottom Center</code></li>
-        <li><strong>Dimming:</strong> <code>50% Black</code> background overlay enabled</li>
-        <li><strong>Easy Dismissal:</strong> Closes when clicking outside or CTA</li>
+        <li><strong>Distinct Wires:</strong> Each card opens its own restaurant screen</li>
+        <li><strong>Push Transitions:</strong> <code>300ms Ease Out</code> screen sliding</li>
+        <li><strong>Starting Point:</strong> Screen 1 set as Flow Starting Point</li>
       </ul>
     </div>
-    <div class="text-[0.6rem] text-purple-700 font-bold pt-1.5 mt-1 border-t border-purple-200">Popup Behavior</div>
+    <div class="text-[0.6rem] text-purple-700 font-bold pt-1.5 mt-1 border-t border-purple-200">Card Connections</div>
   </div>
 
   <!-- Pillar 3 -->
   <div class="p-2.5 rounded-xl border border-teal-200 bg-teal-50/40 flex flex-col justify-between">
     <div>
       <div class="flex items-center justify-between mb-1.5">
-        <span class="font-bold text-teal-900 text-xs">3. Scrolling & Fixed Bars</span>
+        <span class="font-bold text-teal-900 text-xs">3. Back Stack</span>
         <span class="px-1.5 py-0.5 rounded text-[0.56rem] font-bold bg-teal-100 text-teal-800">25%</span>
       </div>
       <ul class="text-slate-600 pl-3 space-y-1 text-[0.62rem] list-disc">
-        <li><strong>Fixed Headers:</strong> Top bar stays pinned in place when scrolling</li>
-        <li><strong>Clean Scrolling:</strong> Cards scroll smoothly under headers</li>
-        <li><strong>Horizontal Row:</strong> Category row scrolls horizontally</li>
+        <li><strong>Native Action:</strong> Back arrows on all 4 screens use <code>Back</code></li>
+        <li><strong>Preserve State:</strong> Returns to previous scroll position</li>
+        <li><strong>No Resets:</strong> Pops stack cleanly without restarting</li>
       </ul>
     </div>
-    <div class="text-[0.6rem] text-teal-700 font-bold pt-1.5 mt-1 border-t border-teal-200">Scrolling Setup</div>
+    <div class="text-[0.6rem] text-teal-700 font-bold pt-1.5 mt-1 border-t border-teal-200">Return Navigation</div>
   </div>
 
   <!-- Pillar 4 -->
   <div class="p-2.5 rounded-xl border border-amber-200 bg-amber-50/40 flex flex-col justify-between">
     <div>
       <div class="flex items-center justify-between mb-1.5">
-        <span class="font-bold text-amber-900 text-xs">4. Polish & Touch</span>
+        <span class="font-bold text-amber-900 text-xs">4. Scrolling & Fit</span>
         <span class="px-1.5 py-0.5 rounded text-[0.56rem] font-bold bg-amber-100 text-amber-800">25%</span>
       </div>
       <ul class="text-slate-600 pl-3 space-y-1 text-[0.62rem] list-disc">
-        <li><strong>Smooth Animation:</strong> <code>300ms Ease Out</code> transitions</li>
-        <li><strong>Slide Physics:</strong> Sheet slides up cleanly from bottom</li>
-        <li><strong>Tap Areas:</strong> Buttons are easy to tap (&ge; 44 &times; 44 px)</li>
+        <li><strong>Fixed Bars:</strong> Headers pinned on all 4 restaurant screens</li>
+        <li><strong>Menu Scrolling:</strong> Lists scroll smoothly under top bars</li>
+        <li><strong>Device Frame:</strong> Screens fit iPhone frame (393 × 852 px)</li>
       </ul>
     </div>
-    <div class="text-[0.58rem] text-amber-700 font-medium pt-1.5 mt-1 border-t border-amber-200">Mobile Feel</div>
+    <div class="text-[0.58rem] text-amber-700 font-medium pt-1.5 mt-1 border-t border-amber-200">Scroll & Device Fit</div>
   </div>
-</div>
-
-<div class="mt-2 py-1 px-2.5 rounded-lg border border-indigo-300 bg-indigo-50/80 text-[0.66rem] text-indigo-950 flex items-center justify-between">
-  <div>
-    <span class="px-1.5 py-0.5 rounded bg-indigo-600 text-white font-bold text-[0.58rem] mr-2">PD2 ALIGNMENT</span>
-    This in-class prototype serves as the verified interactive blueprint for your team's <strong>Project Deliverable 2</strong> submission!
-  </div>
-  <span class="px-2 py-0.5 rounded bg-indigo-200 text-indigo-900 font-bold text-[0.58rem]">100 Pts Checkoff</span>
 </div>
 
 <!--
 Review these four criteria carefully. Each pillar carries 25% of your in-class grade.
--->
-
----
-layout: split
-title: Student Self-Check: Test Before Checkoff
-icon: activity
-dense: true
-wideRight: true
----
-
-<div class="grid grid-cols-2 gap-2.5 text-[0.66rem]">
-  <div class="p-2.5 rounded-xl border border-blue-200 bg-blue-50/50">
-    <div class="font-bold text-blue-900 mb-0.5 flex items-center gap-1.5">
-      <span class="text-blue-600 font-bold">1.</span>
-      <span>The Full Loop Test</span>
-    </div>
-    <p class="text-slate-600 leading-tight">Start at Screen 1. Tap through to 2 and 3, open the modal, close it, and tap back twice. Confirm you never get stuck.</p>
-  </div>
-
-  <div class="p-2.5 rounded-xl border border-purple-200 bg-purple-50/50">
-    <div class="font-bold text-purple-900 mb-0.5 flex items-center gap-1.5">
-      <span class="text-purple-600 font-bold">2.</span>
-      <span>The Popup Sheet Test</span>
-    </div>
-    <p class="text-slate-600 leading-tight">Tapping <code>+</code> must slide the sheet up and dim the screen; tapping the dark area outside must close it immediately.</p>
-  </div>
-
-  <div class="p-2.5 rounded-xl border border-teal-200 bg-teal-50/50">
-    <div class="font-bold text-teal-900 mb-0.5 flex items-center gap-1.5">
-      <span class="text-teal-600 font-bold">3.</span>
-      <span>The Scroll Test</span>
-    </div>
-    <p class="text-slate-600 leading-tight">Scroll each screen. Top status bars and navigation bars must stay pinned in place while cards scroll underneath.</p>
-  </div>
-
-  <div class="p-2.5 rounded-xl border border-amber-200 bg-amber-50/50">
-    <div class="font-bold text-amber-900 mb-0.5 flex items-center gap-1.5">
-      <span class="text-amber-600 font-bold">4.</span>
-      <span>The Phone Preview Test</span>
-    </div>
-    <p class="text-slate-600 leading-tight">Click Present (Play button). Confirm your screens fit the phone frame (<code>393 × 852 px</code>) cleanly without unwanted horizontal cutoffs.</p>
-  </div>
-</div>
-
-::right::
-
-<Activity label="Self-Check Steps">
-
-<div class="text-[0.7rem] space-y-1 text-slate-700">
-  <p class="font-medium text-slate-900 mb-1">Before calling a TA for grading:</p>
-  <p><strong>Step 1:</strong> Run all 4 tests on the left in Figma Presentation mode.</p>
-  <p><strong>Step 2:</strong> Verify your Flow Starting Point is set to <strong>Screen 1 (Home)</strong>.</p>
-  <p><strong>Step 3:</strong> Copy your Figma file share link (Permissions: <em>"Anyone with the link can view"</em>).</p>
-  <p><strong>Step 4:</strong> Raise your hand for TA checkoff and submit your link.</p>
-</div>
-
-</Activity>
-
-<!--
-Run through this 4-step self-check protocol before asking a TA to evaluate your work.
 -->
 
 ---
@@ -664,17 +430,17 @@ dense: true
     <div class="flex items-center gap-2">
       <span class="px-2.5 py-0.5 rounded-full text-[0.6rem] font-bold uppercase tracking-wider bg-amber-500 text-white">Graded (100 pts)</span>
       <span class="px-2.5 py-0.5 rounded-full text-[0.6rem] font-bold uppercase tracking-wider bg-blue-600 text-white">Sprint Active</span>
-      <span class="text-[0.65rem] text-slate-600 font-medium">3-Screen Clickable Flow + Dish Customizer Modal Sheet</span>
+      <span class="text-[0.65rem] text-slate-600 font-medium">5-Screen Mobile Architecture (4 Restaurants)</span>
     </div>
     <span class="text-xs font-mono font-bold text-blue-700 bg-white px-2 py-0.5 rounded border border-blue-200 shadow-xs">45–50 Mins</span>
   </div>
   <div class="grid grid-cols-2 gap-2">
-    <a href="https://www.figma.com/community/file/1685465148190554592" target="_blank" class="p-2 rounded-xl bg-white border border-indigo-200 hover:border-indigo-400 hover:shadow-xs transition flex items-center justify-between no-underline" style="text-decoration: none;">
+    <a href="https://www.figma.com/community/file/1688178288499788693" target="_blank" class="p-2 rounded-xl bg-white border border-indigo-200 hover:border-indigo-400 hover:shadow-xs transition flex items-center justify-between no-underline" style="text-decoration: none;">
       <div>
         <div class="text-[0.65rem] font-bold text-indigo-900 flex items-center gap-1">
           <span>Figma Workspace Template</span>
         </div>
-        <div class="text-[0.56rem] text-slate-500 mt-0.5">Your Lab 03 screens, assets & prototype flow canvas</div>
+        <div class="text-[0.56rem] text-slate-500 mt-0.5">Pre-built screens, assets & prototype canvas</div>
       </div>
       <span class="px-2 py-0.5 rounded bg-indigo-600 text-white font-bold text-[0.58rem] whitespace-nowrap ml-2">Open File ↗</span>
     </a>
@@ -683,7 +449,7 @@ dense: true
         <div class="text-[0.65rem] font-bold text-amber-900 flex items-center gap-1">
           <span>Figma Prototyping Docs</span>
         </div>
-        <div class="text-[0.56rem] text-slate-500 mt-0.5">Triggers, action sheets, overlays & easing reference</div>
+        <div class="text-[0.56rem] text-slate-500 mt-0.5">Triggers, navigation, animations & easing curves</div>
       </div>
       <span class="px-2 py-0.5 rounded bg-amber-600 text-white font-bold text-[0.58rem] whitespace-nowrap ml-2">Open Docs ↗</span>
     </a>
@@ -695,15 +461,15 @@ dense: true
   <div class="p-2.5 rounded-xl border border-slate-200 bg-white shadow-xs flex flex-col justify-between">
     <div>
       <div class="flex items-center justify-between mb-1">
-        <span class="font-bold text-slate-900 text-[0.68rem]">1. Screen Links</span>
-        <span class="text-[0.52rem] font-bold px-1.5 py-0.2 rounded bg-blue-100 text-blue-800">Connections</span>
+        <span class="font-bold text-slate-900 text-[0.68rem]">1. Sourcing & Assembly</span>
+        <span class="text-[0.52rem] font-bold px-1.5 py-0.2 rounded bg-blue-100 text-blue-800">Assets & Screens</span>
       </div>
       <div class="text-[0.56rem] text-slate-600 leading-snug">
-        Home ➔ Food Delivery ➔ Menu ➔ Back stack. Zero broken links or dead-end screens.
+        Duplicate master template for 3 brands. Source 1 logo, 1 hero cover & 2 dishes per brand. Override content.
       </div>
     </div>
     <div class="mt-2 text-[0.52rem] font-mono text-slate-400 pt-1 border-t border-slate-100">
-      Scope: 3 Core Screens
+      Scope: 3 Built Screens (5 Total)
     </div>
   </div>
 
@@ -711,15 +477,15 @@ dense: true
   <div class="p-2.5 rounded-xl border border-purple-200 bg-white shadow-xs flex flex-col justify-between">
     <div>
       <div class="flex items-center justify-between mb-1">
-        <span class="font-bold text-purple-950 text-[0.68rem]">2. Bottom Sheet</span>
-        <span class="text-[0.52rem] font-bold px-1.5 py-0.2 rounded bg-purple-100 text-purple-800">Overlay</span>
+        <span class="font-bold text-purple-950 text-[0.68rem]">2. Multi-Card Routing</span>
+        <span class="text-[0.52rem] font-bold px-1.5 py-0.2 rounded bg-purple-100 text-purple-800">Navigation</span>
       </div>
       <div class="text-[0.56rem] text-slate-600 leading-snug">
-        Dish customizer bottom sheet with 50% backdrop dimming and outside-tap dismissal.
+        Feed cards wire to 4 distinct restaurant screens. Set 300ms Push transitions with native Back stack.
       </div>
     </div>
     <div class="mt-2 text-[0.52rem] font-mono text-purple-600 pt-1 border-t border-purple-100">
-      Scope: Bottom Sheet
+      Scope: 4 Distinct Destinations
     </div>
   </div>
 
@@ -727,15 +493,15 @@ dense: true
   <div class="p-2.5 rounded-xl border border-teal-200 bg-white shadow-xs flex flex-col justify-between">
     <div>
       <div class="flex items-center justify-between mb-1">
-        <span class="font-bold text-teal-950 text-[0.68rem]">3. Fixed Headers</span>
+        <span class="font-bold text-teal-950 text-[0.68rem]">3. Fixed & Scroll</span>
         <span class="text-[0.52rem] font-bold px-1.5 py-0.2 rounded bg-teal-100 text-teal-800">Scroll</span>
       </div>
       <div class="text-[0.56rem] text-teal-950 leading-snug">
-        Fixed header and bottom nav bars; vertical feed scroll and horizontal deals carousel.
+        Fixed headers and bottom nav bars; vertical menu scrolling and category row horizontal scroll.
       </div>
     </div>
     <div class="mt-2 text-[0.52rem] font-mono text-teal-700 pt-1 border-t border-teal-200">
-      Scope: Fixed & Scroll
+      Scope: Pinned Bars & Overflow
     </div>
   </div>
 </div>
@@ -746,67 +512,27 @@ The template link is active. Open your file in Figma and begin wiring Phase 1.
 
 ---
 layout: default
-icon: intro
 dense: true
 ---
 
-# Project Deliverable 2 (PD2): Prototype Handoff & Requirements
-
-<div class="text-[0.72rem] text-slate-500 mb-2">How today's in-class sprint directly feeds into your team's graded Project Milestone:</div>
-
-<div class="grid grid-cols-3 gap-3 text-[0.68rem] mt-1">
-  <!-- Requirement 1 -->
-  <div class="p-2.5 rounded-xl border border-blue-200 bg-blue-50/40 flex flex-col justify-between">
-    <div>
-      <div class="flex items-center justify-between mb-1.5">
-        <span class="font-bold text-blue-900 text-xs">1. Connect Your User Stories</span>
-        <span class="px-1.5 py-0.5 rounded text-[0.56rem] font-bold bg-blue-100 text-blue-800">PD1 ➔ PD2</span>
-      </div>
-      <p class="text-slate-600 text-[0.62rem] leading-relaxed">
-        Every clickable interaction in your team prototype must match a user story your team defined in <strong>Lab 01</strong>.
-      </p>
-    </div>
-    <div class="text-[0.58rem] text-blue-700 font-semibold pt-1 border-t border-blue-200">User Story Mapping</div>
+<div class="flex flex-col items-center justify-center text-center -mt-6">
+  <div class="text-[0.7rem] font-bold uppercase tracking-wider text-slate-500 mb-1.5">Lab 04 Submission Form</div>
+  <div class="p-3 bg-white rounded-3xl border-2 border-indigo-200 shadow-xl inline-block mb-2.5">
+    <img src="/lab-04-submission-qr.png" alt="Lab 04 Submission QR Code" class="w-[345px] h-[345px] object-contain" />
   </div>
-
-  <!-- Requirement 2 -->
-  <div class="p-2.5 rounded-xl border border-purple-200 bg-purple-50/40 flex flex-col justify-between">
-    <div>
-      <div class="flex items-center justify-between mb-1.5">
-        <span class="font-bold text-purple-900 text-xs">2. Complete Clickable Flow</span>
-        <span class="px-1.5 py-0.5 rounded text-[0.56rem] font-bold bg-purple-100 text-purple-800">Multi-Screen</span>
-      </div>
-      <p class="text-slate-600 text-[0.62rem] leading-relaxed">
-        Your team project submission must contain a minimum of <strong>4 connected screens</strong>, at least <strong>1 bottom sheet or popup</strong>, and responsive Auto-Layout containers.
-      </p>
-    </div>
-    <div class="text-[0.58rem] text-purple-700 font-semibold pt-1 border-t border-purple-200">Prototype Scope</div>
+  <div class="mb-1.5">
+    <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=twQ5o3wq-k-WjR0V5Byu8yfIedfI9QBOq86huAYW4xZUNEZPNklUVVNaVzdWNjRGMDQ4MFBFOTFETC4u" target="_blank" class="px-5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 shadow-sm inline-flex items-center gap-1.5 transition no-underline" style="color: #ffffff !important; text-decoration: none !important;">
+      <span style="color: #ffffff !important; font-weight: 700; font-size: 0.72rem;">Open Microsoft Forms Submission ↗</span>
+    </a>
   </div>
-
-  <!-- Requirement 3 -->
-  <div class="p-2.5 rounded-xl border border-teal-200 bg-teal-50/40 flex flex-col justify-between">
-    <div>
-      <div class="flex items-center justify-between mb-1.5">
-        <span class="font-bold text-teal-900 text-xs">3. Submission Checklist</span>
-        <span class="px-1.5 py-0.5 rounded text-[0.56rem] font-bold bg-teal-100 text-teal-800">Checklist</span>
-      </div>
-      <ul class="text-slate-600 pl-3 space-y-1 text-[0.6rem] list-disc">
-        <li>Public Figma file view link</li>
-        <li>Figma Presentation prototype link</li>
-        <li>1-page screen map & user flow PDF</li>
-      </ul>
-    </div>
-    <div class="text-[0.58rem] text-teal-700 font-semibold pt-1 border-t border-teal-200">Portal Submission</div>
+  <div>
+    <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=twQ5o3wq-k-WjR0V5Byu8yfIedfI9QBOq86huAYW4xZUNEZPNklUVVNaVzdWNjRGMDQ4MFBFOTFETC4u" target="_blank" class="text-[0.52rem] font-mono text-slate-600 hover:text-indigo-600 bg-slate-100 hover:bg-slate-200 px-4 py-1 rounded-full border border-slate-300 inline-block transition select-all" style="text-decoration: none !important;">
+      https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=twQ5o3wq-k-WjR0V5Byu8yfIedfI9QBOq86huAYW4xZUNEZPNklUVVNaVzdWNjRGMDQ4MFBFOTFETC4u</a>
   </div>
-</div>
-
-<div class="mt-2.5 p-2 rounded-xl border border-slate-200 bg-slate-50 text-[0.66rem] text-slate-800 flex items-center justify-between">
-  <div><strong>Next Lab Preview:</strong> After Lab 04, we finish Figma! In Lab 05, we start turning these visual containers into real code using <strong>HTML & CSS</strong>!</div>
-  <span class="px-2 py-0.5 rounded bg-slate-200 text-slate-800 font-bold text-[0.58rem]">Phase 2 Ahead</span>
 </div>
 
 <!--
-PD2 connects your user stories from Lab 01, design system from Lab 02-03, and prototype from today.
+Scan the QR code or click the link to submit your working prototype.
 -->
 
 ---
@@ -817,12 +543,12 @@ dense: true
 
 ## Lab 04 Core Resources
 
-- <a href="https://www.figma.com/community/file/1685465148190554592" target="_blank" class="no-underline" style="text-decoration: none;"><strong>Figma Community — Official Talabat ICA Starter Kit</strong></a> — multi-screen template, wireframes & workspace
+- <a href="https://www.figma.com/community/file/1688178288499788693" target="_blank" class="no-underline" style="text-decoration: none;"><strong>Figma Community — Official Talabat Prototyping Starter Kit</strong></a> — pre-built screens, assets & prototype canvas
 - <a href="https://drive.google.com/file/d/16Q8km7oc1fVimUW-6GjubpxlQoFVw47g/view?usp=sharing" target="_blank" class="no-underline" style="text-decoration: none;"><strong>Google Drive — Talabat Brand & Typography Guidelines (PDF)</strong></a> — official tokens & color standards
 
 ## Figma Official Documentation
 
 - [Figma Learn — Guide to Prototyping in Figma](https://help.figma.com/hc/en-us/articles/360040314193-Guide-to-prototyping-in-Figma) — official prototyping engine overview
-- [Figma Learn — Create Overlays in Prototypes](https://help.figma.com/hc/en-us/articles/360039818254-Create-overlays-in-your-prototypes) — positioning, modal dismissal & backdrops
+- [Figma Learn — Scroll with Overflow](https://help.figma.com/hc/en-us/articles/360039818034-Scroll-with-overflow) — vertical and horizontal scrolling in mobile prototypes
 - [Figma Learn — Prototype Triggers and Actions](https://help.figma.com/hc/en-us/articles/360040035834-Prototype-triggers-and-actions) — touch events, navigation & stack mechanics
 - [Figma Learn — Prototype Easing and Animation Curves](https://help.figma.com/hc/en-us/articles/360040035874-Prototype-animation-and-easing) — natural motion physics & timing
