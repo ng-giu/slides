@@ -42,7 +42,7 @@ dense: true
 | 10 min | Prototyping Basics: Clicks, transitions, and back buttons |
 | 10 min | Overlays & Bottom Sheets: Showing popups without leaving the page |
 | 10 min | Scrolling & Fixed Headers: Keeping top bars fixed while lists scroll |
-| 10 min | TA Live Demo: Step-by-step wiring of 3 screens + customizer sheet |
+| 10 min | TA Live Demo: Target prototype walkthrough & live preview |
 | 45 min | **Graded In-Class Sprint:** Build your clickable prototype |
 | 5 min | Self-Check Checklist & Grading Walkthrough |
 
@@ -339,7 +339,7 @@ Fixed positioning prevents the top navigation and status bar from scrolling away
 ---
 layout: section
 icon: tools
-sub: Step-by-step walkthrough: connecting the 3 screens and adding the customizer sheet
+sub: Live demonstration of the completed reference prototype you will build today
 ---
 
 # 04 — TA live demonstration
@@ -350,77 +350,74 @@ icon: tools
 dense: true
 ---
 
-# Live demo: Connecting the 3 screens step-by-step
+# TA live demo: The target prototype you will build
+
+<div class="text-[0.72rem] text-slate-500 mb-1.5">Watch the TA test the completed reference prototype live in Figma Present mode:</div>
 
 <div class="grid grid-cols-3 gap-2.5 mt-1 text-[0.68rem]">
   <!-- Step 1 -->
   <div class="p-2.5 rounded-xl border border-blue-200 bg-blue-50/50 flex flex-col justify-between">
     <div>
       <div class="flex items-center justify-between mb-1.5">
-        <span class="text-[0.6rem] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800">STEP 1</span>
+        <span class="text-[0.6rem] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800">BEHAVIOR 1</span>
         <span class="text-[0.55rem] font-mono text-blue-600">Navigate to</span>
       </div>
-      <h4 class="font-bold text-slate-900 mb-1">Connect Main Screens</h4>
+      <h4 class="font-bold text-slate-900 mb-1">3-Screen Navigation Flow</h4>
       <ul class="text-[0.62rem] text-slate-600 space-y-1 pl-3 list-disc">
-        <li>Screen 1: Select "Food" tile ➔ drag wire to <strong>Screen 2</strong></li>
-        <li>Screen 2: Select "Burger Republic" ➔ drag wire to <strong>Screen 3</strong></li>
-        <li>Screens 2 & 3: Select Back arrow ➔ action: <code>Back</code></li>
+        <li>Tap "Food" on Home ➔ smoothly slides into <strong>Restaurant Feed</strong></li>
+        <li>Tap "Burger Republic" ➔ slides into <strong>Restaurant Menu</strong></li>
+        <li>Tap Back arrow ➔ steps backward one screen using <code>Back</code></li>
       </ul>
     </div>
-    <div class="text-[0.58rem] font-semibold text-blue-700 pt-1 mt-1 border-t border-blue-200">Forward & Back Flow</div>
+    <div class="text-[0.58rem] font-semibold text-blue-700 pt-1 mt-1 border-t border-blue-200">Continuous Navigation</div>
   </div>
 
   <!-- Step 2 -->
   <div class="p-2.5 rounded-xl border border-purple-200 bg-purple-50/50 flex flex-col justify-between">
     <div>
       <div class="flex items-center justify-between mb-1.5">
-        <span class="text-[0.6rem] font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-800">STEP 2</span>
+        <span class="text-[0.6rem] font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-800">BEHAVIOR 2</span>
         <span class="text-[0.55rem] font-mono text-purple-600">Open overlay</span>
       </div>
-      <h4 class="font-bold text-slate-900 mb-1">Add the Bottom Sheet</h4>
+      <h4 class="font-bold text-slate-900 mb-1">Customizer Bottom Sheet</h4>
       <ul class="text-[0.62rem] text-slate-600 space-y-1 pl-3 list-disc">
-        <li>Select circular <code>+</code> button on a burger card</li>
-        <li>Action: <code>Open overlay</code> ➔ pick Customizer Frame</li>
-        <li>Position: <code>Bottom Center</code> • Backdrop: <code>50% Black</code></li>
+        <li>Tap <code>+</code> on burger card ➔ bottom sheet slides up smoothly</li>
+        <li>Notice background dims to <code>50% Black</code> behind the sheet</li>
+        <li>Tap outside dark area (or "Add to Cart") ➔ sheet dismisses</li>
       </ul>
     </div>
-    <div class="text-[0.58rem] font-semibold text-purple-700 pt-1 mt-1 border-t border-purple-200">Popup Sheet Setup</div>
+    <div class="text-[0.58rem] font-semibold text-purple-700 pt-1 mt-1 border-t border-purple-200">Popup Bottom Sheet</div>
   </div>
 
   <!-- Step 3 -->
   <div class="p-2.5 rounded-xl border border-teal-200 bg-teal-50/50 flex flex-col justify-between">
     <div>
       <div class="flex items-center justify-between mb-1.5">
-        <span class="text-[0.6rem] font-bold px-2 py-0.5 rounded bg-teal-100 text-teal-800">STEP 3</span>
-        <span class="text-[0.55rem] font-mono text-teal-600">Close overlay</span>
+        <span class="text-[0.6rem] font-bold px-2 py-0.5 rounded bg-teal-100 text-teal-800">BEHAVIOR 3</span>
+        <span class="text-[0.55rem] font-mono text-teal-600">Fixed & Scroll</span>
       </div>
-      <h4 class="font-bold text-slate-900 mb-1">Close the Sheet</h4>
+      <h4 class="font-bold text-slate-900 mb-1">Scrolling & Fixed Headers</h4>
       <ul class="text-[0.62rem] text-slate-600 space-y-1 pl-3 list-disc">
-        <li>Select "Add to Cart" button inside sheet: <code>Close overlay</code></li>
-        <li>Check: <code>Close when clicking outside</code></li>
-        <li>Screen 3 now displays the bottom "View Basket" bar</li>
+        <li>Notice top status bar & address header stay locked when scrolling</li>
+        <li>Food items scroll vertically underneath the pinned header</li>
+        <li>Cuisine categories row swipes horizontally across the screen</li>
       </ul>
     </div>
-    <div class="text-[0.58rem] font-semibold text-teal-700 pt-1 mt-1 border-t border-teal-200">Closing & Confirmation</div>
+    <div class="text-[0.58rem] font-semibold text-teal-700 pt-1 mt-1 border-t border-teal-200">Native App Feel</div>
   </div>
 </div>
 
-<!-- Complete Interaction Flow Map -->
-<div class="mt-2.5 p-2 rounded-xl border border-slate-200 bg-white shadow-xs flex items-center justify-between">
-  <div class="flex items-center gap-2 text-[0.62rem]">
-    <span class="px-2 py-0.5 rounded bg-orange-100 text-orange-900 font-bold font-mono">Screen 1: Home</span>
-    <span class="text-slate-400 font-bold">➔</span>
-    <span class="px-2 py-0.5 rounded bg-teal-100 text-teal-900 font-bold font-mono">Screen 2: Feed</span>
-    <span class="text-slate-400 font-bold">➔</span>
-    <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-900 font-bold font-mono">Screen 3: Menu</span>
-    <span class="text-slate-400 font-bold">➔</span>
-    <span class="px-2 py-0.5 rounded bg-purple-100 text-purple-900 font-bold font-mono">[Popup: Customizer Sheet]</span>
+<!-- Reference Prototype Demonstration Callout -->
+<div class="mt-2.5 p-2 rounded-xl border border-indigo-200 bg-indigo-50/70 shadow-xs flex items-center justify-between">
+  <div class="flex items-center gap-2 text-[0.62rem] text-indigo-950">
+    <span class="px-2 py-0.5 rounded bg-indigo-600 text-white font-bold font-mono">Reference Prototype</span>
+    <span>Observe touch targets, background dimming, and scrolling behavior before you build!</span>
   </div>
-  <span class="text-[0.58rem] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-bold">Complete Journey</span>
+  <span class="text-[0.58rem] font-mono px-2 py-0.5 rounded bg-white text-indigo-700 font-bold border border-indigo-200">Live Figma Demo</span>
 </div>
 
 <!--
-Follow along with the TA. Notice how setting Screen 1 as the starting point makes the entire prototype run smoothly from the first tap.
+TAs: Open the provided reference prototype in Figma Presentation mode (fullscreen). Walk students through the 3 screens, open the customizer sheet, demonstrate tapping the background to close, and show how the top header remains fixed during scroll.
 -->
 
 ---
