@@ -90,6 +90,15 @@ services:
       - VIRTUAL_HOST=${ICA_LAB_02_HOST:-lab2.ica.nourgaser.com}
       - LETSENCRYPT_HOST=${ICA_LAB_02_HOST:-lab2.ica.nourgaser.com}
 
+  ica-lab-03:
+    <<: *slidev-base
+    container_name: ica-lab-03
+    command: ["lab", "ica", "3"]
+    environment:
+      - VIRTUAL_PORT=3030
+      - VIRTUAL_HOST=${ICA_LAB_03_HOST:-lab3.ica.nourgaser.com}
+      - LETSENCRYPT_HOST=${ICA_LAB_03_HOST:-lab3.ica.nourgaser.com}
+
 networks:
   nginx-proxy:
     name: nginx-proxy
