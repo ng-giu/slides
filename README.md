@@ -33,6 +33,30 @@ PDF export needs a browser binary once:
 bunx playwright install chromium
 ```
 
+## The course index (slides.nourgaser.com)
+
+One page lists every course and every deck, with a link to the live slides and
+the PDF. Nothing in it is written by hand: `scripts/build-site.ts` finds courses
+(folders in `courses/`) and decks (`lab-NN.md`, `assignment-NN.md`), takes the
+course name, code, track and semester from each deck's headmatter, and splits
+the deck title (`BINF 503 - Lab 4 - Building a REST API`) into label and topic.
+
+A deck's **Slides** link is the `VIRTUAL_HOST` of the `compose.yml` service that
+serves it, and its **PDF** link is `dist/<course>/<deck>.pdf`. A deck missing
+either is still listed, with that button greyed out, and the build says which.
+So a new deck needs no edit to the index: add its service and rebuild.
+
+```bash
+bun run site          # export every PDF, then build dist/site/
+bun run site:index    # rebuild dist/site/ from the PDFs already in dist/
+```
+
+In production it is the `site` service: `Dockerfile.site` exports every PDF
+inside Playwright's image and serves `dist/site/` from nginx. Rebuild it after
+changing a deck: `docker compose up -d --build site`. When `playwright-chromium`
+is bumped in `bun.lock`, bump the Playwright image tag in `Dockerfile.site` to
+match.
+
 ## Layout
 
 ```
@@ -47,7 +71,7 @@ courses/
     lab-02.md      Lab 2: UI/UX & Figma
     public/        course assets, served at site root (/img/...)
 theme/             the GIU theme: layouts, components, tokens
-scripts/           deck.sh — multi-course resolver for bun scripts
+scripts/           deck.sh — multi-course resolver for bun scripts; build-site.ts — the index
 dist/              exported PDFs organized by course (dist/ebd/, dist/ica/)
 ```
 

@@ -99,6 +99,34 @@ services:
       - VIRTUAL_HOST=${ICA_LAB_03_HOST:-lab3.ica.nourgaser.com}
       - LETSENCRYPT_HOST=${ICA_LAB_03_HOST:-lab3.ica.nourgaser.com}
 
+  ica-lab-04:
+    <<: *slidev-base
+    container_name: ica-lab-04
+    command: ["lab", "ica", "4"]
+    environment:
+      - VIRTUAL_PORT=3030
+      - VIRTUAL_HOST=${ICA_LAB_04_HOST:-lab4.ica.nourgaser.com}
+      - LETSENCRYPT_HOST=${ICA_LAB_04_HOST:-lab4.ica.nourgaser.com}
+
+  # ===========================================================================
+  # Index: every course, with links to each deck online and as a PDF
+  # ===========================================================================
+  site:
+    build:
+      context: .
+      dockerfile: Dockerfile.site
+    image: giu-slides-site:latest
+    container_name: slides-site
+    restart: unless-stopped
+    expose:
+      - "80"
+    networks:
+      - nginx-proxy
+    environment:
+      - VIRTUAL_PORT=80
+      - VIRTUAL_HOST=${SITE_HOST:-slides.nourgaser.com}
+      - LETSENCRYPT_HOST=${SITE_HOST:-slides.nourgaser.com}
+
 networks:
   nginx-proxy:
     name: nginx-proxy
