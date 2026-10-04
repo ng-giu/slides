@@ -1,9 +1,9 @@
 ---
 theme: ../../theme
-title: ICA - Lab 2 - UI/UX Principles & Figma Foundations
+title: BINF 301 - Lab 2 - UI/UX Principles & Figma Foundations
 courseTitle: Information and Communication Architecture
-course: ICA
-track: Software Engineering
+course: BINF 301
+track: Web Design and Information Architecture
 semester: W2026
 lab: 2
 lineNumbers: true
