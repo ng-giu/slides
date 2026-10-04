@@ -63,6 +63,59 @@ Today we finish the API and give the code a shape that lasts the whole semester.
 
 ---
 layout: split
+title: Didn't finish Lab 3?
+icon: recap
+wideRight: true
+dense: true
+---
+
+Start from here and you are exactly where Lab 3 ended:
+
+1. Create a folder called `ebd-bnb` and open it in <Tool name="vscode" />.
+2. Create `package.json` and paste in the code on the right.
+3. In the terminal, run `npm install`.
+4. Create `.gitignore` containing `node_modules/`.
+5. Create `server.js` and paste in the code from the **next slide**.
+6. Run `npm run dev` and open `http://localhost:3000/api/listings`. You should see three listings.
+7. Commit and push it to a new <Tool name="github" /> repo.
+
+::right::
+
+<FileTag name="package.json" />
+
+<<< @/snippets/lab-04/package.json
+
+<div class="giu-refs__note">Want to know what each step does? Lab 3, from "npm init" onwards, walks through it.</div>
+
+---
+layout: split
+title: Lab 3's server.js
+dense: true
+class: giu-paste
+---
+
+<style>
+/* Code meant to be copied out of the PDF: every line must fit, because text
+   clipped by the box is not in the PDF at all. Slide styles leak deck-wide,
+   so everything hangs off this slide's class. */
+.giu-paste .giu-split__grid { gap: 1rem; }
+.giu-paste .giu-split__grid pre.shiki { font-size: 0.56rem !important; }
+</style>
+
+<FileTag name="server.js" />
+
+<<< @/snippets/lab-04/catch-up.js#top
+
+<div class="giu-refs__note">Copy each half into <code>server.js</code>, left then right. Indentation lost in the paste? <strong>Shift+Alt+F</strong> in VS Code puts it back.</div>
+
+::right::
+
+<FileTag name="server.js (continued)" />
+
+<<< @/snippets/lab-04/catch-up.js#bottom
+
+---
+layout: split
 title: Today's question
 dense: true
 ---
