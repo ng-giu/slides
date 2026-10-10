@@ -27,6 +27,7 @@ export const TOOLS: Record<string, ToolInfo> = {
   git: { icon: 'i-simple-icons-git', label: 'Git', color: '#D14027' },
   github: { icon: 'i-simple-icons-github', label: 'GitHub', color: '#181717' },
   mongodb: { icon: 'i-simple-icons-mongodb', label: 'MongoDB', color: '#3FA037' },
+  mongoose: { icon: 'i-simple-icons-mongoose', label: 'Mongoose', color: '#880000' },
   express: { icon: 'i-simple-icons-express', label: 'Express', color: '#000000' },
   react: { icon: 'i-simple-icons-react', label: 'React', color: '#0F9BC4' },
   javascript: { icon: 'i-simple-icons-javascript', label: 'JavaScript', color: '#C9A227' },
