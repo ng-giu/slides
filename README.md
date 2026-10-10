@@ -27,11 +27,29 @@ There are two deck kinds, living inside each course folder under `courses/<cours
 and sharing the same theme: `lab-0N.md` for weekly lab sessions, `assignment-0N.md`
 for a self-paced, front-to-back walkthrough of an assignment.
 
+A deck can have an optional companion, `lab-0N-<suffix>.md` (e.g. `lab-05-extra.md`,
+take-home material that would crowd the lab). Address it as `<n>-<suffix>`
+everywhere: `bun run lab 5-extra`, `bun run export 5-extra`, and
+`command: ["lab", "ebd", "5-extra"]` in `compose.yml`. The course index lists it
+right after its lab.
+
 PDF export needs a browser binary once:
 
 ```bash
 bunx playwright install chromium
 ```
+
+## Who the hosted decks are for
+
+The live decks (`lab<N>.<course>.nourgaser.com`) and the index at
+slides.nourgaser.com are **for TAs**: to present from, and to share among
+ourselves. Students get their material from the GIU CMS, on the course's page
+(cms.giu-uni.de → BINF 503 → ...), where we upload the PDFs.
+
+So **no slide ever links to a `*.nourgaser.com` host**, not in text and not in a
+QR code. When a deck points students to another deck, it names it and says it
+is on the CMS. A student who finds a host on their own is fine; we just never
+send them there. Links to public resources (gists, docs) are fine.
 
 ## The course index (slides.nourgaser.com)
 
@@ -71,7 +89,8 @@ courses/
     lab-02.md      Lab 2: UI/UX & Figma
     public/        course assets, served at site root (/img/...)
 theme/             the GIU theme: layouts, components, tokens
-scripts/           deck.sh — multi-course resolver for bun scripts; build-site.ts — the index
+scripts/           deck.sh — multi-course resolver for bun scripts; build-site.ts — the index;
+                   check/ — deck checks; browser-shots/ — annotated shots of logged-in web apps
 dist/              exported PDFs organized by course (dist/ebd/, dist/ica/)
 ```
 
@@ -370,4 +389,14 @@ in the PDF. After heavy edits, export and skim the pages:
 
 ```bash
 bun run export [course] <lab-number>   # e.g. bun run export ica 1 or bun run export 1
+```
+
+Two scripts do the checking for you:
+
+```bash
+# every slide: overflow, clipped code, broken images (+ a screenshot of each)
+node scripts/check/overflow.mjs http://localhost:3030 /tmp/shots
+
+# every line of code pulled in with <<< is in the PDF's text, so copy-paste works
+node scripts/check/paste.mjs courses/ebd/lab-05.md dist/ebd/lab-05.pdf
 ```
