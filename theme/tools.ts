@@ -36,4 +36,6 @@ export const TOOLS: Record<string, ToolInfo> = {
   figma: { icon: 'i-simple-icons-figma', label: 'Figma', color: '#D8380F' },
   postman: { icon: 'i-simple-icons-postman', label: 'Postman', color: '#FF6C37' },
   thunderclient: { icon: 'i-lucide-zap', label: 'Thunder Client', color: '#8E4F9C' },
+  mdn: { icon: 'i-simple-icons-mdnwebdocs', label: 'MDN Web Docs', color: '#000000' },
+  mozilla: { icon: 'i-simple-icons-mozilla', label: 'Mozilla', color: '#000000' },
 }

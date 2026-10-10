@@ -31,8 +31,80 @@
 /* Compact code block utility for long specimen code */
 .slidev-layout .slidev-code-compact pre.shiki,
 .slidev-layout .slidev-code-compact .slidev-code {
-  font-size: 0.48rem !important;
-  line-height: 1.3 !important;
-  padding: 0.4rem 0.6rem !important;
+  font-size: 0.44rem !important;
+  line-height: 1.25 !important;
+  padding: 0.35rem 0.5rem !important;
 }
+
+/* Authentic raw browser preview (simulates unstyled browser User Agent) */
+.pure-browser-window {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.pure-browser-header {
+  background: #f1f5f9;
+  border-bottom: 1px solid #cbd5e1;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: ui-monospace, monospace;
+  font-size: 0.65rem;
+  color: #64748b;
+}
+
+.pure-browser-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.pure-browser-content {
+  padding: 16px;
+  background: #ffffff;
+  color: #000000;
+  font-family: serif;
+}
+
+.pure-browser-content h1 {
+  font-size: 1.5rem !important;
+  font-weight: bold !important;
+  color: #000000 !important;
+  margin: 0 0 0.5rem 0 !important;
+  line-height: 1.2 !important;
+}
+
+.pure-browser-content p {
+  font-size: 0.95rem !important;
+  color: #000000 !important;
+  margin: 0 0 0.8rem 0 !important;
+  line-height: 1.4 !important;
+}
+
+.pure-browser-content input {
+  border: 1px solid #767676 !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  padding: 2px 4px !important;
+  font-size: 0.82rem !important;
+  font-family: sans-serif !important;
+  border-radius: 2px !important;
+}
+
+.pure-browser-content button {
+  background-color: #e9e9ed !important;
+  border: 1px solid #767676 !important;
+  color: #000000 !important;
+  padding: 2px 8px !important;
+  font-size: 0.82rem !important;
+  font-family: sans-serif !important;
+  border-radius: 2px !important;
+  cursor: default !important;
+}
+
 

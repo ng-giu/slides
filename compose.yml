@@ -135,6 +135,15 @@ services:
       - VIRTUAL_HOST=${ICA_LAB_05_HOST:-lab5.ica.nourgaser.com}
       - LETSENCRYPT_HOST=${ICA_LAB_05_HOST:-lab5.ica.nourgaser.com}
 
+  ica-assignment-01:
+    <<: *slidev-base
+    container_name: ica-assignment-01
+    command: ["assignment", "ica", "1"]
+    environment:
+      - VIRTUAL_PORT=3030
+      - VIRTUAL_HOST=${ICA_ASSIGNMENT_01_HOST:-assignment1.ica.nourgaser.com}
+      - LETSENCRYPT_HOST=${ICA_ASSIGNMENT_01_HOST:-assignment1.ica.nourgaser.com}
+
   # ===========================================================================
   # Index: every course, with links to each deck online and as a PDF
   # ===========================================================================
