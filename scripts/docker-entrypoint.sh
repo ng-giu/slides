@@ -37,7 +37,9 @@ if [ $# -gt 0 ]; then
         course="${COURSE:-$DEFAULT_COURSE}"
         num="${NUM:-1}"
       fi
-      n=$(printf %02d "$num")
+      # A number may carry a suffix for a companion deck: 5-extra -> lab-05-extra.md
+      base=${num%%-*}
+      n=$(printf %02d "$base")${num#"$base"}
       deck="courses/$course/$kind-$n.md"
       ;;
     *.md)

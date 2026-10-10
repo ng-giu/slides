@@ -9,6 +9,7 @@
 #
 # If [course] is omitted, it defaults to 'ebd' for backward compatibility.
 # Numbers are written unpadded on the command line (`2`) and padded here (`02`).
+# A number may carry a suffix for a companion deck: `5-extra` -> lab-05-extra.md.
 set -e
 
 PATH="./node_modules/.bin:$PATH"
@@ -80,15 +81,17 @@ if [ "$action" = export ] && [ "$target" = "all" ]; then
   exit 0
 fi
 
-# Validate numeric target
-case $target in
+# Validate the target: a number, optionally with a suffix (5, 5-extra)
+num=${target%%-*}
+suffix=${target#"$num"}
+case $num in
   ""|*[!0-9]*)
-    echo "usage: bun run $kind [course] <number>   (e.g. bun run $kind $course 1)" >&2
+    echo "usage: bun run $kind [course] <number>   (e.g. bun run $kind $course 1, or 5-extra)" >&2
     exit 1
     ;;
 esac
 
-n=$(printf %02d "$target")
+n=$(printf %02d "$num")$suffix
 deck="$course_dir/$kind-$n.md"
 
 if [ ! -f "$deck" ]; then

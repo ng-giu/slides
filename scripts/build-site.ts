@@ -57,7 +57,10 @@ function webLinks(): Map<string, string> {
       .find((e: string) => e.startsWith('VIRTUAL_HOST='))
       ?.slice('VIRTUAL_HOST='.length)
     if (!KINDS.includes(kind) || !course || !num || !host) continue
-    links.set(`${course}/${kind}-${String(num).padStart(2, '0')}`, `https://${interpolate(host)}`)
+    // "5" -> "05", "5-extra" -> "05-extra"
+    const [n, ...rest] = String(num).split('-')
+    const id = [n.padStart(2, '0'), ...rest].join('-')
+    links.set(`${course}/${kind}-${id}`, `https://${interpolate(host)}`)
   }
   return links
 }
@@ -81,10 +84,11 @@ function collect(): Course[] {
     let meta: Record<string, any> = {}
 
     for (const name of readdirSync(dir)) {
-      const m = name.match(/^(lab|assignment)-(\d+)\.md$/)
+      // lab-05.md, and companion decks such as lab-05-extra.md
+      const m = name.match(/^(lab|assignment)-(\d+)(-[a-z]+)?\.md$/)
       if (!m) continue
       const kind = m[1] as Kind
-      const file = `${kind}-${m[2]}`
+      const file = `${kind}-${m[2]}${m[3] ?? ''}`
       const fm = headmatter(join(dir, name))
       if (!meta.courseTitle) meta = fm
 
@@ -107,7 +111,7 @@ function collect(): Course[] {
     }
 
     if (!decks.length) continue
-    decks.sort((a, b) => KINDS.indexOf(a.kind) - KINDS.indexOf(b.kind) || a.num - b.num)
+    decks.sort((a, b) => KINDS.indexOf(a.kind) - KINDS.indexOf(b.kind) || a.num - b.num || a.file.localeCompare(b.file))
     courses.push({
       slug,
       code: String(meta.course ?? slug.toUpperCase()),
