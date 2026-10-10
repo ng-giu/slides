@@ -51,6 +51,24 @@ services:
       - VIRTUAL_HOST=${EBD_LAB_04_HOST:-lab4.ebd.nourgaser.com}
       - LETSENCRYPT_HOST=${EBD_LAB_04_HOST:-lab4.ebd.nourgaser.com}
 
+  ebd-lab-05:
+    <<: *slidev-base
+    container_name: ebd-lab-05
+    command: ["lab", "ebd", "5"]
+    environment:
+      - VIRTUAL_PORT=3030
+      - VIRTUAL_HOST=${EBD_LAB_05_HOST:-lab5.ebd.nourgaser.com}
+      - LETSENCRYPT_HOST=${EBD_LAB_05_HOST:-lab5.ebd.nourgaser.com}
+
+  ebd-lab-05-extra:
+    <<: *slidev-base
+    container_name: ebd-lab-05-extra
+    command: ["lab", "ebd", "5-extra"]
+    environment:
+      - VIRTUAL_PORT=3030
+      - VIRTUAL_HOST=${EBD_LAB_05_EXTRA_HOST:-lab5-extra.ebd.nourgaser.com}
+      - LETSENCRYPT_HOST=${EBD_LAB_05_EXTRA_HOST:-lab5-extra.ebd.nourgaser.com}
+
   ebd-assignment-01:
     <<: *slidev-base
     container_name: ebd-assignment-01
