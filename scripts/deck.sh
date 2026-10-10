@@ -81,18 +81,24 @@ if [ "$action" = export ] && [ "$target" = "all" ]; then
   exit 0
 fi
 
-# Validate the target: a number, optionally with a suffix (5, 5-extra)
-num=${target%%-*}
-suffix=${target#"$num"}
-case $num in
-  ""|*[!0-9]*)
-    echo "usage: bun run $kind [course] <number>   (e.g. bun run $kind $course 1, or 5-extra)" >&2
-    exit 1
-    ;;
-esac
+# Check if exact target file exists (e.g. 05-test), otherwise validate numeric target (e.g. 5, 5-extra)
+if [ -f "$course_dir/$kind-$target.md" ]; then
+  n="$target"
+  deck="$course_dir/$kind-$target.md"
+else
+  # Validate the target: a number, optionally with a suffix (5, 5-extra)
+  num=${target%%-*}
+  suffix=${target#"$num"}
+  case $num in
+    ""|*[!0-9]*)
+      echo "usage: bun run $kind [course] <number>   (e.g. bun run $kind $course 1, or 5-extra)" >&2
+      exit 1
+      ;;
+  esac
 
-n=$(printf %02d "$num")$suffix
-deck="$course_dir/$kind-$n.md"
+  n=$(printf %02d "$num")$suffix
+  deck="$course_dir/$kind-$n.md"
+fi
 
 if [ ! -f "$deck" ]; then
   echo "no deck for $kind $target in course '$course' — expected $deck" >&2
