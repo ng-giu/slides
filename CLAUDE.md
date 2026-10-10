@@ -109,7 +109,7 @@ One app grows all semester: **ebd bn'b**, a simplified Airbnb.
 | 3 | npm, Express, two `GET` routes on an in-memory array |
 | 4 | Full CRUD, middleware, API client; `server.js` split by banners into MIDDLEWARE / DATABASE / MODEL / CONTROLLERS / ROUTES / START |
 | 5 | MongoDB Atlas + Mongoose, still **one file**: DATABASE becomes `connectDB`, MODEL gets a schema and new insides, controllers get `async`/`await`. Last back-end lab before midterms, meant to be one of the easiest |
-| 5 extra | Take-home `lab-05-extra.md`: the refactor into `db.js`, `models/`, `controllers/`, `routes/` (express.Router). Every intermediate `server.js` is in `snippets/lab-05-extra/steps/` and runs |
+| 5, Part 2 | `lab-05-extra.md`: the refactor into `db.js`, `models/`, `controllers/`, `routes/` (express.Router). Every intermediate `server.js` is in `snippets/lab-05-extra/steps/` and runs. **This split version is the canonical back-end from here on**: the React labs integrate with it, auth is added to it, and the course project is expected to have its shape |
 | 6+ | React front-end (Vite, components, router, then calling this API) |
 
 The **layers** are the throughline. When a layer changes, the deck says which

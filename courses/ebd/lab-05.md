@@ -496,6 +496,7 @@ icon: code
 
 Real projects split it into files: one for the database, one for the model, one for the controllers, one for the routes. That is **part 2 of this lab**.
 
+- The split version is the back-end we **build on from now on**: the front-end, log-in, and your course project.
 - Its slides are on the **CMS**, on the BINF 503 page, next to these: **Lab 5, Part 2**.
 - Every step keeps your API working, so whatever we don't finish together, you finish at home.
 

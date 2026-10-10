@@ -28,6 +28,17 @@ This deck splits it into files, **one job per file**. Every request answers exac
 - Every step is a commit, so you can always go back.
 
 ---
+layout: default
+icon: intro
+---
+
+# Why we split it
+
+- **This is how real projects are built.** Open the back-end of any company's product: large codebases are **modular**, one job per file, so many people can work on them and they keep growing without falling apart.
+- **This is our back-end from now on.** The split version is the one we build on: the React front-end connects to it, we add log-in (auth) to it, and it is the shape your **course project** is expected to have.
+- **So when we come back to it**, it looks like this, not like one long file. This part is how we got here: the same code, **refactored** so it scales. Nothing is rewritten; it only moves.
+
+---
 layout: split
 title: Where we're going
 dense: true
