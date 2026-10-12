@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { withBase } from '../base'
 import QrCode from '../components/QrCode.vue'
 
 defineProps<{ sub?: string; image?: string; qr?: boolean }>()
@@ -11,7 +12,7 @@ defineProps<{ sub?: string; image?: string; qr?: boolean }>()
       <div v-if="sub" class="giu-end__sub">{{ sub }}</div>
     </div>
     <QrCode v-if="image && qr" class="giu-end__img" :value="image" />
-    <img v-else-if="image" class="giu-end__img" :src="image" alt="" />
+    <img v-else-if="image" class="giu-end__img" :src="withBase(image)" alt="" />
     <GiuFooter />
   </div>
 </template>

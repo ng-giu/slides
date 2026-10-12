@@ -1,0 +1,60 @@
+# Build the site (index, every deck's web version, every PDF) and publish it to
+# GitHub Pages at slides.nourgaser.com. Runs on every push to main.
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deploy at a time; a newer push waits rather than cancelling a live deploy
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # Chromium for the PDF export. Keep the tag equal to playwright-chromium in bun.lock.
+    container: mcr.microsoft.com/playwright:v1.63.0-noble
+    steps:
+      - uses: actions/checkout@v4
+
+      # base_path is "" on the custom domain, "/slides" on ng-giu.github.io/slides
+      - id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Install bun and dependencies
+        run: |
+          npm install -g bun
+          bun install --frozen-lockfile
+
+      - name: Export PDFs
+        run: bun run export:all
+
+      - name: Build web decks
+        run: sh scripts/export-all.sh build
+        env:
+          SITE_BASE: ${{ steps.pages.outputs.base_path }}
+
+      - name: Build index
+        run: bun scripts/build-site.ts
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

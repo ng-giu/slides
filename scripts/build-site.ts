@@ -1,16 +1,16 @@
-// Build the course index served at slides.nourgaser.com.
+// Build the site served at slides.nourgaser.com (GitHub Pages).
 //
 // Usage:
-//   bun scripts/build-site.ts        -> dist/site/index.html, plus every PDF in dist/<course>/
-//                                       copied to dist/site/<course>/
+//   bun scripts/build-site.ts        -> dist/site/index.html, plus
+//                                       every PDF in dist/<course>/     copied to dist/site/<course>/
+//                                       every web deck in dist/web/     copied to dist/site/<course>/<deck>/
 //
 // Nothing here names a course or a deck. Courses are the folders in courses/,
-// decks are the `<kind>-NN.md` files inside them, course details come from each
-// deck's headmatter, and a deck's web link comes from the compose service that
-// serves it. Add a deck, export it, add its service: it shows up on its own.
-// A deck with no PDF exported, or no service in compose.yml, is still listed,
-// just without that link.
-import { readdirSync, existsSync, mkdirSync, rmSync, copyFileSync, statSync, writeFileSync, readFileSync } from 'node:fs'
+// decks are the `<kind>-NN.md` files inside them, and course details come from
+// each deck's headmatter. Add a deck, export and build it: it shows up on its
+// own. A deck with no PDF exported, or no web version built, is still listed,
+// just without that link. Links are relative, so the site works under any base.
+import { readdirSync, existsSync, mkdirSync, rmSync, copyFileSync, cpSync, statSync, writeFileSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 const KINDS = ['lab', 'assignment'] as const
@@ -38,33 +38,6 @@ interface Course {
   decks: Deck[]
 }
 
-// --- web links: one compose service per deck ---------------------------------
-
-// `${EBD_LAB_01_HOST:-${LAB_01_HOST:-lab1.ebd.nourgaser.com}}`, resolved the way
-// compose resolves it: the first variable that is set, else the innermost default.
-function interpolate(value: string): string {
-  const m = value.match(/^\$\{(\w+):-(.*)\}$/)
-  if (!m) return value
-  return process.env[m[1]] || interpolate(m[2])
-}
-
-function webLinks(): Map<string, string> {
-  const links = new Map<string, string>()
-  const compose = Bun.YAML.parse(readFileSync('compose.yml', 'utf8')) as any
-  for (const service of Object.values<any>(compose.services ?? {})) {
-    const [kind, course, num] = service.command ?? []
-    const host = (service.environment ?? [])
-      .find((e: string) => e.startsWith('VIRTUAL_HOST='))
-      ?.slice('VIRTUAL_HOST='.length)
-    if (!KINDS.includes(kind) || !course || !num || !host) continue
-    // "5" -> "05", "5-extra" -> "05-extra"
-    const [n, ...rest] = String(num).split('-')
-    const id = [n.padStart(2, '0'), ...rest].join('-')
-    links.set(`${course}/${kind}-${id}`, `https://${interpolate(host)}`)
-  }
-  return links
-}
-
 // --- decks -------------------------------------------------------------------
 
 function headmatter(path: string): Record<string, any> {
@@ -73,7 +46,6 @@ function headmatter(path: string): Record<string, any> {
 }
 
 function collect(): Course[] {
-  const links = webLinks()
   const courses: Course[] = []
 
   for (const slug of readdirSync('courses').sort()) {
@@ -105,7 +77,7 @@ function collect(): Course[] {
         file,
         label,
         topic,
-        web: links.get(`${slug}/${file}`),
+        web: existsSync(join('dist', 'web', slug, file, 'index.html')) ? `${slug}/${file}/` : undefined,
         pdf: existsSync(pdfPath) ? { href: `${slug}/${file}.pdf`, bytes: statSync(pdfPath).size } : undefined,
       })
     }
@@ -272,11 +244,13 @@ const courses = collect()
 rmSync(out, { recursive: true, force: true })
 mkdirSync(out, { recursive: true })
 for (const c of courses)
-  for (const d of c.decks)
+  for (const d of c.decks) {
+    if (d.web) cpSync(join('dist', 'web', d.web), join(out, d.web), { recursive: true })
     if (d.pdf) {
       mkdirSync(join(out, c.slug), { recursive: true })
       copyFileSync(join('dist', d.pdf.href), join(out, d.pdf.href))
     }
+  }
 writeFileSync(join(out, 'index.html'), page(courses))
 
 const decks = courses.flatMap((c) => c.decks)
@@ -287,4 +261,4 @@ console.log(
 for (const c of courses)
   for (const d of c.decks)
     if (!d.web || !d.pdf)
-      console.log(`  ${c.slug}/${d.file}: no ${[!d.web && 'web link (no compose service)', !d.pdf && 'PDF'].filter(Boolean).join(', no ')}`)
+      console.log(`  ${c.slug}/${d.file}: no ${[!d.web && 'web version', !d.pdf && 'PDF'].filter(Boolean).join(', no ')}`)

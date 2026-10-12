@@ -6,6 +6,11 @@
 #   deck.sh export lab        [course] <n|all>  -> slidev export courses/<course>/lab-0n.md --output dist/<course>/lab-0n.pdf
 #   deck.sh dev    assignment [course] <n>      -> slidev courses/<course>/assignment-0n.md --open
 #   deck.sh export assignment [course] <n|all>  -> slidev export courses/<course>/assignment-0n.md --output dist/<course>/assignment-0n.pdf
+#   deck.sh build  lab        [course] <n|all>  -> slidev build courses/<course>/lab-0n.md --out dist/web/<course>/lab-0n
+#
+# `build` makes the static web version of a deck, for GitHub Pages. SITE_BASE is
+# the path the site is served under: unset or "/" on slides.nourgaser.com, "/slides"
+# on ng-giu.github.io/slides. The deck lands at <SITE_BASE>/<course>/<deck>/.
 #
 # If [course] is omitted, it defaults to 'ebd' for backward compatibility.
 # Numbers are written unpadded on the command line (`2`) and padded here (`02`).
@@ -24,7 +29,8 @@ DEFAULT_COURSE="ebd"
 case $mode in
   dev)    action=dev ;;
   export) action=export ;;
-  *)      echo "deck.sh: unknown mode '$mode' (expected dev or export)" >&2; exit 2 ;;
+  build)  action=build ;;
+  *)      echo "deck.sh: unknown mode '$mode' (expected dev, export or build)" >&2; exit 2 ;;
 esac
 
 case $kind in
@@ -61,23 +67,35 @@ if [ ! -d "$course_dir" ]; then
 fi
 
 out_dir="dist/$course"
+web_dir="$PWD/dist/web/$course"
+site_base=$(echo "${SITE_BASE:-}" | sed 's:/*$::')
 
-# Handle export all
-if [ "$action" = export ] && [ "$target" = "all" ]; then
-  mkdir -p "$out_dir"
+# One deck, by file: export it to PDF or build its web version
+run() {
+  base=$(basename "$1" .md)
+  if [ "$action" = export ]; then
+    mkdir -p "$out_dir"
+    slidev export "$1" --output "$out_dir/$base.pdf"
+  else
+    rm -rf "$web_dir/$base"
+    slidev build "$1" --base "$site_base/$course/$base/" --out "$web_dir/$base"
+  fi
+}
+
+# Handle export/build all
+if [ "$action" != dev ] && [ "$target" = "all" ]; then
   count=0
   for f in "$course_dir"/$kind-*.md; do
     [ -f "$f" ] || continue
-    base=$(basename "$f" .md)
-    echo "Exporting $base for course $course..."
-    slidev export "$f" --output "$out_dir/$base.pdf"
+    echo "${action}ing $(basename "$f" .md) for course $course..."
+    run "$f"
     count=$((count + 1))
   done
   if [ "$count" -eq 0 ]; then
     echo "No $kind decks found in $course_dir" >&2
     exit 1
   fi
-  echo "Successfully exported $count deck(s) to $out_dir/"
+  echo "Done: $count $kind deck(s) for $course"
   exit 0
 fi
 
@@ -109,6 +127,5 @@ fi
 if [ "$action" = dev ]; then
   exec slidev "$deck" --open
 else
-  mkdir -p "$out_dir"
-  exec slidev export "$deck" --output "$out_dir/$kind-$n.pdf"
+  run "$deck"
 fi

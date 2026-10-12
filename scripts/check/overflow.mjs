@@ -17,14 +17,15 @@ if (out) fs.mkdirSync(out, { recursive: true })
 const b = await chromium.launch()
 const p = await b.newPage({ viewport: { width: 1280, height: 720 } })
 
+// Decks use hash routing (theme/package.json), so slide N is /#/N.
 // Slide count: Slidev exposes it on the overview page as numbered entries
-await p.goto(`${base}/1`, { waitUntil: 'networkidle' })
+await p.goto(`${base}/#/1`, { waitUntil: 'networkidle' })
 const total = await p.evaluate(() => window.__slidev__?.nav?.total ?? 0)
 const list = only.length ? only.map(Number) : Array.from({ length: total }, (_, i) => i + 1)
 
 let problems = 0
 for (const i of list) {
-  await p.goto(`${base}/${i}`, { waitUntil: 'networkidle' })
+  await p.goto(`${base}/#/${i}`, { waitUntil: 'networkidle' })
   await p.waitForTimeout(700)
   const r = await p.evaluate(() => {
     // Slidev keeps neighbouring slides in the DOM at display:none: take the visible one

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { withBase } from '../base'
 import { computed } from 'vue'
 
 const props = withDefaults(
@@ -18,7 +19,7 @@ const isCustomImage = computed(() => {
 })
 
 const imageSrc = computed(() => {
-  return props.src || props.pattern
+  return withBase(props.src || props.pattern)
 })
 </script>
 

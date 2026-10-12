@@ -9,13 +9,14 @@
  * size and needs no file in the repo. `size="lg"` draws the name-based mark
  * large, with its label under it; that is what a media slide's `tools:` uses.
  */
+import { withBase } from '../base'
 import { TOOLS } from '../tools'
 
 const props = defineProps<{ src?: string; name?: string; alt?: string; size?: 'lg' }>()
 </script>
 
 <template>
-  <img v-if="props.src" class="giu-toollogo" :src="props.src" :alt="props.alt || ''" />
+  <img v-if="props.src" class="giu-toollogo" :src="withBase(props.src)" :alt="props.alt || ''" />
   <div
     v-else-if="props.name && TOOLS[props.name]"
     class="giu-toollogo giu-toollogo--mark"

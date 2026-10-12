@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { withBase } from '../base'
 import { computed } from 'vue'
 import { useSlideContext } from '@slidev/client'
 import GiuCoverPattern from '../components/GiuCoverPattern.vue'
@@ -42,7 +43,7 @@ const resolvedPattern = computed(() => {
       <slot />
     </div>
     <div class="giu-cover__logo-wrap">
-      <img class="giu-cover__logo" :src="logo || '/giu-logo.png'" alt="German International University" />
+      <img class="giu-cover__logo" :src="withBase(logo || '/giu-logo.png')" alt="German International University" />
     </div>
     <GiuFooter />
   </div>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { withBase } from '../base'
 import QrCode from '../components/QrCode.vue'
 import ToolLogo from '../components/ToolLogo.vue'
 
@@ -15,7 +16,7 @@ defineProps<{ image?: string; tools?: string[]; side?: 'left' | 'right'; alt?: s
           <ToolLogo v-for="t in tools" :key="t" :name="t" size="lg" />
         </div>
         <QrCode v-else-if="qr" class="giu-media__img" :value="image" />
-        <img v-else class="giu-media__img" :src="image" :alt="alt || ''" />
+        <img v-else class="giu-media__img" :src="withBase(image)" :alt="alt || ''" />
       </template>
       <div class="giu-media__body"><slot /></div>
       <template v-if="side !== 'left'">
@@ -23,7 +24,7 @@ defineProps<{ image?: string; tools?: string[]; side?: 'left' | 'right'; alt?: s
           <ToolLogo v-for="t in tools" :key="t" :name="t" size="lg" />
         </div>
         <QrCode v-else-if="qr" class="giu-media__img" :value="image" />
-        <img v-else class="giu-media__img" :src="image" :alt="alt || ''" />
+        <img v-else class="giu-media__img" :src="withBase(image)" :alt="alt || ''" />
       </template>
     </div>
     <GiuFooter />
