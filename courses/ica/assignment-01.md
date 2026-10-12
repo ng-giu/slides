@@ -14,7 +14,7 @@ layout: cover
 
 <div class="space-y-3" style="max-width: 56%;">
   <div class="text-[0.68rem] font-bold uppercase tracking-wider text-blue-700">
-    German International University (GIU) &bull; Faculty of Informatics
+    German International University (GIU) &bull; Business Informatics Department 
   </div>
   <h1 style="font-size: 1.85rem; line-height: 1.25; margin-bottom: 0.35rem; color: #0f172a;">
     Practical Assignment:<br>Mobile Home Screen Re-creation
