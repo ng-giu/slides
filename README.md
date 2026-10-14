@@ -29,9 +29,8 @@ for a self-paced, front-to-back walkthrough of an assignment.
 
 A deck can have an optional companion, `lab-0N-<suffix>.md` (e.g. `lab-05-extra.md`,
 take-home material that would crowd the lab). Address it as `<n>-<suffix>`
-everywhere: `bun run lab 5-extra`, `bun run export 5-extra`, and
-`command: ["lab", "ebd", "5-extra"]` in `compose.yml`. The course index lists it
-right after its lab.
+everywhere: `bun run lab 5-extra`, `bun run export 5-extra`. The course index
+lists it right after its lab.
 
 PDF export needs a browser binary once:
 
@@ -41,12 +40,12 @@ bunx playwright install chromium
 
 ## Who the hosted decks are for
 
-The live decks (`lab<N>.<course>.nourgaser.com`) and the index at
+The live decks (`slides.nourgaser.com/<course>/<deck>/`) and the index at
 slides.nourgaser.com are **for TAs**: to present from, and to share among
 ourselves. Students get their material from the GIU CMS, on the course's page
 (cms.giu-uni.de → BINF 503 → ...), where we upload the PDFs.
 
-So **no slide ever links to a `*.nourgaser.com` host**, not in text and not in a
+So **no slide ever links to `nourgaser.com`**, not in text and not in a
 QR code. When a deck points students to another deck, it names it and says it
 is on the CMS. A student who finds a host on their own is fine; we just never
 send them there. Links to public resources (gists, docs) are fine.
@@ -59,21 +58,38 @@ the PDF. Nothing in it is written by hand: `scripts/build-site.ts` finds courses
 course name, code, track and semester from each deck's headmatter, and splits
 the deck title (`BINF 503 - Lab 4 - Building a REST API`) into label and topic.
 
-A deck's **Slides** link is the `VIRTUAL_HOST` of the `compose.yml` service that
-serves it, and its **PDF** link is `dist/<course>/<deck>.pdf`. A deck missing
-either is still listed, with that button greyed out, and the build says which.
-So a new deck needs no edit to the index: add its service and rebuild.
+A deck's **Slides** link is its static build, `dist/web/<course>/<deck>/`, and
+its **PDF** link is `dist/<course>/<deck>.pdf`. Both are copied into
+`dist/site/` beside the index. A deck missing either is still listed, with that
+button greyed out, and the build says which. So a new deck needs no edit to the
+index or to the deploy.
 
 ```bash
-bun run site          # export every PDF, then build dist/site/
-bun run site:index    # rebuild dist/site/ from the PDFs already in dist/
+bun run site          # export every PDF, build every deck, then build dist/site/
+bun run build:all     # build every deck's web version into dist/web/
+bun run site:index    # rebuild dist/site/ from what is already in dist/
 ```
 
-In production it is the `site` service: `Dockerfile.site` exports every PDF
-inside Playwright's image and serves `dist/site/` from nginx. Rebuild it after
-changing a deck: `docker compose up -d --build site`. When `playwright-chromium`
-is bumped in `bun.lock`, bump the Playwright image tag in `Dockerfile.site` to
-match.
+## Deploying (GitHub Pages)
+
+Every push to `main` runs `.github/workflows/pages.yml`: it exports every PDF
+inside Playwright's image, builds every deck, builds the index, and publishes
+`dist/site/` to GitHub Pages at slides.nourgaser.com. There is no server to
+touch. Watch a deploy with `gh run watch`. When `playwright-chromium` is bumped
+in `bun.lock`, bump the Playwright image tag in the workflow to match.
+
+A deck is served under a path, `/<course>/<deck>/`, so it is built with that
+base (`SITE_BASE` in `scripts/deck.sh`). Decks use **hash routing**
+(`routerMode: hash` in `theme/package.json`): slide 12 is `.../lab-05/#/12`, and
+a refresh or a shared link lands on the same slide. Pages caches files for
+about 10 minutes, so a changed PDF can take that long to show.
+
+**Presenting.** The presenter view (`.../#/presenter/1`) works on the hosted
+deck and stays in sync with other tabs of the same browser, e.g. the projector
+window. Controlling the deck **from another device** (your phone) needs a
+running Slidev server, which Pages is not. For that, present from your laptop with
+`./node_modules/.bin/slidev courses/ebd/lab-05.md --remote` and open the
+presenter URL it prints on the phone, on the same network.
 
 ## Layout
 
@@ -91,7 +107,7 @@ courses/
 theme/             the GIU theme: layouts, components, tokens
 scripts/           deck.sh — multi-course resolver for bun scripts; build-site.ts — the index;
                    check/ — deck checks; browser-shots/ — annotated shots of logged-in web apps
-dist/              exported PDFs organized by course (dist/ebd/, dist/ica/)
+dist/              exported PDFs by course (dist/ebd/), web builds (dist/web/), the site (dist/site/)
 ```
 
 Assets live in `courses/<course>/public/` rather than the repo root because Slidev resolves
@@ -304,6 +320,11 @@ at 19rem tall so a large export cannot silently run off the bottom of a slide.
 ![The six phases of the life cycle](/img/diagrams/sdlc.png)
 ```
 
+Vite adds the site's base path to images in Markdown and `<img src>`, but not to
+a path passed as a prop or frontmatter (`image:`, `<ToolLogo src>`, `logo:`).
+Theme code that renders such a path wraps it in `withBase()` from `theme/base.ts`,
+or it breaks on the hosted site while working in dev.
+
 ## QR codes
 
 `media` and `end` both take a `qr: true` flag. When set, `image:` is read as
@@ -395,6 +416,7 @@ Two scripts do the checking for you:
 
 ```bash
 # every slide: overflow, clipped code, broken images (+ a screenshot of each)
+# (against the dev server: it reads the slide count from dev-only state)
 node scripts/check/overflow.mjs http://localhost:3030 /tmp/shots
 
 # every line of code pulled in with <<< is in the PDF's text, so copy-paste works

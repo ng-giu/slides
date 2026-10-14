@@ -47,9 +47,9 @@ student who missed the lab do it alone at home, from the PDF:
 
 ## Students never get a link to our hosts
 
-The `*.nourgaser.com` decks and the index are for TAs. Students get material
+The decks and index on slides.nourgaser.com are for TAs. Students get material
 from the GIU CMS (the course page on cms.giu-uni.de). A slide never links or
-QR-codes a `*.nourgaser.com` host; to point at another deck, name it and say
+QR-codes `nourgaser.com`; to point at another deck, name it and say
 it is on the CMS. Gists and public docs are fine. See README, "Who the hosted
 decks are for".
 
@@ -204,13 +204,19 @@ changes, change it in **every** deck of that course: they have drifted before
 
 ## Deploying
 
-Each deck is a `compose.yml` service with its own `VIRTUAL_HOST`
-(`lab<N>.<course>.nourgaser.com`), plus the `site` index at
-slides.nourgaser.com. Add the service when you add a deck. Deploy runs on the
-user's server (`ssh ngxos`, `git pull`, `docker compose build`, then
-`docker compose up -d`). **Ask before deploying.** After a redeploy, curl the
-public URLs: a 502 means the shared nginx-proxy didn't pick up the new container
-IPs, and must be regenerated, not restarted (it serves other people's sites).
+GitHub Pages, at slides.nourgaser.com: **every push to `main` deploys**
+(`.github/workflows/pages.yml` exports the PDFs, builds every deck at
+`/<course>/<deck>/`, builds the index). So ask before pushing to `main`. A new
+deck needs no deploy config: the build finds it. After a deploy, `gh run watch`,
+then open the changed deck on the live site. No server or container is involved;
+the old `compose.yml` setup on ngxos is gone.
+
+Two things only break on the hosted build, never in `bun run lab`:
+
+- An image path passed as a prop or frontmatter (`image: /img/...`) needs
+  `withBase()` in the theme, or it 404s under `/<course>/<deck>/`.
+- Decks use hash routing (`.../lab-05/#/12`), so scripts that open a slide by
+  URL use `/#/N`.
 
 ## Writing for these decks
 
