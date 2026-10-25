@@ -1,5 +1,9 @@
 # Build the site (index, every deck's web version, every PDF) and publish it to
 # GitHub Pages at slides.nourgaser.com. Runs on every push to main.
+#
+# Pages replaces the whole site on each deploy, so every deck's output is needed
+# every time; build-decks.ts only rebuilds the decks whose inputs changed and
+# takes the rest from .cache/decks, carried between runs by actions/cache.
 name: Deploy site
 
 on:
@@ -34,11 +38,16 @@ jobs:
           npm install -g bun
           bun install --frozen-lockfile
 
-      - name: Export PDFs
-        run: bun run export:all
+      # Each run saves under its own key and restores the newest earlier one
+      - name: Restore built decks
+        uses: actions/cache@v4
+        with:
+          path: .cache/decks
+          key: decks-${{ github.sha }}
+          restore-keys: decks-
 
-      - name: Build web decks
-        run: sh scripts/export-all.sh build
+      - name: Export PDFs and build web decks (only the changed ones)
+        run: bun scripts/build-decks.ts
         env:
           SITE_BASE: ${{ steps.pages.outputs.base_path }}
 

@@ -219,6 +219,14 @@ deck needs no deploy config: the build finds it. After a deploy, `gh run watch`,
 then open the changed deck on the live site. No server or container is involved;
 the old `compose.yml` setup on ngxos is gone.
 
+The build only rebuilds decks whose inputs changed (`scripts/build-decks.ts`,
+keyed on a hash of the deck, its course's shared files, the theme, the
+dependencies and the script; outputs cached in `.cache/decks` across runs). A
+theme or dependency change therefore rebuilds every deck, which is correct and
+slow. If a deck ever looks stale on the site, delete the `decks-*` caches in the
+repo's Actions settings and push again. The repository lives at
+`github.com/ng-giu/slides`.
+
 Two things only break on the hosted build, never in `bun run lab`:
 
 - An image path passed as a prop or frontmatter (`image: /img/...`) needs

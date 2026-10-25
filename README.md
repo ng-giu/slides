@@ -65,18 +65,29 @@ button greyed out, and the build says which. So a new deck needs no edit to the
 index or to the deploy.
 
 ```bash
-bun run site          # export every PDF, build every deck, then build dist/site/
+bun run site          # export and build every deck whose inputs changed, then build dist/site/
 bun run build:all     # build every deck's web version into dist/web/
 bun run site:index    # rebuild dist/site/ from what is already in dist/
 ```
 
 ## Deploying (GitHub Pages)
 
-Every push to `main` runs `.github/workflows/pages.yml`: it exports every PDF
-inside Playwright's image, builds every deck, builds the index, and publishes
-`dist/site/` to GitHub Pages at slides.nourgaser.com. There is no server to
-touch. Watch a deploy with `gh run watch`. When `playwright-chromium` is bumped
-in `bun.lock`, bump the Playwright image tag in the workflow to match.
+Every push to `main` runs `.github/workflows/pages.yml`: inside Playwright's
+image it exports and builds the decks (`scripts/build-decks.ts`), builds the
+index, and publishes `dist/site/` to GitHub Pages at slides.nourgaser.com. There
+is no server to touch. Watch a deploy with `gh run watch`. When
+`playwright-chromium` is bumped in `bun.lock`, bump the Playwright image tag in
+the workflow to match.
+
+**Only changed decks are rebuilt.** Pages replaces the whole site on every
+deploy, so every deck's output is needed each time. `build-decks.ts` hashes each
+deck's inputs (the deck, its course's `snippets/`, `public/` and config, the
+theme, `package.json`, `bun.lock`, the script itself and `SITE_BASE`), rebuilds
+the decks whose hash changed, and copies the rest from `.cache/decks/`, which
+`actions/cache` carries from run to run. Editing one lab rebuilds that lab;
+editing the theme or the dependencies rebuilds everything. If a deck ever looks
+stale, delete the `decks-*` caches under the repository's Actions → Caches, and
+push again.
 
 A deck is served under a path, `/<course>/<deck>/`, so it is built with that
 base (`SITE_BASE` in `scripts/deck.sh`). Decks use **hash routing**

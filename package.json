@@ -9,7 +9,7 @@
     "export:assignment": "sh scripts/deck.sh export assignment",
     "export:all": "sh scripts/export-all.sh",
     "build:all": "sh scripts/export-all.sh build",
-    "site": "sh scripts/export-all.sh && sh scripts/export-all.sh build && bun scripts/build-site.ts",
+    "site": "bun scripts/build-decks.ts && bun scripts/build-site.ts",
     "site:index": "bun scripts/build-site.ts",
     "dev": "sh scripts/deck.sh dev lab 1",
     "screenshots": "sh scripts/screenshots.sh"
