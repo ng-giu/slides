@@ -10,9 +10,10 @@
 // same way as in deck.sh.
 //
 // A deck's key hashes everything that can change its output: the deck itself,
-// its course's shared files (snippets/, public/, vite.config.ts, style.css, but
-// not the other decks or project/), the theme, the dependencies and this
-// script. Finished decks are kept in .cache/decks/<course>/<deck>/<key>/,
+// the snippet files it pulls in with `<<< @/...`, its course's shared files
+// (public/, vite.config.ts, style.css; not snippets/, other decks or project/),
+// the theme, the dependencies and this script. So editing Lab 6's snippets
+// rebuilds Lab 6 only. Finished decks are kept in .cache/decks/<course>/<deck>/<key>/,
 // which CI carries between runs (actions/cache in .github/workflows/pages.yml).
 import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync } from 'node:fs'
 import { basename, join, resolve } from 'node:path'
@@ -53,12 +54,20 @@ function courseKey(course: string): string {
   if (!courseKeys.has(course)) {
     const dir = join('courses', course)
     const inputs = readdirSync(dir)
-      .filter((n) => !/^(lab|assignment)-.*\.md$/.test(n) && n !== 'project')
+      .filter((n) => !/^(lab|assignment)-.*\.md$/.test(n) && n !== 'project' && n !== 'snippets')
       .sort()
       .flatMap((n) => files(join(dir, n)))
     courseKeys.set(course, hash(inputs))
   }
   return courseKeys.get(course)!
+}
+
+// The files a deck transcludes: `<<< @/snippets/lab-06/x.jsx#region lang {1,2}`
+// -> courses/<course>/snippets/lab-06/x.jsx
+function transcluded(deck: string, course: string): string[] {
+  const src = readFileSync(deck, 'utf8')
+  const found = [...src.matchAll(/^<<<\s+@\/(\S+?)(?:#\S*)?(?:\s|$)/gm)].map((m) => join('courses', course, m[1]))
+  return [...new Set(found)].sort().filter(existsSync)
 }
 
 function run(args: string[]) {
@@ -86,7 +95,7 @@ const built: string[] = []
 for (const deck of decks) {
   const course = deck.split('/')[1]
   const name = basename(deck, '.md')
-  const key = hash([deck], `${shared}|${courseKey(course)}`)
+  const key = hash([deck, ...transcluded(deck, course)], `${shared}|${courseKey(course)}`)
   const slot = join(CACHE, course, name)
   const hit = join(slot, key)
   const pdf = join('dist', course, `${name}.pdf`)

@@ -223,7 +223,7 @@ then open the changed deck on the live site. No server or container is involved;
 the old `compose.yml` setup on ngxos is gone.
 
 The build only rebuilds decks whose inputs changed (`scripts/build-decks.ts`,
-keyed on a hash of the deck, its course's shared files, the theme, the
+keyed on a hash of the deck, the snippets it transcludes, its course's shared files, the theme, the
 dependencies and the script; outputs cached in `.cache/decks` across runs). A
 theme or dependency change therefore rebuilds every deck, which is correct and
 slow. If a deck ever looks stale on the site, delete the `decks-*` caches in the

@@ -81,7 +81,7 @@ the workflow to match.
 
 **Only changed decks are rebuilt.** Pages replaces the whole site on every
 deploy, so every deck's output is needed each time. `build-decks.ts` hashes each
-deck's inputs (the deck, its course's `snippets/`, `public/` and config, the
+deck's inputs (the deck, the snippet files it transcludes, its course's `public/` and config, the
 theme, `package.json`, `bun.lock`, the script itself and `SITE_BASE`), rebuilds
 the decks whose hash changed, and copies the rest from `.cache/decks/`, which
 `actions/cache` carries from run to run. Editing one lab rebuilds that lab;
