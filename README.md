@@ -91,6 +91,21 @@ running Slidev server, which Pages is not. For that, present from your laptop wi
 `./node_modules/.bin/slidev courses/ebd/lab-05.md --remote` and open the
 presenter URL it prints on the phone, on the same network.
 
+## Documents (project brief)
+
+Not everything is a deck. The course project brief is an HTML document,
+`courses/<course>/project/brief.html`, printed to an A4 PDF with the same
+Chromium the exports use:
+
+```bash
+node scripts/build-doc.mjs courses/ebd/project/brief.html dist/ebd/project-brief.pdf
+```
+
+It uses the theme's colour tokens and fonts; page breaks come from its own
+print CSS (`@page`, `break-inside`). Look at every page of the PDF after an
+edit. The Submission 1 template next to it (`README-template.md`) goes on the
+CMS with the PDF.
+
 ## Layout
 
 ```

@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BINF 503 Course Project, Winter 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* Course tokens, same values as theme/styles/layout.css */
+  :root {
+    --giu-black: #000000;
+    --giu-ink: #2b2b2b;
+    --giu-muted: #6f6f6f;
+    --giu-red: #e2001a;
+    --giu-gold: #e8a33d;
+    --giu-paper: #ffffff;
+    --giu-rule: #e7e7e7;
+    --giu-tint: #f6f6f7;
+  }
+  @page { size: A4; margin: 20mm 18mm 20mm 18mm; }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    margin: 0 auto;
+    max-width: 46rem;
+    background: var(--giu-paper);
+    color: var(--giu-ink);
+    font: 400 10pt/1.55 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  }
+  @media screen { body { padding: 2.5rem 1rem 4rem; } }
+
+  /* Cover */
+  .cover { min-height: 245mm; display: flex; flex-direction: column; break-after: page; }
+  .cover img { width: 9rem; }
+  .cover .kicker { margin-top: 30mm; font-weight: 500; color: var(--giu-red); letter-spacing: 0.04em; text-transform: uppercase; font-size: 10pt; }
+  .cover h1 { font-size: 30pt; line-height: 1.1; font-weight: 600; color: var(--giu-black); margin: 0.6rem 0 0.4rem; }
+  .cover .sub { font-size: 13pt; color: var(--giu-ink); }
+  .cover .bar { width: 4.5rem; height: 5px; background: var(--giu-gold); margin: 1.6rem 0; }
+  .cover .dates { display: grid; grid-template-columns: max-content 1fr; gap: 0.35rem 1.4rem; font-size: 10.5pt; }
+  .cover .dates b { font-weight: 600; color: var(--giu-black); }
+  .cover .staff { margin-top: auto; font-size: 9.5pt; color: var(--giu-muted); }
+  .cover .staff b { color: var(--giu-ink); font-weight: 500; }
+
+  /* Body */
+  h2 { font-size: 15pt; font-weight: 600; color: var(--giu-black); margin: 1.8rem 0 0.5rem; break-after: avoid; }
+  h2 .n { color: var(--giu-red); margin-right: 0.45rem; }
+  h3 { font-size: 11pt; font-weight: 600; color: var(--giu-black); margin: 1.2rem 0 0.35rem; break-after: avoid; }
+  p { margin: 0 0 0.6rem; }
+  ul, ol { margin: 0 0 0.7rem; padding-left: 1.2rem; }
+  li { margin: 0.15rem 0; }
+  li::marker { color: var(--giu-red); }
+  strong { font-weight: 600; color: var(--giu-black); }
+  code { font: 500 8.8pt 'JetBrains Mono', ui-monospace, monospace; background: var(--giu-tint); padding: 0.05rem 0.3rem; border-radius: 3px; }
+  a { color: var(--giu-red); }
+  table { width: 100%; border-collapse: collapse; margin: 0.4rem 0 0.9rem; font-size: 9.5pt; }
+  tr { break-inside: avoid; }
+  section.keep { break-inside: avoid; }
+  th { text-align: left; font-weight: 600; color: var(--giu-black); border-bottom: 2px solid var(--giu-black); padding: 0.35rem 0.5rem 0.35rem 0; }
+  td { border-bottom: 1px solid var(--giu-rule); padding: 0.4rem 0.6rem 0.4rem 0; vertical-align: top; }
+  td:first-child { white-space: nowrap; font-weight: 500; color: var(--giu-black); }
+  .box { border-left: 4px solid var(--giu-gold); background: var(--giu-tint); padding: 0.7rem 0.9rem; margin: 0.8rem 0 1rem; break-inside: avoid; }
+  .box.red { border-left-color: var(--giu-red); }
+  .box p:last-child, .box ul:last-child { margin-bottom: 0; }
+  .muted { color: var(--giu-muted); }
+  .keep { break-inside: avoid; }
+</style>
+</head>
+<body>
+
+<section class="cover">
+  <img src="../public/giu-logo.png" alt="German International University">
+  <div class="kicker">Electronic Business Development · BINF 503</div>
+  <h1>Course Project</h1>
+  <div class="sub">Build a full-stack web application, as a team, from idea to demo.</div>
+  <div class="bar"></div>
+  <div class="dates">
+    <b>Submission 1</b><span>The plan · Thursday 12 November 2026, 23:59</span>
+    <b>Submission 2</b><span>The final code · Thursday 10 December 2026, 23:59</span>
+    <b>Presentations</b><span>Week 13 · 12–17 December 2026</span>
+  </div>
+  <div class="staff">
+    Winter 2026<br>
+    <b>Instructor:</b> Dr. Nourhan Hamdi<br>
+    <b>Teaching Assistants:</b> Mr. Nour Gaser, Mr. Omar Alaa, Ms. Mariam Khalid, Mr. Younes Zied, Mr. Mahmoud Hani
+  </div>
+</section>
+
+<h2><span class="n">1</span>The project</h2>
+
+<p>Your team builds a working web application with the full <strong>MERN</strong> stack: a <strong>React</strong> front end, an <strong>Express</strong> API on <strong>Node.js</strong>, and a <strong>MongoDB</strong> database.</p>
+
+<p>You register your team, your topic and your repository through a form. The form and the list of topics will be announced.</p>
+
+<ul>
+  <li><strong>Teams of 5 or 6</strong> students.</li>
+  <li><strong>One use case per member</strong>, so 5 or 6 use cases in total.</li>
+  <li>Each member builds their use case <strong>end to end</strong>, front end and back end, and is graded on it.</li>
+  <li><strong>Registration and login are mandatory</strong>, and count as one of the use cases.</li>
+</ul>
+
+<h3>What a use case is</h3>
+
+<p>A use case is something a user does, from start to finish: <em>a user creates a listing</em>, <em>a user books a stay</em>, <em>an admin removes a review</em>. Each one has all four parts:</p>
+
+<ol>
+  <li>a <strong>page or form</strong> in React,</li>
+  <li>that calls one or more <strong>routes</strong> of your API,</li>
+  <li>which <strong>read or write</strong> your MongoDB database,</li>
+  <li>and the user <strong>sees the result</strong>.</li>
+</ol>
+
+<p>Every use case must <strong>change data</strong>: create, update or delete something. A page that only displays data belongs to the use case it supports, and does not count on its own.</p>
+
+<h2><span class="n">2</span>Technical requirements</h2>
+
+<p>This is the minimum. Everything here is taught in the labs.</p>
+
+<table>
+  <tr><th>Area</th><th>Requirement</th></tr>
+  <tr><td>Repository</td><td>One GitHub repository per team, with every member as a collaborator. At its root: a <code>backend/</code> folder, a <code>frontend/</code> folder and a <code>README.md</code>.</td></tr>
+  <tr><td>Back end</td><td>Express and Mongoose on MongoDB Atlas, organised as in <strong>Lab 5, Part 2</strong>: <code>server.js</code>, <code>db.js</code>, <code>models/</code>, <code>controllers/</code>, <code>routes/</code>, and a <code>middleware/</code> folder for authentication.</td></tr>
+  <tr><td>Data</td><td>A Mongoose schema for every model. Full CRUD (create, read, update, delete) on at least <strong>two</strong> models.</td></tr>
+  <tr><td>Front end</td><td>React with Vite. React Router with several pages, built from your own components. In the final version <strong>all data comes from your API</strong>: nothing hard-coded.</td></tr>
+  <tr><td>Authentication</td><td>Register and log in. Passwords are <strong>hashed</strong>, never stored as plain text. A token (JWT) identifies the logged-in user; protected API routes check it, and pages that need a user are protected too.</td></tr>
+  <tr><td>Secrets</td><td><code>.env</code> is <strong>never committed</strong>. Commit a <code>.env.example</code> with the variable names and no values.</td></tr>
+  <tr><td>User interface</td><td>Usable, responsive and clean. There is no design prize, but common sense is expected: readable, consistent, and working on both a laptop and a phone.</td></tr>
+  <tr><td>Git</td><td>Each member commits their own work, from their own GitHub account. The history is how we see who built what.</td></tr>
+</table>
+
+<h2><span class="n">3</span>Timeline</h2>
+
+<table>
+  <tr><th>When</th><th>What</th></tr>
+  <tr><td>Week 7 · 31 Oct – 5 Nov</td><td>Project released. Lab 6: React &amp; Vite. Form your team.</td></tr>
+  <tr><td>Week 8 · 7 – 12 Nov</td><td>Lab 7: building a React app.</td></tr>
+  <tr><td>Thu 12 Nov, 23:59</td><td><strong>Submission 1: the plan.</strong></td></tr>
+  <tr><td>Week 9 · 14 – 19 Nov</td><td>Lab 8: connecting React to your API.</td></tr>
+  <tr><td>By Thu 19 Nov</td><td>Our feedback on your plan: approved, or one round of changes.</td></tr>
+  <tr><td>Week 10 · 21 – 26 Nov</td><td>Lab 9: authentication, back end and front end.</td></tr>
+  <tr><td>Mon 23 Nov, 23:59</td><td>Your updated plan, only if we asked for changes.</td></tr>
+  <tr><td>Week 11 · 28 Nov – 3 Dec</td><td>Activity week: no lab. Keep building.</td></tr>
+  <tr><td>Week 12 · 5 – 10 Dec</td><td>Project clinic in the lab: bring your questions and your bugs.</td></tr>
+  <tr><td>Thu 10 Dec, 23:59</td><td><strong>Submission 2: the final code.</strong></td></tr>
+  <tr><td>Week 13 · 12 – 17 Dec</td><td><strong>Presentations.</strong></td></tr>
+</table>
+
+<p>Authentication is the last lab, but you don't have to wait for it: if you want a head start, start on it whenever you like. Lab 9 then explains every part of it in detail.</p>
+
+<h2><span class="n">4</span>Submission 1: the plan</h2>
+
+<p>Due <strong>Thursday 12 November 2026, 23:59</strong>. Create your team's repository and push a <code>README.md</code> to its <code>main</code> branch, following the template that comes with this brief. It contains:</p>
+
+<ol>
+  <li><strong>The team:</strong> each member's name, student ID, tutorial group and GitHub username.</li>
+  <li><strong>The idea:</strong> what the application is, who it is for, and what problem it solves.</li>
+  <li><strong>The full feature list:</strong> everything the complete product could do, beyond this course.</li>
+  <li><strong>The 5 or 6 use cases</strong> you will build, registration and login included. For each: what the user does, what they see, and what is stored.</li>
+  <li><strong>Who owns each use case:</strong> one member per use case.</li>
+  <li><strong>The data model:</strong> the Mongoose schema of each model you plan to use.</li>
+</ol>
+
+<h3>Approval</h3>
+
+<p>We review every plan and reply by <strong>Thursday 19 November</strong>. The answer is either <em>approved</em>, or <em>changes requested</em>, with what to change. Changes are requested at most once. Update your README by <strong>Monday 23 November, 23:59</strong>; that version is approved.</p>
+
+<div class="box red">
+  <p><strong>Your approved plan is your contract.</strong> It is exactly what you build, and exactly what you are graded against: nothing less, and no surprise extras in its place. Changing it after approval needs our written agreement.</p>
+</div>
+
+<p>Choose a scope you can finish. Five use cases that work beat ten that half-work. We may ask you to cut a use case that is too big, or grow one that is too small.</p>
+
+<h2><span class="n">5</span>Submission 2: the final code</h2>
+
+<p>Due <strong>Thursday 10 December 2026, 23:59</strong>. Your repository at that moment is what we grade. <strong>Commits made after the deadline are ignored</strong>, and we review your code before you present.</p>
+
+<p>Update your <code>README.md</code> with:</p>
+
+<ul>
+  <li>a short description of the finished application;</li>
+  <li><strong>how to run it locally</strong>: the steps for the back end and the front end, and every variable your <code>.env</code> needs;</li>
+  <li>the list of use cases, each with its owner.</li>
+</ul>
+
+<h3>Part of the grade is automatic</h3>
+
+<p>At the deadline we clone your repository and run it, without you. Your repository is <strong>frozen</strong> at that moment, so it must run as it is, <strong>with no errors</strong>:</p>
+
+<table>
+  <tr><th>Where</th><th>What must work</th></tr>
+  <tr><td><code>backend/</code></td><td><code>npm install</code>, then <code>npm start</code>, starts your API on port <strong>3000</strong>.</td></tr>
+  <tr><td>Settings</td><td>Your API reads <code>MONGODB_URI</code>, <code>JWT_SECRET</code> and any other settings from <code>.env</code>, listed in your <code>.env.example</code>. We use our own values, so your API must start on an <strong>empty database</strong>.</td></tr>
+  <tr><td>Health check</td><td><code>GET /api/health</code> answers <code>200</code> with <code>{ "status": "ok" }</code>.</td></tr>
+  <tr><td><code>frontend/</code></td><td><code>npm install</code>, then <code>npm run dev</code>, starts your app. Its home page (<code>/</code>) has an element with <code>id="project-name"</code> showing your project's name.</td></tr>
+</table>
+
+<p>Test it yourself before the deadline: clone your repository into a new folder and follow your own README. If it does not run from a fresh clone, it does not run.</p>
+
+<section class="keep">
+<h2><span class="n">6</span>Presentations</h2>
+
+<p>In <strong>week 13</strong> (12–17 December). Times and rooms will be announced. Expect:</p>
+
+<ul>
+  <li>a <strong>live demo</strong> of every use case, by the team;</li>
+  <li>each member explaining <strong>their own use case end to end</strong>, from the click in React, through the route, middleware, controller and model, to the database and back, and answering questions about their code.</li>
+</ul>
+
+<p>Have screenshots or a short screen recording of each use case ready, in case the live demo fails.</p>
+</section>
+
+<h2><span class="n">7</span>AI tools</h2>
+
+<p>You may use AI tools. Before you do, know how they affect your grade.</p>
+
+<ul>
+  <li><strong>You build what you planned.</strong> Your approved plan is what you are graded against, with AI or without it.</li>
+  <li><strong>You are graded on understanding.</strong> In the discussion you explain your use case line by line. Code you cannot explain counts against you, whoever wrote it.</li>
+  <li><strong>AI raises the bar.</strong> AI-written code is usually more complex than what you would write yourself, and the more advanced your project, the more we expect you to explain. A polished project you can't explain scores lower than a simple one you understand completely.</li>
+</ul>
+
+<p>If you can build it yourself, that is usually the safer way to a good grade.</p>
+
+<h2><span class="n">8</span>Grading</h2>
+
+<p>Your grade has two parts:</p>
+
+<ul>
+  <li><strong>Team:</strong> the application as a whole. Does it run, does it deliver the approved plan, does it meet the technical requirements, and is the README complete?</li>
+  <li><strong>Individual:</strong> your own use case. Does it work end to end, is the code clean, and do you understand it and how it fits into the rest of the application?</li>
+</ul>
+
+<h2><span class="n">9</span>Rules</h2>
+
+<div class="box red keep">
+  <ul>
+    <li><strong>No repository</strong> on GitHub at a deadline, or an empty one: the whole team gets <strong>0</strong> for the project.</li>
+    <li><strong>Missing <code>README.md</code></strong>, or missing <code>backend/</code> and <code>frontend/</code> folders: a significant penalty.</li>
+    <li><strong>Passwords stored as plain text:</strong> a significant penalty.</li>
+    <li><strong>A committed <code>.env</code></strong> is a leaked password: a penalty.</li>
+    <li><strong>Deadlines are fixed.</strong> Your repository is frozen at each deadline: later commits are not reviewed or run.</li>
+  </ul>
+</div>
+
+<p class="muted">Questions about the project? Ask your TA in the lab, or by email.</p>
+
+</body>
+</html>
