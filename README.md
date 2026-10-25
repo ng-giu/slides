@@ -254,6 +254,7 @@ the list is long — students otherwise read a wall of links as homework.
 | `<Tool>` | Inline mention of a tool, e.g. in a sentence — icon plus name, in its brand color |
 | `<HttpExchange>` | One HTTP round trip drawn: client, request (method, URL, body), response (status, body), server |
 | `<Flow>` | A left-to-right chain of steps: request layers, a middleware pipeline |
+| `<Diagram>` | A box-and-arrow diagram: tinted groups, cards with an icon badge, orthogonal arrows. Laid out in pixels from frontmatter (see the comment in `theme/components/Diagram.vue`; Lab 6's pipeline slide is the example) |
 
 ```markdown
 <ToolLogo src="/img/logos/vscode.png" alt="Visual Studio Code" />

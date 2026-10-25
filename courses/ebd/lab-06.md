@@ -137,18 +137,46 @@ With <Tool name="react" />, you **describe** what the page should look like for 
 ---
 layout: default
 icon: intro
-pipeline:
-  - { title: You write, items: ["App.jsx, Header.jsx, ...", "JSX: HTML inside JavaScript", "Many files that import each other", "CSS and images"] }
-  - { tool: vite, items: ["Turns JSX into plain JavaScript", "Bundles all the imports together", "Serves the result to the browser", "Reloads the page when you save"] }
-  - { title: The browser gets, items: ["index.html", "Plain JavaScript", "CSS", "Nothing it can't run"] }
+diagram:
+  width: 860
+  height: 318
+  groups:
+    - { id: author, x: 0, y: 0, w: 252, h: 258, label: You write, icon: pencil, tone: slate }
+    - { id: vite, x: 282, y: 0, w: 578, h: 112, label: Vite builds it, icon: zap, tone: amber }
+    - { id: out, x: 282, y: 138, w: 578, h: 120, label: What the browser gets, icon: folder, tone: green }
+  nodes:
+    - { id: dev, x: 14, y: 107, w: 80, h: 46, label: You, icon: user, tone: slate }
+    - { id: jsx, x: 124, y: 38, w: 114, h: 46, label: Components, sub: "App.jsx, Header.jsx", icon: file-code, tone: slate }
+    - { id: css, x: 124, y: 107, w: 114, h: 46, label: Styles, sub: index.css, icon: palette, tone: slate }
+    - { id: img, x: 124, y: 176, w: 114, h: 46, label: Images, sub: "logos, photos", icon: image, tone: slate }
+    - { id: tr, x: 302, y: 44, w: 160, h: 50, label: Translate, sub: "JSX to plain JavaScript", icon: code, tone: amber }
+    - { id: bu, x: 490, y: 44, w: 160, h: 50, label: Bundle, sub: "Many files into a few", icon: package, tone: amber }
+    - { id: se, x: 678, y: 44, w: 164, h: 50, label: Serve or write, sub: "dev: memory · build: dist/", icon: zap, tone: amber }
+    - { id: html, x: 302, y: 186, w: 124, h: 50, label: index.html, sub: "The one page", icon: file, tone: green }
+    - { id: js, x: 440, y: 186, w: 124, h: 50, label: JavaScript, sub: "Your bundled code", icon: file-code, tone: green }
+    - { id: pics, x: 578, y: 186, w: 124, h: 50, label: Images, sub: "Optimised", icon: image, tone: green }
+    - { id: style, x: 716, y: 186, w: 126, h: 50, label: CSS, sub: "All your styles", icon: palette, tone: green }
+    - { id: host, x: 302, y: 276, w: 160, h: 42, label: Web server, sub: "localhost:5173 today", icon: server, tone: navy }
+    - { id: browser, x: 490, y: 276, w: 160, h: 42, label: Browser, sub: "Downloads the files", icon: globe, tone: navy }
+    - { id: run, x: 678, y: 276, w: 164, h: 42, label: Runs them, sub: "React draws the page", icon: play, tone: navy }
+  edges:
+    - { from: dev, to: jsx }
+    - { from: dev, to: css }
+    - { from: dev, to: img }
+    - { from: author, to: tr, fromAt: 0.27, toAt: 0.5 }
+    - { from: tr, to: bu }
+    - { from: bu, to: se }
+    - { from: vite, to: out, fromSide: b, toSide: t, fromAt: 0.86, toAt: 0.86 }
+    - { from: out, to: host, fromSide: b, toSide: t, fromAt: 0.173, toAt: 0.5 }
+    - { from: host, to: browser }
+    - { from: browser, to: run }
 ---
 
 # From your code to the browser
 
-<Flow :steps="$frontmatter.pipeline" />
+<Diagram v-bind="$frontmatter.diagram" />
 
-- **`npm run dev`**: while you work. Vite serves your app straight from memory, and every save shows up in the browser in a moment.
-- **`npm run build`**: when you publish. Vite writes the finished files to a `dist/` folder, ready to put on a web server.
+<div class="giu-refs__note"><code>npm run dev</code> while you work: Vite serves from memory and reloads on every save. <code>npm run build</code> to publish: it writes the files to <code>dist/</code>.</div>
 
 ---
 layout: default
