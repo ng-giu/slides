@@ -110,7 +110,8 @@ One app grows all semester: **ebd bn'b**, a simplified Airbnb.
 | 4 | Full CRUD, middleware, API client; `server.js` split by banners into MIDDLEWARE / DATABASE / MODEL / CONTROLLERS / ROUTES / START |
 | 5 | MongoDB Atlas + Mongoose, still **one file**: DATABASE becomes `connectDB`, MODEL gets a schema and new insides, controllers get `async`/`await`. Last back-end lab before midterms, meant to be one of the easiest |
 | 5, Part 2 | `lab-05-extra.md`: the refactor into `db.js`, `models/`, `controllers/`, `routes/` (express.Router). Every intermediate `server.js` is in `snippets/lab-05-extra/steps/` and runs. **This split version is the canonical back-end from here on**: the React labs integrate with it, auth is added to it, and the course project is expected to have its shape |
-| 6+ | React front-end (Vite, components, router, then calling this API) |
+| 6 | React & Vite: the project becomes `ebd-bnb/backend/` + `ebd-bnb/frontend/` (the shape the course project requires). Components (`Header`, `ListingCard`), props, a list with `.map` and `key`, `useState`, all on fake data shaped like the API's (`_id`, `title`, `pricePerNight`) |
+| 7-9 | Lab 7: React Router (v8, the `react-router` package), a form to add a listing, `useEffect`. Lab 8: `fetch` from the API, CORS. Lab 9: auth, a JWT in the `Authorization` header |
 
 The **layers** are the throughline. When a layer changes, the deck says which
 others did not, and shows it. Lab 5's controllers changed only by
@@ -134,9 +135,16 @@ whatever was clipped. So:
    copy-paste from the PDF works. The user checks this, so it must pass.
 
 Read `<<<` regions back after editing a snippet: a region that doesn't match
-silently pulls in nothing or the wrong lines. `#region` markers only work in
-languages Slidev knows comment syntax for. They do **not** work in `.env` files,
-so transclude those whole.
+silently pulls in nothing or the wrong lines. Slidev only recognises a marker
+that is the **whole line** (`findRegion` in `@slidev/cli`):
+
+- `// #region name`, `/* #region name */`, `#region name` (shell, `.env`;
+  not `# #region`).
+- **Not JSX comments** (`{/* #region */}`), so a region can't start inside
+  returned JSX. Build the piece in a variable above `return` instead (Lab 6's
+  `const cards = listings.map(...)`), which is also how React's docs teach it.
+- **Not HTML**: the `<!-- #endregion -->` end pattern never matches, so an
+  HTML region runs to the end of the file.
 
 ## Slidev and theme gotchas
 

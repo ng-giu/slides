@@ -15,8 +15,20 @@
  *   <Flow :steps="$frontmatter.layers" back="The response travels back" />
  *
  * `back` draws a return arrow under the chain, labelled.
+ *
+ * A step can also be a group of things rather than one: `items` lists them as
+ * chips under the title (files you write, what a tool does, what comes out),
+ * and `tool` names a mark from ../tools.ts to show in place of the title.
+ *
+ *   - { title: You write, items: [App.jsx, Header.jsx, index.css] }
+ *   - { tool: vite, items: [Translates JSX, Bundles imports] }
  */
-defineProps<{ steps: { title: string; code?: string; sub?: string }[]; back?: string }>()
+import Tool from './Tool.vue'
+
+defineProps<{
+  steps: { title?: string; tool?: string; code?: string; sub?: string; items?: string[] }[]
+  back?: string
+}>()
 </script>
 
 <template>
@@ -25,8 +37,14 @@ defineProps<{ steps: { title: string; code?: string; sub?: string }[]; back?: st
       <template v-for="(s, i) in steps" :key="i">
         <div v-if="i > 0" class="giu-flow__arrow" aria-hidden="true" />
         <div class="giu-flow__step">
-          <div class="giu-flow__title">{{ s.title }}</div>
+          <div class="giu-flow__title">
+            <Tool v-if="s.tool" :name="s.tool" />
+            <template v-else>{{ s.title }}</template>
+          </div>
           <code v-if="s.code" class="giu-flow__code">{{ s.code }}</code>
+          <ul v-if="s.items" class="giu-flow__items">
+            <li v-for="(it, j) in s.items" :key="j">{{ it }}</li>
+          </ul>
           <div v-if="s.sub" class="giu-flow__sub">{{ s.sub }}</div>
         </div>
       </template>

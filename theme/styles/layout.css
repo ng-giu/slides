@@ -445,6 +445,17 @@
   word-break: break-word;
 }
 .giu-flow__sub { color: var(--giu-muted); font-size: 0.68rem; line-height: 1.4; }
+/* A step that is a group: its members as chips, one per line */
+.slidev-layout ul.giu-flow__items { list-style: none; margin: 0 0 0.3rem; padding: 0; }
+.slidev-layout ul.giu-flow__items li {
+  margin: 0 0 0.25rem;
+  padding: 0.15rem 0.45rem;
+  background: #f0f0f1;
+  border-radius: 3px;
+  font-size: 0.66rem;
+  line-height: 1.35;
+}
+.slidev-layout ul.giu-flow__items li::marker { content: none; }
 /* The hand-off between two steps: a short line and head on the top rule */
 .giu-flow__arrow { position: relative; flex: 0 0 1.6rem; }
 .giu-flow__arrow::before {

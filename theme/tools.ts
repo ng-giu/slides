@@ -30,6 +30,7 @@ export const TOOLS: Record<string, ToolInfo> = {
   mongoose: { icon: 'i-simple-icons-mongoose', label: 'Mongoose', color: '#880000' },
   express: { icon: 'i-simple-icons-express', label: 'Express', color: '#000000' },
   react: { icon: 'i-simple-icons-react', label: 'React', color: '#0F9BC4' },
+  vite: { icon: 'i-simple-icons-vite', label: 'Vite', color: '#646CFF' },
   javascript: { icon: 'i-simple-icons-javascript', label: 'JavaScript', color: '#C9A227' },
   html5: { icon: 'i-simple-icons-html5', label: 'HTML', color: '#E34F26' },
   css3: { icon: 'i-simple-icons-css3', label: 'CSS', color: '#1572B6' },

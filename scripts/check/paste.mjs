@@ -20,7 +20,8 @@ for (const [, file, region] of fs.readFileSync(deck, 'utf8').matchAll(/<<< @\/(\
   refs++
   let src = fs.readFileSync(path.join(courseDir, file), 'utf8')
   if (region) {
-    const m = src.match(new RegExp(`#region ${region}\\n([\\s\\S]*?)\\n[^\\n]*#endregion`))
+    // The marker line may end in a comment closer (CSS `*/`, HTML `-->`)
+    const m = src.match(new RegExp(`#region ${region}\\b[^\\n]*\\n([\\s\\S]*?)\\n[^\\n]*#endregion`))
     if (!m) { console.log(`NO REGION ${file}#${region}`); missing++; continue }
     src = m[1]
   }

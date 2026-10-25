@@ -1,0 +1,49 @@
+/* ebd bn'b: the styles for the whole app (Lab 6).
+   Paste them in; you don't need to read them. */
+/* #region top */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #f6f6f7;
+  color: #222;
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.header h1 { margin: 0; color: #e2001a; }
+.header p { margin: 4px 0 24px; color: #666; }
+
+.listings {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+/* #endregion top */
+
+/* #region bottom */
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 { margin: 0 0 8px; font-size: 18px; }
+.card p { margin: 0 0 12px; color: #555; }
+
+.card button {
+  border: 1px solid #e2001a;
+  border-radius: 999px;
+  padding: 6px 14px;
+  background: white;
+  color: #e2001a;
+  cursor: pointer;
+}
+/* #endregion bottom */
