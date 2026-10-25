@@ -127,6 +127,9 @@ whatever was clipped. So:
    `./node_modules/.bin/slidev courses/<course>/lab-NN.md --port <p>`).
 2. `node scripts/check/overflow.mjs http://localhost:<p> <outdir>` checks every
    slide for overflow and broken images and saves a screenshot of each. Then
+   run it again with `ROOT_PX=18`: a slide that fits here only by a few pixels
+   overflows on other machines (Lab 6's pipeline slide wrapped its title and
+   ran into the footer on the user's screen while passing here). Then
    actually **look** at the screenshots: the script can't judge whether an
    image is too small to read.
 3. `bun run export [course] <n>`.

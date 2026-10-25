@@ -4,6 +4,7 @@
 //
 // Usage (dev server running, e.g. `bun run lab 5` on its default port):
 //   node scripts/check/overflow.mjs http://localhost:3030 [outdir] [slide...]
+//   ROOT_PX=18 node scripts/check/overflow.mjs ...   # stricter: a 12% bigger root font
 //
 // Prints one line per slide: "ok", "OVERFLOW ...", or "BROKEN IMG ...". With
 // an outdir, also saves a 1280x720 screenshot of every slide for a visual pass.
@@ -26,6 +27,10 @@ const list = only.length ? only.map(Number) : Array.from({ length: total }, (_, 
 let problems = 0
 for (const i of list) {
   await p.goto(`${base}/#/${i}`, { waitUntil: 'networkidle' })
+  // ROOT_PX=18 renders with a bigger root font, like a viewer whose browser is
+  // set larger or whose fonts measure wider: a slide that fits at 16px only by
+  // a few pixels will overflow for them
+  if (process.env.ROOT_PX) await p.addStyleTag({ content: `html { font-size: ${process.env.ROOT_PX}px !important; }` })
   await p.waitForTimeout(700)
   const r = await p.evaluate(() => {
     // Slidev keeps neighbouring slides in the DOM at display:none: take the visible one

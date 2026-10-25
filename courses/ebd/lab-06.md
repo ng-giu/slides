@@ -151,7 +151,7 @@ diagram:
     - { id: img, x: 124, y: 176, w: 114, h: 46, label: Images, sub: "logos, photos", icon: image, tone: slate }
     - { id: tr, x: 302, y: 44, w: 160, h: 50, label: Translate, sub: "JSX to plain JavaScript", icon: code, tone: amber }
     - { id: bu, x: 490, y: 44, w: 160, h: 50, label: Bundle, sub: "Many files into a few", icon: package, tone: amber }
-    - { id: se, x: 678, y: 44, w: 164, h: 50, label: Serve or write, sub: "dev: memory · build: dist/", icon: zap, tone: amber }
+    - { id: se, x: 678, y: 44, w: 164, h: 50, label: Serve or write, sub: "npm run dev · npm run build", icon: zap, tone: amber }
     - { id: html, x: 302, y: 186, w: 124, h: 50, label: index.html, sub: "The one page", icon: file, tone: green }
     - { id: js, x: 440, y: 186, w: 124, h: 50, label: JavaScript, sub: "Your bundled code", icon: file-code, tone: green }
     - { id: pics, x: 578, y: 186, w: 124, h: 50, label: Images, sub: "Optimised", icon: image, tone: green }
@@ -172,11 +172,9 @@ diagram:
     - { from: browser, to: run }
 ---
 
-# From your code to the browser
+# From code to browser
 
 <Diagram v-bind="$frontmatter.diagram" />
-
-<div class="giu-refs__note"><code>npm run dev</code> while you work: Vite serves from memory and reloads on every save. <code>npm run build</code> to publish: it writes the files to <code>dist/</code>.</div>
 
 ---
 layout: default
@@ -221,15 +219,10 @@ Each code slide says **which file**, whether it is **new** or an **edit**, and w
 
 ::right::
 
-```text {2,9,14-18}
+```text {2,4,9-13}
 ebd-bnb/
 ├── backend/            MOVED  Step 1
-│   ├── controllers/
-│   ├── models/
-│   ├── routes/
-│   ├── db.js
-│   ├── package.json
-│   └── server.js
+│   └── (Lab 5, Part 2's files)
 ├── frontend/           NEW    Step 1
 │   ├── index.html
 │   ├── package.json
@@ -454,7 +447,7 @@ dense: true
 1. Click `src`, then **New Folder**: `data`.
 2. Inside it, **New File**: `listings.js`. Paste the code on the right.
 
-Three **fake** listings, shaped exactly like what our API returns: an `_id`, a `title`, a `pricePerNight`.
+Three **fake** listings, shaped exactly like what our API returns: an `_id`, a `title`, a `pricePerNight`. Real `_id`s are longer; any unique text works here.
 
 In Lab 8 they come from the back end instead. Because the shape is the same, the components won't change.
 
@@ -612,39 +605,46 @@ sub: Only if something went wrong. Find the message you see, then the fix.
 layout: default
 icon: tools
 dense: true
+class: giu-fix
 routeAlias: fix-start
 ---
 
 # It won't start
 
+<style>
+/* Two long tables: tighter rows. Slide styles leak, so this hangs off the class */
+.giu-fix table td, .giu-fix table th { padding-top: 0.22rem !important; padding-bottom: 0.22rem !important; }
+</style>
+
+Vite shows these in the terminal where it runs, and in a red box on the page.
+
 | You see | Cause | Fix |
 |---|---|---|
-| `npm error code ENOENT` ... `package.json` | The terminal is in the wrong folder | `cd backend` or `cd frontend` first: each has its own `package.json` |
+| `npm error code ENOENT` ... `package.json` | Terminal in the wrong folder | `cd backend` or `cd frontend` first |
 | `Port 5173 is in use, trying another one...` | Vite is already running elsewhere | Not an error: open the link it prints, or stop the other one |
 | `Failed to resolve import "./components/header.jsx"` | A wrong path, or wrong capitals: `header.jsx` is not `Header.jsx` | Match the file's name exactly |
 | `does not provide an export named 'default'` | `export default ...` is missing | Last line of the component's file |
 | `Adjacent JSX elements must be wrapped in an enclosing tag` | A component returns two elements side by side | Put **one** parent around them |
 
-<div class="giu-refs__note">Vite shows these errors in the terminal where it runs, and in a red box on the page.</div>
-
 ---
 layout: default
 icon: tools
 dense: true
+class: giu-fix
 routeAlias: fix-page
 ---
 
 # The page is blank or wrong
 
+Press **F12**, open **Console**: React's messages appear there, and in Vite's terminal.
+
 | You see | Cause | Fix |
 |---|---|---|
-| A blank page, and `ReferenceError: Header is not defined` | The component is used but not imported | `import Header from "./components/Header.jsx";` |
-| A blank page, and `Too many re-renders` | `onClick={setSaved(!saved)}`, without the arrow | `onClick={() => setSaved(!saved)}` |
-| Your component shows nothing, no error | Its name starts with a lower-case letter | `<Header />`, not `<header />` |
-| Warning: `Invalid DOM property 'class'. Did you mean 'className'?` | `class` in JSX | `className` |
-| Warning: `Each child in a list should have a unique "key" prop.` | `key` is missing in the `.map` | `key={listing._id}` |
-
-<div class="giu-refs__note">Press <strong>F12</strong> and open the <strong>Console</strong> tab: React's errors and warnings appear there, and in Vite's terminal.</div>
+| Blank page: `ReferenceError: Header is not defined` | Used but not imported | Import it at the top of the file |
+| Blank page: `Too many re-renders` | `onClick={setSaved(!saved)}` | `onClick={() => setSaved(!saved)}` |
+| A component shows nothing, no error | Lower-case name | `<Header />`, not `<header />` |
+| `Invalid DOM property 'class'` | `class` in JSX | `className` |
+| `Each child in a list should have a unique "key" prop.` | No `key` in the `.map` | `key={listing._id}` |
 
 ---
 layout: refs
