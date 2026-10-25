@@ -290,7 +290,7 @@ The split version, file by file, and the one-file version from Lab 5 next to it 
 
 [ebd bn'b, split into files, on GitHub Gist](https://gist.github.com/nourgaser/d0b53d3f38f7839d3ba188219f2e49a8)
 
-A gist has no folders. `Listing.js` goes in `models/`, `listingController.js` in `controllers/`, `listingRoutes.js` in `routes/`.
+A gist has no folders. **Easier:** [**Download ZIP**](https://github.com/ng-giu/ebd-bnb/archive/refs/heads/lab-05-part2.zip) gets the split project with every file already in its folder (branch `lab-05-part2` of [ng-giu/ebd-bnb](https://github.com/ng-giu/ebd-bnb)).
 
 ---
 layout: end

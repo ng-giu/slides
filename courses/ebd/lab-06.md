@@ -64,16 +64,19 @@ But nobody books a stay by typing requests into Thunder Client. Guests need **pa
 
 ---
 layout: media
-image: https://gist.github.com/nourgaser/d0b53d3f38f7839d3ba188219f2e49a8
+image: https://github.com/ng-giu/ebd-bnb/tree/lab-05-part2
 side: right
 qr: true
 ---
 
 # Back end not split yet?
 
-Today's code is all front end, but Step 1 moves your back end into its own folder, and from now on we build on the **split** version from Lab 5, Part 2.
+Today we build on the **split** back end from Lab 5, Part 2. Not there yet? Start from ours:
 
-Not there yet? Take it from the [Lab 5, Part 2 solution gist](https://gist.github.com/nourgaser/d0b53d3f38f7839d3ba188219f2e49a8), put each file in its folder (the slide in Part 2 says where), add your own `.env`, and run `npm install`.
+1. [**Download ZIP**](https://github.com/ng-giu/ebd-bnb/archive/refs/heads/lab-05-part2.zip) and unzip it. You get a folder with every file already in place.
+2. Open that folder in <Tool name="vscode" />. It is your `ebd-bnb` from now on.
+3. Put your `.env` from Atlas next to `package.json`.
+4. `npm install`, then `npm run dev`: `Connected to MongoDB`.
 
 ---
 layout: section
@@ -205,35 +208,56 @@ sub: Five steps, each one ends with a working page
 layout: split
 title: The plan
 dense: true
+wideRight: true
+class: giu-tree
 ---
+
+<style>
+/* The whole project tree must fit. Slide styles leak, so this hangs off the class */
+.giu-tree .giu-split__grid pre.shiki { font-size: 0.56rem !important; line-height: 1.2 !important; }
+</style>
 
 | Step | What |
 |---|---|
-| 1 | Move the API into `backend/`, create `frontend/`, run both |
-| 2 | A clean start: our page and our styles |
-| 3 | Your first component: `Header` |
-| 4 | Props and lists: a `ListingCard` per listing |
-| 5 | State: a Save button on each card |
+| 1 | `backend/` and `frontend/`, both running |
+| 2 | A clean start |
+| 3 | A component: `Header` |
+| 4 | Props and lists: `ListingCard` |
+| 5 | State: a Save button |
 
-Each code slide says **which file**, whether it is **new** or an **edit**, and where in the file.
+Each code slide says **which file**, **new** or **edit**, and where.
+
+<div class="giu-refs__note">Not shown: <code>node_modules/</code>. <code>App.css</code> is deleted in Step 2.</div>
 
 ::right::
 
-```text {2,4,9-13}
+```text {2,13,17,18,20,21,22,24}
 ebd-bnb/
-├── backend/            MOVED  Step 1
-│   └── (Lab 5, Part 2's files)
-├── frontend/           NEW    Step 1
-│   ├── index.html
+├── backend/                 MOVED  Step 1
+│   ├── controllers/
+│   │   └── listingController.js
+│   ├── models/
+│   │   └── Listing.js
+│   ├── routes/
+│   │   └── listingRoutes.js
+│   ├── .env
+│   ├── db.js
 │   ├── package.json
-│   └── src/
-│       ├── components/
-│       │   ├── Header.jsx       Step 3
-│       │   └── ListingCard.jsx  Step 4
-│       ├── data/listings.js     Step 4
-│       ├── App.jsx              Steps 2-4
-│       ├── index.css            Step 2
-│       └── main.jsx
+│   └── server.js
+├── frontend/                NEW    Step 1
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Header.jsx       NEW  Step 3
+│   │   │   └── ListingCard.jsx  NEW  Step 4
+│   │   ├── data/
+│   │   │   └── listings.js      NEW  Step 4
+│   │   ├── App.jsx              EDIT Steps 2-4
+│   │   ├── index.css            EDIT Step 2
+│   │   └── main.jsx
+│   ├── index.html               EDIT Step 2
+│   ├── package.json
+│   └── vite.config.js
 └── .gitignore
 ```
 
@@ -572,18 +596,18 @@ Most of React is these two ideas: data flows **down** through props, and changes
 
 ---
 layout: media
-image: https://gist.github.com/nourgaser/8427b647ae311ef624597a516da43874
+image: https://github.com/ng-giu/ebd-bnb/tree/lab-06
 side: right
 qr: true
 ---
 
 # The full solution
 
-Today's front end: `App.jsx`, `Header.jsx`, `ListingCard.jsx`, `listings.js` and `index.css`.
+The whole project as it is at the end of today: `backend/` and `frontend/`, every file in its folder.
 
-[The Lab 6 solution on GitHub Gist](https://gist.github.com/nourgaser/8427b647ae311ef624597a516da43874)
+[**Download ZIP**](https://github.com/ng-giu/ebd-bnb/archive/refs/heads/lab-06.zip), unzip, and see its `README.md`: add your `.env` to `backend/`, then `npm install` and `npm run dev` in each folder.
 
-A gist has no folders. `Header.jsx` and `ListingCard.jsx` go in `src/components/`, `listings.js` in `src/data/`, the rest in `src/`.
+Every lab so far has a branch in [ng-giu/ebd-bnb](https://github.com/ng-giu/ebd-bnb).
 
 ---
 layout: section

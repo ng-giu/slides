@@ -72,7 +72,7 @@ qr: true
 
 Start from the Lab 4 solution and you are exactly where it ended:
 
-1. Open the [Lab 4 solution gist](https://gist.github.com/nourgaser/64d7a3eea2a096d51d10f511d2a9151a) and **Download ZIP**.
+1. [**Download the Lab 4 project**](https://github.com/ng-giu/ebd-bnb/archive/refs/heads/lab-04.zip) (or the [Lab 4 solution gist](https://gist.github.com/nourgaser/64d7a3eea2a096d51d10f511d2a9151a): **Download ZIP**).
 2. Unzip it into a folder called `ebd-bnb`, open it in <Tool name="vscode" />.
 3. Run `npm install`, then `npm run dev`.
 4. Send `GET http://localhost:3000/api/listings`. Three listings? You are ready.
@@ -484,6 +484,8 @@ qr: true
 [The Lab 5 solution on GitHub Gist](https://gist.github.com/nourgaser/3cdbd4b1b251b5f469251bf964354493)
 
 `.env.example` there only shows the shape of the file. Use **your own** `.env` from Atlas.
+
+Or the whole project folder, ready to run: [**Download ZIP**](https://github.com/ng-giu/ebd-bnb/archive/refs/heads/lab-05.zip) (branch `lab-05` of [ng-giu/ebd-bnb](https://github.com/ng-giu/ebd-bnb)).
 
 ---
 layout: default

@@ -36,9 +36,15 @@ student who missed the lab do it alone at home, from the PDF:
   them with `routeAlias:` on the target and `<Link to="...">`.
 - **Catch-up path** near the start for students who missed the previous lab
   (paste-in code, or the previous solution gist with a QR code).
-- **Solution** at the end: a public GitHub gist (managed with `gh gist`, already
-  logged in) shown with a `qr: true` media slide. A gist has no folders, so the
-  slide says where each file goes.
+- **Solution** at the end, from **[ng-giu/ebd-bnb](https://github.com/ng-giu/ebd-bnb)**
+  (EBD): one branch per finished lab (`lab-03` ... `lab-06`), each exactly the
+  student's `ebd-bnb/` folder at the end of that lab, chained so the history is
+  the project's history. The slide links the branch's direct **Download ZIP**
+  (`.../archive/refs/heads/<branch>.zip`) and QR-codes the branch page. After a
+  lab, add its branch on top of the previous one, built from the tested
+  snippets, and run it from `git archive` before pushing. Gists are legacy:
+  Labs 4-5 keep theirs next to the repo link; new labs use the repo only (a
+  gist flattens folders, which lost students).
 - **Every QR code has its link written under it, clickable.** The theme's
   `QrCode` does this for `qr: true` on `media` and `end`. A hand-made QR image
   must do the same: nobody should need a second device to open a link.

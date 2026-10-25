@@ -465,6 +465,8 @@ The complete `server.js`, section by section, as we built it today, with its `pa
 
 Compare it with yours. If yours works but looks different, that is fine; ask us if you are unsure why.
 
+Or get the whole project folder, ready to run: [**Download ZIP**](https://github.com/ng-giu/ebd-bnb/archive/refs/heads/lab-04.zip) (branch `lab-04` of [ng-giu/ebd-bnb](https://github.com/ng-giu/ebd-bnb)).
+
 ---
 layout: refs
 title: Useful references
