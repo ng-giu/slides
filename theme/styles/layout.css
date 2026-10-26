@@ -551,3 +551,5 @@
 /* Troubleshooting tables: long error messages in the first column wrap */
 .slidev-layout.giu-fix td:first-child { white-space: normal; width: 42%; }
 .slidev-layout.giu-fix td code { white-space: normal; overflow-wrap: anywhere; }
+/* A ~30-line file on one slide: one step smaller still */
+.slidev-layout.giu-xs pre.shiki { font-size: 0.54rem !important; line-height: 1.26 !important; }
