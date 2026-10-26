@@ -116,7 +116,8 @@ One app grows all semester: **ebd bn'b**, a simplified Airbnb.
 | 5, Part 2 | `lab-05-extra.md`: the refactor into `db.js`, `models/`, `controllers/`, `routes/` (express.Router). Every intermediate `server.js` is in `snippets/lab-05-extra/steps/` and runs. **This split version is the canonical back-end from here on**: the React labs integrate with it, auth is added to it, and the course project is expected to have its shape |
 | 6 | React & Vite: the project becomes `ebd-bnb/backend/` + `ebd-bnb/frontend/` (the shape the course project requires). Components (`Header`, `ListingCard`), props, a list with `.map` and `key`, `useState`, all on fake data shaped like the API's (`_id`, `title`, `pricePerNight`) |
 | 7 | React Router v8 (the `react-router` package; `BrowserRouter`, `Routes`, `Link`, `useNavigate`, `useParams`): `pages/` with Home, NotFound, AddListing (a controlled form), and Listing (`/listings/:id`); listings as state in `App` with `addListing` (spread) and `deleteListing` (`.filter`) passed down as `onAdd`/`onDelete`; `useEffect` for the tab title. Still fake data, lost on reload |
-| 8-9 | Lab 8: `fetch` from the API (list, add, delete, one listing), CORS. Lab 9: auth, a JWT in the `Authorization` header |
+| 8 | The halves connect. Back end: `cors` (`app.use(cors())`) and `GET /api/health` (the route the project's automated check calls). Front end: `src/api/listings.js` wraps `fetch` (`getListings`, `getListing`, `createListing`, `removeListing`; `res.ok` checked, errors thrown); `App` loads in a `useEffect([])` with `loading`/`error` early returns (hooks above them); add and delete call the API first, and add stores the listing the API returns (MongoDB's `_id`). The form no longer makes ids |
+| 9 | Auth, a JWT in the `Authorization` header |
 
 The **layers** are the throughline. When a layer changes, the deck says which
 others did not, and shows it. Lab 5's controllers changed only by
