@@ -66,15 +66,13 @@ everyone's problems. Lab 5's first draft split the code into four files during
 the lab and ran 70-90 minutes; the user cut it to one file and moved the split
 to a companion deck. So:
 
-- **One new idea per lab, done the simplest way that works.** Good practice
-  that isn't the lab's topic (modularising, refactors, extra validation) goes
-  in a `lab-NN-extra.md` companion deck, never into the lab itself.
-- **A companion deck is part 2 of the lab, never "optional".** It exists only
-  because the time may run out: if there is time it is taught in the lab,
-  otherwise it is at least opened and walked through, and students finish it
-  at home. Title it "Lab N, Part 2". Never write "optional", "not required",
-  "if you're curious" or "extra" on a student-facing slide: students read that
-  as permission to leave.
+- **One new idea per step, done the simplest way that works.**
+- **No more companion "Part 2" decks** (the user's call, Oct 2026, from Lab 7
+  on). Lab 5, Part 2 (`lab-05-extra.md`) stays as it is. New material goes in
+  the lab itself, last steps first to drop if time runs out; whatever isn't
+  finished in class, students finish at home from the same deck.
+- Never write "optional", "not required", "if you're curious" or "extra" on a
+  student-facing slide: students read that as permission to leave.
 - **No homework before a lab.** Students don't do it, and they already have
   assignments. Account sign-ups and similar setup happen in class; an email
   beforehand is a bonus, never a dependency.
@@ -117,7 +115,8 @@ One app grows all semester: **ebd bn'b**, a simplified Airbnb.
 | 5 | MongoDB Atlas + Mongoose, still **one file**: DATABASE becomes `connectDB`, MODEL gets a schema and new insides, controllers get `async`/`await`. Last back-end lab before midterms, meant to be one of the easiest |
 | 5, Part 2 | `lab-05-extra.md`: the refactor into `db.js`, `models/`, `controllers/`, `routes/` (express.Router). Every intermediate `server.js` is in `snippets/lab-05-extra/steps/` and runs. **This split version is the canonical back-end from here on**: the React labs integrate with it, auth is added to it, and the course project is expected to have its shape |
 | 6 | React & Vite: the project becomes `ebd-bnb/backend/` + `ebd-bnb/frontend/` (the shape the course project requires). Components (`Header`, `ListingCard`), props, a list with `.map` and `key`, `useState`, all on fake data shaped like the API's (`_id`, `title`, `pricePerNight`) |
-| 7-9 | Lab 7: React Router (v8, the `react-router` package), a form to add a listing, `useEffect`. Lab 8: `fetch` from the API, CORS. Lab 9: auth, a JWT in the `Authorization` header |
+| 7 | React Router v8 (the `react-router` package; `BrowserRouter`, `Routes`, `Link`, `useNavigate`, `useParams`): `pages/` with Home, NotFound, AddListing (a controlled form), and Listing (`/listings/:id`); listings as state in `App` with `addListing` (spread) and `deleteListing` (`.filter`) passed down as `onAdd`/`onDelete`; `useEffect` for the tab title. Still fake data, lost on reload |
+| 8-9 | Lab 8: `fetch` from the API (list, add, delete, one listing), CORS. Lab 9: auth, a JWT in the `Authorization` header |
 
 The **layers** are the throughline. When a layer changes, the deck says which
 others did not, and shows it. Lab 5's controllers changed only by
@@ -135,7 +134,8 @@ whatever was clipped. So:
    slide for overflow and broken images and saves a screenshot of each. Then
    run it again with `ROOT_PX=18`: a slide that fits here only by a few pixels
    overflows on other machines (Lab 6's pipeline slide wrapped its title and
-   ran into the footer on the user's screen while passing here). Then
+   ran into the footer on the user's screen while passing here). It reports
+   content past the bottom **and** past the right edge. Then
    actually **look** at the screenshots: the script can't judge whether an
    image is too small to read.
 3. `bun run export [course] <n>`.
@@ -163,8 +163,17 @@ All of these fail silently:
   field). Layouts read `$frontmatter.title`. On `split`/`code`/`activity`/`refs`
   slides, `title:` draws the heading: don't add a `#` too. On `default`, the
   heading comes from `#`.
-- A `<style>` block in a slide leaks to the whole deck. Give the slide
-  `class: <name>` and prefix every selector with it.
+- A `<style>` block in a slide applies to the whole deck **only while that
+  slide is mounted**: always in the PDF export, but not when the live deck is
+  opened on another slide. So a slide's `<style>` may only style that slide
+  (give it `class: <name>`, prefix every selector). Rules several slides share
+  go in the theme: `class: giu-small` (long code: smaller type, tighter lines)
+  and `class: giu-fix` (troubleshooting tables whose first column holds long
+  error messages) live in `theme/styles/layout.css`. Lab 7's first draft
+  defined them in one slide and they silently vanished elsewhere.
+- The theme's tables make the **first column `nowrap`** (for agenda
+  durations). Long text there pushes the table off the right edge; use
+  `giu-fix`.
 - UnoCSS's preflight removes list bullets; the theme puts them back. Keep it
   that way.
 - Assets go in `courses/<course>/public/` (Slidev resolves `public/` from the

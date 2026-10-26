@@ -541,3 +541,13 @@
 #slidev-goto-dialog:has(#slidev-goto-input:disabled) .autocomplete-list {
   display: none;
 }
+
+/* --- slide classes for long content ------------------------------ */
+/* Put them in a slide's frontmatter: `class: giu-small`. A <style> block in a
+   slide only applies while that slide is mounted, so rules a deck reuses live
+   here, where every slide sees them. */
+/* Long code blocks: smaller type, tighter lines */
+.slidev-layout.giu-small pre.shiki { font-size: 0.6rem !important; line-height: 1.32 !important; }
+/* Troubleshooting tables: long error messages in the first column wrap */
+.slidev-layout.giu-fix td:first-child { white-space: normal; width: 42%; }
+.slidev-layout.giu-fix td code { white-space: normal; overflow-wrap: anywhere; }

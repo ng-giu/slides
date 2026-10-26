@@ -38,10 +38,14 @@ for (const i of list) {
     if (!L) return 'no layout (render error? open the slide)'
     const lr = L.getBoundingClientRect(), cs = getComputedStyle(L)
     const bottom = lr.bottom - parseFloat(cs.paddingBottom)
+    // Content can also run off the right edge (a table whose code cells don't wrap)
+    const right = lr.right - parseFloat(cs.paddingRight)
     const issues = []
     for (const e of L.querySelectorAll('*')) {
       const er = e.getBoundingClientRect(); if (!er.height) continue
       if (e.closest('.giu-footer')) continue // sits in the padding by design
+      // (decorative SVG, like the cover pattern, bleeds off the edge on purpose)
+      if (er.right > right + 2 && !e.closest('pre') && !e.closest('svg')) issues.push(`${e.tagName}.${e.className}`.slice(0, 50) + ` +${Math.round(er.right - right)}px right`)
       if (er.bottom > bottom + 1) issues.push(`${e.tagName}.${e.className}`.slice(0, 50) + ` +${Math.round(er.bottom - bottom)}px down`)
       // <pre> reports ~8px of scroll from its own padding; real clipping is more
       if (e.scrollWidth > e.clientWidth + 10 && getComputedStyle(e).overflowX !== 'visible')
