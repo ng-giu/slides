@@ -229,6 +229,15 @@ The same `<PersonCard>` list opens every deck of a course. When a detail
 changes, change it in **every** deck of that course: they have drifted before
 (`TBD` emails left in old decks).
 
+## The index page is the staff hub
+
+slides.nourgaser.com's index (`scripts/build-site.ts`) is for TAs: every
+course's decks, plus, from an optional `courses/<course>/course.yml`, its key
+dates, project (summary and documents; an `.html` document is printed to PDF
+by `scripts/build-doc.mjs` at build time) and grouped important links. When a
+date, form or repo changes, update `course.yml` too. It is not a deck input,
+so editing it rebuilds no deck.
+
 ## Deploying
 
 GitHub Pages, at slides.nourgaser.com: **every push to `main` deploys**

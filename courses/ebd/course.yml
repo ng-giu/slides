@@ -1,0 +1,56 @@
+# Staff hub for this course, rendered on the index page by scripts/build-site.ts.
+# Every section is optional. The page is for TAs: students get material from the CMS.
+#
+#   dates:     { date: YYYY-MM-DD, time?, what, note? }. Past ones are dimmed, the next one marked.
+#   project:   title, summary, documents (source: an .html is printed to PDF; any other file is copied as is)
+#   links:     groups of { label, url, note? }
+
+dates:
+  - { date: 2026-10-10, what: Assignment 2 due, note: "Workbook modules 00–08 + Checkpoint A" }
+  - { date: 2026-10-29, what: Assignment 3 due, note: "Workbook modules 09–13 + Checkpoint B" }
+  - { date: 2026-10-31, what: Lab 6 week starts, note: "Project released; teams form" }
+  - { date: 2026-11-12, time: "23:59", what: "Project submission 1: the plan", note: "README.md on the team repo's main branch" }
+  - { date: 2026-11-19, what: Feedback on every plan, note: "Approved, or one round of changes" }
+  - { date: 2026-11-23, time: "23:59", what: Updated plans due, note: "Only teams asked for changes" }
+  - { date: 2026-11-28, what: Activity week, note: "No lab" }
+  - { date: 2026-12-05, what: Project clinic week, note: "No new content" }
+  - { date: 2026-12-10, time: "23:59", what: "Project submission 2: the final code", note: "Repo frozen at the deadline; automated check runs" }
+  - { date: 2026-12-12, what: Presentations, note: "Week 13, 12–17 Dec" }
+
+project:
+  title: Course project
+  summary: >-
+    Teams of 5–6 build a MERN web app, one use case per member, end to end.
+    Registration and login are mandatory and count as one use case. Two fixed
+    submissions: the plan (12 Nov) and the final code (10 Dec). The final repo
+    must answer GET /api/health and show #project-name, or it is not graded.
+    Topics and the registration form are still to be announced.
+  documents:
+    - { label: Project brief, source: project/brief.html, out: project-brief.pdf, note: "The document students get" }
+    - { label: README template, source: project/README-template.md, out: project-README-template.md, note: "Submission 1 follows it" }
+
+links:
+  - group: Student material
+    items:
+      - { label: GIU CMS, url: "https://cms.giu-uni.de", note: "Where students get every deck and PDF" }
+      - { label: "ebd bn'b, the lab project", url: "https://github.com/ng-giu/ebd-bnb", note: "One branch per finished lab: the solutions" }
+      - { label: Assignment 1 template, url: "https://github.com/ng-giu/ebd-w26-assignment1" }
+      - { label: "Workbook (Assignments 2 & 3)", url: "https://github.com/ng-giu/ebd-w26-workbook" }
+  - group: Forms
+    items:
+      - { label: Assignment 1 submission, url: "https://forms.gle/1f44aaXxVKVtTfgZ8" }
+      - { label: Assignments 2 & 3 form, url: "https://forms.gle/xWbT6eoxfiFLC2eY9" }
+  - group: Services students sign up for
+    items:
+      - { label: MongoDB Atlas, url: "https://www.mongodb.com/cloud/atlas/register", note: "Lab 5 on; MFA is mandatory" }
+      - { label: jwt.io, url: "https://www.jwt.io", note: "Decode a token (Lab 9)" }
+  - group: Staff
+    items:
+      - { label: Slides repository, url: "https://github.com/ng-giu/slides", note: "Every push to main deploys this site" }
+      - { label: Deploy runs, url: "https://github.com/ng-giu/slides/actions" }
+      - { label: Last year's course repo, url: "https://github.com/nourgaser-giu/giu-bi-ebd-w2025" }
+  - group: Legacy solution gists
+    items:
+      - { label: Lab 4, url: "https://gist.github.com/nourgaser/64d7a3eea2a096d51d10f511d2a9151a", note: "Still linked from Lab 4" }
+      - { label: Lab 5, url: "https://gist.github.com/nourgaser/3cdbd4b1b251b5f469251bf964354493", note: "Still linked from Lab 5" }
+      - { label: Lab 5, Part 2, url: "https://gist.github.com/nourgaser/d0b53d3f38f7839d3ba188219f2e49a8", note: "Still linked from Part 2" }

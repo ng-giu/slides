@@ -1,17 +1,24 @@
-// Build the site served at slides.nourgaser.com (GitHub Pages).
+// Build the site served at slides.nourgaser.com (GitHub Pages): the staff hub.
+// It is for TAs; students get their material from the GIU CMS.
 //
 // Usage:
 //   bun scripts/build-site.ts        -> dist/site/index.html, plus
 //                                       every PDF in dist/<course>/     copied to dist/site/<course>/
 //                                       every web deck in dist/web/     copied to dist/site/<course>/<deck>/
+//                                       every course.yml document       built into dist/site/<course>/
 //
 // Nothing here names a course or a deck. Courses are the folders in courses/,
 // decks are the `<kind>-NN.md` files inside them, and course details come from
 // each deck's headmatter. Add a deck, export and build it: it shows up on its
 // own. A deck with no PDF exported, or no web version built, is still listed,
 // just without that link. Links are relative, so the site works under any base.
+//
+// A course can also have a courses/<course>/course.yml with key dates, its
+// project and grouped links (see courses/ebd/course.yml for the fields). A
+// course without one shows only its decks.
 import { readdirSync, existsSync, mkdirSync, rmSync, copyFileSync, cpSync, statSync, writeFileSync, readFileSync } from 'node:fs'
-import { join } from 'node:path'
+import { join, extname } from 'node:path'
+import { spawnSync } from 'node:child_process'
 
 const KINDS = ['lab', 'assignment'] as const
 type Kind = (typeof KINDS)[number]
@@ -29,6 +36,33 @@ interface Deck {
   pdf?: { href: string; bytes: number }
 }
 
+interface KeyDate {
+  date: string // 2026-11-12
+  time?: string
+  what: string
+  note?: string
+}
+
+interface Doc {
+  label: string
+  source: string // relative to the course folder
+  out: string // file name in dist/site/<course>/
+  note?: string
+  href?: string // set once built
+  bytes?: number
+}
+
+interface LinkGroup {
+  group: string
+  items: { label: string; url: string; note?: string }[]
+}
+
+interface Hub {
+  dates?: KeyDate[]
+  project?: { title?: string; summary?: string; documents?: Doc[] }
+  links?: LinkGroup[]
+}
+
 interface Course {
   slug: string
   code: string
@@ -36,6 +70,7 @@ interface Course {
   track: string
   semester: string
   decks: Deck[]
+  hub: Hub
 }
 
 // --- decks -------------------------------------------------------------------
@@ -83,6 +118,8 @@ function collect(): Course[] {
     }
 
     if (!decks.length) continue
+    const hubPath = join(dir, 'course.yml')
+    const hub = existsSync(hubPath) ? ((Bun.YAML.parse(readFileSync(hubPath, 'utf8')) ?? {}) as Hub) : {}
     decks.sort((a, b) => KINDS.indexOf(a.kind) - KINDS.indexOf(b.kind) || a.num - b.num || a.file.localeCompare(b.file))
     courses.push({
       slug,
@@ -91,6 +128,7 @@ function collect(): Course[] {
       track: String(meta.track ?? ''),
       semester: String(meta.semester ?? ''),
       decks,
+      hub,
     })
   }
   return courses
@@ -122,20 +160,91 @@ function deckRow(d: Deck): string {
         </li>`
 }
 
+// "Thu 12 Nov"; dates are calendar days, so read and print them in UTC
+const day = (iso: string) =>
+  new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' })
+
+// Dates are marked past / next in the browser, so the page stays right between deploys
+function datesBlock(dates: KeyDate[]): string {
+  const rows = [...dates]
+    .sort((a, b) => String(a.date).localeCompare(String(b.date)))
+    .map(
+      (d) => `
+        <li data-date="${esc(String(d.date))}">
+          <span class="when">${esc(day(String(d.date)))}${d.time ? `<small>${esc(d.time)}</small>` : ''}</span>
+          <span class="what">${esc(d.what)}${d.note ? `<small>${esc(d.note)}</small>` : ''}</span>
+        </li>`,
+    )
+    .join('')
+  return `
+      <ol class="dates">${rows}
+      </ol>`
+}
+
+function projectBlock(p: NonNullable<Hub['project']>): string {
+  const docs = (p.documents ?? [])
+    .map((d) =>
+      d.href
+        ? `<a class="btn" href="${esc(d.href)}" target="_blank" rel="noopener">${extname(d.href) === '.pdf' ? ICON_PDF : ICON_OPEN}<span>${esc(d.label)}</span>${d.bytes ? `<small>${size(d.bytes)}</small>` : ''}</a>`
+        : `<span class="btn is-off" title="Not built">${esc(d.label)}</span>`,
+    )
+    .join('')
+  return `
+      <div class="project">
+        ${p.summary ? `<p>${esc(p.summary)}</p>` : ''}
+        ${docs ? `<div class="docs">${docs}</div>` : ''}
+      </div>`
+}
+
+function linksBlock(groups: LinkGroup[]): string {
+  return `
+      <div class="links">${groups
+        .map(
+          (g) => `
+        <div class="links__group">
+          <h4>${esc(g.group)}</h4>
+          <ul>${g.items
+            .map(
+              (l) => `
+            <li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a><small>${[new URL(l.url).host.replace(/^www\./, ''), l.note].filter(Boolean).map((t) => esc(t!)).join(' · ')}</small></li>`,
+            )
+            .join('')}
+          </ul>
+        </div>`,
+        )
+        .join('')}
+      </div>`
+}
+
 function courseSection(c: Course): string {
-  const groups = KINDS.map((kind) => {
+  const { dates, project, links } = c.hub
+  // [id, heading, html]: one sub-section each, in page order
+  const parts: [string, string, string][] = []
+  if (dates?.length) parts.push(['dates', 'Key dates', datesBlock(dates)])
+  if (project) parts.push(['project', project.title ?? 'Project', projectBlock(project)])
+  for (const kind of KINDS) {
     const decks = c.decks.filter((d) => d.kind === kind)
-    if (!decks.length) return ''
-    return `
-      <h3>${KIND_HEADINGS[kind]}</h3>
+    if (decks.length)
+      parts.push([`${kind}s`, KIND_HEADINGS[kind], `
       <ul class="decks">${decks.map(deckRow).join('')}
-      </ul>`
-  }).join('')
+      </ul>`])
+  }
+  if (links?.length) parts.push(['links', 'Important links', linksBlock(links)])
+
+  const id = (part: string) => `${c.slug}-${part}`
+  const toc =
+    parts.length > 2
+      ? `
+      <nav class="toc" aria-label="${esc(c.title)}">${parts.map(([p, h]) => `<a href="#${id(p)}">${esc(h)}</a>`).join('')}</nav>`
+      : ''
   const eyebrow = [c.code, c.track, c.semester].filter(Boolean).map(esc).join('<span class="dot">·</span>')
   return `
     <section class="course" id="${esc(c.slug)}">
       <p class="eyebrow">${eyebrow}</p>
-      <h2>${esc(c.title)}</h2>${groups}
+      <h2>${esc(c.title)}</h2>${toc}${parts
+        .map(([p, h, html]) => `
+      <h3 id="${id(p)}">${esc(h)}</h3>${html}`)
+        .join('')}
     </section>`
 }
 
@@ -152,8 +261,9 @@ function page(courses: Course[]): string {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GIU Lab Slides</title>
-<meta name="description" content="Lab slides and PDFs for every course, in one place.">
+<title>GIU Course Hub</title>
+<meta name="description" content="Slides, PDFs, dates, projects and links for every course, for teaching staff.">
+<meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
@@ -190,6 +300,27 @@ h1 { color: var(--strong); font-size: clamp(2rem, 5vw, 2.75rem); font-weight: 60
   font-size: 0.85rem; font-weight: 500; padding: 0.35rem 0.8rem; border-radius: 999px;
 }
 .jump a:hover { background: var(--rule); }
+.toc { display: flex; flex-wrap: wrap; gap: 0.25rem 1.1rem; margin: -0.5rem 0 0.5rem; font-size: 0.85rem; }
+.toc a { color: var(--muted); text-decoration: none; font-weight: 500; }
+.toc a:hover { color: var(--strong); }
+h3 { scroll-margin-top: 1rem; }
+.dates { list-style: none; margin: 0.5rem 0 0; padding: 0; }
+.dates li { display: grid; grid-template-columns: 9.5rem 1fr; gap: 1rem; padding: 0.55rem 0 0.55rem 0.9rem; border-left: 3px solid var(--rule); }
+.dates .when { color: var(--strong); font-weight: 500; font-size: 0.9rem; }
+.dates .when small { color: var(--muted); font-weight: 400; margin-left: 0.4rem; }
+.dates .what { color: var(--strong); font-size: 0.95rem; }
+.dates .what small, .links small { display: block; color: var(--muted); font-size: 0.8rem; }
+.dates li.is-past { opacity: 0.45; }
+.dates li.is-next { border-left-color: var(--red); background: var(--chip); }
+.dates li.is-next .when::after { content: 'Next'; margin-left: 0.5rem; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--red); }
+.project p { margin: 0.5rem 0 0.9rem; max-width: 44rem; }
+.docs { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.links { display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); gap: 0.5rem 2rem; margin-top: 0.25rem; }
+.links h4 { color: var(--strong); font-size: 0.9rem; font-weight: 600; margin: 0.75rem 0 0.25rem; }
+.links ul { list-style: none; margin: 0; padding: 0; }
+.links li { padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
+.links a { color: var(--strong); font-weight: 500; text-decoration-color: var(--rule); text-underline-offset: 3px; overflow-wrap: anywhere; }
+.links a:hover { text-decoration-color: var(--strong); }
 .course { padding-top: 2.25rem; margin-top: 2.25rem; border-top: 1px solid var(--rule); scroll-margin-top: 1rem; }
 .eyebrow { color: var(--muted); font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 0.35rem; }
 .eyebrow .dot { margin: 0 0.5em; }
@@ -219,6 +350,7 @@ footer { color: var(--muted); font-size: 0.8rem; margin-top: 3rem; padding-top: 
   .wrap { padding: 2.25rem 1rem 3rem; }
   .deck { grid-template-columns: 1fr; padding-right: 0; }
   .deck__links { grid-template-columns: 1fr 1fr; margin-top: 0.4rem; }
+  .dates li { grid-template-columns: 1fr; gap: 0; }
 }
 </style>
 </head>
@@ -226,13 +358,24 @@ footer { color: var(--muted); font-size: 0.8rem; margin-top: 3rem; padding-top: 
 <main class="wrap">
   <header>
     <div class="bar"></div>
-    <h1>Lab slides</h1>
-    <p class="lede">Every lab and assignment walkthrough, by course. Open the slides in your browser, or download the PDF to copy code from.</p>
+    <h1>Course hub</h1>
+    <p class="lede">For teaching staff: every course's slides and PDFs, key dates, project and links. Students get their material from the GIU CMS, never from here.</p>
     ${nav}
   </header>
 ${courses.map(courseSection).join('\n')}
   <footer>Updated ${esc(built)}</footer>
 </main>
+<script>
+  // Dim past dates and mark the next one, per course, against today's date
+  const today = new Date().toLocaleDateString('en-CA')
+  for (const list of document.querySelectorAll('.dates')) {
+    let next = false
+    for (const li of list.children) {
+      if (li.dataset.date < today) li.classList.add('is-past')
+      else if (!next) { li.classList.add('is-next'); next = true }
+    }
+  }
+</script>
 </body>
 </html>
 `
@@ -250,6 +393,23 @@ for (const c of courses)
       mkdirSync(join(out, c.slug), { recursive: true })
       copyFileSync(join('dist', d.pdf.href), join(out, d.pdf.href))
     }
+  }
+// Documents: an .html source is printed to PDF (scripts/build-doc.mjs), anything else copied
+for (const c of courses)
+  for (const d of c.hub.project?.documents ?? []) {
+    const src = join('courses', c.slug, d.source)
+    const dest = join(out, c.slug, d.out)
+    mkdirSync(join(out, c.slug), { recursive: true })
+    if (extname(src) === '.html') {
+      const footer = `${c.title} · ${c.code} · GIU`
+      const r = spawnSync('node', ['scripts/build-doc.mjs', src, dest, footer], { stdio: 'inherit' })
+      if (r.status !== 0) {
+        console.log(`  ${c.slug}: could not build ${d.source}`)
+        continue
+      }
+    } else copyFileSync(src, dest)
+    d.href = `${c.slug}/${d.out}`
+    d.bytes = statSync(dest).size
   }
 writeFileSync(join(out, 'index.html'), page(courses))
 
