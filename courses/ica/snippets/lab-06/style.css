@@ -1,0 +1,17 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8fafc;
+  padding: 40px;
+}
+.card {
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 16px;
+  text-align: center;
+}
+.logo { width: 48px; }
+.btn {
+  background-color: #ff5a00;
+  color: #ffffff;
+  padding: 8px 16px; border-radius: 8px;
+}
