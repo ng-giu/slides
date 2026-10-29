@@ -11,7 +11,7 @@
 //
 // A deck's key hashes everything that can change its output: the deck itself,
 // the snippet files it pulls in with `<<< @/...`, its course's shared files
-// (public/, vite.config.ts, style.css; not snippets/, other decks or project/),
+// (public/, vite.config.ts, style.css; not snippets/, other decks, project/ or course.yml),
 // the theme, the dependencies and this script. So editing Lab 6's snippets
 // rebuilds Lab 6 only. Finished decks are kept in .cache/decks/<course>/<deck>/<key>/,
 // which CI carries between runs (actions/cache in .github/workflows/pages.yml).
@@ -54,7 +54,7 @@ function courseKey(course: string): string {
   if (!courseKeys.has(course)) {
     const dir = join('courses', course)
     const inputs = readdirSync(dir)
-      .filter((n) => !/^(lab|assignment)-.*\.md$/.test(n) && n !== 'project' && n !== 'snippets')
+      .filter((n) => !/^(lab|assignment)-.*\.md$/.test(n) && !['project', 'snippets', 'course.yml'].includes(n))
       .sort()
       .flatMap((n) => files(join(dir, n)))
     courseKeys.set(course, hash(inputs))

@@ -1,0 +1,18 @@
+# Staff hub for this course, rendered on the index page. See courses/ebd/course.yml for the fields.
+
+links:
+  - group: Student material
+    items:
+      - { label: GIU CMS, url: "https://cms.giu-uni.de", note: "Where students get every deck and PDF" }
+      - { label: Talabat prototyping starter kit (Figma), url: "https://www.figma.com/community/file/1688178288499788693", note: "Lab 4" }
+      - { label: Talabat UI starter kit (Figma), url: "https://www.figma.com/community/file/1685465148190554592", note: "Lab 3, graded in class" }
+      - { label: Talabat brand guidelines, url: "https://drive.google.com/file/d/16Q8km7oc1fVimUW-6GjubpxlQoFVw47g/view?usp=sharing", note: "Labs 3–4" }
+      - { label: HTML & CSS assignment portal, url: "https://youneszied.github.io/ICA_lab_5_Assignment-/", note: "Lab 5, Assignment 1" }
+  - group: Forms
+    items:
+      - { label: Lab 3 submission, url: "https://forms.cloud.microsoft/r/yjFVqM1WDm" }
+      - { label: Lab 4 submission, url: "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=twQ5o3wq-k-WjR0V5Byu8yfIedfI9QBOq86huAYW4xZUNEZPNklUVVNaVzdWNjRGMDQ4MFBFOTFETC4u" }
+      - { label: Lab 5 / Assignment 1 submission, url: "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=twQ5o3wq-k-WjR0V5Byu8yfIedfI9QBOq86huAYW4xZURURPNVlNN1lHVDA3U1FaSllTWVJBOE4yTC4u" }
+  - group: Staff
+    items:
+      - { label: Slides repository, url: "https://github.com/ng-giu/slides", note: "Every push to main deploys this site" }

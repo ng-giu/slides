@@ -190,6 +190,8 @@ Markdown `#`.
 
 `dense: true` shrinks type, tables and code on a slide that is running long. Use it instead of rewriting the layout.
 
+Two slide classes go further, from `theme/styles/layout.css` (`class:` in the slide's frontmatter): `giu-small` sets long code blocks in smaller type with tighter lines, and `giu-fix` lets a table's first column wrap, for troubleshooting tables with long error messages.
+
 ## Slide-type icons
 
 Recurring kinds of slide carry the same mark every week, so students recognise
