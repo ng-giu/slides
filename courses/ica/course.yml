@@ -13,6 +13,7 @@ links:
       - { label: Lab 3 submission, url: "https://forms.cloud.microsoft/r/yjFVqM1WDm" }
       - { label: Lab 4 submission, url: "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=twQ5o3wq-k-WjR0V5Byu8yfIedfI9QBOq86huAYW4xZUNEZPNklUVVNaVzdWNjRGMDQ4MFBFOTFETC4u" }
       - { label: Lab 5 / Assignment 1 submission, url: "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=twQ5o3wq-k-WjR0V5Byu8yfIedfI9QBOq86huAYW4xZURURPNVlNN1lHVDA3U1FaSllTWVJBOE4yTC4u" }
+      - { label: Lab 6 / Assignment 2 submission, url: "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=twQ5o3wq-k-WjR0V5Byu8yfIedfI9QBOq86huAYW4xZUNE5BNzJPS1FXWVpRUlUySTlTR0JQUjA4RC4u" }
   - group: Staff
     items:
       - { label: Slides repository, url: "https://github.com/ng-giu/slides", note: "Every push to main deploys this site" }
