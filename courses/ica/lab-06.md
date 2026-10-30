@@ -26,20 +26,6 @@ title: Contacts
 
 ---
 layout: media
-image: /img/illustrations/rules.png
-side: right
-alt: A closed book titled Rules
----
-
-# Rules and code of conduct
-
-- **Punctuality:** a grace period of 15 minutes is permitted solely for recording attendance.
-- **Mobile phones:** allowed for taking notes only. Anything unrelated to the session is not permitted.
-- **Focus:** no side conversations during the session. Please participate in all activities.
-- **Communication:** email and office hours only, written in formal business English.
-
----
-layout: media
 image: /img/illustrations/hourglass.png
 side: left
 alt: An hourglass
@@ -50,182 +36,59 @@ dense: true
 
 | Duration | Topic |
 |---|---|
-| 10 min | **From Notepad to Pro Tools:** Where we are in the ICA pipeline |
-| 15 min | **Visual Studio Code:** Explorer, Editor vs. Terminal & Live Server |
-| 15 min | **Git & GitHub:** Version control, snapshots & team collaboration |
-| 20 min | **Hands-on Activity:** Build & push a multi-file HTML/CSS/Assets project |
-| 5 min | **Next Lab Preview:** Multi-page Figma-to-Code project (Lab 7) |
-
----
-layout: section
-icon: lifecycle
-sub: Moving from a single Notepad file to a real multi-file web workspace
----
-
-# 01 — From Notepad to a real dev setup
-
----
-layout: default
-icon: recap
-pipeline:
-  - { title: "Lab 1", code: "User Stories", sub: "What to build & why" }
-  - { title: "Labs 2–4", code: "Figma UI & Flows", sub: "Wireframes, components & prototype" }
-  - { title: "Lab 5", code: "Notepad HTML/CSS", sub: "One self-contained .html file" }
-  - { title: "Lab 6 (Today)", code: "VS Code + Git", sub: "Multi-file workspace & GitHub" }
-  - { title: "Lab 7", code: "Multi-Page App", sub: "Lab 4 Figma screens in HTML/CSS" }
----
-
-# Where we are in the ICA pipeline
-
-In **Lab 5**, you wrote HTML and CSS in **Notepad** inside a single `.html` file so you could see how the browser reads raw tags without shortcuts.
-
-<Flow :steps="$frontmatter.pipeline" />
-
-Real websites—and your **Course Project (PD3)**—are never one giant file in Notepad. Today we upgrade your workflow so you can manage **separate HTML, CSS, and asset files** and collaborate as a team.
-
----
-layout: default
-icon: intro
-dense: true
----
-
-# Why Notepad stops working past one screen
-
-| Challenge | In Notepad (Lab 5) | In VS Code + Git (Lab 6 onwards) |
-|---|---|---|
-| **Multiple files** | Every file is a separate Notepad window; easy to edit the wrong one | **Explorer sidebar** shows your entire project folder tree (`index.html`, `style.css`, `assets/`) |
-| **Shared styling** | `<style>` is trapped inside one `.html` file; copying it across 5 pages means 5 places to fix | One external **`style.css`** linked across every page via `<link rel="stylesheet" href="style.css">` |
-| **Catching typos** | Black text on a white background; a missing `>` silently breaks the layout | **Syntax highlighting**, auto-closing tags, and colour swatches next to `#ff5a00` |
-| **Teamwork & backups** | Sending `project_final_v3_REAL.zip` on WhatsApp and overwriting teammates' work | **Git & GitHub** track every change, who made it, and keep one shared cloud repository |
-
----
-layout: media
-image: /img/illustrations/tech-collage.png
-side: left
-alt: Web development tools illustration
----
-
-# The three tools we lock in today
-
-- **<Tool name="vscode" /> (Visual Studio Code)** — the code editor we use for the rest of the course to write <Tool name="html5" /> and <Tool name="css3" /> and organize project folders.
-- **<Tool name="git" />** — version control on your laptop that records snapshots (**commits**) of your project as you work.
-- **<Tool name="github" />** — the cloud platform that hosts your Git repositories online so you can back up, submit, and share code with your team.
+| 10 min | **Part 1A — What is VS Code?** VS Code vs. Notepad & workspace anatomy |
+| 10 min | **Part 1B — What is Git?** Version control for developers & local snapshots |
+| 10 min | **Part 1C — What is GitHub?** Cloud hosting & comparing Git vs. GitHub |
+| 35 min | **Part 2 — Lab Manual (Practice):** Build an HTML + CSS + `assets/` project & push to GitHub |
 
 ---
 layout: section
 icon: tools
-sub: Setting up Visual Studio Code, the Explorer sidebar, and the integrated Terminal
+sub: "Part 1 — Concepts: A text editor built specifically for programming"
 ---
 
-# 02 — Visual Studio Code & project folders
+# 01 — What is Visual Studio Code?
 
 ---
 layout: split
-title: Visual Studio Code
+title: What is Visual Studio Code?
 wideRight: true
 dense: true
 ---
 
 <ToolLogo src="/img/logos/vscode.png" alt="Visual Studio Code" />
 
-**Visual Studio Code** is a free, cross-platform editor built for web projects.
+**Visual Studio Code (<Tool name="vscode" />)** is a free source-code editor used by developers to write and manage software projects.
 
-Install two things before we start:
-
-1. **VS Code** — [code.visualstudio.com](https://code.visualstudio.com)
-2. **Git** — [git-scm.com/downloads](https://git-scm.com/downloads) (on Windows, this also installs Git Bash)
-
-Docs: [code.visualstudio.com/docs](https://code.visualstudio.com/docs)
+**VS Code vs. Notepad:**
+- Both are **plain-text editors** that read and save `.html` and `.css` files.
+- Unlike **Notepad** (plain black text, one loose file per window), <Tool name="vscode" /> is **oriented toward programming**: it adds **syntax highlighting**, auto-closing `<tags>`, and opens an entire **project folder** at once.
 
 ::right::
 
-<Activity label="Open a project folder in VS Code">
-
-Always open a **folder**, never a loose file:
-
-1. Create a new empty folder named `ica-lab-06` on your Desktop (or Documents).
-2. Open <Tool name="vscode" />.
-3. Click **File → Open Folder...** (or **Open Folder** on the Welcome screen).
-4. Select `ica-lab-06` and click **Select Folder** (Windows) or **Open** (Mac).
-
-</Activity>
-
-<div class="giu-refs__note">Recommended extension: open the Extensions tab on the left sidebar (<code>Ctrl+Shift+X</code>) and install <strong>Live Server</strong> to auto-refresh your browser whenever you save.</div>
-
----
-layout: split
-title: Editor (files) vs. Terminal (commands)
-dense: true
----
-
-**Code goes in a file** in the Editor (top area):
-
-- You write <Tool name="html5" /> inside `.html` files and <Tool name="css3" /> inside `.css` files.
-- Use the **Explorer** sidebar (top icon on the far left) to create files and folders.
-- Press `Ctrl + S` (`Cmd + S` on Mac) to save—an unsaved file shows a **dot** next to its tab name.
-
-::right::
-
-**Commands go in the Terminal** (bottom panel):
-
-```bash
-git --version
-git status
-```
-
-<Activity label="Open the integrated Terminal">
-
-1. In VS Code's top menu bar, click **Terminal → New Terminal**.
-2. A panel opens at the bottom of the window, already inside your `ica-lab-06` folder.
-3. Type `git --version` and press **Enter** to verify Git is installed.
-
-</Activity>
-
----
-layout: split
-title: Anatomy of a frontend project folder
-wideRight: true
-dense: true
----
-
-Instead of cramming CSS inside `<style>` tags in one file, we separate a frontend project by **responsibility**:
-
-- **`index.html`** — the main entry page (HTML structure only).
-- **`style.css`** — the external stylesheet linked in `<head>`:
-  `<link rel="stylesheet" href="style.css">`
-- **`assets/`** — a subfolder for images and icons linked in `<body>`:
-  `<img src="assets/logo.svg" alt="Logo">`
-
-::right::
-
-<div class="p-3 rounded-xl border border-slate-200 bg-slate-50 font-mono text-xs space-y-2">
-  <div class="font-bold text-slate-900">ica-lab-06/</div>
-  <div class="pl-4 space-y-1.5 text-[0.72rem]">
-    <div class="flex items-center justify-between p-1.5 rounded bg-white border border-blue-200">
-      <span class="font-bold text-blue-800">├── index.html</span>
-      <span class="font-sans text-[0.62rem] text-slate-600">Links <code>style.css</code> &amp; <code>assets/logo.svg</code></span>
-    </div>
-    <div class="flex items-center justify-between p-1.5 rounded bg-white border border-teal-200">
-      <span class="font-bold text-teal-800">├── style.css</span>
-      <span class="font-sans text-[0.62rem] text-slate-600">All Flexbox, Box Model &amp; surface rules</span>
-    </div>
-    <div class="p-1.5 rounded bg-white border border-amber-200 space-y-1">
-      <div class="font-bold text-amber-900">└── assets/</div>
-      <div class="pl-5 flex items-center justify-between">
-        <span class="font-bold text-amber-800">└── logo.svg</span>
-        <span class="font-sans text-[0.62rem] text-slate-600">Brand graphics, icons &amp; photos</span>
-      </div>
-    </div>
+<div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 space-y-2.5 text-xs">
+  <div class="font-bold text-slate-900 text-sm">Three main areas inside the VS Code window</div>
+  <div class="p-2.5 rounded-lg bg-white border border-blue-200">
+    <div class="font-bold text-blue-900">1. Explorer Sidebar (Left)</div>
+    <div class="text-[0.68rem] text-slate-600 mt-0.5">Shows your project folder tree (<code>index.html</code>, <code>style.css</code>, <code>assets/</code>) so you can create and switch between files quickly.</div>
+  </div>
+  <div class="p-2.5 rounded-lg bg-white border border-teal-200">
+    <div class="font-bold text-teal-900">2. Editor Area (Top Right)</div>
+    <div class="text-[0.68rem] text-slate-600 mt-0.5">Where you write <Tool name="html5" /> and <Tool name="css3" /> code inside open tabs. A dot on a tab means the file has unsaved changes.</div>
+  </div>
+  <div class="p-2.5 rounded-lg bg-white border border-purple-200">
+    <div class="font-bold text-purple-900">3. Integrated Terminal (Bottom Panel)</div>
+    <div class="text-[0.68rem] text-slate-600 mt-0.5">A built-in command line already pointed at your project folder, used to run <Tool name="git" /> commands.</div>
   </div>
 </div>
 
 ---
 layout: section
 icon: code
-sub: Tracking changes locally with Git and backing them up on GitHub
+sub: "Part 1 — Concepts: Version control for developers"
 ---
 
-# 03 — Version control with Git & GitHub
+# 02 — What is Git?
 
 ---
 layout: default
@@ -234,103 +97,149 @@ dense: true
 
 <ToolLogo src="/img/logos/git.png" alt="Git" />
 
-# Git
+# What is Git? Version control for developers
 
-**Git** is version control: it tracks every change you make to your project folder so you can inspect what changed, undo mistakes, and collaborate. Every command below also has a button in VS Code's **Source Control** sidebar.
+**Git** is a **version control system** that runs on your computer. Instead of saving duplicate folders (`project_v1`, `project_FINAL`), Git watches your project folder and records permanent **snapshots (commits)** as you code:
 
-| Command | What it does |
-|---|---|
-| `git init` | Turns the current folder into a new local Git repository (run once per project) |
-| `git status` | Shows which files were created or modified since your last snapshot |
-| `git add .` | Stages all changed files in the folder so they are ready to be saved |
-| `git commit -m "<msg>"` | Saves a permanent snapshot of staged files with a short description |
-| `git clone <url>` | Downloads a remote repository from GitHub onto your computer |
-| `git pull` | Downloads the latest commits from GitHub into your local folder |
-| `git push` | Uploads your local commits to GitHub |
+| Concept | Local Git command | What it means |
+|---|---|---|
+| **Repository (`repo`)** | `git init` | A project folder that Git is actively tracking |
+| **Working changes** | `git status` | Shows which files were created, modified, or deleted since the last snapshot |
+| **Staging area** | `git add .` | Selects the changed files you want to include in your next snapshot |
+| **Commit (snapshot)** | `git commit -m "<msg>"` | Saves a permanent, timestamped snapshot of staged files with a description |
+
+---
+layout: section
+icon: lifecycle
+sub: "Part 1 — Concepts: Cloud repository hosting and how Git differs from GitHub"
+---
+
+# 03 — What is GitHub? (Git vs. GitHub)
+
+---
+layout: default
+dense: true
+---
+
+<ToolLogo name="github" />
+
+# What is GitHub? Comparing Git vs. GitHub
+
+**<Tool name="github" />** ([github.com](https://github.com)) is a cloud platform that hosts **<Tool name="git" />** repositories online so you can back up your work and collaborate with your team:
+
+| Question | <Tool name="git" /> | <Tool name="github" /> |
+|---|---|---|
+| **What is it?** | **Version control tool** that records snapshots of files | **Cloud website** that hosts Git repositories online |
+| **Where does it live?** | **Locally on your laptop** (Terminal / VS Code) | **On the web** at [github.com](https://github.com) |
+| **Internet needed?** | **No** — `git init`, `add`, and `commit` work offline | **Yes** — needed for `git push`, `pull`, and `clone` |
+| **Analogy** | Taking and organizing photos on your phone | Backing up and sharing that album in the cloud |
 
 ---
 layout: default
 icon: lifecycle
 gitflow:
-  - { title: "1. Working Folder", code: "Save files (Ctrl+S)", sub: "Edit index.html, style.css, assets/" }
-  - { title: "2. Staging Area", code: "git add .", sub: "Select files for the next snapshot" }
-  - { title: "3. Local Repository", code: 'git commit -m "..."', sub: "Permanent snapshot on your laptop" }
-  - { title: "4. Remote (GitHub)", code: "git push", sub: "Backed up online & shared with team" }
----
-
-# How a change travels from VS Code to GitHub
-
-Saving a file (`Ctrl + S`) only updates it on disk. To record it in version history and upload it to GitHub, it moves through four stages:
-
-<Flow :steps="$frontmatter.gitflow" />
-
-<div class="giu-refs__note">Think of <code>git add .</code> as putting items into a shipping box, <code>git commit</code> as sealing and labelling the box, and <code>git push</code> as sending the box to GitHub.</div>
-
----
-layout: activity
-title: One-time setup — Set your Git identity
+  - { title: "1. VS Code Folder", code: "Save files (Ctrl+S)", sub: "Edit index.html, style.css, assets/" }
+  - { title: "2. Staging Area (Git)", code: "git add .", sub: "Select files for the next snapshot" }
+  - { title: "3. Local Repo (Git)", code: 'git commit -m "..."', sub: "Permanent snapshot on your laptop" }
+  - { title: "4. Cloud Repo (GitHub)", code: "git push", sub: "Uploaded to github.com for backup & team" }
 dense: true
 ---
 
-**Do this once on your machine.** Git stamps every commit with the author's name and email—without this, your first `git commit` will stop with an error:
+# How VS Code, Git, and GitHub work together
 
-```bash
-git config --global user.name "Your Full Name"
-git config --global user.email "your.email@student.giu-uni.de"
-```
+First, you edit and save files in **<Tool name="vscode" />**, record commits locally with **<Tool name="git" />**, and then sync them with **<Tool name="github" />**:
 
-Verify that Git saved your identity:
+<Flow :steps="$frontmatter.gitflow" />
 
-```bash
-git config --global --list
-```
-
-Then create a free **GitHub account** if you do not have one yet: [github.com](https://github.com)
+- **`git push`** — uploads your local commits from your laptop to your repository on GitHub.
+- **`git clone <url>`** — downloads an existing repository from GitHub onto a computer for the first time.
+- **`git pull`** — downloads the latest commits from GitHub when a teammate updates the repository.
 
 ---
 layout: section
 icon: activity
-sub: Build a multi-file HTML, CSS & Assets project in VS Code and push it to GitHub
+sub: "Part 2 — Practice: Step-by-step walkthrough from an empty folder to GitHub"
 ---
 
-# 04 — Hands-on activity: Your first frontend repo
+# 04 — Lab Manual: Hands-On Practice
 
 ---
 layout: split
-title: "The plan: 3 files across 5 steps"
+title: "The plan: 3 files across 6 steps"
 dense: true
 ---
 
-You will build a clean **Talabat Portal Card** inside `ica-lab-06/` with separated HTML, CSS, and image assets, then publish it to GitHub:
+You will now build a multi-file **Talabat Portal** in <Tool name="vscode" /> and push it to <Tool name="github" />:
 
-1. **Step 1** — Create the `assets/` folder and `assets/logo.svg`
-2. **Step 2** — Create the external stylesheet `style.css`
-3. **Step 3** — Create `index.html` linking `style.css` and `assets/logo.svg`
-4. **Step 4** — Initialize Git and commit your project locally
-5. **Step 5** — Create a GitHub repository and push your code online
+1. **Step 1** — Open the `ica-lab-06/` project folder in VS Code.
+2. **Step 2 (`assets/logo.svg`)** — Create `assets/` with an image.
+3. **Step 3 (`style.css`)** — Create the CSS stylesheet.
+4. **Step 4 (`index.html`)** — Link `style.css` (`<link>`) & `logo.svg` (`<img>`).
+5. **Step 5 (Git)** — Configure Git, `git init`, and commit locally.
+6. **Step 6 (GitHub)** — Create a GitHub repository and push.
 
 ::right::
 
-```text
-ica-lab-06/
-├── assets/
-│   └── logo.svg      (new — Step 1)
-├── style.css         (new — Step 2)
-└── index.html        (new — Step 3)
-```
+<div class="p-3 rounded-xl border border-slate-200 bg-slate-50 font-mono text-xs space-y-2">
+  <div class="font-bold text-slate-900">ica-lab-06/ <span class="font-sans font-normal text-[0.65rem] text-slate-500">(Step 1 — Open in VS Code)</span></div>
+  <div class="pl-4 space-y-1.5 text-[0.72rem]">
+    <div class="p-1.5 rounded bg-white border border-amber-200 space-y-1">
+      <div class="font-bold text-amber-900">├── assets/</div>
+      <div class="pl-5 flex items-center justify-between">
+        <span class="font-bold text-amber-800">└── logo.svg</span>
+        <span class="font-sans text-[0.62rem] text-slate-600">Step 2 — Image inside <code>assets/</code></span>
+      </div>
+    </div>
+    <div class="flex items-center justify-between p-1.5 rounded bg-white border border-teal-200">
+      <span class="font-bold text-teal-800">├── style.css</span>
+      <span class="font-sans text-[0.62rem] text-slate-600">Step 3 — External CSS styling</span>
+    </div>
+    <div class="flex items-center justify-between p-1.5 rounded bg-white border border-blue-200">
+      <span class="font-bold text-blue-800">└── index.html</span>
+      <span class="font-sans text-[0.62rem] text-slate-600">Step 4 — Links <code>style.css</code> &amp; <code>&lt;img&gt;</code></span>
+    </div>
+  </div>
+</div>
 
-<div class="giu-refs__note">Follow the steps in order—we create <code>assets/logo.svg</code> and <code>style.css</code> first so that when you open <code>index.html</code> in Step 3, every linked file already exists.</div>
+<div class="giu-refs__note">We create <code>assets/logo.svg</code> and <code>style.css</code> before <code>index.html</code> so every file exists when we link it.</div>
 
 ---
 layout: split
-title: "Step 1 of 5: the logo asset"
+title: "Step 1 of 6: open your project folder in VS Code"
+wideRight: true
 dense: true
 ---
 
-1. Make sure your `ica-lab-06` folder is open in <Tool name="vscode" />.
-2. In the **Explorer** sidebar on the left, click the **New Folder** icon next to `ICA-LAB-06` and name it `assets`.
-3. Click on the `assets` folder, then click the **New File** icon and name it `logo.svg`.
-4. Type or paste the SVG icon code on the right and press `Ctrl + S` to **save**.
+Before creating any files, make sure these two tools are installed:
+
+1. **VS Code** — [code.visualstudio.com](https://code.visualstudio.com)
+2. **Git** — [git-scm.com/downloads](https://git-scm.com/downloads)
+
+In VS Code, always open a **folder** rather than a loose file so the **Explorer** sidebar and **Terminal** know where your project lives.
+
+::right::
+
+<Activity label="Create and open ica-lab-06">
+
+1. Create a new empty folder named `ica-lab-06` on your Desktop (or Documents).
+2. Open <Tool name="vscode" />.
+3. Click **File → Open Folder...** (or **Open Folder** on the Welcome screen).
+4. Select `ica-lab-06` and click **Select Folder** (Windows) or **Open** (Mac).
+
+</Activity>
+
+<div class="giu-refs__note">Recommended extension: open the Extensions tab on the left sidebar (<code>Ctrl+Shift+X</code>) and install <strong>Live Server</strong> so your browser reloads automatically whenever you save.</div>
+
+---
+layout: split
+title: "Step 2 of 6: the assets/ folder and image"
+dense: true
+---
+
+1. Look at the **Explorer** sidebar on the left side of <Tool name="vscode" /> (under `ICA-LAB-06`).
+2. Click the **New Folder** icon next to `ICA-LAB-06` and name the folder `assets`.
+3. Click the `assets` folder to select it, then click the **New File** icon and name it `logo.svg`.
+4. Paste the SVG image code on the right and press `Ctrl + S` (`Cmd + S` on Mac) to **save**.
 
 ::right::
 
@@ -340,15 +249,16 @@ dense: true
 
 ---
 layout: split
-title: "Step 2 of 5: the CSS file"
+title: "Step 3 of 6: the CSS file (style.css)"
 dense: true
+class: giu-small
 ---
 
 1. Click the empty space in the **Explorer** sidebar (outside `assets/`) so your next file is created at the root of `ica-lab-06/`.
 2. Click the **New File** icon and name it `style.css`.
-3. Paste the CSS rules on the right and press `Ctrl + S` to **save**.
+3. Write the CSS styling rules on the right and press `Ctrl + S` to **save**.
 
-Notice there are **no `<style>` tags** inside a `.css` file—only pure CSS selectors (`body`, `.card`, `.logo`, `.btn`) and properties.
+Notice there are **no `<style>` tags** inside a `.css` file—only CSS selectors (`body`, `.card`, `.logo`, `.btn`) and their properties.
 
 ::right::
 
@@ -358,17 +268,17 @@ Notice there are **no `<style>` tags** inside a `.css` file—only pure CSS sele
 
 ---
 layout: split
-title: "Step 3 of 5: the HTML page"
+title: "Step 4 of 6: index.html linking CSS and image"
 dense: true
 ---
 
 1. At the root of `ica-lab-06/` (next to `style.css`), click **New File** and name it `index.html`.
 2. Write the HTML on the right and press `Ctrl + S` to **save**.
 
-Look at the two highlighted lines:
+Look closely at the two highlighted parts:
 
-- **Line 5** pulls in your external stylesheet (`style.css`).
-- **Line 10** loads the vector icon from the `assets/` subfolder (`assets/logo.svg`).
+- **Line 5 (`<link>`)** links `style.css` inside `<head>`: `<link rel="stylesheet" href="style.css">`
+- **Lines 9–10 (`<img>`)** load the image from `assets/`: `<img class="logo" src="assets/logo.svg" alt="Logo">`
 
 ::right::
 
@@ -378,18 +288,20 @@ Look at the two highlighted lines:
 
 ---
 layout: split
-title: "Checkpoint 1: preview in the browser"
+title: "Checkpoint 1: preview your page in the browser"
 dense: true
 ---
 
 <Activity label="Open your page">
 
 1. Right-click `index.html` in the VS Code Explorer sidebar and click **Open with Live Server** (or double-click `index.html` in your file manager).
-2. Confirm you see the white rounded card on a light grey background, the orange **`t`** logo badge, the heading, and the orange **Explore Menu** button.
+2. Confirm that both linked files load properly:
+   - **From `style.css`:** light grey background, centered white card, and orange **Explore Menu** button.
+   - **From `assets/logo.svg`:** the orange **`t`** logo image above the heading.
 
 </Activity>
 
-Missing the styling or broken image icon? Check <Link to="fix-files">**Styles or images don't load**</Link> in Troubleshooting at the end.
+Missing the styling or seeing a broken image icon? Check <Link to="fix-files">**Styles or images don't load**</Link> in Troubleshooting.
 
 ::right::
 
@@ -405,21 +317,27 @@ Missing the styling or broken image icon? Check <Link to="fix-files">**Styles or
 
 ---
 layout: split
-title: "Step 4 of 5: initialize Git & commit locally"
+title: "Step 5 of 6: initialize Git & commit locally"
 wideRight: true
 dense: true
 ---
 
-Open the integrated Terminal (**Terminal → New Terminal**) and run these four commands one by one:
-
-1. `git init` — creates the local repository.
-2. `git status` — lists `assets/`, `index.html`, and `style.css` as untracked.
-3. `git add .` — stages all three files.
-4. `git commit -m "Initial frontend structure"` — records your first snapshot.
+1. Open the integrated Terminal in VS Code: click **Terminal → New Terminal** in the top menu bar.
+2. If this is your first time using Git on this computer, set your `user.name` and `user.email` first (shown on the right).
+3. Run `git init`, `git status`, `git add .`, and `git commit` to record your first snapshot (`commit`) locally.
 
 ::right::
 
 <Activity label="Run in the VS Code Terminal">
+
+First-time setup on a machine (run once):
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "you@giu.de"
+```
+
+Initialize and commit your project:
 
 ```bash
 git init
@@ -428,28 +346,18 @@ git add .
 git commit -m "Initial frontend structure"
 ```
 
-Expected output after `git commit`:
-
-```text
-[main (root-commit) 1a2b3c4] Initial frontend structure
- 3 files changed, 50 insertions(+)
- create mode 100644 assets/logo.svg
- create mode 100644 index.html
- create mode 100644 style.css
-```
-
 </Activity>
 
 ---
 layout: split
-title: "Step 5 of 5: push to GitHub"
+title: "Step 6 of 6: create a GitHub repo & push"
 wideRight: true
 dense: true
 ---
 
-Now upload your local repository to <Tool name="github" />:
+Now upload your local Git repository to <Tool name="github" />:
 
-1. Sign in to [github.com](https://github.com) and click **`+`** (top right) → **New repository**.
+1. Sign in to [github.com](https://github.com) (create a free account if needed) and click **`+`** (top right) → **New repository**.
 2. Name it `ica-lab-06`, keep it **Public**, and leave **Add a README** **unchecked**.
 3. Click **Create repository**.
 
@@ -457,7 +365,7 @@ Now upload your local repository to <Tool name="github" />:
 
 <Activity label="Connect and push (Terminal or VS Code)">
 
-Copy the three lines GitHub shows under *"…or push an existing repository"* and run them in your Terminal:
+Copy the three commands GitHub shows under *"…or push an existing repository"* and run them in your Terminal:
 
 ```bash
 git branch -M main
@@ -490,9 +398,9 @@ Got an error in the terminal? Jump to <Link to="fix-git">**Git & GitHub errors**
 
 ::right::
 
-### What happens when you edit a file later?
+### Updating your project after edits
 
-Whenever you change `index.html` or `style.css`, you only need the **three daily commands**:
+Whenever you edit `index.html`, `style.css`, or add more images to `assets/`, save the file (`Ctrl + S`) and run the three daily commands:
 
 ```bash
 git add .
@@ -501,54 +409,6 @@ git push
 ```
 
 Or in VS Code's **Source Control** tab: type a message, click **Commit**, then click **Sync Changes**.
-
----
-layout: default
-icon: lifecycle
-dense: true
----
-
-# Coming up in Lab 7: Multi-page Figma-to-code sprint
-
-Now that you have <Tool name="vscode" />, a clean `index.html` + `style.css` + `assets/` folder structure, and <Tool name="github" /> ready, here is what we will build next week in **Lab 7**:
-
-<div class="grid grid-cols-3 gap-3.5 mt-3 text-xs">
-  <div class="p-3.5 rounded-xl border border-blue-200 bg-blue-50/50 flex flex-col justify-between">
-    <div>
-      <div class="font-bold text-blue-900 text-sm mb-1">1. Your Lab 4 Figma Prototype</div>
-      <p class="text-[0.68rem] text-slate-600 leading-relaxed">
-        You will take the multi-screen <Tool name="figma" /> prototype you wired in <strong>Lab 4</strong> (Home, Food Delivery Feed, and Restaurant pages) as your visual blueprint.
-      </p>
-    </div>
-    <div class="text-[0.6rem] text-blue-800 font-semibold pt-1.5 mt-2 border-t border-blue-200">
-      Design-to-Code Handoff
-    </div>
-  </div>
-
-  <div class="p-3.5 rounded-xl border border-teal-200 bg-teal-50/50 flex flex-col justify-between">
-    <div>
-      <div class="font-bold text-teal-900 text-sm mb-1">2. Multi-Page HTML &amp; CSS</div>
-      <p class="text-[0.68rem] text-slate-600 leading-relaxed">
-        Instead of one page, you will build multiple `.html` pages connected with <code>&lt;a href="..."&gt;</code> navigation links, sharing stylesheet rules and an <code>assets/</code> folder.
-      </p>
-    </div>
-    <div class="text-[0.6rem] text-teal-800 font-semibold pt-1.5 mt-2 border-t border-teal-200">
-      Multi-File Architecture
-    </div>
-  </div>
-
-  <div class="p-3.5 rounded-xl border border-purple-200 bg-purple-50/50 flex flex-col justify-between">
-    <div>
-      <div class="font-bold text-purple-900 text-sm mb-1">3. In-Lab Graded Sprint</div>
-      <p class="text-[0.68rem] text-slate-600 leading-relaxed">
-        You will build and wire the multi-page project in <Tool name="vscode" /> during Lab 7 and push your completed repository to <Tool name="github" />.
-      </p>
-    </div>
-    <div class="text-[0.6rem] text-purple-800 font-semibold pt-1.5 mt-2 border-t border-purple-200">
-      Directly Prepares for PD3
-    </div>
-  </div>
-</div>
 
 ---
 layout: section
@@ -569,7 +429,7 @@ dense: true
 | Symptom | Cause | Fix |
 |---|---|---|
 | Plain unstyled text (no card or orange button) | `style.css` is inside `assets/` or misspelled in `<link>` | Keep `style.css` next to `index.html` and check `<link rel="stylesheet" href="style.css">`. |
-| Broken image icon instead of the logo | `logo.svg` is outside `assets/` or path mismatches | Place `logo.svg` inside `assets/` and check `src="assets/logo.svg"` on line 10. |
+| Broken image icon instead of the logo | `logo.svg` is outside `assets/` or path mismatches | Place `logo.svg` inside `assets/` and check `<img class="logo" src="assets/logo.svg" alt="Logo">`. |
 | Edits in VS Code don't show in the browser | File is unsaved (dot on tab) or named `.css.txt` | Press `Ctrl + S` to save, refresh the browser, and always create files from VS Code Explorer. |
 
 ---
