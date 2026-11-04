@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BINF 301 Course Project, Winter 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* Course tokens, same values as theme/styles/layout.css */
+  :root {
+    --giu-black: #000000;
+    --giu-ink: #2b2b2b;
+    --giu-muted: #6f6f6f;
+    --giu-red: #e2001a;
+    --giu-gold: #e8a33d;
+    --giu-paper: #ffffff;
+    --giu-rule: #e7e7e7;
+    --giu-tint: #f6f6f7;
+  }
+  @page { size: A4; margin: 20mm 18mm 20mm 18mm; }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    margin: 0 auto;
+    max-width: 46rem;
+    background: var(--giu-paper);
+    color: var(--giu-ink);
+    font: 400 10pt/1.55 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  }
+  @media screen { body { padding: 2.5rem 1rem 4rem; } }
+
+  /* Cover */
+  .cover { min-height: 245mm; display: flex; flex-direction: column; break-after: page; }
+  .cover img { width: 9rem; }
+  .cover .kicker { margin-top: 30mm; font-weight: 500; color: var(--giu-red); letter-spacing: 0.04em; text-transform: uppercase; font-size: 10pt; }
+  .cover h1 { font-size: 30pt; line-height: 1.1; font-weight: 600; color: var(--giu-black); margin: 0.6rem 0 0.4rem; }
+  .cover .sub { font-size: 13pt; color: var(--giu-ink); }
+  .cover .bar { width: 4.5rem; height: 5px; background: var(--giu-gold); margin: 1.6rem 0; }
+  .cover .dates { display: grid; grid-template-columns: max-content 1fr; gap: 0.35rem 1.4rem; font-size: 10.5pt; }
+  .cover .dates b { font-weight: 600; color: var(--giu-black); }
+  .cover .staff { margin-top: auto; font-size: 9.5pt; color: var(--giu-muted); }
+  .cover .staff b { color: var(--giu-ink); font-weight: 500; }
+
+  /* Body */
+  h2 { font-size: 15pt; font-weight: 600; color: var(--giu-black); margin: 1.8rem 0 0.5rem; break-after: avoid; }
+  h2 .n { color: var(--giu-red); margin-right: 0.45rem; }
+  h3 { font-size: 11pt; font-weight: 600; color: var(--giu-black); margin: 1.2rem 0 0.35rem; break-after: avoid; }
+  p { margin: 0 0 0.6rem; }
+  ul, ol { margin: 0 0 0.7rem; padding-left: 1.2rem; }
+  li { margin: 0.15rem 0; }
+  li::marker { color: var(--giu-red); }
+  strong { font-weight: 600; color: var(--giu-black); }
+  code { font: 500 8.8pt 'JetBrains Mono', ui-monospace, monospace; background: var(--giu-tint); padding: 0.05rem 0.3rem; border-radius: 3px; }
+  a { color: var(--giu-red); }
+  table { width: 100%; border-collapse: collapse; margin: 0.4rem 0 0.9rem; font-size: 9.5pt; }
+  tr { break-inside: avoid; }
+  section.keep { break-inside: avoid; }
+  th { text-align: left; font-weight: 600; color: var(--giu-black); border-bottom: 2px solid var(--giu-black); padding: 0.35rem 0.5rem 0.35rem 0; }
+  td { border-bottom: 1px solid var(--giu-rule); padding: 0.4rem 0.6rem 0.4rem 0; vertical-align: top; }
+  td:first-child { white-space: nowrap; font-weight: 500; color: var(--giu-black); }
+  .box { border-left: 4px solid var(--giu-gold); background: var(--giu-tint); padding: 0.7rem 0.9rem; margin: 0.8rem 0 1rem; break-inside: avoid; }
+  .box.red { border-left-color: var(--giu-red); }
+  .box p:last-child, .box ul:last-child { margin-bottom: 0; }
+  .muted { color: var(--giu-muted); }
+  .keep { break-inside: avoid; }
+</style>
+</head>
+<body>
+
+<section class="cover">
+  <img src="../public/giu-logo.png" alt="German International University">
+  <div class="kicker">Information &amp; Communication Architecture · BINF 301</div>
+  <h1>Course Project</h1>
+  <div class="sub">Design, prototype, and build a multi-page web application as a team, from concept to live API integration.</div>
+  <div class="bar"></div>
+  <div class="dates">
+    <b>Stage 1 (PD1)</b><span>Concept, User Stories, Acceptance Criteria &amp; Wireframes · Thursday 19 November 2026, 23:59</span>
+    <b>Stage 2 (PD2)</b><span>Clickable Figma Prototype (UI &amp; IA) · Thursday 26 November 2026, 23:59</span>
+    <b>Stage 3 (PD3)</b><span>HTML/CSS Website + Live JS API, Report &amp; Poster · Thursday 10 December 2026, 23:59</span>
+    <b>Presentations</b><span>Week 13 · 12–17 December 2026</span>
+  </div>
+  <div class="staff">
+    Winter 2026<br>
+    <b>Instructor:</b> Dr. Nourhan Hamdi<br>
+    <b>Teaching Assistants:</b> Mr. Nour Gaser, Ms. Menna Khalid, Ms. Shorouk Salah, Mr. Mahmoud, Mr. Younes Zied
+  </div>
+</section>
+
+<h2><span class="n">1</span>The project</h2>
+
+<p>Your team selects a creative, feasible web application idea and takes it through the full Information &amp; Communication Architecture lifecycle: <strong>user stories, acceptance criteria, and wireframes (PD1)</strong>, a <strong>clickable Figma UI prototype (PD2)</strong>, and a <strong>working multi-page HTML, CSS &amp; JavaScript website with a live API component (PD3)</strong>, accompanied by a <strong>final report</strong>, an <strong>A1 printed poster</strong>, and a <strong>live team presentation</strong>.</p>
+
+<ul>
+  <li><strong>Teams of 5 or 6</strong> students. Each team is assigned an official <strong>Team ID</strong> and designates <strong>one member as the main point of contact</strong> to coordinate with their TA and submit on behalf of the team.</li>
+  <li><strong>One distinct feature per member</strong> (5 or 6 core features in total).</li>
+  <li>Each member owns their feature <strong>end to end</strong> across every stage of the project, and is graded on both team cohesion and individual execution.</li>
+</ul>
+
+<div class="box">
+  <p><strong>Your Chance to Shine — Student Poster Conference:</strong> The top projects from BINF 301 will be nominated by Dr. Nourhan Hamdi to enter the <strong>Faculty of Economics and Business Administration Student Poster Conference</strong> in January. A selection committee chooses the best posters for official exhibition, certificates, and top-3 trophies.</p>
+</div>
+
+<h3>What end-to-end feature ownership means</h3>
+
+<p>Clear accountability ensures fair grading. Every team member is individually responsible for one complete feature from start to finish:</p>
+
+<ol>
+  <li>writing its <strong>user stories and acceptance criteria</strong> (at least 2 user stories for their feature, each with at least 3 testable acceptance criteria),</li>
+  <li>sketching its <strong>low-fidelity wireframes</strong>,</li>
+  <li>designing its <strong>high-fidelity Figma screens</strong> and interactive prototype connections, and</li>
+  <li>coding its <strong>HTML &amp; CSS page(s)</strong> (and interactive JavaScript/API logic) in the team repository.</li>
+</ol>
+
+<p>Every member must write their full name next to the sections, screens, and pages they worked on in PD1, PD2, PD3, and the Final Report.</p>
+
+<section class="keep">
+<h2><span class="n">2</span>Deliverables &amp; grading breakdown</h2>
+
+<p>The project is delivered in three progressive stages (<strong>PD1, PD2, PD3</strong>) followed by the final week deliverables. Everything required here is practiced step by step in the labs.</p>
+
+<table>
+  <tr><th>Deliverable</th><th>Weight</th><th>What you deliver</th></tr>
+  <tr><td><strong>PD1: Concept, User Stories &amp; Wireframes</strong></td><td>20%</td><td>App concept, target users &amp; problem statement, 5–6 core features (one per member), at least 2 user stories per feature with <strong>acceptance criteria</strong> (min. 3 per story), and wireframes for the Home page + all feature pages.</td></tr>
+  <tr><td><strong>PD2: Figma Prototype (UI &amp; IA)</strong></td><td>20%</td><td>Clickable high-fidelity Figma prototype with consistent colors, typography, layout, and clear Information Architecture (navigation paths &amp; page hierarchy).</td></tr>
+  <tr><td><strong>PD3: Website + Live JavaScript API</strong></td><td>20%</td><td>Multi-page HTML &amp; CSS website with working navigation across all pages, each feature implemented by its owner, plus at least <strong>one live public API</strong> fetched with JavaScript.</td></tr>
+  <tr><td><strong>Final Report</strong></td><td>10%</td><td>Complete project documentation with Table of Contents, concept, user stories &amp; acceptance criteria, wireframes, Figma screens, website screenshots, API explanation, member roles, references, and an <strong>AI Prompts Appendix</strong>.</td></tr>
+  <tr><td><strong>Final Presentation</strong></td><td>15%</td><td>8–10 minutes live team presentation + 8–10 minutes Q&amp;A covering the idea, Figma prototype, live website, API demo, and each member explaining their own feature and code.</td></tr>
+  <tr><td><strong>Printed A1 Poster</strong></td><td>5%</td><td>Vertical A1 poster (<code>59.4 × 84.1 cm</code>) approved by your TA and printed on <strong>foam cardboard</strong> for display in the BI corridor and Poster Conference consideration.</td></tr>
+</table>
+</section>
+
+<section class="keep">
+<h2><span class="n">3</span>Timeline</h2>
+
+<table>
+  <tr><th>When</th><th>What</th></tr>
+  <tr><td>Week 7 · 31 Oct – 5 Nov</td><td>Project released. Lab 6: CSS &amp; Git/GitHub. Form your team of 5–6 and choose your app idea.</td></tr>
+  <tr><td>Week 8 · 7 – 12 Nov</td><td>Lab 7: Multi-File &amp; Multi-Page Web Practice (graded in-lab assignment). Draft PD1 &amp; wireframes.</td></tr>
+  <tr><td>Week 9 · 14 – 19 Nov</td><td>Lab 8: JavaScript Fundamentals (data, functions &amp; arrays).</td></tr>
+  <tr><td>Thu 19 Nov, 23:59</td><td><strong>Submission 1 (PD1): Concept, User Stories, Acceptance Criteria &amp; Wireframes.</strong></td></tr>
+  <tr><td>Week 10 · 21 – 26 Nov</td><td>Lab 9: DOM Manipulation &amp; Interactive Events.</td></tr>
+  <tr><td>Thu 26 Nov, 23:59</td><td><strong>Submission 2 (PD2): Clickable Figma Prototype (UI &amp; IA).</strong></td></tr>
+  <tr><td>Week 11 · 28 Nov – 3 Dec</td><td>Activity week: build your multi-page HTML/CSS website and send your A1 poster draft to your TA for review.</td></tr>
+  <tr><td>Week 12 · 5 – 10 Dec</td><td>Lab 10: Web APIs, JSON/XML &amp; Course Project API Integration. Finalize PD3, Report &amp; Poster approval.</td></tr>
+  <tr><td>Thu 10 Dec, 23:59</td><td><strong>Submission 3 (PD3 + Final Report + Digital Poster).</strong> Code repository frozen at the deadline.</td></tr>
+  <tr><td>Week 13 · 12–17 Dec</td><td><strong>Final Presentations &amp; Printed A1 Poster showcase.</strong></td></tr>
+</table>
+
+<p class="muted">Note: If PD1 and PD2 are combined into a single checkpoint on the CMS announcement, follow the announced form instructions and submit both together using your assigned Team ID.</p>
+</section>
+
+<section class="keep">
+<h2><span class="n">4</span>Stage details: PD1, PD2 &amp; PD3</h2>
+
+<h3>4.1 PD1 — Concept, User Stories, Acceptance Criteria &amp; Wireframes (20%)</h3>
+
+<p>Your PD1 document (submitted as a PDF/Word document and summarized in your repository's <code>README.md</code>) must contain three parts:</p>
+
+<ol>
+  <li><strong>Web App Idea Document:</strong>
+    <ul>
+      <li>The application name, core concept, and purpose.</li>
+      <li>Target users and the specific real-world problem the application solves.</li>
+      <li>The <strong>5–6 core features</strong> (one distinct feature assigned to each team member, with the member's full name and student ID).</li>
+    </ul>
+  </li>
+  <li><strong>User Stories &amp; Acceptance Criteria (as taught in Lab 1):</strong>
+    <ul>
+      <li>At least <strong>2 user stories per feature</strong> (10–12 user stories minimum for the team), written in standard Agile format: <em>“As a <strong>[type of user]</strong>, I want <strong>[an action or goal]</strong> so that <strong>[a benefit or reason]</strong>.”</em></li>
+      <li><strong>Acceptance Criteria (AC) for every user story:</strong> Write at least <strong>3 clear, testable acceptance criteria per user story</strong> that define the objective pass/fail boundaries of the feature—covering both the <strong>happy path flow</strong> and at least <strong>one negative/validation scenario</strong> (e.g., empty input, invalid filter, or out-of-range value). Do not list generic Definition of Done (DoD) items as acceptance criteria.</li>
+    </ul>
+  </li>
+  <li><strong>Wireframes:</strong>
+    <ul>
+      <li>Low-fidelity wireframes for the <strong>Home page</strong> plus <strong>every member's feature page(s)</strong>.</li>
+      <li>May be clean hand sketches (photographed/scanned clearly) or digital wireframes (Figma), showing layout structure and content placement before visual styling.</li>
+    </ul>
+  </li>
+</ol>
+</section>
+
+<h3>4.2 PD2 — Clickable Figma Prototype (20%)</h3>
+
+<p>Turn your PD1 wireframes into a high-fidelity, interactive UI prototype in Figma (building on Labs 2–4):</p>
+
+<ul>
+  <li><strong>Visual UI Consistency:</strong> A unified color palette, typography scale, spacing system, and reusable components across all members' screens.</li>
+  <li><strong>Information Architecture (IA):</strong> Clear site hierarchy, navigation bar/menus, breadcrumbs or back links, and logical user flows between the Home screen and every feature screen.</li>
+  <li><strong>Clickable Prototype:</strong> Interactive hotspot connections in Figma Prototype mode so a user can click through the entire application flow from start to finish.</li>
+  <li><strong>What to submit:</strong> Your shareable <strong>Figma prototype link</strong> (with view permissions set to <em>Anyone with the link can view</em>) plus <strong>exported high-resolution PNG/PDF screens</strong> labeled by feature owner.</li>
+</ul>
+
+<h3>4.3 PD3 — Multi-Page Website &amp; Live JavaScript API (20%)</h3>
+
+<p>Implement your design as a real, working multi-page web application using HTML, CSS, and JavaScript (building on Labs 5–10):</p>
+
+<table>
+  <tr><th>Area</th><th>Requirement</th></tr>
+  <tr><td>HTML &amp; CSS</td><td>Semantic HTML5 pages (<code>index.html</code> plus each member's feature <code>.html</code> page) styled with external CSS stylesheet(s) (Flexbox, Grid, clean typography, hover states, and responsive layout).</td></tr>
+  <tr><td>Navigation</td><td>Working <code>&lt;a href="..."&gt;</code> navigation across <strong>all pages</strong>—no broken links or isolated pages.</td></tr>
+  <tr><td>JavaScript &amp; DOM</td><td>Interactive client-side behavior using DOM selection, event listeners (<code>addEventListener</code>), and dynamic content updates.</td></tr>
+  <tr><td><strong>Live API Component</strong></td><td>Your website must integrate <strong>at least one live public API</strong> using <code>fetch()</code> and render the returned JSON data into the DOM (as practiced in Lab 10). Examples include:
+    <ul>
+      <li>Weather API (e.g., Open-Meteo)</li>
+      <li>Maps / Geolocation (e.g., OpenStreetMap / Nominatim)</li>
+      <li>Currency Exchange API, News API, Recipe/Food API (DummyJSON / TheMealDB), Quotes/Facts API, or any free public REST API fitting your app's theme.</li>
+    </ul>
+  </td></tr>
+  <tr><td>GitHub &amp; Archive</td><td>Maintain your code in one team GitHub repository where each member commits their own feature pages, and submit both the <strong>GitHub repository link</strong> and a <strong>compressed <code>.zip</code> folder</strong> containing all project files (<code>.html</code>, <code>.css</code>, <code>.js</code>, images, and <code>README.md</code>).</td></tr>
+</table>
+
+<h2><span class="n">5</span>Final Report, Printed Poster &amp; Presentation</h2>
+
+<h3>5.1 Final Report (10%)</h3>
+
+<p>Submit a well-formatted PDF report that documents your entire project from concept to code. It <strong>must</strong> include:</p>
+
+<ol>
+  <li><strong>Cover Page &amp; Table of Contents</strong> (with team number, member names, IDs, and tutorial groups).</li>
+  <li><strong>Introduction &amp; App Concept:</strong> the idea, target audience, and problems solved by your app.</li>
+  <li><strong>All User Stories &amp; Acceptance Criteria:</strong> grouped by feature, with each user story's acceptance criteria and the responsible member's name next to their part.</li>
+  <li><strong>Wireframes:</strong> all PD1 wireframes.</li>
+  <li><strong>Figma Screens:</strong> high-resolution exports of all PD2 UI screens and navigation flow.</li>
+  <li><strong>Website Screenshots:</strong> screenshots of the working HTML/CSS pages in the browser.</li>
+  <li><strong>Explanation of APIs Used:</strong> which public API endpoint(s) you called, what JSON data they return, and how your JavaScript code displays it on the page.</li>
+  <li><strong>Roles &amp; Contributions Table:</strong> exact breakdown of what each team member designed and coded.</li>
+  <li><strong>References:</strong> proper citation of all external resources, APIs, icons, fonts, or articles used.</li>
+  <li><strong>Appendix — AI Prompts Used:</strong> a complete log of all AI prompts used by any team member during the project.</li>
+</ol>
+
+<section class="keep">
+<h3>5.2 Printed A1 Poster (5%)</h3>
+
+<p>Every team designs an <strong>A1 portrait (vertical) poster</strong> (<code>59.4 cm × 84.1 cm</code> / <code>23.4 in × 33.1 in</code>) to be displayed in the BI corridor after presentation week.</p>
+
+<ul>
+  <li><strong>Required content on the poster:</strong>
+    <ul>
+      <li>Application name and logo/branding.</li>
+      <li>Core idea, purpose, and the problem solved by the web app.</li>
+      <li>Key high-resolution Figma/website screens (clean, sharp, never pixelated or black-and-white).</li>
+      <li>Full names (first and last name) and Student IDs of all team members.</li>
+      <li>Course name (BINF 301), Instructor name (<strong>Dr. Nourhan Hamdi</strong>), and your <strong>TA's name</strong>.</li>
+    </ul>
+  </li>
+  <li><strong>Visual design guidelines:</strong>
+    <ul>
+      <li><strong>Less text, more visuals:</strong> avoid long paragraphs—use diagrams, icons, callouts, and high-impact UI screens.</li>
+      <li><strong>Review &amp; approval before printing:</strong> your team's point of contact <strong>must</strong> share the digital poster design with your TA for feedback and approval before printing.</li>
+      <li><strong>Do not print before getting the green light!</strong> Once approved by your TA, print the poster in full color on <strong>foam cardboard</strong>.</li>
+    </ul>
+  </li>
+</ul>
+</section>
+
+<section class="keep">
+<h3>5.3 Final Presentation Day (15%)</h3>
+
+<p>Presentations take place in <strong>Week 13 (12–17 December)</strong> according to the published <strong>Presentation Slots sheet</strong> (day, time, and room per Team ID).</p>
+
+<ul>
+  <li><strong>Format:</strong> <strong>8–10 minutes</strong> for the team presentation, followed immediately by <strong>8–10 minutes of Q&amp;A and discussion</strong>.</li>
+  <li><strong>What to demonstrate:</strong>
+    <ol>
+      <li>The app idea and problem solved,</li>
+      <li>The clickable Figma prototype,</li>
+      <li>The live working multi-page HTML/CSS website,</li>
+      <li>A live demonstration of the JavaScript API component, and</li>
+      <li><strong>Each member explaining their own feature</strong> (screens, HTML/CSS structure, and JavaScript code).</li>
+    </ol>
+  </li>
+  <li><strong>Comprehensive awareness:</strong> every member must be aware of the entire presented material—including how their teammates' pages and the shared CSS/JS connect together.</li>
+  <li>Have screenshots or a short screen recording ready as a backup in case of an internet outage during the live API demo.</li>
+</ul>
+</section>
+
+<section class="keep">
+<h2><span class="n">6</span>Use of AI tools</h2>
+
+<p>You <strong>may</strong> use AI tools to assist with generating or refining HTML, CSS, JavaScript, or visual assets <strong>ONLY IF</strong> all three conditions below are met:</p>
+
+<ol>
+  <li><strong>You fully understand the code:</strong> During the 8–10 minute Q&amp;A discussion, you will be asked to explain your HTML, CSS, and JavaScript line by line. Code you cannot explain counts against your individual grade, regardless of how it looks.</li>
+  <li><strong>You document all AI prompts in the Report Appendix:</strong> Every prompt used by any member must be included in the <em>Appendix: AI Prompts Used</em> section of the Final Report.</li>
+  <li><strong>You remain responsible for the final output:</strong> AI is a tool, not a replacement for your design. Your website must faithfully implement your team's approved PD1/PD2 architecture and features.</li>
+</ol>
+
+<p>A clean, well-structured website that you understand completely always scores higher than complex AI-generated code that you cannot explain.</p>
+</section>
+
+<h2><span class="n">7</span>Rules &amp; submission instructions</h2>
+
+<div class="box red keep">
+  <ul>
+    <li><strong>Use your official Team ID:</strong> Check the published Teams sheet for your assigned Team ID and presentation slot. You must enter this exact Team ID on every submission form.</li>
+    <li><strong>One submission per team:</strong> Each team designates <strong>one point of contact</strong> to submit the form for the team. <strong>Multiple form submissions from the same team will result in a score of ZERO.</strong> Double-check all links and files before submitting.</li>
+    <li><strong>Integrity of work:</strong> Plagiarized code, copied templates, or duplicate reports/projects are not accepted and will result in a <strong>ZERO for all team members</strong>.</li>
+    <li><strong>Clear attribution:</strong> Every team member must write their full name and ID next to the feature, wireframes, screens, and code they worked on, and commit their code from their own GitHub account.</li>
+    <li><strong>Do not print your poster without TA approval:</strong> Share your A1 poster draft with your TA first; print on <strong>foam cardboard</strong> only after receiving approval.</li>
+    <li><strong>Deadlines are fixed:</strong> Late submissions or commits pushed after the deadline are not graded.</li>
+  </ul>
+</div>
+
+<p class="muted">Questions about the project? Have your team's point of contact reach out to your TA in the lab or by email.</p>
+
+</body>
+</html>

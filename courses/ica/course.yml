@@ -1,15 +1,28 @@
 # Staff hub for this course, rendered on the index page. See courses/ebd/course.yml for the fields.
 
+dates:
+  - { date: 2026-10-31, what: Lab 6 week starts, note: "Project released; teams of 5–6 form" }
+  - { date: 2026-11-07, what: Lab 7 week starts, note: "Graded in-lab assignment (2-screen Talabat build)" }
+  - { date: 2026-11-19, time: "23:59", what: "Project PD1 due: Concept, User Stories, Acceptance Criteria & Wireframes", note: "20% of project grade" }
+  - { date: 2026-11-26, time: "23:59", what: "Project PD2 due: Clickable Figma Prototype", note: "20% of project grade" }
+  - { date: 2026-11-28, what: Activity week, note: "No lab; TA poster review & website build" }
+  - { date: 2026-12-05, what: Lab 10 week starts, note: "Web APIs, JSON/XML & PD3 API integration" }
+  - { date: 2026-12-10, time: "23:59", what: "Project PD3, Final Report & Poster due", note: "HTML/CSS + Live JS API (20%), Report (10%), Poster (5%)" }
+  - { date: 2026-12-12, what: Final Presentations & Poster Showcase, note: "Week 13, 12–17 Dec (15% of project grade)" }
+
 project:
   title: Course project
   summary: >-
     Teams of 5–6 design and build a multi-page web application from concept to
     implementation, with one complete end-to-end feature owned by each member.
-    Graded across six deliverables: PD1 Concept, User Stories & Wireframes (20%),
-    PD2 Clickable Figma Prototype (20%), PD3 Multi-Page HTML/CSS Website + Live
-    JavaScript API Integration (20%), Final Report with AI Prompt Appendix (10%),
-    Final Presentation (15%), and an A1 Printed Poster (5%) for the BI Poster
-    Conference.
+    Graded across six deliverables: PD1 Concept, User Stories, Acceptance Criteria
+    & Wireframes (20%), PD2 Clickable Figma Prototype (20%), PD3 Multi-Page
+    HTML/CSS Website + Live JavaScript API Integration (20%), Final Report with
+    AI Prompt Appendix (10%), Final Presentation (15%), and an A1 Printed Poster (5%).
+  documents:
+    - { label: Project brief, source: project/brief.html, out: project-brief.pdf, note: "With Student Poster Conference" }
+    - { label: Project brief (no poster conference), source: project/brief-no-poster-conference.html, out: project-brief-no-poster-conference.pdf, note: "Without Student Poster Conference" }
+    - { label: README template, source: project/README-template.md, out: project-README-template.md, note: "Team repository template" }
 
 links:
   - group: Student material
