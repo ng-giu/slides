@@ -36,17 +36,17 @@ dense: true
 
 | Duration | Topic |
 |---|---|
-| 5 min | **Overview (Graded In-Lab Assignment):** Combining Labs 5 & 6 into a 2-screen app |
-| 15 min | **Screen 1 HTML (`index.html`):** Writing the HTML boilerplate, emoji codes & Home skeleton |
-| 15 min | **Screen 1 CSS (`style.css`):** Selectors, properties & values for the Home screen |
-| 15 min | **Screen 2 HTML (`menu.html`):** Boilerplate shortcut (`!`), header & Menu skeleton |
-| 10 min | **Screen 2 CSS (`style.css`):** Reusing `style.css` & styling the back link |
-| 10 min | **Git & GitHub (Submission):** Pushing your graded 2-screen project to GitHub |
+| 5 min | **Overview (Graded In-Lab Assignment):** 3-screen app & full navigation |
+| 15 min | **Screen 1 HTML (`index.html`):** Boilerplate, emoji codes & Home links |
+| 15 min | **Screen 1 CSS (`style.css`):** Selectors, properties & values for Home |
+| 15 min | **Screen 2 (`burger.html`):** Shortcut (`!`), back button & Burger menu |
+| 10 min | **Screen 3 (`pizza.html`):** Copy `burger.html`, swap content & test nav |
+| 10 min | **Git & GitHub (Submission):** Pushing your graded 3-screen project |
 
 ---
 layout: section
 icon: assignment
-sub: Today's 2-screen build is a graded in-lab assignment — complete and push to GitHub in class
+sub: Today's 3-screen build is a graded in-lab assignment — complete and push to GitHub in class
 ---
 
 # 01 — Graded In-Lab Assignment
@@ -56,10 +56,10 @@ layout: default
 icon: assignment
 dense: true
 journey:
-  - { title: "1. Screen 1 HTML", code: "index.html", sub: "Build Home skeleton" }
+  - { title: "1. Screen 1 HTML", code: "index.html", sub: "Home & nav links" }
   - { title: "2. Screen 1 CSS", code: "style.css", sub: "Style Home screen" }
-  - { title: "3. Screen 2 HTML", code: "menu.html", sub: "Build Menu skeleton" }
-  - { title: "4. Screen 2 CSS", code: "style.css", sub: "Link & finish Screen 2" }
+  - { title: "3. Screen 2", code: "burger.html", sub: "Burger menu & back" }
+  - { title: "4. Screen 3", code: "pizza.html", sub: "Copy & swap text" }
   - { title: "5. Git & GitHub", code: "git push", sub: "Graded submission" }
 ---
 
@@ -71,7 +71,7 @@ There are **no new concepts** today—you already know every tag, CSS rule, and 
 
 <div class="mt-4 p-3 rounded-xl bg-amber-50 border border-amber-300 flex items-center justify-between text-xs">
   <div class="text-amber-950">
-    <strong class="text-amber-900">Graded In-Lab Assignment:</strong> Today's lab is an <strong>in-lab assignment and will be graded</strong>. Complete both screens and push <code>ica-lab-07</code> to GitHub before leaving!
+    <strong class="text-amber-900">Graded In-Lab Assignment:</strong> Today's lab is an <strong>in-lab assignment and will be graded</strong>. Complete all three screens, verify every navigation and back button works, and push <code>ica-lab-07</code> to GitHub before leaving!
   </div>
   <span class="px-2.5 py-1 rounded-lg bg-amber-500 text-white font-bold text-[0.65rem] uppercase tracking-wider shrink-0 ml-3">Graded in Lab</span>
 </div>
@@ -84,70 +84,124 @@ class: giu-target-screens
 ---
 
 <style>
-.giu-target-screens h1 { max-width: none !important; font-size: 1.55rem !important; margin-bottom: 0.45rem !important; }
-.giu-target-screens p { margin-bottom: 0.55rem !important; }
-.giu-target-screens img { max-height: 12.2rem !important; width: auto !important; margin: 0 auto !important; border-radius: 0.75rem; border: 1px solid #cbd5e1; }
+.giu-target-screens h1 { max-width: none !important; font-size: 1.52rem !important; margin-bottom: 0.4rem !important; }
+.giu-target-screens p { margin-bottom: 0.45rem !important; font-size: 0.76rem !important; }
+.giu-target-screens img { max-height: 11.8rem !important; width: auto !important; margin: 0 auto !important; border-radius: 0.65rem; border: 1px solid #cbd5e1; }
 </style>
 
-# The two-screen Talabat app you will build today
+# The three-screen Talabat app you will build today
 
-You will build two connected screens inside `ica-lab-07/` using HTML emoji codes and one shared `style.css`:
+You will build **three connected screens** inside `ica-lab-07/` where **all screens are navigable from the Home screen** and **all back buttons return to Home**:
 
-<div class="grid grid-cols-2 gap-5 mt-1 text-center text-xs">
-  <div class="p-2.5 rounded-xl border border-blue-200 bg-blue-50/40">
-    <div class="font-bold text-blue-900 mb-1.5">Screen 1: Home Page (<code>index.html</code>)</div>
+<div class="grid grid-cols-3 gap-3.5 mt-1 text-center text-xs">
+  <div class="p-2 rounded-xl border border-blue-200 bg-blue-50/40">
+    <div class="font-bold text-blue-900 mb-1 text-[0.72rem]">Screen 1: Home Hub (<code>index.html</code>)</div>
     <img src="/img/lab-07/step-5.png" alt="Screen 1 Home Page" />
-    <div class="mt-1.5 text-[0.66rem] text-slate-600">Clicking <strong>Open Burger Republic Menu &rarr;</strong> opens <code>menu.html</code></div>
+    <div class="mt-1 text-[0.62rem] text-slate-600">Links to <strong>both</strong> <code>burger.html</code> &amp; <code>pizza.html</code></div>
   </div>
-  <div class="p-2.5 rounded-xl border border-teal-200 bg-teal-50/40">
-    <div class="font-bold text-teal-900 mb-1.5">Screen 2: Restaurant Menu (<code>menu.html</code>)</div>
-    <img src="/img/lab-07/step-8.png" alt="Screen 2 Menu Page" />
-    <div class="mt-1.5 text-[0.66rem] text-slate-600">Clicking <strong>&larr; Back to Talabat Home</strong> returns to <code>index.html</code></div>
+  <div class="p-2 rounded-xl border border-teal-200 bg-teal-50/40">
+    <div class="font-bold text-teal-900 mb-1 text-[0.72rem]">Screen 2: Burger Menu (<code>burger.html</code>)</div>
+    <img src="/img/lab-07/step-8.png" alt="Screen 2 Burger Menu" />
+    <div class="mt-1 text-[0.62rem] text-slate-600"><strong>&larr; Back to Talabat Home</strong> opens <code>index.html</code></div>
+  </div>
+  <div class="p-2 rounded-xl border border-amber-200 bg-amber-50/40">
+    <div class="font-bold text-amber-900 mb-1 text-[0.72rem]">Screen 3: Pizza Menu (<code>pizza.html</code>)</div>
+    <img src="/img/lab-07/step-10.png" alt="Screen 3 Pizza Menu" />
+    <div class="mt-1 text-[0.62rem] text-slate-600"><strong>&larr; Back to Talabat Home</strong> opens <code>index.html</code></div>
   </div>
 </div>
 
 ---
 layout: split
-title: "Step 1 of 14: set up your project folder in VS Code"
+title: "Multi-page navigation: Home hub & working back buttons"
 wideRight: true
 dense: true
 class: giu-step-1
 ---
 
 <style>
-.giu-step-1 h1 { max-width: none !important; font-size: 1.52rem !important; margin-bottom: 0.65rem !important; }
+.giu-step-1 h1 { max-width: none !important; font-size: 1.48rem !important; margin-bottom: 0.5rem !important; }
+.giu-step-1 p { font-size: 0.75rem !important; line-height: 1.42 !important; margin-top: 0.3rem !important; margin-bottom: 0.4rem !important; }
+.giu-step-1 li { font-size: 0.74rem !important; line-height: 1.4 !important; margin-bottom: 0.25rem !important; }
 </style>
 
-Start by creating a clean project folder and your three empty files in <Tool name="vscode" />:
+In a multi-page web app, pages are connected by **anchor tags (`<a href="...">`)**. Your navigation architecture must obey two rules:
 
-1. Create a new empty folder named `ica-lab-07` on your Desktop (or Documents).
-2. Open <Tool name="vscode" /> and click **File → Open Folder...** to open `ica-lab-07`.
-3. In the **Explorer** sidebar on the left, click the **New File** icon three times to create:
-   - `index.html` — Screen 1 (Talabat Home)
-   - `menu.html` — Screen 2 (Burger Republic Menu)
-   - `style.css` — Shared stylesheet for both screens
+1. **Every screen is navigable from the Home screen (`index.html`):**
+   - `index.html` acts as the central **Home Hub**.
+   - It has two `<a class="btn">` buttons: `href="burger.html"` (Screen 2) and `href="pizza.html"` (Screen 3).
+2. **Every inner screen has a working Back button (`href="index.html"`):**
+   - Users must never get trapped on a dead-end inner screen.
+   - Both `burger.html` and `pizza.html` start their header with `<a class="back" href="index.html">&larr; Back to Talabat Home</a>`.
 
 ::right::
 
-<div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 font-mono text-xs space-y-2">
+<div class="p-3 rounded-xl border border-slate-200 bg-slate-50 space-y-2 text-xs">
+  <div class="font-bold text-slate-900">Complete 3-Screen Navigation Map</div>
+  <div class="p-2 rounded-lg bg-white border border-blue-200 space-y-1">
+    <div class="font-bold text-blue-900">1. Forward Navigation (from <code>index.html</code>)</div>
+    <div class="font-mono text-[0.65rem] text-slate-700"><code>&lt;a class="btn" href="burger.html"&gt;</code> ➔ opens <strong>Screen 2</strong></div>
+    <div class="font-mono text-[0.65rem] text-slate-700"><code>&lt;a class="btn" href="pizza.html"&gt;</code> ➔ opens <strong>Screen 3</strong></div>
+  </div>
+  <div class="p-2 rounded-lg bg-white border border-teal-200 space-y-1">
+    <div class="font-bold text-teal-900">2. Back Navigation (from <code>burger.html</code> &amp; <code>pizza.html</code>)</div>
+    <div class="font-mono text-[0.65rem] text-slate-700">In <code>burger.html</code>: <code>&lt;a class="back" href="index.html"&gt;</code> ➔ returns <strong>Home</strong></div>
+    <div class="font-mono text-[0.65rem] text-slate-700">In <code>pizza.html</code>: <code>&lt;a class="back" href="index.html"&gt;</code> ➔ returns <strong>Home</strong></div>
+  </div>
+  <div class="p-2 rounded-lg bg-amber-50 border border-amber-200 text-[0.65rem] text-amber-950">
+    <strong>Grading Check:</strong> Your TA will click both restaurant buttons on <code>index.html</code> and test the <strong>&larr; Back to Talabat Home</strong> button on both inner screens!
+  </div>
+</div>
+
+---
+layout: split
+title: "Step 1 of 15: set up your project folder in VS Code"
+wideRight: true
+dense: true
+class: giu-step-1
+---
+
+<style>
+.giu-step-1 h1 { max-width: none !important; font-size: 1.48rem !important; margin-bottom: 0.5rem !important; }
+.giu-step-1 p { font-size: 0.75rem !important; line-height: 1.42 !important; margin-top: 0.3rem !important; margin-bottom: 0.4rem !important; }
+.giu-step-1 li { font-size: 0.74rem !important; line-height: 1.4 !important; margin-bottom: 0.25rem !important; }
+</style>
+
+Start by creating a clean project folder and your **four** empty files in <Tool name="vscode" />:
+
+1. Create a new empty folder named `ica-lab-07` on your Desktop (or Documents).
+2. Open <Tool name="vscode" /> and click **File → Open Folder...** to open `ica-lab-07`.
+3. In the **Explorer** sidebar on the left, click the **New File** icon four times to create:
+   - `index.html` — Screen 1 (Talabat Home Hub)
+   - `burger.html` — Screen 2 (Burger Republic Menu)
+   - `pizza.html` — Screen 3 (Napoli Woodfire Pizza Menu)
+   - `style.css` — Shared stylesheet for all three screens
+
+::right::
+
+<div class="p-3 rounded-xl border border-slate-200 bg-slate-50 font-mono text-xs space-y-1.5">
   <div class="font-bold text-slate-900">ica-lab-07/</div>
-  <div class="pl-4 space-y-2 text-[0.72rem]">
-    <div class="flex items-center justify-between p-2 rounded bg-white border border-blue-200">
+  <div class="pl-4 space-y-1.5 text-[0.7rem]">
+    <div class="flex items-center justify-between p-1.5 rounded bg-white border border-blue-200">
       <span class="font-bold text-blue-800">├── index.html</span>
-      <span class="font-sans text-[0.64rem] text-slate-600">Screen 1: Home page (entry point)</span>
+      <span class="font-sans text-[0.63rem] text-slate-600">Screen 1: Home Hub (links to burger &amp; pizza)</span>
     </div>
-    <div class="flex items-center justify-between p-2 rounded bg-white border border-teal-200">
-      <span class="font-bold text-teal-800">├── menu.html</span>
-      <span class="font-sans text-[0.64rem] text-slate-600">Screen 2: Restaurant menu page</span>
+    <div class="flex items-center justify-between p-1.5 rounded bg-white border border-teal-200">
+      <span class="font-bold text-teal-800">├── burger.html</span>
+      <span class="font-sans text-[0.63rem] text-slate-600">Screen 2: Burger menu (back to index.html)</span>
     </div>
-    <div class="flex items-center justify-between p-2 rounded bg-white border border-purple-200">
+    <div class="flex items-center justify-between p-1.5 rounded bg-white border border-amber-200">
+      <span class="font-bold text-amber-800">├── pizza.html</span>
+      <span class="font-sans text-[0.63rem] text-slate-600">Screen 3: Pizza menu (back to index.html)</span>
+    </div>
+    <div class="flex items-center justify-between p-1.5 rounded bg-white border border-purple-200">
       <span class="font-bold text-purple-800">└── style.css</span>
-      <span class="font-sans text-[0.64rem] text-slate-600">One shared CSS file for both screens</span>
+      <span class="font-sans text-[0.63rem] text-slate-600">One shared CSS file for all 3 screens</span>
     </div>
   </div>
 </div>
 
-<div class="giu-refs__note">All three files must sit side-by-side in the root of <code>ica-lab-07/</code> so they can link to each other directly by filename.</div>
+<div class="giu-refs__note">All four files must sit side-by-side in the root of <code>ica-lab-07/</code> so relative links (<code>href="burger.html"</code>, <code>href="pizza.html"</code>, <code>href="index.html"</code>) work immediately.</div>
 
 ---
 layout: section
@@ -159,7 +213,7 @@ sub: "Phase 1 — Build the complete HTML skeleton of Screen 1 inside index.html
 
 ---
 layout: split
-title: "Step 2 of 14: write the HTML boilerplate (index.html)"
+title: "Step 2 of 15: write the HTML boilerplate (index.html)"
 wideRight: true
 dense: true
 class: giu-boilerplate-s2
@@ -173,7 +227,7 @@ class: giu-boilerplate-s2
 
 <FileTag name="index.html" state="edit" />
 
-For **Screen 1 (`index.html`)**, write the HTML boilerplate **by hand** to practice the core document structure from Lab 5 (you will use a shortcut on Screen 2!):
+For **Screen 1 (`index.html`)**, write the HTML boilerplate **by hand** to practice the core document structure from Lab 5 (you will use the shortcut on Screen 2!):
 
 1. Click inside your empty `index.html` file.
 2. On line 1, type **`<!DOCTYPE html>`** to declare an HTML5 document.
@@ -211,7 +265,7 @@ For **Screen 1 (`index.html`)**, write the HTML boilerplate **by hand** to pract
 
 ---
 layout: split
-title: "Step 3 of 14: Screen 1 wrapper & header"
+title: "Step 3 of 15: Screen 1 wrapper & header"
 dense: true
 class: giu-html-step
 ---
@@ -244,7 +298,7 @@ We will write **HTML emoji codes** (`&#...;`) in our `.html` file—the browser 
 
 ---
 layout: split
-title: "Step 4 of 14: Screen 1 categories & promo"
+title: "Step 4 of 15: Screen 1 categories & promo"
 dense: true
 class: giu-html-step
 ---
@@ -280,7 +334,7 @@ Below the `<div class="header">` tag (still inside the `<div class="card">` tag)
 
 ---
 layout: split
-title: "Step 5 of 14: Screen 1 restaurants & page link"
+title: "Step 5 of 15: Screen 1 restaurants & links to all screens"
 dense: true
 class: giu-html-step
 ---
@@ -296,16 +350,17 @@ class: giu-html-step
 
 <FileTag name="index.html (inside <div class=&quot;card&quot;>)" state="edit" />
 
-Below the `<div class="promo">` tag (still inside the `<div class="card">` tag), add two restaurant boxes and the page link:
+Below `<div class="promo">`, add the two restaurant cards and **two `<a class="btn">` navigation links** so **all screens are navigable from the Home screen**:
 
-1. First `<div class="item">` tag:
-   - An `<h2>` tag with `&#127828; Burger Republic` (🍔)
-   - A `<p>` tag with `&#11088; 4.8 &bull; Burgers &amp; Fries &bull; 25 mins &bull; Free Delivery` (`&#11088;` renders ⭐; `&bull;` renders •)
-2. Second `<div class="item">` tag:
-   - An `<h2>` tag with `&#127829; Napoli Woodfire Pizza` (🍕)
-   - A `<p>` tag with `&#11088; 4.6 &bull; Italian Pizza &bull; 35 mins &bull; 15 EGP Delivery`
-3. At the bottom of `<div class="card">`, add `<a class="btn" href="menu.html">` with text `Open Burger Republic Menu &rarr;` (`&rarr;` renders →).
-   - **How `<a href>` connects pages:** `href="menu.html"` opens `menu.html` in the same folder when clicked.
+1. First `<div class="item">`:
+   - `<h2>` with `&#127828; Burger Republic` (🍔)
+   - `<p>` with `&#11088; 4.8 &bull; Burgers &amp; Fries &bull; 25 mins &bull; Free Delivery`
+2. Second `<div class="item">`:
+   - `<h2>` with `&#127829; Napoli Woodfire Pizza` (🍕)
+   - `<p>` with `&#11088; 4.6 &bull; Italian Pizza &bull; 35 mins &bull; 15 EGP Delivery`
+3. At the bottom of `<div class="card">`, add **both** page navigation links:
+   - `<a class="btn" href="burger.html">Open Burger Republic Menu &rarr;</a>` (opens Screen 2)
+   - `<a class="btn" href="pizza.html">Open Napoli Pizza Menu &rarr;</a>` (opens Screen 3)
 
 ::right::
 
@@ -323,7 +378,7 @@ sub: "Phase 2 — Style Screen 1 in style.css using CSS Selectors, Properties, a
 
 ---
 layout: split
-title: "Step 6 of 14: link style.css & style body and .card"
+title: "Step 6 of 15: link style.css & style body and .card"
 dense: true
 class: giu-css-table
 ---
@@ -362,7 +417,7 @@ Inside `<head>` of `index.html`, add `<link rel="stylesheet" href="style.css">`.
 
 ---
 layout: split
-title: "Step 7 of 14: style .header, header text & input"
+title: "Step 7 of 15: style .header, header text & input"
 dense: true
 class: giu-css-table
 ---
@@ -403,7 +458,7 @@ Continue in `style.css` to style the orange Talabat header box (`.header`), its 
 
 ---
 layout: split
-title: "Step 8 of 14: style .categories, .cat & .promo"
+title: "Step 8 of 15: style .categories, .cat & .promo"
 dense: true
 class: giu-css-table
 ---
@@ -444,7 +499,7 @@ Next in `style.css`, arrange the category pills in a horizontal flex row (`.cate
 
 ---
 layout: split
-title: "Step 9 of 14: style h2, p, .item & .btn"
+title: "Step 9 of 15: style h2, p, .item & .btn"
 dense: true
 class: giu-css-table
 ---
@@ -476,6 +531,7 @@ Finish Screen 1 by adding the typography (`h2`, `p`), restaurant card (`.item`),
 | `.btn` | `background-color` / `color` / `padding` | `#ff5a00` / `white` / `12px` |
 | `.btn` | `border-radius` / `border` / `text-align` | `10px` / `none` / `center` |
 | `.btn` | `font-size` / `font-weight` / `text-decoration` | `14px` / `bold` / `none` |
+| `.btn` | `margin-top` / `margin-bottom` | `4px` / `6px` |
 
 ::right::
 
@@ -486,14 +542,14 @@ Finish Screen 1 by adding the typography (`h2`, `p`), restaurant card (`.item`),
 ---
 layout: section
 icon: code
-sub: "Phase 3 — Build Screen 2 inside menu.html using the VS Code boilerplate shortcut"
+sub: "Phase 3 — Build Screen 2 (Burger Republic Menu) in burger.html with a working back button"
 ---
 
-# 04 — Screen 2: HTML Skeleton
+# 04 — Screen 2: Burger Menu (`burger.html`)
 
 ---
 layout: split
-title: "Step 10 of 14: Screen 2 boilerplate shortcut (! + Tab)"
+title: "Step 10 of 15: Screen 2 boilerplate shortcut (! + Tab)"
 wideRight: true
 dense: true
 class: giu-boilerplate-s2
@@ -505,11 +561,11 @@ class: giu-boilerplate-s2
 .giu-boilerplate-s2 li { font-size: 0.74rem !important; line-height: 1.42 !important; margin-bottom: 0.3rem !important; }
 </style>
 
-<FileTag name="menu.html" state="edit" />
+<FileTag name="burger.html" state="edit" />
 
-Now that you wrote the HTML boilerplate by hand on Screen 1, use <Tool name="vscode" />'s built-in **shortcut** for **Screen 2 (`menu.html`)**:
+Now that you wrote the HTML boilerplate by hand on Screen 1, use <Tool name="vscode" />'s built-in **shortcut** for **Screen 2 (`burger.html`)**:
 
-1. Click inside your empty `menu.html` file.
+1. Click inside your empty `burger.html` file.
 2. Type a single exclamation mark **`!`** on line 1.
 3. Press **`Tab`** (or **`Enter`**) when the **Emmet Abbreviation** popup appears.
 4. <Tool name="vscode" /> automatically generates the complete HTML5 boilerplate (`<!DOCTYPE html>`, `<html lang="en">`, `<head>`, and `<body>`).
@@ -518,7 +574,7 @@ Now that you wrote the HTML boilerplate by hand on Screen 1, use <Tool name="vsc
 ::right::
 
 <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 space-y-2.5 text-xs">
-  <div class="font-bold text-slate-900">What the <code>!</code> + <code>Tab</code> shortcut generates in <code>menu.html</code></div>
+  <div class="font-bold text-slate-900">What the <code>!</code> + <code>Tab</code> shortcut generates in <code>burger.html</code></div>
   <div class="p-2.5 rounded-lg bg-slate-900 text-white font-mono text-[0.68rem] flex items-center justify-between">
     <span>1 &nbsp;<span class="text-amber-400 font-bold">!</span></span>
     <span class="px-2 py-0.5 rounded bg-blue-600 text-[0.6rem]">Emmet Abbreviation (Press Tab ↹)</span>
@@ -538,7 +594,7 @@ Now that you wrote the HTML boilerplate by hand on Screen 1, use <Tool name="vsc
 
 ---
 layout: split
-title: "Step 11 of 14: Screen 2 header & categories"
+title: "Step 11 of 15: Screen 2 header, back link & categories"
 dense: true
 class: giu-html-step
 ---
@@ -552,12 +608,12 @@ class: giu-html-step
 .giu-html-step img { height: 18rem !important; max-height: 18rem !important; width: auto !important; margin: 0 auto !important; display: block !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; }
 </style>
 
-<FileTag name="menu.html (inside <body>)" state="edit" />
+<FileTag name="burger.html (inside <body>)" state="edit" />
 
-Inside `<body>` of `menu.html`, build the top of Screen 2 (keep `<link>` out until Step 13 so you inspect the raw HTML first):
+Inside `<body>` of `burger.html`, build the top of Screen 2 (keep `<link>` out until Step 13 so you inspect the raw HTML first):
 
 1. Inside the `<body>` tag, create a `<div class="card">` tag, and inside it create a `<div class="header">` tag containing:
-   - An `<a class="back" href="index.html">` tag with text `&larr; Back to Talabat Home` (`&larr;` renders ←, and `href="index.html"` links back to Screen 1!).
+   - **Working back button:** `<a class="back" href="index.html">&larr; Back to Talabat Home</a>` (`&larr;` renders ←, and `href="index.html"` returns to Screen 1!).
    - An `<h1>` tag with text `&#127828; Burger Republic` (🍔)
    - A `<p>` tag with text `&#11088; 4.8 (500+ ratings) &bull; 25 mins &bull; Free Delivery` (⭐)
 2. Below the `<div class="header">` tag (still inside the `<div class="card">` tag), create a `<div class="categories">` tag containing four `<div class="cat">` tags:
@@ -571,7 +627,7 @@ Inside `<body>` of `menu.html`, build the top of Screen 2 (keep `<link>` out unt
 
 ---
 layout: split
-title: "Step 12 of 14: Screen 2 dishes, note input & button"
+title: "Step 12 of 15: Screen 2 dishes, note input & button"
 dense: true
 class: giu-html-step
 ---
@@ -585,9 +641,9 @@ class: giu-html-step
 .giu-html-step img { height: 18rem !important; max-height: 18rem !important; width: auto !important; margin: 0 auto !important; display: block !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; }
 </style>
 
-<FileTag name="menu.html (inside <div class=&quot;card&quot;>)" state="edit" />
+<FileTag name="burger.html (inside <div class=&quot;card&quot;>)" state="edit" />
 
-Below the `<div class="categories">` tag (still inside the `<div class="card">` tag in `menu.html`), add the dishes and checkout controls:
+Below the `<div class="categories">` tag (still inside the `<div class="card">` tag in `burger.html`), add the dishes and checkout controls:
 
 1. **First `<div class="item">` tag:** `<h2>` with `&#127828; Classic Double Smash` (🍔) + `<p>` with `2 Angus beef patties, cheddar &amp; house sauce — 145 EGP`.
 2. **Second `<div class="item">` tag:** `<h2>` with `&#127812; Mushroom Swiss Burger` (🍄) + `<p>` with `Sauteed mushrooms, melted Swiss &amp; garlic aioli — 160 EGP`.
@@ -602,16 +658,8 @@ Below the `<div class="categories">` tag (still inside the `<div class="card">` 
 ![Step 12 browser snapshot](/img/lab-07/step-7.png)
 
 ---
-layout: section
-icon: code
-sub: "Phase 4 — Link the shared style.css to menu.html and style the back link"
----
-
-# 05 — Screen 2: CSS Styling
-
----
 layout: split
-title: "Step 13 of 14: link style.css & style the .back link"
+title: "Step 13 of 15: link style.css to burger.html & style .back"
 dense: true
 class: giu-css-table
 ---
@@ -629,12 +677,12 @@ class: giu-css-table
 .giu-css-table img { height: 18rem !important; max-height: 18rem !important; width: auto !important; margin: 0 auto !important; display: block !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; }
 </style>
 
-<FileTag name="menu.html + style.css" state="edit" />
+<FileTag name="burger.html + style.css" state="edit" />
 
 Now watch the power of a **shared stylesheet** in a multi-page project:
 
-1. Inside the `<head>` tag of `menu.html`, add `<link rel="stylesheet" href="style.css">` and save (`Ctrl + S`).
-   - Because `menu.html` reuses `.card`, `.header`, `.categories`, `.cat`, `.item`, `input`, and `.btn`, **95% of Screen 2 styles itself immediately**!
+1. Inside the `<head>` tag of `burger.html`, add `<link rel="stylesheet" href="style.css">` and save (`Ctrl + S`).
+   - Because `burger.html` reuses `.card`, `.header`, `.categories`, `.cat`, `.item`, `input`, and `.btn`, **95% of Screen 2 styles itself immediately**!
 2. At the bottom of `style.css`, add one rule for the `<a class="back">` link inside the orange header:
 
 | Selector | Property | Value |
@@ -651,22 +699,77 @@ Now watch the power of a **shared stylesheet** in a multi-page project:
 ![Step 13 browser snapshot](/img/lab-07/step-8.png)
 
 ---
+layout: section
+icon: code
+sub: "Phase 4 — Screen 3 (pizza.html) shares the exact same HTML structure as burger.html: copy, paste & swap the text!"
+---
+
+# 05 — Screen 3: Copy Structure & Swap Content (`pizza.html`)
+
+---
 layout: split
-title: "Checkpoint: test your 2-screen navigation loop"
+title: "Step 14 of 15: copy burger.html into pizza.html & swap text"
+dense: true
+class: giu-css-table
+---
+
+<style>
+.giu-css-table h1 { font-size: 1.44rem !important; line-height: 1.15 !important; margin-bottom: 0.45rem !important; max-width: none !important; }
+.giu-css-table .giu-split__grid { grid-template-columns: 1.44fr 0.56fr !important; gap: 1.25rem !important; align-items: start !important; }
+.giu-css-table p, .giu-css-table li { font-size: 0.72rem !important; line-height: 1.38 !important; margin-top: 0.22rem !important; margin-bottom: 0.25rem !important; }
+.giu-css-table table { font-size: 0.69rem !important; margin: 0.25rem 0 0 !important; line-height: 1.3 !important; width: 100% !important; }
+.giu-css-table th { padding: 0.26rem 0.4rem 0.26rem 0 !important; font-size: 0.71rem !important; white-space: nowrap !important; }
+.giu-css-table td { padding: 0.26rem 0.4rem 0.26rem 0 !important; vertical-align: middle !important; white-space: nowrap !important; }
+.giu-css-table td:first-child { width: auto !important; padding-right: 0.5rem !important; }
+.giu-css-table td code { font-size: 0.65rem !important; padding: 0.08rem 0.26rem !important; white-space: nowrap !important; }
+.giu-css-table .giu-snap-label { font-size: 0.62rem !important; line-height: 1.2 !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; color: #64748b !important; text-align: center !important; margin: 0 0 0.35rem 0 !important; white-space: nowrap !important; }
+.giu-css-table img { height: 18rem !important; max-height: 18rem !important; width: auto !important; margin: 0 auto !important; display: block !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; }
+</style>
+
+<FileTag name="burger.html → pizza.html" state="edit" />
+
+Notice that **Screen 3 (`pizza.html`) has the exact same layout, `<link rel="stylesheet" href="style.css">`, and `<a class="back" href="index.html">` back button as `burger.html`**—only the restaurant text changes!
+
+1. Open `burger.html`, press **`Ctrl + A`** then **`Ctrl + C`** to copy the entire file, and paste (**`Ctrl + V`**) into `pizza.html`.
+2. Keep `<link rel="stylesheet" href="style.css">` and `<a class="back" href="index.html">&larr; Back to Talabat Home</a>` untouched, and update the text below:
+
+| Element | New text in `pizza.html` |
+|---|---|
+| `<title>` / `<h1>` | `Talabat - Napoli Woodfire Pizza` / `&#127829; Napoli Woodfire Pizza` |
+| `.header <p>` | `&#11088; 4.6 (350+ ratings) &bull; 35 mins &bull; 15 EGP Delivery` |
+| `.categories` | `&#128293; Popular`, `&#127829; Pizzas`, `&#129367; Salads`, `&#129380; Drinks` |
+| `.item` 1 | `&#127829; Margherita Classica` — `Tomato sauce, fresh mozzarella &amp; basil - 150 EGP` |
+| `.item` 2 | `&#128293; Spicy Pepperoni` — `Beef pepperoni, mozzarella &amp; chili honey - 175 EGP` |
+| `.item` 3 | `&#129472; Garlic Cheese Bread` — `Wood-fired dough, roasted garlic &amp; herbs - 70 EGP` |
+| `<button class="btn">` | `Place Order &bull; 220 EGP` |
+
+::right::
+
+<div class="giu-snap-label">Timeline Snapshot — After Step 14</div>
+
+![Step 14 browser snapshot](/img/lab-07/step-10.png)
+
+---
+layout: split
+title: "Checkpoint: test all screens & back buttons"
+wideRight: true
 dense: true
 class: giu-step-1
 ---
 
 <style>
-.giu-step-1 h1 { max-width: none !important; font-size: 1.52rem !important; margin-bottom: 0.65rem !important; }
+.giu-step-1 h1 { max-width: none !important; font-size: 1.48rem !important; margin-bottom: 0.45rem !important; }
+.giu-step-1 p { font-size: 0.73rem !important; line-height: 1.38 !important; margin-top: 0.25rem !important; margin-bottom: 0.3rem !important; }
+.giu-step-1 li { font-size: 0.73rem !important; line-height: 1.38 !important; margin-bottom: 0.22rem !important; }
 </style>
 
-<Activity label="Test both pages in your browser">
+<Activity label="Verify every navigation & back button">
 
-1. Open `index.html` in your browser (using **Open with Live Server** in VS Code, or double-clicking `index.html`).
-2. Confirm Screen 1 displays the orange Talabat header, 4 category pills in a row, promo box, 2 restaurant cards, and the orange bottom button.
-3. Click **Open Burger Republic Menu →** and verify the browser navigates to `menu.html`.
-4. On `menu.html`, click **← Back to Talabat Home** and verify it returns to `index.html`.
+1. Open `index.html` in your browser (**Open with Live Server**).
+2. Click **Open Burger Republic Menu →** and verify it opens `burger.html` (Screen 2).
+3. On `burger.html`, click **← Back to Talabat Home** and verify it returns to `index.html`.
+4. Click **Open Napoli Pizza Menu →** and verify it opens `pizza.html` (Screen 3).
+5. On `pizza.html`, click **← Back to Talabat Home** and verify it returns to `index.html`.
 
 </Activity>
 
@@ -674,20 +777,44 @@ Getting a `Cannot GET` error or missing styles? Jump to <Link to="fix-links">**B
 
 ::right::
 
-<div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 space-y-2.5 text-xs">
-  <div class="font-bold text-slate-900">How your two files connect</div>
-  <div class="p-2.5 rounded-lg bg-white border border-blue-200 flex items-center justify-between">
-    <span class="font-mono font-bold text-blue-800">index.html</span>
-    <span class="text-[0.65rem] text-slate-600"><code>href="menu.html"</code> ➔ opens Screen 2</span>
-  </div>
-  <div class="p-2.5 rounded-lg bg-white border border-teal-200 flex items-center justify-between">
-    <span class="font-mono font-bold text-teal-800">menu.html</span>
-    <span class="text-[0.65rem] text-slate-600"><code>href="index.html"</code> ➔ returns to Screen 1</span>
-  </div>
-  <div class="p-2.5 rounded-lg bg-white border border-purple-200 flex items-center justify-between">
-    <span class="font-mono font-bold text-purple-800">style.css</span>
-    <span class="text-[0.65rem] text-slate-600">Linked in <code>&lt;head&gt;</code> of both HTML files</span>
-  </div>
+<div class="p-3 rounded-xl border border-slate-200 bg-slate-50 space-y-2 text-xs">
+  <div class="font-bold text-slate-900">Predict &amp; Verify Navigation Table</div>
+  <table class="w-full text-[0.66rem]">
+    <thead>
+      <tr>
+        <th>Current Screen</th>
+        <th>Button / Link Clicked</th>
+        <th>HTML Attribute</th>
+        <th>Opens</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>index.html</code></td>
+        <td>Open Burger Republic Menu &rarr;</td>
+        <td><code>href="burger.html"</code></td>
+        <td><code>burger.html</code></td>
+      </tr>
+      <tr>
+        <td><code>burger.html</code></td>
+        <td>&larr; Back to Talabat Home</td>
+        <td><code>href="index.html"</code></td>
+        <td><code>index.html</code></td>
+      </tr>
+      <tr>
+        <td><code>index.html</code></td>
+        <td>Open Napoli Pizza Menu &rarr;</td>
+        <td><code>href="pizza.html"</code></td>
+        <td><code>pizza.html</code></td>
+      </tr>
+      <tr>
+        <td><code>pizza.html</code></td>
+        <td>&larr; Back to Talabat Home</td>
+        <td><code>href="index.html"</code></td>
+        <td><code>index.html</code></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 ---
@@ -700,22 +827,24 @@ sub: "Phase 5 — Commit your changes and push your graded in-lab assignment to 
 
 ---
 layout: split
-title: "Step 14 of 14: commit & push to GitHub (Graded)"
+title: "Step 15 of 15: commit & push to GitHub (Graded)"
 wideRight: true
 dense: true
 class: giu-step-1
 ---
 
 <style>
-.giu-step-1 h1 { max-width: none !important; font-size: 1.52rem !important; margin-bottom: 0.65rem !important; }
+.giu-step-1 h1 { max-width: none !important; font-size: 1.48rem !important; margin-bottom: 0.5rem !important; }
+.giu-step-1 p { font-size: 0.75rem !important; line-height: 1.42 !important; margin-top: 0.3rem !important; margin-bottom: 0.4rem !important; }
+.giu-step-1 li { font-size: 0.74rem !important; line-height: 1.4 !important; margin-bottom: 0.25rem !important; }
 </style>
 
-Using the <Tool name="git" /> and <Tool name="github" /> setup from **Lab 6**, commit your 2-screen app and push it to GitHub for your **in-lab assignment grade**:
+Using the <Tool name="git" /> and <Tool name="github" /> setup from **Lab 6**, commit your 3-screen app and push it to GitHub for your **in-lab assignment grade**:
 
 1. In <Tool name="vscode" />, open the Terminal (**Terminal → New Terminal**).
 2. Run `git init`, `git add .`, and `git commit` inside `ica-lab-07/`.
 3. On [github.com](https://github.com), click **`+` → New repository**, name it `ica-lab-07` (**Public**, **Add a README** unchecked), and click **Create repository**.
-4. Connect your local repo, push to `main`, and show your TA your live GitHub repo before leaving!
+4. Connect your local repo, push to `main`, and show your TA your live GitHub repo and working navigation before leaving!
 
 ::right::
 
@@ -726,7 +855,7 @@ Using the <Tool name="git" /> and <Tool name="github" /> setup from **Lab 6**, c
 ```bash
 git init
 git add .
-git commit -m "Build two-screen Talabat app"
+git commit -m "Build three-screen Talabat app"
 ```
 
 2. Link your GitHub repository and push:
@@ -737,7 +866,7 @@ git remote add origin <your-github-repo-url>
 git push -u origin main
 ```
 
-3. Refresh `https://github.com/<your-username>/ica-lab-07` and confirm `index.html`, `menu.html`, and `style.css` are online!
+3. Refresh `https://github.com/<your-username>/ica-lab-07` and confirm `index.html`, `burger.html`, `pizza.html`, and `style.css` are online!
 
 </Activity>
 
@@ -760,9 +889,9 @@ class: giu-fix
 
 | Symptom | Cause & exact fix |
 |---|---|
-| `Cannot GET /menu.html` | Filename in `href="menu.html"` does not match the actual filename in VS Code Explorer. Make sure it is named `menu.html` in lowercase. |
-| Clicking the button does nothing | Make sure you used `<a class="btn" href="menu.html">...</a>` on `index.html` and included the `href` attribute. |
-| Back link does not return home | Check that the top link in `menu.html` has `href="index.html"` (`<a class="back" href="index.html">`). |
+| `Cannot GET /burger.html` or `/pizza.html` | Filename in `href="burger.html"` or `href="pizza.html"` does not match the actual filename in VS Code Explorer. Make sure both are lowercase in the root of `ica-lab-07/`. |
+| Clicking a Home button does nothing | Make sure you used `<a class="btn" href="burger.html">...</a>` and `<a class="btn" href="pizza.html">...</a>` on `index.html` and included the `href` attribute on both. |
+| Back link does not return home | Check that the top link in **both** `burger.html` and `pizza.html` has `href="index.html"` (`<a class="back" href="index.html">`). |
 
 ---
 layout: default
@@ -775,7 +904,7 @@ class: giu-fix
 
 | Symptom | Cause & exact fix |
 |---|---|
-| `menu.html` has zero styling | Confirm `<link rel="stylesheet" href="style.css">` is inside `<head>` of `menu.html` and press `Ctrl + S` to save. |
+| `burger.html` or `pizza.html` has zero styling | Confirm `<link rel="stylesheet" href="style.css">` is inside `<head>` of both `burger.html` and `pizza.html` and press `Ctrl + S` to save. |
 | Category pills stack vertically | Check `.categories` in `style.css`: it needs `display: flex;` and `gap: 8px;` so `<div class="cat">` items sit side-by-side. |
 | Button or back link is underlined | Add `text-decoration: none;` to both `.btn` and `.back` in `style.css`. |
 
@@ -789,18 +918,13 @@ dense: true
 
 - [MDN — Creating hyperlinks (`<a href>`)](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Creating_links) — connecting multiple HTML files in the same folder
 - [MDN — External stylesheets (`<link>`)](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) — sharing one `style.css` across multiple pages
-- [MDN — CSS Flexbox Guide](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Flexbox) — stacking cards vertically (`flex-direction: column`) and aligning category pills horizontally
+- [MDN — CSS Flexbox Guide](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Flexbox) — `display: flex`, `flex-direction`, `justify-content`, and `gap`
 
 ## Git & GitHub Workflow
 
-- [Git Cheat Sheet (GitHub Education)](https://education.github.com/git-cheat-sheet-education.pdf) — quick reference for `git init`, `git add .`, `git commit`, and `git push`
-
-<div class="giu-refs__note">Make sure your <code>ica-lab-07</code> repository is pushed to GitHub and verified before leaving the lab!</div>
+- [GitHub Docs — Pushing commits to a remote repository](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository) — `git init`, `git add .`, `git commit`, and `git push`
 
 ---
 layout: end
-image: /img/illustrations/thank-you.png
-sub: Open floor for questions — make sure your 2-screen app is pushed to GitHub!
+sub: Complete all 3 screens, verify all Home & Back links work, and push ica-lab-07 to GitHub!
 ---
-
-# Questions?
