@@ -9,10 +9,13 @@ dates:
   - { date: 2026-10-10, what: Assignment 2 due, note: "Workbook modules 00–08 + Checkpoint A" }
   - { date: 2026-10-29, what: Assignment 3 due, note: "Workbook modules 09–13 + Checkpoint B" }
   - { date: 2026-10-31, what: Lab 6 week starts, note: "Project released; teams form" }
+  - { date: 2026-11-08, time: "23:59", what: Project team registration, note: "Form, once per team: repo link, members' GitHub usernames" }
   - { date: 2026-11-12, time: "23:59", what: "Project submission 1: the plan", note: "README.md on the team repo's main branch" }
   - { date: 2026-11-19, what: Feedback on every plan, note: "Approved, or one round of changes" }
+  - { date: 2026-11-19, time: "23:59", what: "Project milestone 1: the project runs", note: "Automatic: health check, #project-name, a commit from every member" }
   - { date: 2026-11-23, time: "23:59", what: Updated plans due, note: "Only teams asked for changes" }
   - { date: 2026-11-28, what: Activity week, note: "No lab" }
+  - { date: 2026-12-03, time: "23:59", what: "Project milestone 2: register and login", note: "Automatic: /api/auth/register + /login, hashed password, every member in backend/ and frontend/" }
   - { date: 2026-12-05, what: Project clinic week, note: "No new content" }
   - { date: 2026-12-10, time: "23:59", what: "Project submission 2: the final code", note: "Repo frozen at the deadline; automated check runs" }
   - { date: 2026-12-12, what: Presentations, note: "Week 13, 12–17 Dec" }
@@ -21,10 +24,9 @@ project:
   title: Course project
   summary: >-
     Teams of 5–6 build a MERN web app, one use case per member, end to end.
-    Registration and login are mandatory and count as one use case. Two fixed
-    submissions: the plan (12 Nov) and the final code (10 Dec). The final repo
-    must answer GET /api/health and show #project-name, or it is not graded.
-    Topics and the registration form are still to be announced.
+    Registration and login are mandatory and count as one use case. Teams pick
+    their own idea. Registration form (8 Nov), the plan (12 Nov), two
+    automatically checked milestones (19 Nov, 3 Dec), the final code (10 Dec). Repos are public.
   documents:
     - { label: Project brief, source: project/brief.html, out: project-brief.pdf, note: "The document students get" }
     - { label: README template, source: project/README-template.md, out: project-README-template.md, note: "Submission 1 follows it" }
@@ -40,6 +42,7 @@ links:
     items:
       - { label: Assignment 1 submission, url: "https://forms.gle/1f44aaXxVKVtTfgZ8" }
       - { label: Assignments 2 & 3 form, url: "https://forms.gle/xWbT6eoxfiFLC2eY9" }
+      - { label: Project team registration, url: "https://forms.gle/A2rccvCLKK7FCBha7", note: "Due Sun 8 Nov, once per team" }
   - group: Services students sign up for
     items:
       - { label: MongoDB Atlas, url: "https://www.mongodb.com/cloud/atlas/register", note: "Lab 5 on; MFA is mandatory" }
