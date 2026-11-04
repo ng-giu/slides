@@ -1,6 +1,6 @@
 ---
 theme: ../../theme
-title: BINF 301 - Lab 7 - Multi-File & Multi-Page Web Architecture
+title: BINF 301 - Lab 7 - Multi-File & Multi-Page Web Practice
 courseTitle: Information and Communication Architecture
 course: BINF 301
 track: Web Design and Information Architecture
@@ -10,7 +10,7 @@ lineNumbers: true
 layout: cover
 ---
 
-<h1 style="max-width:70%">Information & Communication Architecture — Lab 7 — Multi-File & Multi-Page Web Architecture</h1>
+<h1 style="max-width:70%">Information & Communication Architecture — Lab 7 — Multi-File & Multi-Page Web Practice</h1>
 
 ---
 layout: people
@@ -36,492 +36,702 @@ dense: true
 
 | Duration | Topic |
 |---|---|
-| 5 min | **Recap:** From a single card (Lab 6) to a multi-page web app |
-| 10 min | **Multi-Page Structure:** Multiple `.html` files sharing one `style.css` & `assets/` |
-| 10 min | **Page Routing (`<a href>`):** Turning Lab 4 Figma wires & back arrows into HTML links |
-| 10 min | **Figma-to-CSS Patterns:** Reusable classes, sticky headers & horizontal carousels |
-| 10 min | **Code Walkthrough:** Wiring the 3-screen Talabat skeleton in VS Code |
-| 35 min | **Graded In-Lab Assignment:** Recreate your Lab 4 Figma screens & push to GitHub |
+| 5 min | **Overview:** Combining Lab 5 (HTML/CSS) & Lab 6 (VS Code & Git) into a 2-screen app |
+| 15 min | **Screen 1 HTML (`index.html`):** Writing the HTML boilerplate, emoji codes & Home skeleton |
+| 15 min | **Screen 1 CSS (`style.css`):** Selectors, properties & values for the Home screen |
+| 15 min | **Screen 2 HTML (`menu.html`):** Boilerplate shortcut (`!`), header & Menu skeleton |
+| 10 min | **Screen 2 CSS (`style.css`):** Reusing `style.css` & styling the back link |
+| 10 min | **Git & GitHub:** Committing your 2-screen project and pushing to GitHub |
 
 ---
 layout: section
 icon: lifecycle
-sub: Turning your Lab 4 multi-screen Figma prototype into a real multi-page HTML & CSS website
+sub: Everything you need today is already in your toolkit from Labs 5 and 6
 ---
 
-# 01 — From one screen to a multi-page app
+# 01 — Today's Goal: Practice & Build
 
 ---
 layout: default
 icon: recap
+dense: true
 journey:
-  - { title: "Labs 3 & 4", code: "Figma Prototype", sub: "Home ➔ Food Delivery ➔ Restaurant" }
-  - { title: "Lab 5", code: "Single HTML File", sub: "Tags, Flexbox & Box Model in Notepad" }
-  - { title: "Lab 6", code: "VS Code + Git", sub: "Separated index.html, style.css, assets/" }
-  - { title: "Lab 7 (Today)", code: "Multi-Page App", sub: "Linked .html pages + shared style.css" }
+  - { title: "1. Screen 1 HTML", code: "index.html", sub: "Build Home skeleton" }
+  - { title: "2. Screen 1 CSS", code: "style.css", sub: "Style Home screen" }
+  - { title: "3. Screen 2 HTML", code: "menu.html", sub: "Build Menu skeleton" }
+  - { title: "4. Screen 2 CSS", code: "style.css", sub: "Link & finish Screen 2" }
+  - { title: "5. Git & GitHub", code: "git push", sub: "Commit & push online" }
 ---
 
-# Bridging Figma (Lab 4) and VS Code (Lab 6)
+# Putting your HTML, CSS, VS Code & Git skills together
 
-In **Lab 4**, you connected multiple mobile screens in <Tool name="figma" /> (**Home**, **Food Delivery**, and **Restaurant Menus**) with click triggers, back buttons, and sticky headers.
+There are **no new concepts** today—you already know every tag, CSS rule, and Git command needed:
 
 <Flow :steps="$frontmatter.journey" />
 
-Today you will recreate those **exact Figma screens** in <Tool name="vscode" /> as a **multi-file, multi-page frontend project** and push it to <Tool name="github" />.
+- **From Lab 5:** HTML tags (`<div>`, `<h1>`, `<h2>`, `<p>`, `<input>`, `<button>`) and CSS rules (`Selector { Property: Value; }`).
+- **From Lab 6:** Multi-file projects in <Tool name="vscode" />, external `<link rel="stylesheet" href="style.css">`, `<a href="...">` links, and pushing commits to <Tool name="github" />.
+- **Emoji Entity Codes:** Instead of external images, we write **HTML emoji codes** (like `&#127828;`) in our `.html` files, which the browser automatically decodes and renders as emojis (`🍔`) on the DOM!
 
 ---
 layout: default
 icon: intro
 dense: true
-class: giu-screens
+class: giu-target-screens
 ---
 
 <style>
-.giu-screens img { max-height: 12.5rem !important; width: auto !important; margin: 0 auto !important; border-radius: 0.75rem; border: 1px solid #cbd5e1; }
+.giu-target-screens h1 { max-width: none !important; font-size: 1.55rem !important; margin-bottom: 0.45rem !important; }
+.giu-target-screens p { margin-bottom: 0.55rem !important; }
+.giu-target-screens img { max-height: 12.2rem !important; width: auto !important; margin: 0 auto !important; border-radius: 0.75rem; border: 1px solid #cbd5e1; }
 </style>
 
-# The Lab 4 Figma screens you will recreate today
+# The two-screen Talabat app you will build today
 
-Each Figma frame from Lab 4 becomes its own `.html` file inside your project folder:
+You will build two connected screens inside `ica-lab-07/` using HTML emoji codes and one shared `style.css`:
 
-<div class="grid grid-cols-3 gap-3 mt-1.5 text-center text-xs">
-  <div class="p-2 rounded-xl border border-blue-200 bg-blue-50/40">
-    <div class="font-bold text-blue-900 mb-1">1. Home Screen</div>
-    <img src="/img/screens/talabat-home.jpg" alt="Talabat Home Screen" />
-    <div class="mt-1.5 font-mono font-bold text-[0.65rem] text-blue-800 bg-white px-2 py-0.5 rounded border border-blue-200 inline-block">index.html</div>
+<div class="grid grid-cols-2 gap-5 mt-1 text-center text-xs">
+  <div class="p-2.5 rounded-xl border border-blue-200 bg-blue-50/40">
+    <div class="font-bold text-blue-900 mb-1.5">Screen 1: Home Page (<code>index.html</code>)</div>
+    <img src="/img/lab-07/step-5.png" alt="Screen 1 Home Page" />
+    <div class="mt-1.5 text-[0.66rem] text-slate-600">Clicking <strong>Open Burger Republic Menu &rarr;</strong> opens <code>menu.html</code></div>
   </div>
-  <div class="p-2 rounded-xl border border-teal-200 bg-teal-50/40">
-    <div class="font-bold text-teal-900 mb-1">2. Food Delivery Feed</div>
-    <img src="/img/screens/talabat-food-delivery.jpg" alt="Talabat Food Delivery Screen" />
-    <div class="mt-1.5 font-mono font-bold text-[0.65rem] text-teal-800 bg-white px-2 py-0.5 rounded border border-teal-200 inline-block">food-delivery.html</div>
-  </div>
-  <div class="p-2 rounded-xl border border-purple-200 bg-purple-50/40">
-    <div class="font-bold text-purple-900 mb-1">3. Restaurant Menu</div>
-    <img src="/img/screens/talabat-menu.jpg" alt="Talabat Restaurant Menu Screen" />
-    <div class="mt-1.5 font-mono font-bold text-[0.65rem] text-purple-800 bg-white px-2 py-0.5 rounded border border-purple-200 inline-block">burger-republic.html</div>
+  <div class="p-2.5 rounded-xl border border-teal-200 bg-teal-50/40">
+    <div class="font-bold text-teal-900 mb-1.5">Screen 2: Restaurant Menu (<code>menu.html</code>)</div>
+    <img src="/img/lab-07/step-8.png" alt="Screen 2 Menu Page" />
+    <div class="mt-1.5 text-[0.66rem] text-slate-600">Clicking <strong>&larr; Back to Talabat Home</strong> returns to <code>index.html</code></div>
   </div>
 </div>
 
 ---
 layout: split
-title: Multi-page project structure
+title: "Step 1 of 14: set up your project folder in VS Code"
 wideRight: true
 dense: true
+class: giu-step-1
 ---
 
-In a multi-page website:
+<style>
+.giu-step-1 h1 { max-width: none !important; font-size: 1.52rem !important; margin-bottom: 0.65rem !important; }
+</style>
 
-- **Every screen is a separate `.html` file** at the root of your project folder.
-- **`index.html` is always the Home screen**—browsers and web servers open `index.html` first by default.
-- **One `style.css` file** is shared by every page so you never duplicate CSS rules.
-- **One `assets/` folder** holds all logos, icons, and dish photos used across pages.
+Start by creating a clean project folder and your three empty files in <Tool name="vscode" />:
+
+1. Create a new empty folder named `ica-lab-07` on your Desktop (or Documents).
+2. Open <Tool name="vscode" /> and click **File → Open Folder...** to open `ica-lab-07`.
+3. In the **Explorer** sidebar on the left, click the **New File** icon three times to create:
+   - `index.html` — Screen 1 (Talabat Home)
+   - `menu.html` — Screen 2 (Burger Republic Menu)
+   - `style.css` — Shared stylesheet for both screens
 
 ::right::
 
-<div class="p-3 rounded-xl border border-slate-200 bg-slate-50 font-mono text-xs space-y-1.5">
+<div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 font-mono text-xs space-y-2">
   <div class="font-bold text-slate-900">ica-lab-07/</div>
-  <div class="pl-4 space-y-1.5 text-[0.68rem]">
-    <div class="flex items-center justify-between p-1.5 rounded bg-white border border-blue-200">
+  <div class="pl-4 space-y-2 text-[0.72rem]">
+    <div class="flex items-center justify-between p-2 rounded bg-white border border-blue-200">
       <span class="font-bold text-blue-800">├── index.html</span>
-      <span class="font-sans text-[0.6rem] text-slate-600">Screen 1: Home (entry page)</span>
+      <span class="font-sans text-[0.64rem] text-slate-600">Screen 1: Home page (entry point)</span>
     </div>
-    <div class="flex items-center justify-between p-1.5 rounded bg-white border border-teal-200">
-      <span class="font-bold text-teal-800">├── food-delivery.html</span>
-      <span class="font-sans text-[0.6rem] text-slate-600">Screen 2: Restaurant feed</span>
+    <div class="flex items-center justify-between p-2 rounded bg-white border border-teal-200">
+      <span class="font-bold text-teal-800">├── menu.html</span>
+      <span class="font-sans text-[0.64rem] text-slate-600">Screen 2: Restaurant menu page</span>
     </div>
-    <div class="flex items-center justify-between p-1.5 rounded bg-white border border-purple-200">
-      <span class="font-bold text-purple-800">├── burger-republic.html</span>
-      <span class="font-sans text-[0.6rem] text-slate-600">Screen 3: Restaurant menu</span>
-    </div>
-    <div class="flex items-center justify-between p-1.5 rounded bg-white border border-emerald-200">
-      <span class="font-bold text-emerald-800">├── style.css</span>
-      <span class="font-sans text-[0.6rem] text-slate-600">Linked in <code>&lt;head&gt;</code> of all 3 pages</span>
-    </div>
-    <div class="p-1.5 rounded bg-white border border-amber-200">
-      <div class="flex items-center justify-between">
-        <span class="font-bold text-amber-900">└── assets/</span>
-        <span class="font-sans text-[0.6rem] text-slate-600">Shared logos, banners &amp; dish images</span>
-      </div>
+    <div class="flex items-center justify-between p-2 rounded bg-white border border-purple-200">
+      <span class="font-bold text-purple-800">└── style.css</span>
+      <span class="font-sans text-[0.64rem] text-slate-600">One shared CSS file for both screens</span>
     </div>
   </div>
 </div>
 
-<div class="giu-refs__note">Naming rule: always use <strong>lowercase letters and hyphens</strong> for HTML filenames (<code>food-delivery.html</code>, never <code>Food Delivery.html</code> with spaces).</div>
+<div class="giu-refs__note">All three files must sit side-by-side in the root of <code>ica-lab-07/</code> so they can link to each other directly by filename.</div>
 
 ---
 layout: section
 icon: code
-sub: Translating Figma prototype wires, master components, and scroll settings into HTML & CSS
+sub: "Phase 1 — Build the complete HTML skeleton of Screen 1 inside index.html"
 ---
 
-# 02 — Connecting pages & sharing styles
+# 02 — Screen 1: HTML Skeleton
 
 ---
 layout: split
-title: "Figma wires ➔ HTML anchor links"
+title: "Step 2 of 14: write the HTML boilerplate (index.html)"
 wideRight: true
 dense: true
+class: giu-boilerplate-s2
 ---
 
-In **Lab 4**, you dragged blue prototype wires in Figma (`On click ➔ Navigate to`).
+<style>
+.giu-boilerplate-s2 h1 { font-size: 1.48rem !important; margin-bottom: 0.55rem !important; max-width: none !important; }
+.giu-boilerplate-s2 p { font-size: 0.75rem !important; line-height: 1.42 !important; margin-top: 0.35rem !important; margin-bottom: 0.45rem !important; }
+.giu-boilerplate-s2 li { font-size: 0.74rem !important; line-height: 1.42 !important; margin-bottom: 0.3rem !important; }
+</style>
 
-In **HTML**, the **`<a>` (anchor) tag** with `href` is your prototype wire:
+<FileTag name="index.html" state="edit" />
 
-- **Forward wire:** Wrap a tile or card in `<a class="card-link" href="...">...</a>`.
-- **Back wire:** Wire the top-left arrow to `<a href="index.html">&larr;</a>`.
-- **No blue underline:** Add `.card-link { text-decoration: none; color: inherit; display: block; }` in `style.css`.
+For **Screen 1 (`index.html`)**, write the HTML boilerplate **by hand** to practice the core document structure from Lab 5 (you will use a shortcut on Screen 2!):
+
+1. Click inside your empty `index.html` file.
+2. On line 1, type **`<!DOCTYPE html>`** to declare an HTML5 document.
+3. Open and close the root **`<html>...</html>`** tag.
+4. Inside `<html>`, add **`<head>`** containing **`<title>Talabat - Home</title>`**.
+5. Below `</head>`, add **`<body>...</body>`** where all visible elements will go, and press `Ctrl + S` to save.
 
 ::right::
 
-| Action | Page | HTML `<a href>` wire |
-|---|---|---|
-| Tap **Food** | `index.html` | `<a class="card-link" href="food-delivery.html">` |
-| Tap **← Back** | `food-delivery.html` | `<a href="index.html">&larr;</a>` |
-| Tap **Restaurant** | `food-delivery.html` | `<a class="card-link" href="burger-republic.html">` |
-| Tap **← Back** | `burger-republic.html` | `<a href="food-delivery.html">&larr;</a>` |
+<div class="p-3 rounded-xl border border-slate-200 bg-slate-50 space-y-2 text-xs">
+  <div class="font-bold text-slate-900">Type this boilerplate in <code>index.html</code></div>
+  <div class="p-2.5 rounded-lg bg-slate-900 text-slate-100 font-mono text-[0.65rem] leading-snug">
+    <div>&lt;!DOCTYPE html&gt;</div>
+    <div>&lt;html&gt;</div>
+    <div>&lt;head&gt;</div>
+    <div>&nbsp;&nbsp;&lt;title&gt;Talabat - Home&lt;/title&gt;</div>
+    <div>&lt;/head&gt;</div>
+    <div>&lt;body&gt;</div>
+    <div class="text-slate-400">&nbsp;&nbsp;&lt;!<span>-</span><span>-</span> Screen 1 content goes here <span>-</span><span>-</span>&gt;</div>
+    <div>&lt;/body&gt;</div>
+    <div>&lt;/html&gt;</div>
+  </div>
+  <div class="space-y-1.5 text-[0.65rem] text-slate-700">
+    <div class="p-1.5 rounded bg-white border border-slate-200">
+      <strong><code>&lt;!DOCTYPE html&gt;</code> &amp; <code>&lt;html&gt;</code>:</strong> Declares HTML5 and wraps the entire page.
+    </div>
+    <div class="p-1.5 rounded bg-white border border-blue-200">
+      <strong><code>&lt;head&gt;...&lt;/head&gt;</code>:</strong> Holds page metadata (<code>&lt;title&gt;</code> and our CSS <code>&lt;link&gt;</code>).
+    </div>
+    <div class="p-1.5 rounded bg-white border border-teal-200">
+      <strong><code>&lt;body&gt;...&lt;/body&gt;</code>:</strong> Holds all visible elements rendered in the browser.
+    </div>
+  </div>
+</div>
 
 ---
-layout: default
-icon: tools
+layout: split
+title: "Step 3 of 14: Screen 1 wrapper & header"
 dense: true
+class: giu-html-step
 ---
 
-# Figma features ➔ CSS rules
+<style>
+.giu-html-step h1 { font-size: 1.48rem !important; margin-bottom: 0.55rem !important; max-width: none !important; }
+.giu-html-step .giu-split__grid { grid-template-columns: 1.18fr 0.82fr !important; gap: 1.5rem !important; align-items: start !important; }
+.giu-html-step p { font-size: 0.75rem !important; line-height: 1.42 !important; margin-top: 0.35rem !important; margin-bottom: 0.45rem !important; }
+.giu-html-step li { font-size: 0.74rem !important; line-height: 1.42 !important; margin-bottom: 0.28rem !important; }
+.giu-html-step img { max-height: 18rem !important; width: auto !important; margin: 0 auto !important; border-radius: 0.75rem; border: 1px solid #cbd5e1; }
+</style>
 
-Every layout and prototyping feature from **Labs 3 & 4** has a direct CSS equivalent in `style.css`:
+<FileTag name="index.html (inside <body>)" state="edit" />
 
-| In Figma | In HTML & CSS | CSS properties in `style.css` |
-|---|---|---|
-| **Mobile Frame** (`393px`) | `.app` wrapper div | `.app { width: 393px; background: #fff; }` |
-| **Auto-Layout** (`Shift+A`) | Flexbox container | `display: flex; gap: 12px; align-items: center;` |
-| **Master Component** | Shared CSS class | Define `.rest-card` once in `style.css`; reuse on every card |
-| **Fixed Header / Nav** | Sticky positioning | `.top-bar { position: sticky; top: 0; }` |
-| **Horizontal Carousel** | Horizontal flex scroll | `.scroll-row { display: flex; gap: 12px; overflow-x: auto; }` |
-| **2-Col Dish Grid** | CSS Grid layout | `.menu-grid { display: grid; grid-template-columns: 1fr 1fr; }` |
+We will write **HTML emoji codes** (`&#...;`) in our `.html` file—the browser decodes and renders them as emojis on the DOM:
+
+1. Inside the `<body>` tag, create one main `<div class="card">` tag that wraps the entire screen (do **not** link `style.css` yet so you can inspect the raw HTML first).
+2. Inside the `<div class="card">` tag, create a `<div class="header">` tag.
+3. Inside the `<div class="header">` tag, add three elements:
+   - An `<h1>` tag with text `&#128757; Talabat` (`&#128757;` renders as 🛵 on the DOM).
+   - A `<p>` tag with text `&#128205; Delivering to: New Cairo, 5th Settlement` (`&#128205;` renders as 📍).
+   - An `<input>` tag with `type="text"` and `placeholder="Search for food, groceries, coffee..."`.
+
+::right::
+
+<div class="text-[0.64rem] font-bold uppercase tracking-wider text-slate-500 text-center mb-1.5">Timeline Snapshot — After Step 3</div>
+
+![Step 3 browser snapshot](/img/lab-07/step-2a.png)
+
+---
+layout: split
+title: "Step 4 of 14: Screen 1 categories & promo"
+dense: true
+class: giu-html-step
+---
+
+<style>
+.giu-html-step h1 { font-size: 1.48rem !important; margin-bottom: 0.55rem !important; max-width: none !important; }
+.giu-html-step .giu-split__grid { grid-template-columns: 1.18fr 0.82fr !important; gap: 1.5rem !important; align-items: start !important; }
+.giu-html-step p { font-size: 0.75rem !important; line-height: 1.42 !important; margin-top: 0.35rem !important; margin-bottom: 0.45rem !important; }
+.giu-html-step li { font-size: 0.74rem !important; line-height: 1.42 !important; margin-bottom: 0.28rem !important; }
+.giu-html-step img { max-height: 18rem !important; width: auto !important; margin: 0 auto !important; border-radius: 0.75rem; border: 1px solid #cbd5e1; }
+</style>
+
+<FileTag name="index.html (inside <div class=&quot;card&quot;>)" state="edit" />
+
+Below the `<div class="header">` tag (still inside the `<div class="card">` tag), add the category pills and promo box using emoji codes:
+
+1. Create a `<div class="categories">` tag.
+2. Inside the `<div class="categories">` tag, add four `<div class="cat">` tags:
+   - First `<div class="cat">`: `&#127828; Food` (renders 🍔 Food)
+   - Second `<div class="cat">`: `&#128722; Mart` (renders 🛒 Mart)
+   - Third `<div class="cat">`: `&#9749; Coffee` (renders ☕ Coffee)
+   - Fourth `<div class="cat">`: `&#128138; Health` (renders 💊 Health)
+3. Below the `<div class="categories">` tag, create a `<div class="promo">` tag containing:
+   - An `<h2>` tag with `&#128293; 50% OFF Your First Order` (renders 🔥)
+   - A `<p>` tag with `Use code WELCOME50 at checkout today!`
+
+::right::
+
+<div class="text-[0.64rem] font-bold uppercase tracking-wider text-slate-500 text-center mb-1.5">Timeline Snapshot — After Step 4</div>
+
+![Step 4 browser snapshot](/img/lab-07/step-2.png)
+
+---
+layout: split
+title: "Step 5 of 14: Screen 1 restaurants & page link"
+dense: true
+class: giu-html-step
+---
+
+<style>
+.giu-html-step h1 { font-size: 1.48rem !important; margin-bottom: 0.55rem !important; max-width: none !important; }
+.giu-html-step .giu-split__grid { grid-template-columns: 1.18fr 0.82fr !important; gap: 1.5rem !important; align-items: start !important; }
+.giu-html-step p { font-size: 0.75rem !important; line-height: 1.42 !important; margin-top: 0.35rem !important; margin-bottom: 0.45rem !important; }
+.giu-html-step li { font-size: 0.74rem !important; line-height: 1.42 !important; margin-bottom: 0.28rem !important; }
+.giu-html-step img { max-height: 18rem !important; width: auto !important; margin: 0 auto !important; border-radius: 0.75rem; border: 1px solid #cbd5e1; }
+</style>
+
+<FileTag name="index.html (inside <div class=&quot;card&quot;>)" state="edit" />
+
+Below the `<div class="promo">` tag (still inside the `<div class="card">` tag), add two restaurant boxes and the page link:
+
+1. First `<div class="item">` tag:
+   - An `<h2>` tag with `&#127828; Burger Republic` (🍔)
+   - A `<p>` tag with `&#11088; 4.8 &bull; Burgers &amp; Fries &bull; 25 mins &bull; Free Delivery` (`&#11088;` renders ⭐; `&bull;` renders •)
+2. Second `<div class="item">` tag:
+   - An `<h2>` tag with `&#127829; Napoli Woodfire Pizza` (🍕)
+   - A `<p>` tag with `&#11088; 4.6 &bull; Italian Pizza &bull; 35 mins &bull; 15 EGP Delivery`
+3. At the bottom of `<div class="card">`, add `<a class="btn" href="menu.html">` with text `Open Burger Republic Menu &rarr;` (`&rarr;` renders →).
+   - **How `<a href>` connects pages:** `href="menu.html"` opens `menu.html` in the same folder when clicked.
+
+::right::
+
+<div class="text-[0.64rem] font-bold uppercase tracking-wider text-slate-500 text-center mb-1.5">Timeline Snapshot — Complete Screen 1 HTML Skeleton</div>
+
+![Step 5 browser snapshot](/img/lab-07/step-3.png)
 
 ---
 layout: section
 icon: code
-sub: Step-by-step walkthrough of the 3-page navigation skeleton before you flesh out the full UI
+sub: "Phase 2 — Style Screen 1 in style.css using CSS Selectors, Properties, and Values"
 ---
 
-# 03 — Code walkthrough: 3 linked pages
+# 03 — Screen 1: CSS Styling
 
 ---
 layout: split
-title: "The plan: 4 files in 4 steps"
+title: "Step 6 of 14: link style.css & style body and .card"
 dense: true
+class: giu-css-table
 ---
 
-Before building all the visual cards, always wire the **multi-page skeleton** first and test that every link works:
+<style>
+.giu-css-table h1 { font-size: 1.44rem !important; margin-bottom: 0.45rem !important; max-width: none !important; }
+.giu-css-table .giu-split__grid { grid-template-columns: 1.44fr 0.56fr !important; gap: 1.25rem !important; align-items: start !important; }
+.giu-css-table p, .giu-css-table li { font-size: 0.74rem !important; line-height: 1.4 !important; margin-top: 0.28rem !important; margin-bottom: 0.32rem !important; }
+.giu-css-table table { font-size: 0.72rem !important; margin: 0.3rem 0 0 !important; line-height: 1.35 !important; width: 100% !important; }
+.giu-css-table th { padding: 0.32rem 0.45rem 0.32rem 0 !important; font-size: 0.74rem !important; white-space: nowrap !important; }
+.giu-css-table td { padding: 0.32rem 0.45rem 0.32rem 0 !important; vertical-align: middle !important; white-space: nowrap !important; }
+.giu-css-table td:first-child { width: auto !important; padding-right: 0.6rem !important; }
+.giu-css-table td code { font-size: 0.68rem !important; padding: 0.1rem 0.3rem !important; white-space: nowrap !important; }
+.giu-css-table img { max-height: 18rem !important; width: auto !important; margin: 0 auto !important; border-radius: 0.75rem; border: 1px solid #cbd5e1; }
+</style>
 
-1. **Step 1** — Create the shared `style.css`
-2. **Step 2** — Create Screen 1: `index.html` (links to `food-delivery.html`)
-3. **Step 3** — Create Screen 2: `food-delivery.html` (links back to `index.html` and forward to `burger-republic.html`)
-4. **Step 4** — Create Screen 3: `burger-republic.html` (links back to `food-delivery.html`)
+<FileTag name="index.html + style.css" state="edit" />
+
+Inside `<head>` of `index.html`, add `<link rel="stylesheet" href="style.css">`. Then open `style.css` and style the page backdrop (`body`) and outer phone frame (`.card`):
+
+| Selector | Property | Value |
+|---|---|---|
+| `body` | `font-family` / `background-color` | `sans-serif` / `#e2e8f0` |
+| `body` | `display` / `justify-content` | `flex` / `center` |
+| `body` | `padding` / `margin` | `24px` / `0` |
+| `.card` | `width` / `background-color` | `360px` / `white` |
+| `.card` | `display` / `flex-direction` | `flex` / `column` |
+| `.card` | `padding` / `border-radius` | `20px` / `20px` |
 
 ::right::
 
-```text
-ica-lab-07/
-├── assets/
-│   └── food.svg          (image assets)
-├── style.css             (Step 1: CSS)
-├── index.html            (Step 2: Home)
-├── food-delivery.html    (Step 3: Feed)
-└── burger-republic.html  (Step 4: Menu)
-```
+<div class="text-[0.64rem] font-bold uppercase tracking-wider text-slate-500 text-center mb-1.5">Timeline Snapshot — After Step 6</div>
 
-<div class="giu-refs__note">All four files live in the same root folder (<code>ica-lab-07/</code>), so every page links to <code>href="style.css"</code> and can navigate to any sibling page by its filename.</div>
+![Step 6 browser snapshot](/img/lab-07/step-40.png)
 
 ---
 layout: split
-title: "Step 1 of 4: shared style.css"
+title: "Step 7 of 14: style .header, header text & input"
 dense: true
+class: giu-css-table
 ---
 
-1. Create a new folder `ica-lab-07` and open it in <Tool name="vscode" />.
-2. Create `style.css` at the root of `ica-lab-07/`.
-3. Add the shared layout classes on the right and press `Ctrl + S` to **save**:
-   - `.app` locks the `393px` mobile viewport width.
-   - `.top-bar` pins the navigation header with `position: sticky; top: 0;`.
-   - `.card-link` removes the default underline from clickable `<a href>` cards.
+<style>
+.giu-css-table h1 { font-size: 1.44rem !important; margin-bottom: 0.45rem !important; max-width: none !important; }
+.giu-css-table .giu-split__grid { grid-template-columns: 1.44fr 0.56fr !important; gap: 1.25rem !important; align-items: start !important; }
+.giu-css-table p, .giu-css-table li { font-size: 0.74rem !important; line-height: 1.4 !important; margin-top: 0.28rem !important; margin-bottom: 0.32rem !important; }
+.giu-css-table table { font-size: 0.72rem !important; margin: 0.3rem 0 0 !important; line-height: 1.35 !important; width: 100% !important; }
+.giu-css-table th { padding: 0.32rem 0.45rem 0.32rem 0 !important; font-size: 0.74rem !important; white-space: nowrap !important; }
+.giu-css-table td { padding: 0.32rem 0.45rem 0.32rem 0 !important; vertical-align: middle !important; white-space: nowrap !important; }
+.giu-css-table td:first-child { width: auto !important; padding-right: 0.6rem !important; }
+.giu-css-table td code { font-size: 0.68rem !important; padding: 0.1rem 0.3rem !important; white-space: nowrap !important; }
+.giu-css-table img { max-height: 18rem !important; width: auto !important; margin: 0 auto !important; border-radius: 0.75rem; border: 1px solid #cbd5e1; }
+</style>
+
+<FileTag name="style.css" state="edit" />
+
+Continue in `style.css` to style the orange Talabat header box (`.header`), its title and subtitle, and the search `<input>`:
+
+| Selector | Property | Value |
+|---|---|---|
+| `.header` | `background-color` / `color` / `padding` | `#ff5a00` / `white` / `16px` |
+| `.header` | `display` / `flex-direction` | `flex` / `column` |
+| `.header` | `border-radius` / `margin-bottom` | `14px` / `14px` |
+| `.header h1` | `font-size` / `color` / `margin` | `22px` / `white` / `0 0 4px 0` |
+| `.header p` | `font-size` / `color` / `margin` | `12px` / `#ffedd5` / `0 0 12px 0` |
+| `input` | `padding` / `margin-bottom` / `font-size` | `10px 12px` / `12px` / `12px` |
+| `input` | `border` / `border-radius` | `1px solid #cbd5e1` / `8px` |
+| `.header input` | `border` / `margin-bottom` | `none` / `0` |
 
 ::right::
 
-<FileTag name="style.css" state="new" />
+<div class="text-[0.64rem] font-bold uppercase tracking-wider text-slate-500 text-center mb-1.5">Timeline Snapshot — After Step 7</div>
 
-<<< @/snippets/lab-07/style.css
+![Step 7 browser snapshot](/img/lab-07/step-4.png)
 
 ---
 layout: split
-title: "Step 2 of 4: index.html (Home)"
+title: "Step 8 of 14: style .categories, .cat & .promo"
 dense: true
+class: giu-css-table
 ---
 
-1. Create `index.html` next to `style.css`.
-2. Notice the two highlighted parts:
-   - **Line 5** loads the shared `style.css`.
-   - **Lines 10–11** wrap the **Food** service tile inside `<a class="card-link" href="food-delivery.html">` so clicking **Food** opens Screen 2.
+<style>
+.giu-css-table h1 { font-size: 1.44rem !important; margin-bottom: 0.45rem !important; max-width: none !important; }
+.giu-css-table .giu-split__grid { grid-template-columns: 1.44fr 0.56fr !important; gap: 1.25rem !important; align-items: start !important; }
+.giu-css-table p, .giu-css-table li { font-size: 0.74rem !important; line-height: 1.4 !important; margin-top: 0.28rem !important; margin-bottom: 0.32rem !important; }
+.giu-css-table table { font-size: 0.72rem !important; margin: 0.3rem 0 0 !important; line-height: 1.35 !important; width: 100% !important; }
+.giu-css-table th { padding: 0.32rem 0.45rem 0.32rem 0 !important; font-size: 0.74rem !important; white-space: nowrap !important; }
+.giu-css-table td { padding: 0.32rem 0.45rem 0.32rem 0 !important; vertical-align: middle !important; white-space: nowrap !important; }
+.giu-css-table td:first-child { width: auto !important; padding-right: 0.6rem !important; }
+.giu-css-table td code { font-size: 0.68rem !important; padding: 0.1rem 0.3rem !important; white-space: nowrap !important; }
+.giu-css-table img { max-height: 18rem !important; width: auto !important; margin: 0 auto !important; border-radius: 0.75rem; border: 1px solid #cbd5e1; }
+</style>
+
+<FileTag name="style.css" state="edit" />
+
+Next in `style.css`, arrange the category pills in a horizontal flex row (`.categories` & `.cat`) and style the promo banner (`.promo`):
+
+| Selector | Property | Value |
+|---|---|---|
+| `.categories` | `display` / `gap` / `margin-bottom` | `flex` / `8px` / `14px` |
+| `.cat` | `background-color` / `color` | `#f1f5f9` / `#1e293b` |
+| `.cat` | `padding` / `border-radius` | `8px 12px` / `8px` |
+| `.cat` | `font-size` / `font-weight` | `12px` / `bold` |
+| `.promo` | `background-color` / `border` | `#fff7ed` / `1px solid #fed7aa` |
+| `.promo` | `padding` / `border-radius` / `margin-bottom` | `12px` / `12px` / `14px` |
+| `.promo h2` | `color` | `#c2410c` |
+| `.promo p` | `margin` | `0` |
 
 ::right::
 
-<FileTag name="index.html" state="new" />
+<div class="text-[0.64rem] font-bold uppercase tracking-wider text-slate-500 text-center mb-1.5">Timeline Snapshot — After Step 8</div>
 
-<<< @/snippets/lab-07/index.html {5,10-11}
+![Step 8 browser snapshot](/img/lab-07/step-4b.png)
 
 ---
 layout: split
-title: "Step 3 of 4: the Feed page"
+title: "Step 9 of 14: style h2, p, .item & .btn"
 dense: true
+class: giu-css-table
 ---
 
-1. Create `food-delivery.html` next to `index.html`.
-2. Look at the three highlighted lines:
-   - **Line 5** reuses the exact same `style.css`.
-   - **Line 10** wires the top-left back arrow (`&larr;`) to `href="index.html"`.
-   - **Line 12** wires the **Burger Republic** card to `href="burger-republic.html"`.
+<style>
+.giu-css-table h1 { font-size: 1.44rem !important; margin-bottom: 0.45rem !important; max-width: none !important; }
+.giu-css-table .giu-split__grid { grid-template-columns: 1.44fr 0.56fr !important; gap: 1.25rem !important; align-items: start !important; }
+.giu-css-table p, .giu-css-table li { font-size: 0.74rem !important; line-height: 1.4 !important; margin-top: 0.28rem !important; margin-bottom: 0.32rem !important; }
+.giu-css-table table { font-size: 0.72rem !important; margin: 0.3rem 0 0 !important; line-height: 1.35 !important; width: 100% !important; }
+.giu-css-table th { padding: 0.32rem 0.45rem 0.32rem 0 !important; font-size: 0.74rem !important; white-space: nowrap !important; }
+.giu-css-table td { padding: 0.32rem 0.45rem 0.32rem 0 !important; vertical-align: middle !important; white-space: nowrap !important; }
+.giu-css-table td:first-child { width: auto !important; padding-right: 0.6rem !important; }
+.giu-css-table td code { font-size: 0.68rem !important; padding: 0.1rem 0.3rem !important; white-space: nowrap !important; }
+.giu-css-table img { max-height: 18rem !important; width: auto !important; margin: 0 auto !important; border-radius: 0.75rem; border: 1px solid #cbd5e1; }
+</style>
+
+<FileTag name="style.css (bottom)" state="edit" />
+
+Finish Screen 1 by adding the typography (`h2`, `p`), restaurant card (`.item`), and orange button (`.btn`) rules in `style.css`:
+
+| Selector | Property | Value |
+|---|---|---|
+| `h2` | `font-size` / `color` / `margin` | `14px` / `#0f172a` / `0 0 4px 0` |
+| `p` | `font-size` / `color` / `margin` | `12px` / `#64748b` / `0 0 12px 0` |
+| `.item` | `background-color` / `border` | `#f8fafc` / `1px solid #e2e8f0` |
+| `.item` | `padding` / `border-radius` / `margin-bottom` | `12px` / `12px` / `10px` |
+| `.item p` | `margin` | `0` |
+| `.btn` | `background-color` / `color` / `padding` | `#ff5a00` / `white` / `12px` |
+| `.btn` | `border-radius` / `border` / `text-align` | `10px` / `none` / `center` |
+| `.btn` | `font-size` / `font-weight` / `text-decoration` | `14px` / `bold` / `none` |
 
 ::right::
 
-<FileTag name="food-delivery.html" state="new" />
+<div class="text-[0.64rem] font-bold uppercase tracking-wider text-slate-500 text-center mb-1.5">Timeline Snapshot — Screen 1 Complete!</div>
 
-<<< @/snippets/lab-07/food-delivery.html {5,10,12-13}
+![Step 9 browser snapshot](/img/lab-07/step-5.png)
+
+---
+layout: section
+icon: code
+sub: "Phase 3 — Build Screen 2 inside menu.html using the VS Code boilerplate shortcut"
+---
+
+# 04 — Screen 2: HTML Skeleton
 
 ---
 layout: split
-title: "Step 4 of 4: the Menu page"
+title: "Step 10 of 14: Screen 2 boilerplate shortcut (! + Tab)"
+wideRight: true
 dense: true
+class: giu-boilerplate-s2
 ---
 
-1. Create `burger-republic.html` next to `food-delivery.html`.
-2. Look at the two highlighted lines:
-   - **Line 5** links the same `style.css` stylesheet.
-   - **Line 10** wires the top-left back arrow (`&larr;`) to `href="food-delivery.html"`, returning to the Food Delivery feed.
+<style>
+.giu-boilerplate-s2 h1 { font-size: 1.48rem !important; margin-bottom: 0.55rem !important; max-width: none !important; }
+.giu-boilerplate-s2 p { font-size: 0.75rem !important; line-height: 1.42 !important; margin-top: 0.35rem !important; margin-bottom: 0.45rem !important; }
+.giu-boilerplate-s2 li { font-size: 0.74rem !important; line-height: 1.42 !important; margin-bottom: 0.3rem !important; }
+</style>
+
+<FileTag name="menu.html" state="edit" />
+
+Now that you wrote the HTML boilerplate by hand on Screen 1, use <Tool name="vscode" />'s built-in **shortcut** for **Screen 2 (`menu.html`)**:
+
+1. Click inside your empty `menu.html` file.
+2. Type a single exclamation mark **`!`** on line 1.
+3. Press **`Tab`** (or **`Enter`**) when the **Emmet Abbreviation** popup appears.
+4. <Tool name="vscode" /> automatically generates the complete HTML5 boilerplate (`<!DOCTYPE html>`, `<html lang="en">`, `<head>`, and `<body>`).
+5. Inside `<head>`, change `<title>` from `Document` to `Talabat - Burger Republic Menu` and press `Ctrl + S` to save.
 
 ::right::
 
-<FileTag name="burger-republic.html" state="new" />
-
-<<< @/snippets/lab-07/burger-republic.html {5,10}
+<div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 space-y-2.5 text-xs">
+  <div class="font-bold text-slate-900">What the <code>!</code> + <code>Tab</code> shortcut generates in <code>menu.html</code></div>
+  <div class="p-2.5 rounded-lg bg-slate-900 text-white font-mono text-[0.68rem] flex items-center justify-between">
+    <span>1 &nbsp;<span class="text-amber-400 font-bold">!</span></span>
+    <span class="px-2 py-0.5 rounded bg-blue-600 text-[0.6rem]">Emmet Abbreviation (Press Tab ↹)</span>
+  </div>
+  <div class="space-y-1.5 text-[0.66rem] text-slate-700">
+    <div class="p-2 rounded bg-white border border-slate-200">
+      <strong><code>&lt;!DOCTYPE html&gt;</code> &amp; <code>&lt;html lang="en"&gt;</code>:</strong> Same HTML5 root structure you typed on Screen 1.
+    </div>
+    <div class="p-2 rounded bg-white border border-blue-200">
+      <strong><code>&lt;head&gt;...&lt;/head&gt;</code>:</strong> Includes <code>&lt;meta charset="UTF-8"&gt;</code> and <code>&lt;title&gt;Talabat - Burger Republic Menu&lt;/title&gt;</code>.
+    </div>
+    <div class="p-2 rounded bg-white border border-teal-200">
+      <strong><code>&lt;body&gt;...&lt;/body&gt;</code>:</strong> Ready for the Screen 2 restaurant menu elements!
+    </div>
+  </div>
+</div>
 
 ---
 layout: split
-title: "Checkpoint: test the 3-page loop"
+title: "Step 11 of 14: Screen 2 header & categories"
 dense: true
+class: giu-html-step
 ---
 
-<Activity label="Click through your pages">
+<style>
+.giu-html-step h1 { font-size: 1.48rem !important; margin-bottom: 0.55rem !important; max-width: none !important; }
+.giu-html-step .giu-split__grid { grid-template-columns: 1.18fr 0.82fr !important; gap: 1.5rem !important; align-items: start !important; }
+.giu-html-step p { font-size: 0.75rem !important; line-height: 1.42 !important; margin-top: 0.35rem !important; margin-bottom: 0.45rem !important; }
+.giu-html-step li { font-size: 0.74rem !important; line-height: 1.42 !important; margin-bottom: 0.28rem !important; }
+.giu-html-step img { max-height: 18rem !important; width: auto !important; margin: 0 auto !important; border-radius: 0.75rem; border: 1px solid #cbd5e1; }
+</style>
 
-1. Right-click `index.html` in VS Code and select **Open with Live Server**.
-2. Click **Food** ➔ opens `/food-delivery.html`.
-3. Click **Burger Republic** ➔ opens `/burger-republic.html`.
-4. Click **`←`** on Menu ➔ returns to `/food-delivery.html`.
-5. Click **`←`** on Feed ➔ returns to `/index.html`.
+<FileTag name="menu.html (inside <body>)" state="edit" />
+
+Inside `<body>` of `menu.html`, build the top of Screen 2 (keep `<link>` out until Step 13 so you inspect the raw HTML first):
+
+1. Inside the `<body>` tag, create a `<div class="card">` tag, and inside it create a `<div class="header">` tag containing:
+   - An `<a class="back" href="index.html">` tag with text `&larr; Back to Talabat Home` (`&larr;` renders ←, and `href="index.html"` links back to Screen 1!).
+   - An `<h1>` tag with text `&#127828; Burger Republic` (🍔)
+   - A `<p>` tag with text `&#11088; 4.8 (500+ ratings) &bull; 25 mins &bull; Free Delivery` (⭐)
+2. Below the `<div class="header">` tag (still inside the `<div class="card">` tag), create a `<div class="categories">` tag containing four `<div class="cat">` tags:
+   - `&#128293; Popular` (🔥), `&#127828; Burgers` (🍔), `&#127839; Sides` (🍟), and `&#129380; Drinks` (🥤).
+
+::right::
+
+<div class="text-[0.64rem] font-bold uppercase tracking-wider text-slate-500 text-center mb-1.5">Timeline Snapshot — After Step 11</div>
+
+![Step 11 browser snapshot](/img/lab-07/step-6.png)
+
+---
+layout: split
+title: "Step 12 of 14: Screen 2 dishes, note input & button"
+dense: true
+class: giu-html-step
+---
+
+<style>
+.giu-html-step h1 { font-size: 1.48rem !important; margin-bottom: 0.55rem !important; max-width: none !important; }
+.giu-html-step .giu-split__grid { grid-template-columns: 1.18fr 0.82fr !important; gap: 1.5rem !important; align-items: start !important; }
+.giu-html-step p { font-size: 0.75rem !important; line-height: 1.42 !important; margin-top: 0.35rem !important; margin-bottom: 0.45rem !important; }
+.giu-html-step li { font-size: 0.74rem !important; line-height: 1.42 !important; margin-bottom: 0.28rem !important; }
+.giu-html-step img { max-height: 18rem !important; width: auto !important; margin: 0 auto !important; border-radius: 0.75rem; border: 1px solid #cbd5e1; }
+</style>
+
+<FileTag name="menu.html (inside <div class=&quot;card&quot;>)" state="edit" />
+
+Below the `<div class="categories">` tag (still inside the `<div class="card">` tag in `menu.html`), add the dishes and checkout controls:
+
+1. **First `<div class="item">` tag:** `<h2>` with `&#127828; Classic Double Smash` (🍔) + `<p>` with `2 Angus beef patties, cheddar &amp; house sauce — 145 EGP`.
+2. **Second `<div class="item">` tag:** `<h2>` with `&#127812; Mushroom Swiss Burger` (🍄) + `<p>` with `Sauteed mushrooms, melted Swiss &amp; garlic aioli — 160 EGP`.
+3. **Third `<div class="item">` tag:** `<h2>` with `&#127839; Loaded Cheese Fries` (🍟) + `<p>` with `Crispy crinkle fries &amp; warm cheddar sauce — 65 EGP`.
+4. **Delivery note:** An `<input type="text">` tag with `placeholder="Add delivery note (e.g. extra sauce, no onions)..."`.
+5. **Order button:** A `<button class="btn">` tag with text `Place Order &bull; 210 EGP` (`&bull;` renders •).
+
+::right::
+
+<div class="text-[0.64rem] font-bold uppercase tracking-wider text-slate-500 text-center mb-1.5">Timeline Snapshot — Complete Screen 2 HTML Skeleton</div>
+
+![Step 12 browser snapshot](/img/lab-07/step-7.png)
+
+---
+layout: section
+icon: code
+sub: "Phase 4 — Link the shared style.css to menu.html and style the back link"
+---
+
+# 05 — Screen 2: CSS Styling
+
+---
+layout: split
+title: "Step 13 of 14: link style.css & style the .back link"
+dense: true
+class: giu-css-table
+---
+
+<style>
+.giu-css-table h1 { font-size: 1.44rem !important; margin-bottom: 0.45rem !important; max-width: none !important; }
+.giu-css-table .giu-split__grid { grid-template-columns: 1.44fr 0.56fr !important; gap: 1.25rem !important; align-items: start !important; }
+.giu-css-table p, .giu-css-table li { font-size: 0.74rem !important; line-height: 1.4 !important; margin-top: 0.28rem !important; margin-bottom: 0.32rem !important; }
+.giu-css-table table { font-size: 0.72rem !important; margin: 0.3rem 0 0 !important; line-height: 1.35 !important; width: 100% !important; }
+.giu-css-table th { padding: 0.32rem 0.45rem 0.32rem 0 !important; font-size: 0.74rem !important; white-space: nowrap !important; }
+.giu-css-table td { padding: 0.32rem 0.45rem 0.32rem 0 !important; vertical-align: middle !important; white-space: nowrap !important; }
+.giu-css-table td:first-child { width: auto !important; padding-right: 0.6rem !important; }
+.giu-css-table td code { font-size: 0.68rem !important; padding: 0.1rem 0.3rem !important; white-space: nowrap !important; }
+.giu-css-table img { max-height: 18rem !important; width: auto !important; margin: 0 auto !important; border-radius: 0.75rem; border: 1px solid #cbd5e1; }
+</style>
+
+<FileTag name="menu.html + style.css" state="edit" />
+
+Now watch the power of a **shared stylesheet** in a multi-page project:
+
+1. Inside the `<head>` tag of `menu.html`, add `<link rel="stylesheet" href="style.css">` and save (`Ctrl + S`).
+   - Because `menu.html` reuses `.card`, `.header`, `.categories`, `.cat`, `.item`, `input`, and `.btn`, **95% of Screen 2 styles itself immediately**!
+2. At the bottom of `style.css`, add one rule for the `<a class="back">` link inside the orange header:
+
+| Selector | Property | Value |
+|---|---|---|
+| `.back` | `color` | `#ffedd5` |
+| `.back` | `font-size` / `font-weight` | `12px` / `bold` |
+| `.back` | `text-decoration` | `none` |
+| `.back` | `margin-bottom` | `8px` |
+
+::right::
+
+<div class="text-[0.64rem] font-bold uppercase tracking-wider text-slate-500 text-center mb-1.5">Timeline Snapshot — Screen 2 Complete!</div>
+
+![Step 13 browser snapshot](/img/lab-07/step-8.png)
+
+---
+layout: split
+title: "Checkpoint: test your 2-screen navigation loop"
+dense: true
+class: giu-step-1
+---
+
+<style>
+.giu-step-1 h1 { max-width: none !important; font-size: 1.52rem !important; margin-bottom: 0.65rem !important; }
+</style>
+
+<Activity label="Test both pages in your browser">
+
+1. Open `index.html` in your browser (using **Open with Live Server** in VS Code, or double-clicking `index.html`).
+2. Confirm Screen 1 displays the orange Talabat header, 4 category pills in a row, promo box, 2 restaurant cards, and the orange bottom button.
+3. Click **Open Burger Republic Menu →** and verify the browser navigates to `menu.html`.
+4. On `menu.html`, click **← Back to Talabat Home** and verify it returns to `index.html`.
 
 </Activity>
 
-Something broken? Check <Link to="fix-links">**Broken links (404)**</Link> or <Link to="fix-styles">**Missing styles**</Link> in Troubleshooting.
+Getting a `Cannot GET` error or missing styles? Jump to <Link to="fix-links">**Broken links**</Link> or <Link to="fix-styles">**Missing styles**</Link> in Troubleshooting.
 
 ::right::
 
-<div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 space-y-2 text-xs">
-  <div class="font-bold text-slate-900">Your Multi-Page Navigation Graph</div>
+<div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 space-y-2.5 text-xs">
+  <div class="font-bold text-slate-900">How your two files connect</div>
   <div class="p-2.5 rounded-lg bg-white border border-blue-200 flex items-center justify-between">
     <span class="font-mono font-bold text-blue-800">index.html</span>
-    <span class="text-[0.65rem] text-slate-600">Tap Food ➔ <code>food-delivery.html</code></span>
+    <span class="text-[0.65rem] text-slate-600"><code>href="menu.html"</code> ➔ opens Screen 2</span>
   </div>
   <div class="p-2.5 rounded-lg bg-white border border-teal-200 flex items-center justify-between">
-    <span class="font-mono font-bold text-teal-800">food-delivery.html</span>
-    <span class="text-[0.65rem] text-slate-600">Tap ← ➔ <code>index.html</code> • Tap Card ➔ Menu</span>
+    <span class="font-mono font-bold text-teal-800">menu.html</span>
+    <span class="text-[0.65rem] text-slate-600"><code>href="index.html"</code> ➔ returns to Screen 1</span>
   </div>
   <div class="p-2.5 rounded-lg bg-white border border-purple-200 flex items-center justify-between">
-    <span class="font-mono font-bold text-purple-800">burger-republic.html</span>
-    <span class="text-[0.65rem] text-slate-600">Tap ← ➔ <code>food-delivery.html</code></span>
+    <span class="font-mono font-bold text-purple-800">style.css</span>
+    <span class="text-[0.65rem] text-slate-600">Linked in <code>&lt;head&gt;</code> of both HTML files</span>
   </div>
 </div>
 
 ---
 layout: section
-icon: assignment
-sub: 35-minute graded in-lab sprint — Recreate the Lab 4 Talabat screens as a multi-page website & push to GitHub
+icon: lifecycle
+sub: "Phase 5 — Commit your changes with Git and push your project to GitHub"
 ---
 
-# 04 — Graded in-lab assignment
-
----
-layout: default
-icon: assignment
-dense: true
----
-
-# In-Lab Assignment: Multi-Page Figma-to-Code
-
-<div class="p-2 rounded-lg border border-amber-200 bg-amber-50 text-[0.67rem] text-amber-900 flex items-center justify-between mb-1.5">
-  <div class="flex items-center gap-1.5">
-    <span class="px-1.5 py-0.5 rounded bg-amber-200 text-amber-900 font-bold text-[0.58rem]">GRADED (100 PTS)</span>
-    <span><strong>Goal:</strong> Recreate the Lab 4 Figma screens as a multi-page HTML/CSS project in VS Code &amp; push to GitHub</span>
-  </div>
-  <div class="flex items-center gap-1.5 font-mono text-[0.6rem]">
-    <a href="https://www.figma.com/community/file/1688178288499788693" target="_blank" class="px-2 py-0.5 rounded bg-white border border-indigo-200 text-indigo-700 font-bold hover:bg-indigo-50 no-underline shadow-2xs" style="text-decoration: none;">Lab 4 Figma Reference ↗</a>
-    <a href="https://drive.google.com/file/d/16Q8km7oc1fVimUW-6GjubpxlQoFVw47g/view?usp=sharing" target="_blank" class="px-2 py-0.5 rounded bg-white border border-amber-300 text-amber-800 font-bold hover:bg-amber-50 no-underline shadow-2xs" style="text-decoration: none;">Brand Guidelines ↗</a>
-  </div>
-</div>
-
-<div class="grid grid-cols-3 gap-2.5 text-[0.68rem]">
-  <div class="p-2 rounded-xl border border-blue-200 bg-blue-50/40 flex flex-col justify-between">
-    <div>
-      <div class="flex items-center justify-between mb-1">
-        <span class="font-bold text-slate-900">1. Home (<code>index.html</code>)</span>
-        <span class="text-[0.55rem] font-bold px-1.5 py-0.2 rounded bg-blue-100 text-blue-800">Screen 1</span>
-      </div>
-      <ul class="list-disc pl-3.5 space-y-0.5 text-slate-600 text-[0.62rem]">
-        <li>Orange header (<code>#FF5A00</code>) with address &amp; search bar.</li>
-        <li>5 service tiles row (<strong>Food</strong> wired to <code>food-delivery.html</code>).</li>
-        <li>Promo banner card ("Buy 1 get 1 FREE") &amp; Redeem cards.</li>
-        <li>Sticky bottom navigation bar (<code>Home</code>, <code>Orders</code>, <code>Pay</code>, <code>Account</code>).</li>
-      </ul>
-    </div>
-    <div class="text-[0.58rem] text-blue-700 font-semibold pt-1 mt-1.5 border-t border-blue-200">Entry Page + Forward Link</div>
-  </div>
-
-  <div class="p-2 rounded-xl border border-teal-200 bg-teal-50/40 flex flex-col justify-between">
-    <div>
-      <div class="flex items-center justify-between mb-1">
-        <span class="font-bold text-slate-900">2. Feed (<code>food-delivery.html</code>)</span>
-        <span class="text-[0.55rem] font-bold px-1.5 py-0.2 rounded bg-teal-100 text-teal-800">Screen 2</span>
-      </div>
-      <ul class="list-disc pl-3.5 space-y-0.5 text-slate-600 text-[0.62rem]">
-        <li>Sticky top bar with <code>&larr;</code> back link to <code>index.html</code> &amp; search input.</li>
-        <li>3 horizontal promo deal cards (<code>30% off</code>, <code>pro day</code>, <code>Hot deals</code>).</li>
-        <li>Top-rated restaurant cards with logos, ratings, ETA &amp; fee.</li>
-        <li>Restaurant card(s) wired with <code>&lt;a href&gt;</code> to their menu page(s).</li>
-      </ul>
-    </div>
-    <div class="text-[0.58rem] text-teal-700 font-semibold pt-1 mt-1.5 border-t border-teal-200">Feed + Multi-Page Links</div>
-  </div>
-
-  <div class="p-2 rounded-xl border border-purple-200 bg-purple-50/40 flex flex-col justify-between">
-    <div>
-      <div class="flex items-center justify-between mb-1">
-        <span class="font-bold text-slate-900">3. Menu (<code>burger-republic.html</code>)</span>
-        <span class="text-[0.55rem] font-bold px-1.5 py-0.2 rounded bg-purple-100 text-purple-800">Screen 3+</span>
-      </div>
-      <ul class="list-disc pl-3.5 space-y-0.5 text-slate-600 text-[0.62rem]">
-        <li>Hero banner with <code>&larr;</code> back link to <code>food-delivery.html</code>.</li>
-        <li>Floating restaurant info card (logo, rating <code>4.7 ★</code>, ETA, fee).</li>
-        <li>Discount row (<code>50% off</code>, <code>Emirates NBD</code>, <code>Mastercard</code>).</li>
-        <li>2-column dish grid (<code>Bestie deal</code>, <code>Mushroom Ranch</code>) + prices.</li>
-      </ul>
-    </div>
-    <div class="text-[0.58rem] text-purple-700 font-semibold pt-1 mt-1.5 border-t border-purple-200">Menu Detail + Back Link</div>
-  </div>
-</div>
-
----
-layout: default
-icon: activity
-dense: true
----
-
-# Grading rubric: What TAs will check (100 Points)
-
-Your multi-page project will be evaluated across four pillars (25 points each):
-
-<div class="grid grid-cols-4 gap-2.5 mt-2 text-[0.68rem]">
-  <div class="p-2.5 rounded-xl border border-blue-200 bg-blue-50/40 flex flex-col justify-between">
-    <div>
-      <div class="flex items-center justify-between mb-1.5">
-        <span class="font-bold text-blue-900 text-xs">1. Multi-File Setup</span>
-        <span class="px-1.5 py-0.5 rounded text-[0.56rem] font-bold bg-blue-100 text-blue-800">25%</span>
-      </div>
-      <ul class="text-slate-600 pl-3 space-y-1 text-[0.62rem] list-disc">
-        <li><strong>Separate Files:</strong> Distinct <code>.html</code> file per screen</li>
-        <li><strong>Shared CSS:</strong> One <code>style.css</code> linked on all pages (no <code>&lt;style&gt;</code> tags)</li>
-        <li><strong>Assets Folder:</strong> All images/SVGs organized inside <code>assets/</code></li>
-      </ul>
-    </div>
-    <div class="text-[0.6rem] text-blue-700 font-bold pt-1.5 mt-1 border-t border-blue-200">Folder Hygiene</div>
-  </div>
-
-  <div class="p-2.5 rounded-xl border border-purple-200 bg-purple-50/40 flex flex-col justify-between">
-    <div>
-      <div class="flex items-center justify-between mb-1.5">
-        <span class="font-bold text-purple-900 text-xs">2. Page Routing</span>
-        <span class="px-1.5 py-0.5 rounded text-[0.56rem] font-bold bg-purple-100 text-purple-800">25%</span>
-      </div>
-      <ul class="text-slate-600 pl-3 space-y-1 text-[0.62rem] list-disc">
-        <li><strong>Forward Links:</strong> Home &rarr; Feed &rarr; Restaurant Menu works</li>
-        <li><strong>Back Arrows:</strong> Every inner screen links back to the previous page</li>
-        <li><strong>Clean Links:</strong> No raw blue underlined text inside cards</li>
-      </ul>
-    </div>
-    <div class="text-[0.6rem] text-purple-700 font-bold pt-1.5 mt-1 border-t border-purple-200">Bidirectional Links</div>
-  </div>
-
-  <div class="p-2.5 rounded-xl border border-teal-200 bg-teal-50/40 flex flex-col justify-between">
-    <div>
-      <div class="flex items-center justify-between mb-1.5">
-        <span class="font-bold text-teal-900 text-xs">3. UI &amp; Layout</span>
-        <span class="px-1.5 py-0.5 rounded text-[0.56rem] font-bold bg-teal-100 text-teal-800">25%</span>
-      </div>
-      <ul class="text-slate-600 pl-3 space-y-1 text-[0.62rem] list-disc">
-        <li><strong>Mobile Viewport:</strong> Centered <code>393px</code> container on all screens</li>
-        <li><strong>Flexbox &amp; Grid:</strong> Service tiles, deals row, and 2-col dish grid</li>
-        <li><strong>Brand Tokens:</strong> Talabat orange (<code>#FF5A00</code>), cards &amp; badges</li>
-      </ul>
-    </div>
-    <div class="text-[0.6rem] text-teal-700 font-bold pt-1.5 mt-1 border-t border-teal-200">Figma Fidelity</div>
-  </div>
-
-  <div class="p-2.5 rounded-xl border border-amber-200 bg-amber-50/40 flex flex-col justify-between">
-    <div>
-      <div class="flex items-center justify-between mb-1.5">
-        <span class="font-bold text-amber-900 text-xs">4. Git &amp; GitHub</span>
-        <span class="px-1.5 py-0.5 rounded text-[0.56rem] font-bold bg-amber-100 text-amber-800">25%</span>
-      </div>
-      <ul class="text-slate-600 pl-3 space-y-1 text-[0.62rem] list-disc">
-        <li><strong>Git Repo:</strong> Initialized with meaningful commits</li>
-        <li><strong>Pushed Online:</strong> Public GitHub repo (<code>ica-lab-07</code>)</li>
-        <li><strong>Complete Tree:</strong> All <code>.html</code>, <code>style.css</code> &amp; <code>assets/</code> on GitHub</li>
-      </ul>
-    </div>
-    <div class="text-[0.6rem] text-amber-700 font-bold pt-1.5 mt-1 border-t border-amber-200">Version Control</div>
-  </div>
-</div>
+# 06 — Commit & Push to GitHub
 
 ---
 layout: split
-title: Self-audit checklist
+title: "Step 14 of 14: commit your work & push to GitHub"
+wideRight: true
 dense: true
+class: giu-step-1
 ---
 
-Before calling a TA or submitting your GitHub link, verify all four checks:
+<style>
+.giu-step-1 h1 { max-width: none !important; font-size: 1.52rem !important; margin-bottom: 0.65rem !important; }
+</style>
 
-<Activity label="Run these 4 checks">
+Using the <Tool name="git" /> and <Tool name="github" /> setup from **Lab 6**, commit your 2-screen app and push it to GitHub:
 
-1. **Click-through test:** `index.html` ➔ **Food** ➔ **Burger Republic** ➔ **`←`** ➔ **`←`** works with zero `404` errors.
-2. **No `<style>` tags:** Every `.html` file loads styles via `<link rel="stylesheet" href="style.css">`.
-3. **Assets load:** Every `<img>` points to `assets/...` with no broken icons.
-4. **GitHub check:** All `.html` files, `style.css`, and `assets/` are visible on GitHub.
-
-</Activity>
+1. In <Tool name="vscode" />, open the Terminal (**Terminal → New Terminal**).
+2. Run `git init`, `git add .`, and `git commit` inside `ica-lab-07/`.
+3. On [github.com](https://github.com), click **`+` → New repository**, name it `ica-lab-07` (**Public**, **Add a README** unchecked), and click **Create repository**.
+4. Connect your local repo and push to `main`.
 
 ::right::
 
-### Exporting images from Figma (quick tip)
+<Activity label="Run in the VS Code Terminal">
 
-Need a logo, banner, or dish photo from the Lab 4 Figma file?
+1. Initialize and commit locally:
 
-1. Click the image or logo frame in <Tool name="figma" />.
-2. Scroll to the bottom of the right sidebar and click **Export (`+`)**.
-3. Choose **PNG** (for photos) or **SVG** (for icons/logos).
-4. Save directly into `ica-lab-07/assets/` with a short lowercase name (e.g., `burger-logo.png`).
+```bash
+git init
+git add .
+git commit -m "Build two-screen Talabat app"
+```
+
+2. Link your GitHub repository and push:
+
+```bash
+git branch -M main
+git remote add origin <your-github-repo-url>
+git push -u origin main
+```
+
+3. Refresh `https://github.com/<your-username>/ica-lab-07` and confirm `index.html`, `menu.html`, and `style.css` are online!
+
+</Activity>
 
 ---
 layout: section
 icon: tools
-sub: Fixing broken links, missing styles on inner pages, and unstyled anchor tags
+sub: Fixing broken page links, unstyled inner screens, and underlined anchor buttons
 ---
 
 # Troubleshooting
@@ -530,29 +740,31 @@ sub: Fixing broken links, missing styles on inner pages, and unstyled anchor tag
 layout: default
 routeAlias: fix-links
 dense: true
+class: giu-fix
 ---
 
-# Broken links (404 errors)
+# Broken links (`Cannot GET` or clicking does nothing)
 
 | Symptom | Cause & exact fix |
 |---|---|
-| `Cannot GET /food-delivery.html` | Filename in `href="..."` does not match the actual file name in VS Code Explorer. Check spelling and lowercase hyphens (`food-delivery.html`). |
-| `←` jumps to Home instead of Feed | Back arrow `href` on `burger-republic.html` was copied without updating: set it to `<a href="food-delivery.html">&larr;</a>`. |
-| Clicking a card does nothing | Make sure `<a class="card-link" href="...">` wraps **around** the card `<div>...</div>` and includes the `href` attribute. |
+| `Cannot GET /menu.html` | Filename in `href="menu.html"` does not match the actual filename in VS Code Explorer. Make sure it is named `menu.html` in lowercase. |
+| Clicking the button does nothing | Make sure you used `<a class="btn" href="menu.html">...</a>` on `index.html` and included the `href` attribute. |
+| Back link does not return home | Check that the top link in `menu.html` has `href="index.html"` (`<a class="back" href="index.html">`). |
 
 ---
 layout: default
 routeAlias: fix-styles
 dense: true
+class: giu-fix
 ---
 
-# Missing styles or blue underlines
+# Missing styles or underlined buttons
 
 | Symptom | Cause & exact fix |
 |---|---|
-| `food-delivery.html` is unstyled | Every `.html` file needs `<link rel="stylesheet" href="style.css">` inside its own `<head>`. |
-| Card text is blue and underlined | Browsers underline `<a href>` by default. Add `class="card-link"` and `.card-link { text-decoration: none; color: inherit; display: block; }` in `style.css`. |
-| Images break on inner pages | Keep all `.html` files together at the root of `ica-lab-07/`, outside `assets/`, so `src="assets/..."` resolves from every page. |
+| `menu.html` has zero styling | Confirm `<link rel="stylesheet" href="style.css">` is inside `<head>` of `menu.html` and press `Ctrl + S` to save. |
+| Category pills stack vertically | Check `.categories` in `style.css`: it needs `display: flex;` and `gap: 8px;` so `<div class="cat">` items sit side-by-side. |
+| Button or back link is underlined | Add `text-decoration: none;` to both `.btn` and `.back` in `style.css`. |
 
 ---
 layout: refs
@@ -560,24 +772,22 @@ title: References & useful links
 dense: true
 ---
 
-## Lab 7 Design & Brand Resources
+## HTML & CSS Foundations (Lab 5 & Lab 6 Review)
 
-- [Figma Community — Official Talabat Prototyping Starter Kit (Lab 4)](https://www.figma.com/community/file/1688178288499788693) — reference screens, tokens & exportable assets
-- [Talabat Brand & Typography Guidelines (PDF)](https://drive.google.com/file/d/16Q8km7oc1fVimUW-6GjubpxlQoFVw47g/view?usp=sharing) — color palette & typography tokens
+- [MDN — Creating hyperlinks (`<a href>`)](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Creating_links) — connecting multiple HTML files in the same folder
+- [MDN — External stylesheets (`<link>`)](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) — sharing one `style.css` across multiple pages
+- [MDN — CSS Flexbox Guide](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Flexbox) — stacking cards vertically (`flex-direction: column`) and aligning category pills horizontally
 
-## Multi-Page HTML & CSS Documentation
+## Git & GitHub Workflow
 
-- [MDN — Creating hyperlinks (`<a href>`)](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Creating_links) — linking between pages in the same project
-- [MDN — CSS `position: sticky`](https://developer.mozilla.org/en-US/docs/Web/CSS/position) — pinning headers and bottom navigation bars
-- [MDN — CSS Flexbox Guide](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Flexbox) — horizontal rows and flexible cards
-- [MDN — CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout) — building 2-column dish card grids
+- [Git Cheat Sheet (GitHub Education)](https://education.github.com/git-cheat-sheet-education.pdf) — quick reference for `git init`, `git add .`, `git commit`, and `git push`
 
-<div class="giu-refs__note">Keep the Lab 4 Figma file open next to VS Code while building your multi-page project!</div>
+<div class="giu-refs__note">Make sure your <code>ica-lab-07</code> repository is pushed to GitHub and verified before leaving the lab!</div>
 
 ---
 layout: end
 image: /img/illustrations/thank-you.png
-sub: Open floor for questions — push your multi-page repository to GitHub before leaving!
+sub: Open floor for questions — make sure your 2-screen app is pushed to GitHub!
 ---
 
 # Questions?
