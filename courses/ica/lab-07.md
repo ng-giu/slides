@@ -36,31 +36,31 @@ dense: true
 
 | Duration | Topic |
 |---|---|
-| 5 min | **Overview:** Combining Lab 5 (HTML/CSS) & Lab 6 (VS Code & Git) into a 2-screen app |
+| 5 min | **Overview (Graded In-Lab Assignment):** Combining Labs 5 & 6 into a 2-screen app |
 | 15 min | **Screen 1 HTML (`index.html`):** Writing the HTML boilerplate, emoji codes & Home skeleton |
 | 15 min | **Screen 1 CSS (`style.css`):** Selectors, properties & values for the Home screen |
 | 15 min | **Screen 2 HTML (`menu.html`):** Boilerplate shortcut (`!`), header & Menu skeleton |
 | 10 min | **Screen 2 CSS (`style.css`):** Reusing `style.css` & styling the back link |
-| 10 min | **Git & GitHub:** Committing your 2-screen project and pushing to GitHub |
+| 10 min | **Git & GitHub (Submission):** Pushing your graded 2-screen project to GitHub |
 
 ---
 layout: section
-icon: lifecycle
-sub: Everything you need today is already in your toolkit from Labs 5 and 6
+icon: assignment
+sub: Today's 2-screen build is a graded in-lab assignment — complete and push to GitHub in class
 ---
 
-# 01 — Today's Goal: Practice & Build
+# 01 — Graded In-Lab Assignment
 
 ---
 layout: default
-icon: recap
+icon: assignment
 dense: true
 journey:
   - { title: "1. Screen 1 HTML", code: "index.html", sub: "Build Home skeleton" }
   - { title: "2. Screen 1 CSS", code: "style.css", sub: "Style Home screen" }
   - { title: "3. Screen 2 HTML", code: "menu.html", sub: "Build Menu skeleton" }
   - { title: "4. Screen 2 CSS", code: "style.css", sub: "Link & finish Screen 2" }
-  - { title: "5. Git & GitHub", code: "git push", sub: "Commit & push online" }
+  - { title: "5. Git & GitHub", code: "git push", sub: "Graded submission" }
 ---
 
 # Putting your HTML, CSS, VS Code & Git skills together
@@ -69,9 +69,12 @@ There are **no new concepts** today—you already know every tag, CSS rule, and 
 
 <Flow :steps="$frontmatter.journey" />
 
-- **From Lab 5:** HTML tags (`<div>`, `<h1>`, `<h2>`, `<p>`, `<input>`, `<button>`) and CSS rules (`Selector { Property: Value; }`).
-- **From Lab 6:** Multi-file projects in <Tool name="vscode" />, external `<link rel="stylesheet" href="style.css">`, `<a href="...">` links, and pushing commits to <Tool name="github" />.
-- **Emoji Entity Codes:** Instead of external images, we write **HTML emoji codes** (like `&#127828;`) in our `.html` files, which the browser automatically decodes and renders as emojis (`🍔`) on the DOM!
+<div class="mt-4 p-3 rounded-xl bg-amber-50 border border-amber-300 flex items-center justify-between text-xs">
+  <div class="text-amber-950">
+    <strong class="text-amber-900">Graded In-Lab Assignment:</strong> Today's lab is an <strong>in-lab assignment and will be graded</strong>. Complete both screens and push <code>ica-lab-07</code> to GitHub before leaving!
+  </div>
+  <span class="px-2.5 py-1 rounded-lg bg-amber-500 text-white font-bold text-[0.65rem] uppercase tracking-wider shrink-0 ml-3">Graded in Lab</span>
+</div>
 
 ---
 layout: default
@@ -214,11 +217,12 @@ class: giu-html-step
 ---
 
 <style>
-.giu-html-step h1 { font-size: 1.48rem !important; margin-bottom: 0.55rem !important; max-width: none !important; }
-.giu-html-step .giu-split__grid { grid-template-columns: 1.18fr 0.82fr !important; gap: 1.5rem !important; align-items: start !important; }
-.giu-html-step p { font-size: 0.75rem !important; line-height: 1.42 !important; margin-top: 0.35rem !important; margin-bottom: 0.45rem !important; }
+.giu-html-step h1 { font-size: 1.44rem !important; line-height: 1.15 !important; margin-bottom: 0.45rem !important; max-width: none !important; }
+.giu-html-step .giu-split__grid { grid-template-columns: 1.44fr 0.56fr !important; gap: 1.25rem !important; align-items: start !important; }
+.giu-html-step p { font-size: 0.75rem !important; line-height: 1.42 !important; margin-top: 0.32rem !important; margin-bottom: 0.4rem !important; }
 .giu-html-step li { font-size: 0.74rem !important; line-height: 1.42 !important; margin-bottom: 0.28rem !important; }
-.giu-html-step img { max-height: 18rem !important; width: auto !important; margin: 0 auto !important; border-radius: 0.75rem; border: 1px solid #cbd5e1; }
+.giu-html-step .giu-snap-label { font-size: 0.62rem !important; line-height: 1.2 !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; color: #64748b !important; text-align: center !important; margin: 0 0 0.35rem 0 !important; white-space: nowrap !important; }
+.giu-html-step img { height: 18rem !important; max-height: 18rem !important; width: auto !important; margin: 0 auto !important; display: block !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; }
 </style>
 
 <FileTag name="index.html (inside <body>)" state="edit" />
@@ -234,7 +238,7 @@ We will write **HTML emoji codes** (`&#...;`) in our `.html` file—the browser 
 
 ::right::
 
-<div class="text-[0.64rem] font-bold uppercase tracking-wider text-slate-500 text-center mb-1.5">Timeline Snapshot — After Step 3</div>
+<div class="giu-snap-label">Timeline Snapshot — After Step 3</div>
 
 ![Step 3 browser snapshot](/img/lab-07/step-2a.png)
 
@@ -246,11 +250,12 @@ class: giu-html-step
 ---
 
 <style>
-.giu-html-step h1 { font-size: 1.48rem !important; margin-bottom: 0.55rem !important; max-width: none !important; }
-.giu-html-step .giu-split__grid { grid-template-columns: 1.18fr 0.82fr !important; gap: 1.5rem !important; align-items: start !important; }
-.giu-html-step p { font-size: 0.75rem !important; line-height: 1.42 !important; margin-top: 0.35rem !important; margin-bottom: 0.45rem !important; }
+.giu-html-step h1 { font-size: 1.44rem !important; line-height: 1.15 !important; margin-bottom: 0.45rem !important; max-width: none !important; }
+.giu-html-step .giu-split__grid { grid-template-columns: 1.44fr 0.56fr !important; gap: 1.25rem !important; align-items: start !important; }
+.giu-html-step p { font-size: 0.75rem !important; line-height: 1.42 !important; margin-top: 0.32rem !important; margin-bottom: 0.4rem !important; }
 .giu-html-step li { font-size: 0.74rem !important; line-height: 1.42 !important; margin-bottom: 0.28rem !important; }
-.giu-html-step img { max-height: 18rem !important; width: auto !important; margin: 0 auto !important; border-radius: 0.75rem; border: 1px solid #cbd5e1; }
+.giu-html-step .giu-snap-label { font-size: 0.62rem !important; line-height: 1.2 !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; color: #64748b !important; text-align: center !important; margin: 0 0 0.35rem 0 !important; white-space: nowrap !important; }
+.giu-html-step img { height: 18rem !important; max-height: 18rem !important; width: auto !important; margin: 0 auto !important; display: block !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; }
 </style>
 
 <FileTag name="index.html (inside <div class=&quot;card&quot;>)" state="edit" />
@@ -269,7 +274,7 @@ Below the `<div class="header">` tag (still inside the `<div class="card">` tag)
 
 ::right::
 
-<div class="text-[0.64rem] font-bold uppercase tracking-wider text-slate-500 text-center mb-1.5">Timeline Snapshot — After Step 4</div>
+<div class="giu-snap-label">Timeline Snapshot — After Step 4</div>
 
 ![Step 4 browser snapshot](/img/lab-07/step-2.png)
 
@@ -281,11 +286,12 @@ class: giu-html-step
 ---
 
 <style>
-.giu-html-step h1 { font-size: 1.48rem !important; margin-bottom: 0.55rem !important; max-width: none !important; }
-.giu-html-step .giu-split__grid { grid-template-columns: 1.18fr 0.82fr !important; gap: 1.5rem !important; align-items: start !important; }
-.giu-html-step p { font-size: 0.75rem !important; line-height: 1.42 !important; margin-top: 0.35rem !important; margin-bottom: 0.45rem !important; }
+.giu-html-step h1 { font-size: 1.44rem !important; line-height: 1.15 !important; margin-bottom: 0.45rem !important; max-width: none !important; }
+.giu-html-step .giu-split__grid { grid-template-columns: 1.44fr 0.56fr !important; gap: 1.25rem !important; align-items: start !important; }
+.giu-html-step p { font-size: 0.75rem !important; line-height: 1.42 !important; margin-top: 0.32rem !important; margin-bottom: 0.4rem !important; }
 .giu-html-step li { font-size: 0.74rem !important; line-height: 1.42 !important; margin-bottom: 0.28rem !important; }
-.giu-html-step img { max-height: 18rem !important; width: auto !important; margin: 0 auto !important; border-radius: 0.75rem; border: 1px solid #cbd5e1; }
+.giu-html-step .giu-snap-label { font-size: 0.62rem !important; line-height: 1.2 !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; color: #64748b !important; text-align: center !important; margin: 0 0 0.35rem 0 !important; white-space: nowrap !important; }
+.giu-html-step img { height: 18rem !important; max-height: 18rem !important; width: auto !important; margin: 0 auto !important; display: block !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; }
 </style>
 
 <FileTag name="index.html (inside <div class=&quot;card&quot;>)" state="edit" />
@@ -303,7 +309,7 @@ Below the `<div class="promo">` tag (still inside the `<div class="card">` tag),
 
 ::right::
 
-<div class="text-[0.64rem] font-bold uppercase tracking-wider text-slate-500 text-center mb-1.5">Timeline Snapshot — Complete Screen 1 HTML Skeleton</div>
+<div class="giu-snap-label">Timeline Snapshot — After Step 5</div>
 
 ![Step 5 browser snapshot](/img/lab-07/step-3.png)
 
@@ -323,7 +329,7 @@ class: giu-css-table
 ---
 
 <style>
-.giu-css-table h1 { font-size: 1.44rem !important; margin-bottom: 0.45rem !important; max-width: none !important; }
+.giu-css-table h1 { font-size: 1.44rem !important; line-height: 1.15 !important; margin-bottom: 0.45rem !important; max-width: none !important; }
 .giu-css-table .giu-split__grid { grid-template-columns: 1.44fr 0.56fr !important; gap: 1.25rem !important; align-items: start !important; }
 .giu-css-table p, .giu-css-table li { font-size: 0.74rem !important; line-height: 1.4 !important; margin-top: 0.28rem !important; margin-bottom: 0.32rem !important; }
 .giu-css-table table { font-size: 0.72rem !important; margin: 0.3rem 0 0 !important; line-height: 1.35 !important; width: 100% !important; }
@@ -331,7 +337,8 @@ class: giu-css-table
 .giu-css-table td { padding: 0.32rem 0.45rem 0.32rem 0 !important; vertical-align: middle !important; white-space: nowrap !important; }
 .giu-css-table td:first-child { width: auto !important; padding-right: 0.6rem !important; }
 .giu-css-table td code { font-size: 0.68rem !important; padding: 0.1rem 0.3rem !important; white-space: nowrap !important; }
-.giu-css-table img { max-height: 18rem !important; width: auto !important; margin: 0 auto !important; border-radius: 0.75rem; border: 1px solid #cbd5e1; }
+.giu-css-table .giu-snap-label { font-size: 0.62rem !important; line-height: 1.2 !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; color: #64748b !important; text-align: center !important; margin: 0 0 0.35rem 0 !important; white-space: nowrap !important; }
+.giu-css-table img { height: 18rem !important; max-height: 18rem !important; width: auto !important; margin: 0 auto !important; display: block !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; }
 </style>
 
 <FileTag name="index.html + style.css" state="edit" />
@@ -349,7 +356,7 @@ Inside `<head>` of `index.html`, add `<link rel="stylesheet" href="style.css">`.
 
 ::right::
 
-<div class="text-[0.64rem] font-bold uppercase tracking-wider text-slate-500 text-center mb-1.5">Timeline Snapshot — After Step 6</div>
+<div class="giu-snap-label">Timeline Snapshot — After Step 6</div>
 
 ![Step 6 browser snapshot](/img/lab-07/step-40.png)
 
@@ -361,7 +368,7 @@ class: giu-css-table
 ---
 
 <style>
-.giu-css-table h1 { font-size: 1.44rem !important; margin-bottom: 0.45rem !important; max-width: none !important; }
+.giu-css-table h1 { font-size: 1.44rem !important; line-height: 1.15 !important; margin-bottom: 0.45rem !important; max-width: none !important; }
 .giu-css-table .giu-split__grid { grid-template-columns: 1.44fr 0.56fr !important; gap: 1.25rem !important; align-items: start !important; }
 .giu-css-table p, .giu-css-table li { font-size: 0.74rem !important; line-height: 1.4 !important; margin-top: 0.28rem !important; margin-bottom: 0.32rem !important; }
 .giu-css-table table { font-size: 0.72rem !important; margin: 0.3rem 0 0 !important; line-height: 1.35 !important; width: 100% !important; }
@@ -369,7 +376,8 @@ class: giu-css-table
 .giu-css-table td { padding: 0.32rem 0.45rem 0.32rem 0 !important; vertical-align: middle !important; white-space: nowrap !important; }
 .giu-css-table td:first-child { width: auto !important; padding-right: 0.6rem !important; }
 .giu-css-table td code { font-size: 0.68rem !important; padding: 0.1rem 0.3rem !important; white-space: nowrap !important; }
-.giu-css-table img { max-height: 18rem !important; width: auto !important; margin: 0 auto !important; border-radius: 0.75rem; border: 1px solid #cbd5e1; }
+.giu-css-table .giu-snap-label { font-size: 0.62rem !important; line-height: 1.2 !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; color: #64748b !important; text-align: center !important; margin: 0 0 0.35rem 0 !important; white-space: nowrap !important; }
+.giu-css-table img { height: 18rem !important; max-height: 18rem !important; width: auto !important; margin: 0 auto !important; display: block !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; }
 </style>
 
 <FileTag name="style.css" state="edit" />
@@ -389,7 +397,7 @@ Continue in `style.css` to style the orange Talabat header box (`.header`), its 
 
 ::right::
 
-<div class="text-[0.64rem] font-bold uppercase tracking-wider text-slate-500 text-center mb-1.5">Timeline Snapshot — After Step 7</div>
+<div class="giu-snap-label">Timeline Snapshot — After Step 7</div>
 
 ![Step 7 browser snapshot](/img/lab-07/step-4.png)
 
@@ -401,7 +409,7 @@ class: giu-css-table
 ---
 
 <style>
-.giu-css-table h1 { font-size: 1.44rem !important; margin-bottom: 0.45rem !important; max-width: none !important; }
+.giu-css-table h1 { font-size: 1.44rem !important; line-height: 1.15 !important; margin-bottom: 0.45rem !important; max-width: none !important; }
 .giu-css-table .giu-split__grid { grid-template-columns: 1.44fr 0.56fr !important; gap: 1.25rem !important; align-items: start !important; }
 .giu-css-table p, .giu-css-table li { font-size: 0.74rem !important; line-height: 1.4 !important; margin-top: 0.28rem !important; margin-bottom: 0.32rem !important; }
 .giu-css-table table { font-size: 0.72rem !important; margin: 0.3rem 0 0 !important; line-height: 1.35 !important; width: 100% !important; }
@@ -409,7 +417,8 @@ class: giu-css-table
 .giu-css-table td { padding: 0.32rem 0.45rem 0.32rem 0 !important; vertical-align: middle !important; white-space: nowrap !important; }
 .giu-css-table td:first-child { width: auto !important; padding-right: 0.6rem !important; }
 .giu-css-table td code { font-size: 0.68rem !important; padding: 0.1rem 0.3rem !important; white-space: nowrap !important; }
-.giu-css-table img { max-height: 18rem !important; width: auto !important; margin: 0 auto !important; border-radius: 0.75rem; border: 1px solid #cbd5e1; }
+.giu-css-table .giu-snap-label { font-size: 0.62rem !important; line-height: 1.2 !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; color: #64748b !important; text-align: center !important; margin: 0 0 0.35rem 0 !important; white-space: nowrap !important; }
+.giu-css-table img { height: 18rem !important; max-height: 18rem !important; width: auto !important; margin: 0 auto !important; display: block !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; }
 </style>
 
 <FileTag name="style.css" state="edit" />
@@ -429,7 +438,7 @@ Next in `style.css`, arrange the category pills in a horizontal flex row (`.cate
 
 ::right::
 
-<div class="text-[0.64rem] font-bold uppercase tracking-wider text-slate-500 text-center mb-1.5">Timeline Snapshot — After Step 8</div>
+<div class="giu-snap-label">Timeline Snapshot — After Step 8</div>
 
 ![Step 8 browser snapshot](/img/lab-07/step-4b.png)
 
@@ -441,7 +450,7 @@ class: giu-css-table
 ---
 
 <style>
-.giu-css-table h1 { font-size: 1.44rem !important; margin-bottom: 0.45rem !important; max-width: none !important; }
+.giu-css-table h1 { font-size: 1.44rem !important; line-height: 1.15 !important; margin-bottom: 0.45rem !important; max-width: none !important; }
 .giu-css-table .giu-split__grid { grid-template-columns: 1.44fr 0.56fr !important; gap: 1.25rem !important; align-items: start !important; }
 .giu-css-table p, .giu-css-table li { font-size: 0.74rem !important; line-height: 1.4 !important; margin-top: 0.28rem !important; margin-bottom: 0.32rem !important; }
 .giu-css-table table { font-size: 0.72rem !important; margin: 0.3rem 0 0 !important; line-height: 1.35 !important; width: 100% !important; }
@@ -449,7 +458,8 @@ class: giu-css-table
 .giu-css-table td { padding: 0.32rem 0.45rem 0.32rem 0 !important; vertical-align: middle !important; white-space: nowrap !important; }
 .giu-css-table td:first-child { width: auto !important; padding-right: 0.6rem !important; }
 .giu-css-table td code { font-size: 0.68rem !important; padding: 0.1rem 0.3rem !important; white-space: nowrap !important; }
-.giu-css-table img { max-height: 18rem !important; width: auto !important; margin: 0 auto !important; border-radius: 0.75rem; border: 1px solid #cbd5e1; }
+.giu-css-table .giu-snap-label { font-size: 0.62rem !important; line-height: 1.2 !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; color: #64748b !important; text-align: center !important; margin: 0 0 0.35rem 0 !important; white-space: nowrap !important; }
+.giu-css-table img { height: 18rem !important; max-height: 18rem !important; width: auto !important; margin: 0 auto !important; display: block !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; }
 </style>
 
 <FileTag name="style.css (bottom)" state="edit" />
@@ -469,7 +479,7 @@ Finish Screen 1 by adding the typography (`h2`, `p`), restaurant card (`.item`),
 
 ::right::
 
-<div class="text-[0.64rem] font-bold uppercase tracking-wider text-slate-500 text-center mb-1.5">Timeline Snapshot — Screen 1 Complete!</div>
+<div class="giu-snap-label">Timeline Snapshot — After Step 9</div>
 
 ![Step 9 browser snapshot](/img/lab-07/step-5.png)
 
@@ -534,11 +544,12 @@ class: giu-html-step
 ---
 
 <style>
-.giu-html-step h1 { font-size: 1.48rem !important; margin-bottom: 0.55rem !important; max-width: none !important; }
-.giu-html-step .giu-split__grid { grid-template-columns: 1.18fr 0.82fr !important; gap: 1.5rem !important; align-items: start !important; }
-.giu-html-step p { font-size: 0.75rem !important; line-height: 1.42 !important; margin-top: 0.35rem !important; margin-bottom: 0.45rem !important; }
+.giu-html-step h1 { font-size: 1.44rem !important; line-height: 1.15 !important; margin-bottom: 0.45rem !important; max-width: none !important; }
+.giu-html-step .giu-split__grid { grid-template-columns: 1.44fr 0.56fr !important; gap: 1.25rem !important; align-items: start !important; }
+.giu-html-step p { font-size: 0.75rem !important; line-height: 1.42 !important; margin-top: 0.32rem !important; margin-bottom: 0.4rem !important; }
 .giu-html-step li { font-size: 0.74rem !important; line-height: 1.42 !important; margin-bottom: 0.28rem !important; }
-.giu-html-step img { max-height: 18rem !important; width: auto !important; margin: 0 auto !important; border-radius: 0.75rem; border: 1px solid #cbd5e1; }
+.giu-html-step .giu-snap-label { font-size: 0.62rem !important; line-height: 1.2 !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; color: #64748b !important; text-align: center !important; margin: 0 0 0.35rem 0 !important; white-space: nowrap !important; }
+.giu-html-step img { height: 18rem !important; max-height: 18rem !important; width: auto !important; margin: 0 auto !important; display: block !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; }
 </style>
 
 <FileTag name="menu.html (inside <body>)" state="edit" />
@@ -554,7 +565,7 @@ Inside `<body>` of `menu.html`, build the top of Screen 2 (keep `<link>` out unt
 
 ::right::
 
-<div class="text-[0.64rem] font-bold uppercase tracking-wider text-slate-500 text-center mb-1.5">Timeline Snapshot — After Step 11</div>
+<div class="giu-snap-label">Timeline Snapshot — After Step 11</div>
 
 ![Step 11 browser snapshot](/img/lab-07/step-6.png)
 
@@ -566,11 +577,12 @@ class: giu-html-step
 ---
 
 <style>
-.giu-html-step h1 { font-size: 1.48rem !important; margin-bottom: 0.55rem !important; max-width: none !important; }
-.giu-html-step .giu-split__grid { grid-template-columns: 1.18fr 0.82fr !important; gap: 1.5rem !important; align-items: start !important; }
-.giu-html-step p { font-size: 0.75rem !important; line-height: 1.42 !important; margin-top: 0.35rem !important; margin-bottom: 0.45rem !important; }
+.giu-html-step h1 { font-size: 1.44rem !important; line-height: 1.15 !important; margin-bottom: 0.45rem !important; max-width: none !important; }
+.giu-html-step .giu-split__grid { grid-template-columns: 1.44fr 0.56fr !important; gap: 1.25rem !important; align-items: start !important; }
+.giu-html-step p { font-size: 0.75rem !important; line-height: 1.42 !important; margin-top: 0.32rem !important; margin-bottom: 0.4rem !important; }
 .giu-html-step li { font-size: 0.74rem !important; line-height: 1.42 !important; margin-bottom: 0.28rem !important; }
-.giu-html-step img { max-height: 18rem !important; width: auto !important; margin: 0 auto !important; border-radius: 0.75rem; border: 1px solid #cbd5e1; }
+.giu-html-step .giu-snap-label { font-size: 0.62rem !important; line-height: 1.2 !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; color: #64748b !important; text-align: center !important; margin: 0 0 0.35rem 0 !important; white-space: nowrap !important; }
+.giu-html-step img { height: 18rem !important; max-height: 18rem !important; width: auto !important; margin: 0 auto !important; display: block !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; }
 </style>
 
 <FileTag name="menu.html (inside <div class=&quot;card&quot;>)" state="edit" />
@@ -585,7 +597,7 @@ Below the `<div class="categories">` tag (still inside the `<div class="card">` 
 
 ::right::
 
-<div class="text-[0.64rem] font-bold uppercase tracking-wider text-slate-500 text-center mb-1.5">Timeline Snapshot — Complete Screen 2 HTML Skeleton</div>
+<div class="giu-snap-label">Timeline Snapshot — After Step 12</div>
 
 ![Step 12 browser snapshot](/img/lab-07/step-7.png)
 
@@ -605,7 +617,7 @@ class: giu-css-table
 ---
 
 <style>
-.giu-css-table h1 { font-size: 1.44rem !important; margin-bottom: 0.45rem !important; max-width: none !important; }
+.giu-css-table h1 { font-size: 1.44rem !important; line-height: 1.15 !important; margin-bottom: 0.45rem !important; max-width: none !important; }
 .giu-css-table .giu-split__grid { grid-template-columns: 1.44fr 0.56fr !important; gap: 1.25rem !important; align-items: start !important; }
 .giu-css-table p, .giu-css-table li { font-size: 0.74rem !important; line-height: 1.4 !important; margin-top: 0.28rem !important; margin-bottom: 0.32rem !important; }
 .giu-css-table table { font-size: 0.72rem !important; margin: 0.3rem 0 0 !important; line-height: 1.35 !important; width: 100% !important; }
@@ -613,7 +625,8 @@ class: giu-css-table
 .giu-css-table td { padding: 0.32rem 0.45rem 0.32rem 0 !important; vertical-align: middle !important; white-space: nowrap !important; }
 .giu-css-table td:first-child { width: auto !important; padding-right: 0.6rem !important; }
 .giu-css-table td code { font-size: 0.68rem !important; padding: 0.1rem 0.3rem !important; white-space: nowrap !important; }
-.giu-css-table img { max-height: 18rem !important; width: auto !important; margin: 0 auto !important; border-radius: 0.75rem; border: 1px solid #cbd5e1; }
+.giu-css-table .giu-snap-label { font-size: 0.62rem !important; line-height: 1.2 !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; color: #64748b !important; text-align: center !important; margin: 0 0 0.35rem 0 !important; white-space: nowrap !important; }
+.giu-css-table img { height: 18rem !important; max-height: 18rem !important; width: auto !important; margin: 0 auto !important; display: block !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; }
 </style>
 
 <FileTag name="menu.html + style.css" state="edit" />
@@ -633,7 +646,7 @@ Now watch the power of a **shared stylesheet** in a multi-page project:
 
 ::right::
 
-<div class="text-[0.64rem] font-bold uppercase tracking-wider text-slate-500 text-center mb-1.5">Timeline Snapshot — Screen 2 Complete!</div>
+<div class="giu-snap-label">Timeline Snapshot — After Step 13</div>
 
 ![Step 13 browser snapshot](/img/lab-07/step-8.png)
 
@@ -679,15 +692,15 @@ Getting a `Cannot GET` error or missing styles? Jump to <Link to="fix-links">**B
 
 ---
 layout: section
-icon: lifecycle
-sub: "Phase 5 — Commit your changes with Git and push your project to GitHub"
+icon: assignment
+sub: "Phase 5 — Commit your changes and push your graded in-lab assignment to GitHub"
 ---
 
-# 06 — Commit & Push to GitHub
+# 06 — Graded Submission: Push to GitHub
 
 ---
 layout: split
-title: "Step 14 of 14: commit your work & push to GitHub"
+title: "Step 14 of 14: commit & push to GitHub (Graded)"
 wideRight: true
 dense: true
 class: giu-step-1
@@ -697,12 +710,12 @@ class: giu-step-1
 .giu-step-1 h1 { max-width: none !important; font-size: 1.52rem !important; margin-bottom: 0.65rem !important; }
 </style>
 
-Using the <Tool name="git" /> and <Tool name="github" /> setup from **Lab 6**, commit your 2-screen app and push it to GitHub:
+Using the <Tool name="git" /> and <Tool name="github" /> setup from **Lab 6**, commit your 2-screen app and push it to GitHub for your **in-lab assignment grade**:
 
 1. In <Tool name="vscode" />, open the Terminal (**Terminal → New Terminal**).
 2. Run `git init`, `git add .`, and `git commit` inside `ica-lab-07/`.
 3. On [github.com](https://github.com), click **`+` → New repository**, name it `ica-lab-07` (**Public**, **Add a README** unchecked), and click **Create repository**.
-4. Connect your local repo and push to `main`.
+4. Connect your local repo, push to `main`, and show your TA your live GitHub repo before leaving!
 
 ::right::
 
