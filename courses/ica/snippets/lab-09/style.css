@@ -1,0 +1,22 @@
+body { font-family: sans-serif; background: #f8fafc; }
+.app {
+  width: 393px;
+  margin: 20px auto;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+}
+.dish-card, .cart-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+.btn {
+  background: #ff5a00;
+  color: #ffffff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+.applied { color: #0d9488; font-weight: bold; }

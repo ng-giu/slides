@@ -1,0 +1,7 @@
+<restaurant>
+  <name>Burger Republic</name>
+  <city>Cairo</city>
+  <rating>4.7</rating>
+  <isOpen>true</isOpen>
+  <topDish>Bestie Deal</topDish>
+</restaurant>
