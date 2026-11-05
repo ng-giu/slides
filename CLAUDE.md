@@ -51,6 +51,50 @@ student who missed the lab do it alone at home, from the PDF:
 - **References** slide, then the `end` slide. No attendance or submission forms
   unless the user asks for one.
 
+## One lab, one activity: Concepts, then the Lab Manual
+
+Every lab (`lab-NN.md`, both courses) has exactly **one** activity. The model
+is ICA Lab 6. A lab has two parts, in this order, and never mixes them:
+
+1. **Part 1, Concepts.** The TA presents and students listen. All the
+   teaching goes here: what each new idea is, why we use it, how it works, and
+   small fragments to illustrate it. No typing, no "try it now", no
+   mini-exercises.
+2. **Part 2, Lab Manual.** One guided activity, from the plan slide to the
+   last checkpoint, that students work through alone at their own pace. TAs
+   stop presenting and walk around to help. The manual has to be complete
+   enough that a student who sat through Part 1 can finish it without asking
+   anyone, under normal circumstances.
+
+What goes where:
+
+- Manual slides are **instructions only**: steps, code, physical
+  instructions, the expected result, checkpoints. One short sentence per step
+  saying what this file is or what you should see is fine. Anything a student
+  has to *understand* belongs in Part 1, and the step names it ("the `key`
+  from Part 1").
+- **No explanation slides inside the manual**, not even between steps. **No
+  second activity** after it (no "In-Lab Activity: extend it" once the
+  walkthrough ends). More work means more manual steps, last steps first to
+  drop.
+- Outside the two parts: cover, contacts, agenda (Part 1 topics as rows, the
+  manual as a single row), and the **catch-up path** before Part 1, so a
+  student can download while the TA talks; Step 1 links back to it. After the
+  manual: solution, next lab, troubleshooting, references, end.
+- Section slides: `# 01 — <Topic>` with `sub: "Part 1 — Concepts: ..."`,
+  then `# NN — Lab Manual: <what they build>` with
+  `sub: "Part 2 — Practice: ..."`.
+
+Assignment walkthroughs (`assignment-NN.md`) are not labs and are exempt.
+
+**New labs** follow this without being asked. When **editing an old lab**, the
+parts you write follow it. If the deck as a whole isn't in this shape yet, say
+so and offer to convert it; don't restructure it as a side effect of a small
+fix. **If a request conflicts with this rule** (an exercise in the middle of
+the concepts, an explanation inside a step, a second activity), or another
+rule in this file seems to, point out the conflict and ask before going
+either way.
+
 ## Students never get a link to our hosts
 
 The decks and index on slides.nourgaser.com are for TAs. Students get material
@@ -101,8 +145,8 @@ that fixed it:
   response to expect, then a link to the right troubleshooting table.
 - **Show every changed block**, with the changed lines highlighted (`{1,6}`),
   rather than "do the same to the other three".
-- Explanations go in their own short slide between steps, not wedged into a
-  step.
+- Explanations go in Part 1 (see "One lab, one activity"). They don't go
+  inside a step or in a slide between steps.
 
 ## EBD: the running project
 

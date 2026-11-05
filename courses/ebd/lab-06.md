@@ -36,12 +36,9 @@ alt: An hourglass
 | Duration | Topic |
 |---|---|
 | 5 min | Recap: the back end is done |
-| 10 min | The front end: what changes |
-| 10 min | Step 1: two folders, two servers |
-| 5 min | Step 2: a clean start |
-| 10 min | Step 3: your first component |
-| 15 min | Step 4: props and lists |
-| 10 min | Step 5: state |
+| 10 min | **Part 1A — The front end:** where your code runs, Vite, two servers |
+| 15 min | **Part 1B — React:** JSX, components, props, lists, state |
+| 35 min | **Part 2 — Lab Manual:** build the first ebd bn'b page, in 5 steps |
 | — | Next lab: pages and forms |
 
 ---
@@ -67,6 +64,7 @@ layout: media
 image: https://github.com/ng-giu/ebd-bnb/tree/lab-05-part2
 side: right
 qr: true
+routeAlias: catch-up
 ---
 
 # Back end not split yet?
@@ -81,10 +79,10 @@ Today we build on the **split** back end from Lab 5, Part 2. Not there yet? Star
 ---
 layout: section
 icon: intro
-sub: What changes when your code runs in someone else's browser
+sub: "Part 1 — Concepts: what changes when your code runs in someone else's browser"
 ---
 
-# The front end
+# 01 — The front end
 
 ---
 layout: default
@@ -199,10 +197,190 @@ servers:
 ---
 layout: section
 icon: code
-sub: Five steps, each one ends with a working page
+sub: "Part 1 — Concepts: JSX, components, props, lists and state"
 ---
 
-# Building the front end
+# 02 — React
+
+---
+layout: default
+icon: code
+tour:
+  - { title: index.html, code: '<div id="root"></div>', sub: "The one HTML page. It starts empty" }
+  - { title: src/main.jsx, code: "createRoot(...).render(<App />)", sub: "Puts App into that empty div" }
+  - { title: src/App.jsx, code: "function App() { ... }", sub: "Your page. You write this" }
+---
+
+# How a React app starts
+
+Vite makes a starter project for you. The browser loads **one** page, and React fills it in:
+
+<Flow :steps="$frontmatter.tour" />
+
+You write everything in `src/`. The rest, `package.json`, `vite.config.js`, `public/` and the linter's settings, you leave alone. `main.jsx` too: it already does its one job.
+
+---
+layout: default
+icon: code
+dense: true
+---
+
+# JSX: HTML inside JavaScript
+
+A component returns **JSX**. It looks like HTML, but it is JavaScript, and Vite turns it into plain JavaScript for the browser. Four differences to know:
+
+| In HTML | In JSX | Why |
+|---|---|---|
+| `class="card"` | `className="card"` | `class` is already a word in JavaScript |
+| Elements side by side | **One parent** around them | A function returns one thing |
+| Text only | `{listing.title}` | Curly braces put JavaScript inside |
+| `<header>` | `<Header />` | A **capital** letter is your component; lower case is an HTML tag |
+
+<div class="giu-refs__note">Forget one of these and Vite tells you, in the terminal and on the page. Troubleshooting, at the end, has the messages.</div>
+
+---
+layout: split
+title: "Components: the pieces of a page"
+dense: true
+---
+
+A **component** is a function that returns JSX.
+
+- Its name starts with a **capital letter**: `Header`, in `Header.jsx`.
+- You use it like a tag: `<Header />`. Use it three times, get three copies.
+- One component per file. `export default` shares it; `import` takes it into another file. The same as Lab 5, Part 2.
+
+ebd bn'b gets two today: `Header` (the title) and `ListingCard` (one listing).
+
+::right::
+
+A small one:
+
+```jsx
+// components/Header.jsx
+function Header() {
+  return <h1>ebd bn'b</h1>;
+}
+
+export default Header;
+```
+
+And where it is used:
+
+```jsx
+// App.jsx
+import Header from "./components/Header.jsx";
+// ... inside App's JSX:
+<Header />
+```
+
+---
+layout: split
+title: "Props: a component's inputs"
+dense: true
+---
+
+**Props** are what a parent hands to a component, like the arguments of a function.
+
+- The **same** `ListingCard` shows a different listing depending on what it is given.
+- The parent passes it as an attribute: `listing={...}`.
+- The component takes it out of its props, in its first line, and shows parts of it with `{ }`.
+- A component **reads** its props. It never changes them.
+
+::right::
+
+The parent passes one listing in:
+
+```jsx
+<ListingCard listing={listings[0]} />
+```
+
+The card takes it out of its props:
+
+```jsx
+function ListingCard({ listing }) {
+  return <h2>{listing.title}</h2>;
+}
+```
+
+---
+layout: split
+title: "Lists: one component per item, with .map and key"
+dense: true
+---
+
+To show one card per listing, turn the **array of listings** into an **array of cards**. It is the same `.map` as Lab 2, except it returns JSX.
+
+- Put `{cards}` in the JSX and React draws them all.
+- **`key`**: React needs a unique key on each item of a list, to tell them apart when the list changes. MongoDB's `_id` is exactly that.
+
+Today's listings are **fake**, shaped exactly like what our API returns: `_id`, `title`, `pricePerNight`. In Lab 8 they come from the back end. The shape is the same, so the components won't change.
+
+::right::
+
+```jsx
+const cards = listings.map((listing) => (
+  <ListingCard key={listing._id} listing={listing} />
+));
+```
+
+Then, in the JSX:
+
+```jsx
+<div className="listings">{cards}</div>
+```
+
+---
+layout: split
+title: "State: a component's memory"
+dense: true
+---
+
+**State** is data a component remembers, and that can change. On each card: has this listing been saved?
+
+- `useState(false)` gives two things: the value, `saved`, starting at `false`, and a function to change it, `setSaved`.
+- Call `setSaved(...)` and React redraws **this card**, and only this one. Every card has its own `saved`.
+- `saved ? "♥ Saved" : "♡ Save"` picks the text: the first one if `saved` is true.
+
+<div class="giu-refs__note"><code>onClick={() => setSaved(!saved)}</code>, with the arrow: it runs on a click. Without the arrow it runs on every redraw, forever.</div>
+
+::right::
+
+```jsx
+import { useState } from "react";
+
+// first line inside the component:
+const [saved, setSaved] = useState(false);
+
+// in its JSX:
+<button onClick={() => setSaved(!saved)}>
+  {saved ? "♥ Saved" : "♡ Save"}
+</button>
+```
+
+---
+layout: default
+icon: code
+---
+
+# Props and state
+
+| | Props | State |
+|---|---|---|
+| **What** | A component's inputs | A component's own memory |
+| **Who sets it** | The parent: `<ListingCard listing={...} />` | The component: `setSaved(...)` |
+| **Can it change?** | Not from inside the component | Yes, and React redraws when it does |
+| **Today** | Which listing a card shows | Whether a card is saved |
+
+Most of React is these two ideas: data flows **down** through props, and changes happen through state.
+
+---
+layout: section
+icon: activity
+sub: "Part 2 — Practice: five steps, each one ends with a working page"
+---
+
+# 03 — Lab Manual: your first React page
 
 ---
 layout: split
@@ -225,7 +403,7 @@ class: giu-tree
 | 4 | Props and lists: `ListingCard` |
 | 5 | State: a Save button |
 
-Each code slide says **which file**, **new** or **edit**, and where.
+Each code slide says **which file**, **new** or **edit**, and where. Stuck at a checkpoint? Its link takes you to the fix.
 
 <div class="giu-refs__note">Not shown: <code>node_modules/</code>. <code>App.css</code> is deleted in Step 2.</div>
 
@@ -266,6 +444,8 @@ layout: split
 title: "Step 1 of 5: move the API into backend/"
 dense: true
 ---
+
+No split back end? Do <Link to="catch-up">**Back end not split yet?**</Link> first.
 
 1. Stop your server: **Ctrl+C** in its terminal.
 2. In the **Explorer**, at the top level of `ebd-bnb`, click **New Folder**. Name it `backend`.
@@ -344,23 +524,6 @@ Something else? <Link to="fix-start">**It won't start**</Link>, in Troubleshooti
 ![The Vite and React starter page: a Get started heading and a Count is 0 button](/img/screenshots/vite-starter.png)
 
 ---
-layout: default
-icon: code
-tour:
-  - { title: index.html, code: '<div id="root"></div>', sub: "The one HTML page. It starts empty" }
-  - { title: src/main.jsx, code: "createRoot(...).render(<App />)", sub: "Puts App into that empty div" }
-  - { title: src/App.jsx, code: "function App() { ... }", sub: "Your page. You write this" }
----
-
-# What is in frontend/
-
-The browser loads **one** page, and React fills it in:
-
-<Flow :steps="$frontmatter.tour" />
-
-Everything happens in `src/`. The rest, `package.json`, `vite.config.js`, `public/` and the linter's settings, you leave alone. `main.jsx` too: it already does its one job.
-
----
 layout: split
 title: "Step 2 of 5: a clean start"
 dense: true
@@ -404,37 +567,16 @@ class: giu-css
 Paste both columns, left first. You don't need to read them: styling is not what this course is about.
 
 ---
-layout: default
-icon: code
-dense: true
----
-
-# JSX: HTML inside JavaScript
-
-A component returns **JSX**. It looks like HTML, but it is JavaScript, and Vite turns it into plain JavaScript for the browser. Four differences to know:
-
-| In HTML | In JSX | Why |
-|---|---|---|
-| `class="card"` | `className="card"` | `class` is already a word in JavaScript |
-| Elements side by side | **One parent** around them | A function returns one thing |
-| Text only | `{listing.title}` | Curly braces put JavaScript inside |
-| `<header>` | `<Header />` | A **capital** letter is your component; lower case is an HTML tag |
-
-<div class="giu-refs__note">Forget one of these and Vite tells you, in the terminal and on the page. Troubleshooting, at the end, has the messages.</div>
-
----
 layout: split
-title: "Step 3 of 5: your first component"
+title: "Step 3 of 5: create Header"
 dense: true
 ---
-
-A **component** is a function that returns JSX. Its name starts with a capital letter, and you use it like a tag: `<Header />`.
 
 1. In the Explorer, click `src`, then **New Folder**: `components`.
 2. Click `components`, then **New File**: `Header.jsx`, capital **H**.
-3. Paste the code on the right. Save.
+3. Paste the code on the right. **Save.**
 
-Nothing changes on the page yet: the component exists, but nobody uses it. That is the next slide.
+Nothing changes on the page yet: nobody uses `Header`. That is the next slide.
 
 ::right::
 
@@ -444,17 +586,15 @@ Nothing changes on the page yet: the component exists, but nobody uses it. That 
 
 ---
 layout: split
-title: "Step 3 of 5: use it"
+title: "Step 3 of 5: use Header"
 dense: true
 ---
 
-In `App.jsx`:
+In `src/App.jsx`:
 
-1. At the top, **import** `Header`.
-2. Replace the `<h1>` with `<Header />`.
-3. Save. A red title and a tagline.
-
-`export default` in `Header.jsx` shares the component; `import` in `App.jsx` takes it in. The same as Lab 5, Part 2.
+1. At the top, add the `import` line (highlighted).
+2. Replace the `<h1>` with `<Header />` (highlighted).
+3. **Save.** A red title and a tagline.
 
 ::right::
 
@@ -469,11 +609,11 @@ dense: true
 ---
 
 1. Click `src`, then **New Folder**: `data`.
-2. Inside it, **New File**: `listings.js`. Paste the code on the right.
+2. Inside it, **New File**: `listings.js`. Paste the code on the right. **Save.**
 
-Three **fake** listings, shaped exactly like what our API returns: an `_id`, a `title`, a `pricePerNight`. Real `_id`s are longer; any unique text works here.
+Three fake listings, shaped like the API's (Part 1, *Lists*). Real `_id`s are longer; any unique text works here.
 
-In Lab 8 they come from the back end instead. Because the shape is the same, the components won't change.
+Nothing changes on the page yet.
 
 ::right::
 
@@ -483,24 +623,16 @@ In Lab 8 they come from the back end instead. Because the shape is the same, the
 
 ---
 layout: split
-title: "Step 4 of 5: a card, with props"
+title: "Step 4 of 5: create ListingCard"
 dense: true
 ---
 
-**Props** are a component's inputs. The same card shows different listings, depending on what it is given:
+1. Click `components`, then **New File**: `ListingCard.jsx`, capital **L** and **C**.
+2. Paste the code on the right. **Save.**
 
-```jsx
-<ListingCard listing={...} />
-```
+Nothing shows yet: nobody uses `ListingCard`. That is the next slide.
 
-passes a `listing` in, and the card takes it out of its props:
-
-```jsx
-function ListingCard({ listing }) {
-```
-
-1. In `components`, **New File**: `ListingCard.jsx`. Paste the code on the right.
-2. Nothing shows yet: no one uses it. That is the next slide.
+`{ listing }` in the first line is the **prop** from Part 1.
 
 ::right::
 
@@ -515,16 +647,14 @@ wideRight: true
 dense: true
 ---
 
-In `App.jsx`:
+In `src/App.jsx`:
 
-1. At the top, **import** `ListingCard` and `listings`.
+1. At the top, **under** the `Header` import, add the two highlighted `import` lines.
 2. Inside `App`, **above** `return`, add `cards`.
 3. In the JSX, **under** `<Header />`, add:<br>`<div className="listings">{cards}</div>`
-4. Save. Three cards.
+4. **Save.** Three cards.
 
-`listings.map(...)` turns each listing into a `<ListingCard>`: the same `.map` as Lab 2, returning JSX.
-
-**`key`**: React needs a unique key on each item of a list, to tell them apart. The `_id` is exactly that.
+This is the `.map` and `key` from Part 1, *Lists*.
 
 ::right::
 
@@ -538,18 +668,18 @@ In `App.jsx`:
 
 ---
 layout: split
-title: "Step 5 of 5: state"
+title: "Step 5 of 5: a Save button"
 dense: true
 ---
 
-**State** is data a component remembers, and that can change. Here: has this card been saved?
+In `src/components/ListingCard.jsx`, add the highlighted lines:
 
-- `useState(false)` gives two things: the value, `saved`, and a function to change it, `setSaved`.
-- Call `setSaved(...)` and React redraws **this card**, and only this one. Every card has its own.
+1. At the **top**: the `useState` import.
+2. **First line inside** `ListingCard`: the `saved` state.
+3. **Under** the price `<p>`: the button.
+4. **Save.**
 
-In `ListingCard.jsx`, add the highlighted lines. Save, and click **Save** on a card.
-
-<div class="giu-refs__note"><code>onClick={() => setSaved(!saved)}</code>, with the arrow: it runs on a click. Without the arrow it runs on every redraw, forever.</div>
+Type `onClick={() => ...}` exactly, **with the arrow**.
 
 ::right::
 
@@ -566,7 +696,7 @@ dense: true
 <Activity>
 
 1. The page shows the header and **three cards**, as on the right.
-2. Click **Save** on one card: only that card changes.
+2. Click **Save** on one card: it turns into **♥ Saved**, and only that card changes.
 3. In `listings.js`, change a price and save. The page updates by itself.
 4. Commit and push.
 
@@ -577,22 +707,6 @@ Something wrong? <Link to="fix-start">**It won't start**</Link> or <Link to="fix
 ::right::
 
 ![The finished page: the ebd bn'b header and three listing cards, one of them saved](/img/screenshots/lab06-result.png)
-
----
-layout: default
-icon: code
----
-
-# Props and state
-
-| | Props | State |
-|---|---|---|
-| **What** | A component's inputs | A component's own memory |
-| **Who sets it** | The parent: `<ListingCard listing={...} />` | The component: `setSaved(...)` |
-| **Can it change?** | Not from inside the component | Yes, and React redraws when it does |
-| **Today** | Which listing a card shows | Whether a card is saved |
-
-Most of React is these two ideas: data flows **down** through props, and changes happen through state.
 
 ---
 layout: media
@@ -691,8 +805,6 @@ title: Useful references
 
 - [MDN: what is JavaScript?](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/What_is_JavaScript)
 - [MDN: using the browser's developer tools](https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Tools_and_setup/What_are_browser_developer_tools)
-
-<div class="giu-refs__note">Nothing on this slide is required.</div>
 
 ---
 layout: end
