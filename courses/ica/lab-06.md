@@ -36,7 +36,7 @@ dense: true
 
 | Duration | Topic |
 |---|---|
-| 10 min | **Part 1A — What is VS Code?** VS Code vs. Notepad & workspace anatomy |
+| 12 min | **Part 1A — What is VS Code?** VS Code vs. Notepad & its three areas |
 | 10 min | **Part 1B — What is Git?** Version control for developers & local snapshots |
 | 10 min | **Part 1C — What is GitHub?** Cloud hosting & comparing Git vs. GitHub |
 | 35 min | **Part 2 — Lab Manual (Practice):** Build an HTML + CSS + `assets/` project & push to GitHub |
@@ -62,25 +62,68 @@ dense: true
 
 **VS Code vs. Notepad:**
 - Both are **plain-text editors** that read and save `.html` and `.css` files.
-- Unlike **Notepad** (plain black text, one loose file per window), <Tool name="vscode" /> is **oriented toward programming**: it adds **syntax highlighting**, auto-closing `<tags>`, and opens an entire **project folder** at once.
+- Unlike **Notepad**, <Tool name="vscode" /> is **made for programming**: **syntax highlighting**, auto-closing `<tags>`, a whole **project folder** open at once.
+
+**Three areas**: **Explorer** (1), **Editor** (2), **Terminal** (3). One slide each next.
 
 ::right::
 
-<div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 space-y-2.5 text-xs">
-  <div class="font-bold text-slate-900 text-sm">Three main areas inside the VS Code window</div>
-  <div class="p-2.5 rounded-lg bg-white border border-blue-200">
-    <div class="font-bold text-blue-900">1. Explorer Sidebar (Left)</div>
-    <div class="text-[0.68rem] text-slate-600 mt-0.5">Shows your project folder tree (<code>index.html</code>, <code>style.css</code>, <code>assets/</code>) so you can create and switch between files quickly.</div>
-  </div>
-  <div class="p-2.5 rounded-lg bg-white border border-teal-200">
-    <div class="font-bold text-teal-900">2. Editor Area (Top Right)</div>
-    <div class="text-[0.68rem] text-slate-600 mt-0.5">Where you write <Tool name="html5" /> and <Tool name="css3" /> code inside open tabs. A dot on a tab means the file has unsaved changes.</div>
-  </div>
-  <div class="p-2.5 rounded-lg bg-white border border-purple-200">
-    <div class="font-bold text-purple-900">3. Integrated Terminal (Bottom Panel)</div>
-    <div class="text-[0.68rem] text-slate-600 mt-0.5">A built-in command line already pointed at your project folder, used to run <Tool name="git" /> commands.</div>
-  </div>
-</div>
+![The VS Code window with the lab project open: the Explorer, the Editor and the Terminal are boxed and numbered 1 to 3](/img/vscode/vscode-areas.png)
+
+---
+layout: split
+title: "Area 1: the Explorer"
+wideRight: true
+dense: true
+---
+
+The Explorer shows the **folder you opened** and everything inside it. You create, rename and open files here.
+
+1. **Explorer icon**: click it to bring the Explorer back if it's hidden.
+2. **Your project folder** (`ica-lab-06`). Every file you create lands inside it.
+3. **New File**: creates a file.
+4. **New Folder**: creates a folder.
+5. **The file tree**: click a file to open it in the Editor. Click `>` next to a folder to open or close it.
+
+<div class="giu-refs__note">Buttons 3 and 4 only show while your mouse is over the Explorer. Move it there if you don't see them.</div>
+
+::right::
+
+![The Explorer: the Explorer icon, the folder name, the New File and New Folder buttons and the file tree are numbered 1 to 5](/img/vscode/area-explorer.png)
+
+---
+layout: split
+title: "Area 2: the Editor"
+wideRight: true
+dense: true
+---
+
+The Editor is where you **write code**. Every file you open gets a **tab** at the top.
+
+1. **The tab** of the open file. Click another tab to switch files.
+2. **The unsaved dot**: the file has changes that are **not saved yet**. The browser and Git can't see them. Press `Ctrl + S` (`Cmd + S` on Mac) and the dot turns back into an `×`.
+3. **Line numbers**: when a slide says "line 5", look here.
+4. **Your code**, coloured by **syntax highlighting**: tags, attributes and values each get their own colour, so a typo stands out.
+
+::right::
+
+![The Editor with index.html open and not saved yet: the tab, the unsaved dot, the line numbers and the code are numbered 1 to 4](/img/vscode/area-editor.png)
+
+---
+layout: default
+dense: true
+---
+
+# Area 3: the Terminal
+
+![The Terminal panel: the Terminal tab, the command area, the New Terminal button and the Kill Terminal button are numbered 1 to 4](/img/vscode/area-terminal.png)
+
+1. **Terminal** tab. Open it from the top menu: **Terminal → New Terminal**.
+2. **The command line.** It already starts **inside your project folder** (`ica-lab-06`), so `git` commands work on your project. Type a command, press `Enter`, read the answer underneath.
+3. **New Terminal** (`+`): opens another one.
+4. **Kill Terminal** (bin): closes this one. Your files are not touched.
+
+<div class="giu-refs__note">On Windows your terminal is PowerShell and the line starts with something like <code>PS C:\Users\you\Desktop\ica-lab-06&gt;</code>. Same thing, different look.</div>
 
 ---
 layout: section
@@ -206,40 +249,126 @@ You will now build a multi-file **Talabat Portal** in <Tool name="vscode" /> and
 ---
 layout: split
 title: "Step 1 of 6: open your project folder in VS Code"
-wideRight: true
 dense: true
 ---
 
-Before creating any files, make sure these two tools are installed:
-
-1. **VS Code** — [code.visualstudio.com](https://code.visualstudio.com)
-2. **Git** — [git-scm.com/downloads](https://git-scm.com/downloads)
-
-In VS Code, always open a **folder** rather than a loose file so the **Explorer** sidebar and **Terminal** know where your project lives.
-
-::right::
+Installed? **VS Code** ([code.visualstudio.com](https://code.visualstudio.com)) and **Git** ([git-scm.com/downloads](https://git-scm.com/downloads)).
 
 <Activity label="Create and open ica-lab-06">
 
 1. Create a new empty folder named `ica-lab-06` on your Desktop (or Documents).
-2. Open <Tool name="vscode" />.
-3. Click **File → Open Folder...** (or **Open Folder** on the Welcome screen).
-4. Select `ica-lab-06` and click **Select Folder** (Windows) or **Open** (Mac).
+2. Open <Tool name="vscode" /> and click **File** (①) → **Open Folder...** (②).
+3. Select `ica-lab-06` and click **Select Folder** (Windows) or **Open** (Mac).
+4. If VS Code asks *"Do you trust the authors?"*, click **Yes, I trust the authors**.
 
 </Activity>
 
-<div class="giu-refs__note">Recommended extension: open the Extensions tab on the left sidebar (<code>Ctrl+Shift+X</code>) and install <strong>Live Server</strong> so your browser reloads automatically whenever you save.</div>
+Open a **folder**, never a loose file: the Explorer and Terminal work on that folder.
+
+::right::
+
+![The File menu open in VS Code, with File numbered 1 and Open Folder... numbered 2](/img/vscode/open-folder.png)
 
 ---
 layout: split
-title: "Step 2 of 6: the assets/ folder and image"
+title: "Step 1 of 6: install Live Server"
+wideRight: true
 dense: true
 ---
 
-1. Look at the **Explorer** sidebar on the left side of <Tool name="vscode" /> (under `ICA-LAB-06`).
-2. Click the **New Folder** icon next to `ICA-LAB-06` and name the folder `assets`.
-3. Click the `assets` folder to select it, then click the **New File** icon and name it `logo.svg`.
-4. Paste the SVG image code on the right and press `Ctrl + S` (`Cmd + S` on Mac) to **save**.
+**Live Server** opens your page in the browser and **reloads it every time you save**. You'll use it at Checkpoint 1.
+
+1. Click the **Extensions** icon in the left bar (①), or press `Ctrl + Shift + X`.
+2. Type `Live Server` in the search box (②).
+3. Find the one by **Ritwick Dey** (③). Other extensions have similar names.
+4. Click its **Install** button (④).
+5. VS Code asks if you trust the publisher: next slide.
+
+::right::
+
+![The Extensions view with Live Server typed in the search box: the Extensions icon, the search box, Live Server by Ritwick Dey and its Install button are numbered 1 to 4](/img/vscode/extensions-live-server.png)
+
+---
+layout: split
+title: "Step 1 of 6: trust the publisher"
+dense: true
+---
+
+Live Server is the first extension you install from its publisher, so VS Code asks:
+
+**Do you trust the publisher "Ritwick Dey"?**
+
+1. Click **Trust Publisher & Install** (①).
+2. Wait a few seconds. When it's installed, a **Go Live** button appears at the **bottom right** of the VS Code window.
+
+"Not verified" only means the publisher hasn't verified a domain with Microsoft. Live Server is one of the most installed extensions there is.
+
+::right::
+
+![The dialog Do you trust the publisher Ritwick Dey?, with the Trust Publisher & Install button numbered 1](/img/vscode/extensions-trust.png)
+
+---
+layout: split
+title: "Step 2 of 6: create the assets/ folder"
+dense: true
+class: ica6-stack
+---
+
+1. Move your mouse over the **Explorer**. Two buttons appear next to `ica-lab-06`: **New File** (①) and **New Folder** (②).
+2. Click **New Folder** (②).
+3. A box appears in the tree. Type `assets` and press `Enter`.
+
+The folder is created **inside `ica-lab-06`**. Check that `assets` appears in the tree, one step to the right of `ica-lab-06`.
+
+::right::
+
+![The Explorer header with the New File button numbered 1 and the New Folder button numbered 2](/img/vscode/explorer-buttons.png)
+
+![The name box in the Explorer with assets typed in it](/img/vscode/explorer-new-folder.png)
+
+---
+layout: split
+title: "Step 2 of 6: create logo.svg inside assets/"
+dense: true
+class: ica6-stack
+---
+
+1. **Click `assets`** in the tree, so it is selected (highlighted).
+2. Click **New File** (the first button next to `ica-lab-06`).
+3. The box now appears **under `assets`**, indented. Type `logo.svg` and press `Enter`.
+
+If the box appears at the same level as `assets` instead, press `Esc`, click `assets` and try again.
+
+::right::
+
+![The name box indented under the assets folder, with logo.svg typed in it](/img/vscode/explorer-new-file-in-assets.png)
+
+---
+layout: split
+title: "Step 2 of 6: \"An error occurred while loading the image\""
+wideRight: true
+dense: true
+---
+
+An `.svg` file is an image, so VS Code opens it in **Image Preview**.
+
+1. Your new file is still empty, so there is nothing to show: **An error occurred while loading the image.** This is **expected**.
+2. Click **Open file using VS Code's standard text/binary editor?** You get an empty editor, ready for the code.
+
+::right::
+
+![VS Code showing logo.svg in Image Preview: the error message is numbered 1 and the link to open the text editor is numbered 2](/img/vscode/svg-preview-error.png)
+
+---
+layout: split
+title: "Step 2 of 6: the image code (assets/logo.svg)"
+dense: true
+---
+
+1. Paste the SVG code on the right into the empty editor.
+2. Press `Ctrl + S` (`Cmd + S` on Mac) to **save**. The dot on the tab disappears.
+
+An SVG image is written in text: a rounded orange square (`<rect>`) with a white letter `t` (`<text>`) on it.
 
 ::right::
 
@@ -251,14 +380,15 @@ dense: true
 layout: split
 title: "Step 3 of 6: the CSS file (style.css)"
 dense: true
-class: giu-small
+class: giu-small ica6-stack
 ---
 
-1. Click the empty space in the **Explorer** sidebar (outside `assets/`) so your next file is created at the root of `ica-lab-06/`.
-2. Click the **New File** icon and name it `style.css`.
-3. Write the CSS styling rules on the right and press `Ctrl + S` to **save**.
+1. Click the **empty space** in the Explorer, below the files, so the next file goes at the **root** of `ica-lab-06/`.
+2. Click **New File**, type `style.css`, press `Enter`. It lines up with `assets`, not under it:
 
-Notice there are **no `<style>` tags** inside a `.css` file—only CSS selectors (`body`, `.card`, `.logo`, `.btn`) and their properties.
+![The name box at the root of the project, lined up with the assets folder, with style.css typed in it](/img/vscode/explorer-new-file-root.png)
+
+3. Paste the CSS on the right (a `.css` file has **no `<style>` tags**) and press `Ctrl + S` to **save**.
 
 ::right::
 
@@ -272,13 +402,15 @@ title: "Step 4 of 6: index.html linking CSS and image"
 dense: true
 ---
 
-1. At the root of `ica-lab-06/` (next to `style.css`), click **New File** and name it `index.html`.
-2. Write the HTML on the right and press `Ctrl + S` to **save**.
+1. Click the empty space in the Explorer again, then **New File**, and name it `index.html` (next to `style.css`).
+2. Paste the HTML on the right and press `Ctrl + S` to **save**.
 
 Look closely at the two highlighted parts:
 
 - **Line 5 (`<link>`)** links `style.css` inside `<head>`: `<link rel="stylesheet" href="style.css">`
 - **Lines 9–10 (`<img>`)** load the image from `assets/`: `<img class="logo" src="assets/logo.svg" alt="Logo">`
+
+Your Explorer should now show `assets/` (with `logo.svg`), `index.html` and `style.css`, like **Area 1**.
 
 ::right::
 
@@ -288,65 +420,116 @@ Look closely at the two highlighted parts:
 
 ---
 layout: split
-title: "Checkpoint 1: preview your page in the browser"
+title: "Checkpoint 1: open your page with Live Server"
 dense: true
+class: ica6-tall
 ---
 
 <Activity label="Open your page">
 
-1. Right-click `index.html` in the VS Code Explorer sidebar and click **Open with Live Server** (or double-click `index.html` in your file manager).
-2. Confirm that both linked files load properly:
-   - **From `style.css`:** light grey background, centered white card, and orange **Explore Menu** button.
-   - **From `assets/logo.svg`:** the orange **`t`** logo image above the heading.
+1. **Right-click** `index.html` in the Explorer (①).
+2. Click **Open with Live Server** (②), the first item in the menu.
+3. Your browser opens at `http://127.0.0.1:5500/index.html`.
 
 </Activity>
 
-Missing the styling or seeing a broken image icon? Check <Link to="fix-files">**Styles or images don't load**</Link> in Troubleshooting.
+No Live Server in the menu? Install it (Step 1), or click **Go Live** at the bottom right of VS Code. You can also double-click `index.html` in your file manager.
 
 ::right::
 
-<div class="p-5 rounded-2xl border border-slate-200 bg-[#f8fafc] flex flex-col items-center justify-center shadow-inner">
-  <div class="bg-white p-6 rounded-2xl shadow-xs border border-slate-100 flex flex-col items-center text-center w-64">
-    <div class="w-12 h-12 rounded-xl bg-[#ff5a00] text-white font-bold text-2xl flex items-center justify-center mb-3">t</div>
-    <div class="text-xl font-bold text-slate-900 mb-1">Talabat</div>
-    <div class="text-xs text-slate-600 mb-3">Fresh food delivered fast.</div>
-    <div class="px-4 py-2 rounded-lg bg-[#ff5a00] text-white text-xs font-semibold">Explore Menu</div>
-  </div>
-  <div class="mt-2.5 text-[0.64rem] text-slate-500 font-mono">index.html + style.css + assets/logo.svg</div>
-</div>
+![Right-click menu on index.html in the Explorer: index.html is numbered 1 and Open with Live Server is numbered 2](/img/vscode/live-server-menu.png)
 
 ---
 layout: split
-title: "Step 5 of 6: initialize Git & commit locally"
+title: "Checkpoint 1: what you should see"
 wideRight: true
 dense: true
 ---
 
-1. Open the integrated Terminal in VS Code: click **Terminal → New Terminal** in the top menu bar.
-2. If this is your first time using Git on this computer, set your `user.name` and `user.email` first (shown on the right).
-3. Run `git init`, `git status`, `git add .`, and `git commit` to record your first snapshot (`commit`) locally.
+<Activity label="Check both linked files">
+
+- **From `style.css`:** light grey background, a white card with rounded corners, an orange **Explore Menu** button.
+- **From `assets/logo.svg`:** the orange **`t`** logo above the heading.
+
+</Activity>
+
+Plain black text on white, or a broken image icon? Check <Link to="fix-files">**Styles or images don't load**</Link> in Troubleshooting.
 
 ::right::
 
-<Activity label="Run in the VS Code Terminal">
+![The finished page in the browser: an orange t logo, the heading Talabat, the line Fresh food delivered fast. and an orange Explore Menu button on a white card](/img/vscode/page-result.png)
 
-First-time setup on a machine (run once):
+---
+layout: split
+title: "Step 5 of 6: open the Terminal"
+dense: true
+---
+
+1. In the top menu bar, click **Terminal** (①) → **New Terminal** (②).
+2. The Terminal opens at the bottom (**Area 3**). Check that it starts in `ica-lab-06`.
+3. **First time using Git on this computer?** Tell Git who you are. Type each line, with **your** name and email, and press `Enter`:
 
 ```bash
 git config --global user.name "Your Name"
 git config --global user.email "you@giu.de"
 ```
 
-Initialize and commit your project:
+These print nothing. That means they worked.
+
+::right::
+
+![The Terminal menu open, with Terminal numbered 1 and New Terminal numbered 2](/img/vscode/terminal-menu.png)
+
+---
+layout: split
+title: "Step 5 of 6: git init and git status"
+wideRight: true
+dense: true
+---
+
+Type in the Terminal, one line at a time:
 
 ```bash
 git init
 git status
-git add .
-git commit -m "Initial frontend structure"
 ```
 
-</Activity>
+- `git init` turns `ica-lab-06` into a Git repository. The yellow **`hint:`** lines are **not errors**: Git says it called the branch `master`. Step 6 renames it to `main`.
+- `git status` lists your three items in **red** under *Untracked files*: Git sees them but isn't saving them yet.
+
+::right::
+
+![The Terminal after git init and git status: hint lines about the branch name master, then Untracked files listing assets/, index.html and style.css in red](/img/vscode/git-status.png)
+
+---
+layout: default
+dense: true
+---
+
+# Step 5 of 6: add and commit
+
+Now record your first snapshot. Type in the Terminal, one line at a time:
+
+```bash
+git add .
+git commit -m "Initial frontend structure"
+git status
+```
+
+<div class="grid grid-cols-2 gap-6 items-start">
+<div>
+
+- `git add .` (with the dot) selects every changed file. It prints nothing.
+- `git commit` saves the snapshot and prints **3 files changed**.
+- `git status` now says **nothing to commit, working tree clean**: everything is saved in Git.
+
+</div>
+<div>
+
+![The Terminal after git add, git commit and git status: 3 files changed, and working tree clean](/img/vscode/git-commit.png)
+
+</div>
+</div>
 
 ---
 layout: split
@@ -363,7 +546,7 @@ Now upload your local Git repository to <Tool name="github" />:
 
 ::right::
 
-<Activity label="Connect and push (Terminal or VS Code)">
+<Activity label="Connect and push from the Terminal">
 
 Copy the three commands GitHub shows under *"…or push an existing repository"* and run them in your Terminal:
 
@@ -373,9 +556,27 @@ git remote add origin <your-repo-url>
 git push -u origin main
 ```
 
-**Or in VS Code:** click the **Source Control** icon on the left → click **Publish Branch** → **Publish to GitHub public repository**.
+The first time, a window asks you to **sign in to GitHub**. Sign in, and the push continues.
 
 </Activity>
+
+---
+layout: split
+title: "Step 6 of 6, the other way: Publish Branch"
+dense: true
+---
+
+You can skip the GitHub website and the three commands, and publish from VS Code instead:
+
+1. Click the **Source Control** icon in the left bar (①).
+2. Click **Publish Branch** (②).
+3. Pick **Publish to GitHub public repository**, and sign in to GitHub when asked.
+
+VS Code creates the repository on GitHub **and** pushes in one go. Use **one** way, not both.
+
+::right::
+
+![The Source Control view after the first commit: the Source Control icon is numbered 1 and the Publish Branch button is numbered 2](/img/vscode/scm-publish.png)
 
 ---
 layout: split
@@ -408,7 +609,24 @@ git commit -m "Describe what you changed"
 git push
 ```
 
-Or in VS Code's **Source Control** tab: type a message, click **Commit**, then click **Sync Changes**.
+Or use the **Source Control** view: next slide.
+
+---
+layout: split
+title: "Updating your project from Source Control"
+dense: true
+---
+
+The same three commands, without the Terminal:
+
+1. Open **Source Control** in the left bar. Your changed files are listed under **Changes** (③), marked **M** for *modified*.
+2. Type a message in the box (①), e.g. `Add a comment to the styles`.
+3. Click **Commit** (②). If VS Code asks to stage all your changes, click **Yes** (that's `git add .`).
+4. Click **Sync Changes** to push to GitHub (that's `git push`).
+
+::right::
+
+![The Source Control view with a message typed in the box, the Commit button and the changed file style.css numbered 1 to 3](/img/vscode/scm-commit.png)
 
 ---
 layout: section
@@ -431,6 +649,18 @@ dense: true
 | Plain unstyled text (no card or orange button) | `style.css` is inside `assets/` or misspelled in `<link>` | Keep `style.css` next to `index.html` and check `<link rel="stylesheet" href="style.css">`. |
 | Broken image icon instead of the logo | `logo.svg` is outside `assets/` or path mismatches | Place `logo.svg` inside `assets/` and check `<img class="logo" src="assets/logo.svg" alt="Logo">`. |
 | Edits in VS Code don't show in the browser | File is unsaved (dot on tab) or named `.css.txt` | Press `Ctrl + S` to save, refresh the browser, and always create files from VS Code Explorer. |
+
+---
+layout: default
+class: giu-fix
+dense: true
+---
+
+# VS Code shows an error
+
+| Message in VS Code | Cause | Fix |
+|---|---|---|
+| `An error occurred while loading the image.` | `logo.svg` is still empty, and VS Code opened it in Image Preview | Click **Open file using VS Code's standard text/binary editor?** under the message, then paste the SVG code (Step 2). |
 
 ---
 layout: default

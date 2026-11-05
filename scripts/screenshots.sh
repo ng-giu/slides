@@ -1,10 +1,14 @@
 #!/bin/sh
-# Regenerate the annotated Thunder Client screenshots in
-# courses/ebd/public/img/screenshots/ from a real VS Code + Thunder Client,
-# sending real requests to the real Lab 4 solution.
+# Regenerate generated VS Code screenshots, inside Docker.
 #
 # Usage:
-#   bun run screenshots
+#   bun run screenshots          # EBD: annotated Thunder Client shots in
+#                                # courses/ebd/public/img/screenshots/, sending
+#                                # real requests to the real Lab 4 solution
+#   bun run screenshots ica-06   # ICA Lab 6: VS Code's areas, Explorer, Terminal,
+#                                # Git and Source Control, building the real
+#                                # lab-06 snippet project click by click, into
+#                                # courses/ica/public/img/vscode/
 #
 # Needs Docker. Everything runs inside the Playwright image, so the VS Code it
 # drives never touches the VS Code on this machine (running a second one on the
@@ -29,6 +33,19 @@ if [ ! -x "$CACHE/vscode/code" ]; then
   echo "Downloading VS Code ($VSCODE_ARCH)..."
   curl -sL "https://update.code.visualstudio.com/latest/$VSCODE_ARCH/stable" | tar xz -C "$CACHE"
   mv "$CACHE"/VSCode-* "$CACHE/vscode"
+fi
+
+TARGET=${1:-ebd}
+
+if [ "$TARGET" = "ica-06" ]; then
+  docker run --rm --init -e PROBE \
+    -u "$(id -u):$(id -g)" -e HOME=/tmp/home \
+    -v "$REPO:/repo" -v "$CACHE:/cache" -w /repo \
+    "$IMAGE" sh -c '
+      set -e
+      xvfb-run -a -s "-screen 0 1600x1000x24" node scripts/screenshots/ica-lab-06.mjs
+    '
+  exit 0
 fi
 
 # Everything below runs in the container as you, so files it writes stay yours

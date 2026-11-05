@@ -108,3 +108,7 @@
 }
 
 
+
+/* Lab 6: stacked VS Code screenshots in a split column, and a tall one */
+.ica6-stack p > img { max-height: 9rem; }
+.ica6-tall p > img { max-height: 21rem; }
