@@ -251,7 +251,6 @@ dense: true
 
 1. Paste the same `fetch` in the Console again. This time it prints an **array**: your listings, from MongoDB.
 2. Open `localhost:3000/api/health` in a tab: `{"status":"ok"}`.
-3. Commit and push.
 
 </Activity>
 
@@ -398,7 +397,6 @@ dense: true
 1. The cards are the listings in **MongoDB**: the ones you made in Lab 5, or "No listings yet".
 2. Stop the API (**Ctrl+C** in terminal 1) and reload the page: **Can't reach the API**. Start it again, reload: back.
 3. Add a listing with the form. It shows... then **reload**: gone. Adding still only changes React's state. That's Step 4.
-4. Commit and push.
 
 </Activity>
 
@@ -486,7 +484,6 @@ dense: true
 2. Delete one. **Reload**: still gone.
 3. Open one listing's page, and reload **there**: it loads, with an `_id` from MongoDB in the address.
 4. In Atlas, **Data Explorer** → `listings`, refresh: the same listings as the page.
-5. Commit and push.
 
 </Activity>
 

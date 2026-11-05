@@ -366,7 +366,8 @@ dense: true
 
 2. Copy the last token, without the quotes, into [jwt.io](https://www.jwt.io): find your `id` and `name` in the payload.
 3. In Atlas **Data Explorer**, open the new `users` collection: the password is a `$2b$10$...` hash.
-4. Commit and push. Something wrong? <Link to="fix-api">**The API says no**</Link>, in Troubleshooting.
+
+Something wrong? <Link to="fix-api">**The API says no**</Link>, in Troubleshooting.
 
 ---
 layout: split
@@ -421,7 +422,6 @@ In Thunder Client, send `POST /api/listings` with a listing as the body:
 1. Without a token: **`401`** `Log in first`.
 2. Open the **Auth** tab, choose **Bearer**, paste your token: **`201`**.
 3. `GET /api/listings` still works without one.
-4. Commit and push.
 
 </Activity>
 
@@ -570,7 +570,6 @@ class: giu-small
 3. **Reload**: still logged in. That's `localStorage`.
 4. **Log out**, then **Log in** with a wrong password: the API's message, in red.
 5. F12 → **Application** → **Local Storage**: your `token` and `user`.
-6. Commit and push.
 
 </Activity>
 
@@ -643,7 +642,6 @@ dense: true
 1. Logged in: **Add a listing** works again.
 2. Log out: no **Delete** buttons, and no **Add a listing**. Type `localhost:5173/add`: you land on **Log in**.
 3. Log in again, and check the back end's terminal: `POST /api/listings`, `201`.
-4. Commit and push.
 
 </Activity>
 
@@ -744,7 +742,6 @@ dense: true
 3. As the second user: **Delete** only on **their** card. **My listings**: only theirs.
 4. In Thunder Client, with the second user's token, `DELETE` your first listing: **`403`**.
 5. Log back in as yourself: **your** cards have the Delete button now.
-6. Commit and push.
 
 </Activity>
 

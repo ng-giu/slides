@@ -38,7 +38,7 @@ alt: An hourglass
 | 5 min | Recap: the back end is done |
 | 10 min | **Part 1A — The front end:** where your code runs, Vite, two servers |
 | 15 min | **Part 1B — React:** JSX, components, props, lists, state |
-| 35 min | **Part 2 — Lab Manual:** build the first ebd bn'b page, in 5 steps |
+| 35 min | **Part 2 — Lab Manual:** the starter project, then the first ebd bn'b page in 5 steps |
 | — | Next lab: pages and forms |
 
 ---
@@ -58,23 +58,6 @@ ebd bn'b has a real API: send a request, get JSON back, and the data survives a 
 <Flow :steps="$frontmatter.stack" />
 
 But nobody books a stay by typing requests into Thunder Client. Guests need **pages** they can see and click. That is the **front end**, and it starts today.
-
----
-layout: media
-image: https://github.com/ng-giu/ebd-bnb/tree/lab-05-part2
-side: right
-qr: true
-routeAlias: catch-up
----
-
-# Back end not split yet?
-
-Today we build on the **split** back end from Lab 5, Part 2. Not there yet? Start from ours:
-
-1. [**Download ZIP**](https://github.com/ng-giu/ebd-bnb/archive/refs/heads/lab-05-part2.zip) and unzip it. You get a folder with every file already in place.
-2. Open that folder in <Tool name="vscode" />. It is your `ebd-bnb` from now on.
-3. Put your `.env` from Atlas next to `package.json`.
-4. `npm install`, then `npm run dev`: `Connected to MongoDB`.
 
 ---
 layout: section
@@ -191,8 +174,8 @@ servers:
 <Flow :steps="$frontmatter.servers" back="Lab 8: React asks Express for the listings, and JSON comes back" />
 
 - **Two folders**, `frontend/` and `backend/`, each its own npm project with its own `npm run dev`.
-- **Two terminals**, one for each, both running at the same time.
-- Today the front end works alone, with fake data. In Lab 8 it talks to the back end.
+- From Lab 8: **two terminals**, one for each, both running at the same time.
+- **Today only the front end runs**, with fake data. The back end stays stopped until Lab 8.
 
 ---
 layout: section
@@ -397,7 +380,8 @@ class: giu-tree
 
 | Step | What |
 |---|---|
-| 1 | `backend/` and `frontend/`, both running |
+| Start | The starter project |
+| 1 | `backend/` and `frontend/` |
 | 2 | A clean start |
 | 3 | A component: `Header` |
 | 4 | Props and lists: `ListingCard` |
@@ -418,7 +402,7 @@ ebd-bnb/
 │   │   └── Listing.js
 │   ├── routes/
 │   │   └── listingRoutes.js
-│   ├── .env
+│   ├── .env.example
 │   ├── db.js
 │   ├── package.json
 │   └── server.js
@@ -436,8 +420,26 @@ ebd-bnb/
 │   ├── index.html               EDIT Step 2
 │   ├── package.json
 │   └── vite.config.js
-└── .gitignore
+├── .gitignore
+└── README.md
 ```
+
+---
+layout: media
+image: https://github.com/ng-giu/ebd-bnb/tree/lab-05-part2
+side: right
+qr: true
+---
+
+# Get started: the starter project
+
+Everyone starts from the same project: our back end from Lab 5, Part 2.
+
+1. [**Download ZIP**](https://github.com/ng-giu/ebd-bnb/archive/refs/heads/lab-05-part2.zip) and unzip it.
+2. Rename the folder with `package.json` **directly** inside it to `ebd-bnb`.
+3. In <Tool name="vscode" />: **File → Open Folder...**, pick `ebd-bnb`.
+
+**You don't run the back end today.** No `.env`, no `npm install` in it: today is all front end. It runs again in Lab 8.
 
 ---
 layout: split
@@ -445,13 +447,12 @@ title: "Step 1 of 5: move the API into backend/"
 dense: true
 ---
 
-No split back end? Do <Link to="catch-up">**Back end not split yet?**</Link> first.
-
-1. Stop your server: **Ctrl+C** in its terminal.
-2. In the **Explorer**, at the top level of `ebd-bnb`, click **New Folder**. Name it `backend`.
-3. Select everything else **except `.gitignore`**: click the first item, **Shift+click** the last. That includes `.env`, `node_modules`, `package.json` and every folder.
+1. In the **Explorer**, at the top level of `ebd-bnb`, click **New Folder**. Name it `backend`.
+2. Click `controllers`, then **Shift+click** `server.js`, the last item.
+3. **Ctrl+click** `.gitignore` and `README.md` to leave them out (**Cmd+click** on Mac). They stay at the top.
 4. Drag the selection onto `backend`. Confirm the move.
-5. In the terminal: `cd backend`, then `npm run dev`. You want `Connected to MongoDB`, as before.
+
+**Nothing to start:** the back end stays stopped today.
 
 <div class="giu-refs__note"><code>.gitignore</code> stays at the top: its <code>node_modules/</code> and <code>*.env</code> lines cover every folder below it.</div>
 
@@ -463,12 +464,13 @@ ebd-bnb/              ebd-bnb/
 ├── controllers/      ├── backend/
 ├── models/           │   ├── controllers/
 ├── routes/           │   ├── models/
-├── .env              │   ├── routes/
-├── db.js             │   ├── .env
+├── .env.example      │   ├── routes/
+├── db.js             │   ├── .env.example
 ├── package.json      │   ├── db.js
 ├── server.js         │   ├── package.json
-└── .gitignore        │   └── server.js
-                      └── .gitignore
+├── .gitignore        │   └── server.js
+└── README.md         ├── .gitignore
+                      └── README.md
 ```
 
 ---
@@ -477,8 +479,8 @@ title: "Step 1 of 5: create the front end"
 dense: true
 ---
 
-1. Open a **second terminal**: the **+** at the top right of the terminal panel. Leave the first one running the API.
-2. The new terminal opens at the top of `ebd-bnb`. Run the command on the right.
+1. Open a terminal: **Terminal → New Terminal**. It opens at the top of `ebd-bnb`.
+2. Run the command on the right.
 3. **Which linter to use?** Press **Enter**: the first one is fine.
 4. **Install with npm and start now?** Choose **Yes**.
 5. It installs, then starts. **Ctrl+click** the `Local:` link.
@@ -504,16 +506,15 @@ Next time, start it yourself: `cd frontend`, then `npm run dev`.
 
 ---
 layout: split
-title: "Checkpoint 1: two servers"
+title: "Checkpoint 1: the front end runs"
 dense: true
 ---
 
 <Activity>
 
-1. **Terminal 1**, in `backend/`: `Connected to MongoDB` and `Server running on http://localhost:3000`.
-2. **Terminal 2**, in `frontend/`: `Local: http://localhost:5173/`.
+1. **Explorer**: `backend/` and `frontend/` side by side, with `.gitignore` and `README.md` next to them.
+2. **Terminal**: `Local: http://localhost:5173/`.
 3. **Browser**, at `localhost:5173`: Vite's starter page, on the right.
-4. Commit and push. Run `git status` first: no `node_modules` anywhere in the list.
 
 </Activity>
 
@@ -698,7 +699,6 @@ dense: true
 1. The page shows the header and **three cards**, as on the right.
 2. Click **Save** on one card: it turns into **♥ Saved**, and only that card changes.
 3. In `listings.js`, change a price and save. The page updates by itself.
-4. Commit and push.
 
 </Activity>
 
@@ -758,7 +758,7 @@ Vite shows these in the terminal where it runs, and in a red box on the page.
 
 | You see | Cause | Fix |
 |---|---|---|
-| `npm error code ENOENT` ... `package.json` | Terminal in the wrong folder | `cd backend` or `cd frontend` first |
+| `npm error code ENOENT` ... `package.json` | Terminal in the wrong folder | `cd frontend` first |
 | `Port 5173 is in use, trying another one...` | Vite is already running elsewhere | Not an error: open the link it prints, or stop the other one |
 | `Failed to resolve import "./components/header.jsx"` | A wrong path, or wrong capitals: `header.jsx` is not `Header.jsx` | Match the file's name exactly |
 | `does not provide an export named 'default'` | `export default ...` is missing | Last line of the component's file |

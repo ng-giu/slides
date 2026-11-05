@@ -34,8 +34,11 @@ student who missed the lab do it alone at home, from the PDF:
   **Troubleshooting section at the end**, grouped by symptom ("won't connect",
   "won't start", "answers are wrong"), never mid-lesson. Checkpoints link to
   them with `routeAlias:` on the target and `<Link to="...">`.
-- **Catch-up path** near the start for students who missed the previous lab
-  (paste-in code, or the previous solution gist with a QR code).
+- **Getting started** is the first slide of the Lab Manual, right after the
+  plan (see "One lab, one activity"). It is for **everyone**, not only for
+  students who missed the last lab: in EBD, every student starts from the
+  previous lab's solution branch (Download ZIP and a QR code), not from their
+  own folder.
 - **Solution** at the end, from **[ng-giu/ebd-bnb](https://github.com/ng-giu/ebd-bnb)**
   (EBD): one branch per finished lab (`lab-03` ... `lab-06`), each exactly the
   student's `ebd-bnb/` folder at the end of that lab, chained so the history is
@@ -77,10 +80,21 @@ What goes where:
   second activity** after it (no "In-Lab Activity: extend it" once the
   walkthrough ends). More work means more manual steps, last steps first to
   drop.
-- Outside the two parts: cover, contacts, agenda (Part 1 topics as rows, the
-  manual as a single row), and the **catch-up path** before Part 1, so a
-  student can download while the TA talks; Step 1 links back to it. After the
-  manual: solution, next lab, troubleshooting, references, end.
+- **Before Part 1**: cover, contacts, agenda (Part 1 topics as rows, the
+  manual as a single row), and a recap. **Nothing practical**: no downloads,
+  no setup.
+- **The manual starts** with the plan (the goal: what you build, the finished
+  tree), then **Getting started**: the practical instructions for everyone,
+  i.e. the starter files, where to put them, how to open them, what to
+  install. Then Step 1.
+- **Concepts may build on earlier labs; the practical work is
+  self-contained.** Part 1 can say "the same `.map` as Lab 2" or recap last
+  week's idea. The manual never depends on a student's own earlier work: it
+  starts from the starter files and needs nothing else from before.
+- **Only run what today's steps use**, and say plainly what stays stopped
+  (EBD Labs 6-7 never start the back end: "You don't run the back end
+  today").
+- **After the manual**: solution, next lab, troubleshooting, references, end.
 - Section slides: `# 01 — <Topic>` with `sub: "Part 1 — Concepts: ..."`,
   then `# NN — Lab Manual: <what they build>` with
   `sub: "Part 2 — Practice: ..."`.
@@ -117,6 +131,9 @@ to a companion deck. So:
   finished in class, students finish at home from the same deck.
 - Never write "optional", "not required", "if you're curious" or "extra" on a
   student-facing slide: students read that as permission to leave.
+- **No "commit and push" steps** from EBD Lab 6 on. Labs 1-5 and the
+  assignments teach git; after that, pushing isn't checked, and students
+  start each lab from the starter ZIP anyway, which has no `.git`.
 - **No homework before a lab.** Students don't do it, and they already have
   assignments. Account sign-ups and similar setup happen in class; an email
   beforehand is a bonus, never a dependency.

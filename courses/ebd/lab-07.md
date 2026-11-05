@@ -343,7 +343,6 @@ dense: true
 2. Click **Add a listing**. The URL becomes `localhost:5173/add`, and you see **Page not found**: there is no `/add` page yet. That's Step 4.
 3. Click **All listings**: the cards are back.
 4. Type `localhost:5173/anything` in the address bar: **Page not found**.
-5. Commit and push.
 
 </Activity>
 
@@ -512,8 +511,7 @@ dense: true
 1. Click **Add a listing**: the form.
 2. Try to send it empty: the browser stops you.
 3. Fill in `Siwa Mud House`, `75`, and click **Add listing**.
-4. You are back home, with **four** cards.
-5. Commit and push. Next, a way to remove one.
+4. You are back home, with **four** cards. Next, a way to remove one.
 
 </Activity>
 
@@ -659,8 +657,7 @@ dense: true
 1. The tab says **ebd bn'b (3 listings)**. Add one: **(4 listings)**. Delete one: **(3 listings)**.
 2. Click a card's title: its own page, at `/listings/` and its id.
 3. Change the id in the address bar to `zzz`: **No listing with this id.**
-4. Commit and push.
-5. Now **reload** the page. The listing you added is **gone**.
+4. Now **reload** the page. The listing you added is **gone**.
 
 </Activity>
 
