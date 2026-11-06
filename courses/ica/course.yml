@@ -2,7 +2,7 @@
 
 dates:
   - { date: 2026-10-31, what: Lab 6 week starts, note: "Project released; teams of 5–6 form" }
-  - { date: 2026-11-07, what: Lab 7 week starts, note: "Graded in-lab assignment (2-screen Talabat build)" }
+  - { date: 2026-11-07, what: Lab 7 week starts, note: "Graded in-lab assignment (3-screen Talabat build)" }
   - { date: 2026-11-19, time: "23:59", what: "Project PD1 due: Concept, User Stories, Acceptance Criteria & Wireframes", note: "20% of project grade" }
   - { date: 2026-11-26, time: "23:59", what: "Project PD2 due: Clickable Figma Prototype", note: "20% of project grade" }
   - { date: 2026-11-28, what: Activity week, note: "No lab; TA poster review & website build" }

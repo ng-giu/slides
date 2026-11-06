@@ -43,37 +43,6 @@ body {
   border: none;
 }
 
-.categories {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 14px;
-}
-
-.cat {
-  background-color: #f1f5f9;
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: bold;
-  color: #1e293b;
-}
-
-.promo {
-  background-color: #fff7ed;
-  border: 1px solid #fed7aa;
-  padding: 12px;
-  border-radius: 12px;
-  margin-bottom: 14px;
-}
-
-.promo h2 {
-  color: #c2410c;
-}
-
-.promo p {
-  margin: 0;
-}
-
 h2 {
   font-size: 14px;
   color: #0f172a;
@@ -106,7 +75,14 @@ input {
   margin: 0;
 }
 
+.item img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 6px;
+}
+
 .btn {
+  display: block;
   background-color: #ff5a00;
   color: white;
   padding: 12px;
@@ -116,8 +92,7 @@ input {
   font-weight: bold;
   text-align: center;
   text-decoration: none;
-  margin-top: 4px;
-  margin-bottom: 6px;
+  margin-top: 8px;
 }
 
 .back {
