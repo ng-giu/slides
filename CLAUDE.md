@@ -333,6 +333,22 @@ Two things only break on the hosted build, never in `bun run lab`:
 
 ## Writing for these decks
 
-Short sentences, second person, plain words. Bold the one thing to notice. A
+Short sentences, second person, plain words. Bold the one thing to notice.
+
+**Plain titles and plain prose.** A title names the thing: "Props", "State",
+"Getting started", "Step 2 of 5: the styles". No tagline after a colon
+("Props: a component's inputs"), no slogans ("always a new array", "the
+pieces of a page"), no punchy closing lines. If it reads like marketing copy
+or an AI summary, cut it down to the noun. This applies across the repo.
+
+**File and folder steps that can't be misread.** Name the button or icon,
+what to type, which key to press, and where the result must appear ("Click
+`src`. Click the **New Folder** icon, type `pages`, press **Enter**. It
+appears inside `src`."). Use exact names, never descriptions of folders.
+Don't ask for renames you don't need. Lab 6 said "rename the folder with
+`package.json` directly inside it to `ebd-bnb`", and students renamed their
+project folder to `package.json`. Students now open the unzipped folder under
+its own name (`ebd-bnb-lab-06`). Tell them what the Explorer should show, and
+how to recover when Windows unzips into a second folder of the same name. A
 slide that needs scrolling to read has too much on it: split it. Notes that are
 helpful but optional go in `<div class="giu-refs__note">`.

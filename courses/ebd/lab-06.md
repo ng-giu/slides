@@ -223,7 +223,7 @@ A component returns **JSX**. It looks like HTML, but it is JavaScript, and Vite 
 
 ---
 layout: split
-title: "Components: the pieces of a page"
+title: "Components"
 dense: true
 ---
 
@@ -259,7 +259,7 @@ import Header from "./components/Header.jsx";
 
 ---
 layout: split
-title: "Props: a component's inputs"
+title: "Props"
 dense: true
 ---
 
@@ -288,7 +288,7 @@ function ListingCard({ listing }) {
 
 ---
 layout: split
-title: "Lists: one component per item, with .map and key"
+title: "Lists: .map and key"
 dense: true
 ---
 
@@ -315,7 +315,7 @@ Then, in the JSX:
 
 ---
 layout: split
-title: "State: a component's memory"
+title: "State"
 dense: true
 ---
 
@@ -394,7 +394,7 @@ Each code slide says **which file**, **new** or **edit**, and where. Stuck at a 
 ::right::
 
 ```text {2,13,17,18,20,21,22,24}
-ebd-bnb/
+ebd-bnb-lab-05-part2/
 ├── backend/                 MOVED  Step 1
 │   ├── controllers/
 │   │   └── listingController.js
@@ -429,15 +429,16 @@ layout: media
 image: https://github.com/ng-giu/ebd-bnb/tree/lab-05-part2
 side: right
 qr: true
+dense: true
 ---
 
-# Get started: the starter project
+# Getting started
 
 Everyone starts from the same project: our back end from Lab 5, Part 2.
 
-1. [**Download ZIP**](https://github.com/ng-giu/ebd-bnb/archive/refs/heads/lab-05-part2.zip) and unzip it.
-2. Rename the folder with `package.json` **directly** inside it to `ebd-bnb`.
-3. In <Tool name="vscode" />: **File → Open Folder...**, pick `ebd-bnb`.
+1. [**Download ZIP**](https://github.com/ng-giu/ebd-bnb/archive/refs/heads/lab-05-part2.zip) and unzip it. You get a folder named `ebd-bnb-lab-05-part2`.
+2. In <Tool name="vscode" />: **File → Open Folder...**, and open `ebd-bnb-lab-05-part2`.
+3. The Explorer, on the left, shows `controllers`, `models`, `routes` and `server.js`. It shows one folder named `ebd-bnb-lab-05-part2` instead? Windows unzipped it into a second folder. Open the inner one.
 
 **You don't run the back end today.** No `.env`, no `npm install` in it: today is all front end. It runs again in Lab 8.
 
@@ -447,9 +448,9 @@ title: "Step 1 of 5: move the API into backend/"
 dense: true
 ---
 
-1. In the **Explorer**, at the top level of `ebd-bnb`, click **New Folder**. Name it `backend`.
-2. Click `controllers`, then **Shift+click** `server.js`, the last item.
-3. **Ctrl+click** `.gitignore` and `README.md` to leave them out (**Cmd+click** on Mac). They stay at the top.
+1. Click the empty space under the last file in the Explorer, so nothing is selected.
+2. Click the **New Folder** icon at the top of the Explorer. Type `backend`, press **Enter**. It appears next to `controllers`, not inside it.
+3. Click `controllers`, then **Shift+click** `server.js`, the last item. **Ctrl+click** `.gitignore` and `README.md` to leave them out (**Cmd+click** on Mac).
 4. Drag the selection onto `backend`. Confirm the move.
 
 **Nothing to start:** the back end stays stopped today.
@@ -460,7 +461,7 @@ dense: true
 
 ```text
 Before                After
-ebd-bnb/              ebd-bnb/
+ebd-bnb-lab-05-part2/ ebd-bnb-lab-05-part2/
 ├── controllers/      ├── backend/
 ├── models/           │   ├── controllers/
 ├── routes/           │   ├── models/
@@ -479,7 +480,7 @@ title: "Step 1 of 5: create the front end"
 dense: true
 ---
 
-1. Open a terminal: **Terminal → New Terminal**. It opens at the top of `ebd-bnb`.
+1. Open a terminal: **Terminal → New Terminal**. It opens in `ebd-bnb-lab-05-part2`.
 2. Run the command on the right.
 3. **Which linter to use?** Press **Enter**: the first one is fine.
 4. **Install with npm and start now?** Choose **Yes**.
@@ -573,8 +574,8 @@ title: "Step 3 of 5: create Header"
 dense: true
 ---
 
-1. In the Explorer, click `src`, then **New Folder**: `components`.
-2. Click `components`, then **New File**: `Header.jsx`, capital **H**.
+1. In the Explorer, click `src` (inside `frontend`). Click the **New Folder** icon, type `components`, press **Enter**.
+2. Click `components`. Click the **New File** icon, type `Header.jsx` (capital **H**), press **Enter**.
 3. Paste the code on the right. **Save.**
 
 Nothing changes on the page yet: nobody uses `Header`. That is the next slide.
@@ -609,8 +610,9 @@ title: "Step 4 of 5: the data"
 dense: true
 ---
 
-1. Click `src`, then **New Folder**: `data`.
-2. Inside it, **New File**: `listings.js`. Paste the code on the right. **Save.**
+1. Click `src`. Click the **New Folder** icon, type `data`, press **Enter**.
+2. Click `data`. Click the **New File** icon, type `listings.js`, press **Enter**.
+3. Paste the code on the right. **Save.**
 
 Three fake listings, shaped like the API's (Part 1, *Lists*). Real `_id`s are longer; any unique text works here.
 
@@ -628,7 +630,7 @@ title: "Step 4 of 5: create ListingCard"
 dense: true
 ---
 
-1. Click `components`, then **New File**: `ListingCard.jsx`, capital **L** and **C**.
+1. Click `components`. Click the **New File** icon, type `ListingCard.jsx` (capital **L** and **C**), press **Enter**.
 2. Paste the code on the right. **Save.**
 
 Nothing shows yet: nobody uses `ListingCard`. That is the next slide.

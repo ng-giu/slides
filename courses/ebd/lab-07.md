@@ -35,11 +35,10 @@ alt: An hourglass
 
 | Duration | Topic |
 |---|---|
-| 10 min | Recap, and pages without reloading |
-| 20 min | Steps 1-2: React Router, pages and links |
-| 25 min | Steps 3-5: state, add and delete |
-| 10 min | Step 6: a page per listing |
-| 5 min | Step 7: `useEffect` |
+| 5 min | Recap: where we left ebd bn'b |
+| 10 min | **Part 1A — Pages without reloading:** single-page apps, React Router, routes and links |
+| 15 min | **Part 1B — State shared by pages:** state in `App`, new arrays, forms, `useEffect` |
+| 40 min | **Part 2 — Lab Manual:** the starter project, then 7 steps |
 | — | Next lab: real data, from our API |
 
 ---
@@ -61,29 +60,12 @@ Last lab, the front end got its first page: a header and a card per listing, fro
 Today it gets **more pages**: one to add a listing, one per listing, and a "page not found". All without the browser ever reloading.
 
 ---
-layout: media
-image: https://github.com/ng-giu/ebd-bnb/tree/lab-06
-side: right
-qr: true
----
-
-# Didn't finish Lab 6?
-
-Start from ours:
-
-1. [**Download ZIP**](https://github.com/ng-giu/ebd-bnb/archive/refs/heads/lab-06.zip) and unzip it. It is your `ebd-bnb` from now on.
-2. Put your `.env` from Atlas in `backend/`.
-3. In a terminal: `cd frontend`, `npm install`, `npm run dev`.
-
-Today is all `frontend/`. The back end can stay stopped until Lab 8.
-
----
 layout: section
 icon: intro
-sub: One HTML page, many screens
+sub: "Part 1 — Concepts: one HTML page, many screens"
 ---
 
-# Pages without reloading
+# 01 — Pages without reloading
 
 ---
 layout: default
@@ -136,12 +118,190 @@ React only draws components. Which component goes with which URL is the job of a
 | `useParams()` | Read the parts of the URL, e.g. which listing |
 
 ---
-layout: section
-icon: code
-sub: Seven steps, each one ends with an app that works
+layout: split
+title: "Routes and links"
+dense: true
+wideRight: true
 ---
 
-# Building the pages
+A **page** is a component like any other. We keep pages in their own folder, `pages/`.
+
+- `element={<HomePage />}`: the page, written as a tag.
+- `path="*"` matches **any other** address. Keep it **last**.
+- `:id` makes part of the path a **parameter**, like `:id` in Express in Lab 3.
+- `useParams()` reads it: for `/listings/a2`, `id` is `"a2"`.
+- `<Link to="/add">` looks like any link, but only changes the URL. No reload.
+
+::right::
+
+```jsx
+<Routes>
+  <Route path="/" element={<HomePage />} />
+  <Route path="/listings/:id" element={<ListingPage />} />
+  <Route path="*" element={<NotFoundPage />} />
+</Routes>
+```
+
+Inside `ListingPage`:
+
+```jsx
+const { id } = useParams();
+const listing = listings.find((l) => l._id === id);
+```
+
+`.find(...)` gives the listing with that `_id`, or nothing.
+
+---
+layout: section
+icon: code
+sub: "Part 1 — Concepts: state in App, new arrays, forms and effects"
+---
+
+# 02 — State shared by pages
+
+---
+layout: default
+icon: code
+flow:
+  width: 860
+  height: 210
+  groups:
+    - { id: pages, x: 160, y: 96, w: 600, h: 114, label: The pages, icon: file, tone: green }
+  nodes:
+    - { id: app, x: 330, y: 0, w: 260, h: 56, label: App, sub: "listings, addListing, deleteListing", icon: code, tone: amber }
+    - { id: home, x: 180, y: 142, w: 170, h: 50, label: HomePage, sub: "listings, onDelete", icon: file, tone: green }
+    - { id: one, x: 375, y: 142, w: 170, h: 50, label: ListingPage, sub: "listings", icon: file, tone: green }
+    - { id: add, x: 570, y: 142, w: 170, h: 50, label: AddListingPage, sub: "onAdd", icon: file, tone: green }
+  edges:
+    - { from: app, to: home, fromSide: b, toSide: t, fromAt: 0.15 }
+    - { from: app, to: one, fromSide: b, toSide: t, fromAt: 0.5 }
+    - { from: app, to: add, fromSide: b, toSide: t, fromAt: 0.85 }
+---
+
+# Where the listings live
+
+Three pages need the listings, so they live **above** all three, in `App`, as **state**.
+
+<Diagram v-bind="$frontmatter.flow" />
+
+Data goes **down** as props (`listings`). A change goes **up** by calling a function from `App` (`onAdd`, `onDelete`). The Delete button is in `ListingCard`, inside `HomePage`, so `onDelete` is passed down one prop at each level.
+
+---
+layout: split
+title: "Changing state"
+dense: true
+wideRight: true
+---
+
+React redraws when state gets a **new** value. So never change the old array: build a new one, and hand it to `setListings`.
+
+- **Add**: `[...listings, listing]` is every listing so far, then the new one.
+- **Delete**: `.filter(...)` keeps every listing whose `_id` is **not** the one to delete.
+
+Change the old array with `push`, and React may not notice.
+
+<div class="giu-refs__note">State lives in the browser's memory, like the array in Lab 4 lived in the server's. Reload the page and it starts again. Lab 8 fixes that with MongoDB.</div>
+
+::right::
+
+```jsx
+const [listings, setListings] =
+  useState(initialListings);
+
+// add
+setListings([...listings, listing]);
+
+// delete
+setListings(
+  listings.filter((l) => l._id !== id)
+);
+```
+
+---
+layout: default
+icon: code
+dense: true
+---
+
+# A form React controls
+
+In the workbook, a form kept its own values, and you read them out on submit. In React, **state** holds them:
+
+```jsx
+const [title, setTitle] = useState("");
+
+<input value={title} onChange={(e) => setTitle(e.target.value)} />
+```
+
+- `value={title}`: the input **shows** the state.
+- `onChange`: every key you press **updates** the state, and React redraws the input.
+
+That is a **controlled input**. On submit, the values are already in `title` and `price`, ready to use.
+
+---
+layout: split
+title: "Submitting the form"
+dense: true
+---
+
+On **submit**, `handleSubmit`:
+
+1. Stops the reload: `event.preventDefault()`. A form's default is to reload the page, which would wipe everything.
+2. Builds a listing, in the same shape as the others: an `_id`, a `title`, a `pricePerNight`.
+3. Gives it to `onAdd`, a function from `App`. **`App` adds it**: the form doesn't own the list.
+4. Goes back home: `navigate("/")`.
+
+::right::
+
+Three details:
+
+- `Number(price)`: an input's value is always **text**. `"75"` becomes `75`.
+- `crypto.randomUUID()`: a random, unique id, built into the browser. In Lab 8, MongoDB makes the `_id` instead.
+- `required` on an input: the browser won't submit the form while it is empty.
+
+---
+layout: split
+title: "useEffect"
+dense: true
+wideRight: true
+---
+
+Some code isn't about drawing the page: setting the tab's title, or, in Lab 8, **fetching from the API**. That goes in `useEffect`.
+
+- The function runs **after** React draws the page.
+- `[listings]`: run it again **whenever `listings` changes**, and only then.
+
+::right::
+
+```jsx
+useEffect(() => {
+  document.title =
+    `ebd bn'b (${listings.length} listings)`;
+}, [listings]);
+```
+
+---
+layout: default
+icon: code
+---
+
+# Summary
+
+| | What it is | Today |
+|---|---|---|
+| **Route** | A path, and the page it shows | `/`, `/add`, `/listings/:id`, `*` |
+| **Link** | Change the URL without reloading | The header, each card's title |
+| **State in App** | Data several pages need | `listings`; `addListing` and `deleteListing` change it |
+| **Controlled input** | An input that shows and updates state | The title and the price |
+| **`useEffect`** | Code that runs after drawing, when something changes | The tab title; in Lab 8, the API |
+
+---
+layout: section
+icon: activity
+sub: "Part 2 — Practice: seven steps, each one ends with an app that works"
+---
+
+# 03 — Lab Manual: pages, add and delete
 
 ---
 layout: split
@@ -158,6 +318,7 @@ class: giu-tree
 
 | Step | What |
 |---|---|
+| Start | The starter project |
 | 1 | Install React Router |
 | 2 | Pages and links |
 | 3 | The listings become state |
@@ -168,12 +329,11 @@ class: giu-tree
 
 Each code slide says **which file**, **new** or **edit**, and where.
 
-<div class="giu-refs__note">Not shown: <code>node_modules/</code> and Vite's config files.</div>
 
 ::right::
 
 ```text {16,17,20,21,22,23,24,25,26,27,28}
-ebd-bnb/
+ebd-bnb-lab-06/
 ├── backend/                      no change today
 │   ├── controllers/
 │   │   └── listingController.js
@@ -181,7 +341,7 @@ ebd-bnb/
 │   │   └── Listing.js
 │   ├── routes/
 │   │   └── listingRoutes.js
-│   ├── .env
+│   ├── .env.example
 │   ├── db.js
 │   ├── package.json
 │   └── server.js
@@ -201,8 +361,28 @@ ebd-bnb/
 │   │   ├── index.css              EDIT Step 2
 │   │   └── main.jsx               EDIT Step 1
 │   └── package.json               EDIT Step 1
-└── .gitignore
+├── .gitignore
+└── README.md
 ```
+
+---
+layout: media
+image: https://github.com/ng-giu/ebd-bnb/tree/lab-06
+side: right
+qr: true
+dense: true
+---
+
+# Getting started
+
+Everyone starts from the same project: ebd bn'b at the end of Lab 6.
+
+1. [**Download ZIP**](https://github.com/ng-giu/ebd-bnb/archive/refs/heads/lab-06.zip) and unzip it. You get a folder named `ebd-bnb-lab-06`.
+2. In <Tool name="vscode" />: **File → Open Folder...**, and open `ebd-bnb-lab-06`.
+3. The Explorer, on the left, shows `backend` and `frontend`. It shows one folder named `ebd-bnb-lab-06` instead? Windows unzipped it into a second folder. Open the inner one.
+4. **Terminal → New Terminal**: `cd frontend`, `npm install`, `npm run dev`. Open the `Local:` link: three cards.
+
+**You don't run the back end today.** It runs again in Lab 8.
 
 ---
 layout: split
@@ -210,7 +390,6 @@ title: "Step 1 of 7: install React Router"
 dense: true
 class: giu-small
 ---
-
 
 1. In the terminal running Vite, press **Ctrl+C** to stop it.
 2. Make sure you are in `frontend/`, then install the router:
@@ -238,14 +417,11 @@ dense: true
 class: giu-small
 ---
 
-A **page** is a component like any other; we keep them in their own folder.
-
-1. In the Explorer, click `src`, then **New Folder**: `pages`.
-2. In `pages`, **New File**: `HomePage.jsx`. Paste the code on the right.
+1. In the Explorer, click `src` (inside `frontend`). Click the **New Folder** icon, type `pages`, press **Enter**.
+2. Click `pages`. Click the **New File** icon, type `HomePage.jsx`, press **Enter**.
+3. Paste the code on the right. Save.
 
 The cards code is the same as in `App.jsx`: it **moves** here. (The slide after next replaces `App.jsx` anyway.)
-
-`HomePage` gets `listings` as a **prop**, from `App`.
 
 `../components/`: from inside `pages/`, one folder up, then into `components/`.
 
@@ -262,7 +438,7 @@ dense: true
 class: giu-small
 ---
 
-In `pages`, **New File**: `NotFoundPage.jsx`. Paste the code on the right.
+Click `pages`. Click the **New File** icon, type `NotFoundPage.jsx`, press **Enter**. Paste the code on the right. Save.
 
 It is what we show for any address we have no page for, with a way back home.
 
@@ -279,13 +455,13 @@ wideRight: true
 class: giu-small
 ---
 
-Replace **everything** in `src/App.jsx` with the two blocks: the imports, then `App`.
+Replace **everything** in `src/App.jsx` with the two blocks: the imports, then `App`. Save.
 
 <FileTag name="src/App.jsx (top)" state="edit" />
 
 <<< @/snippets/lab-07/steps/App-step2.jsx#imports
 
-`path="/"` shows `HomePage`. `path="*"` matches **any other** address, so it shows `NotFoundPage`: keep it **last**.
+The `path="*"` route stays **last**.
 
 ::right::
 
@@ -302,8 +478,6 @@ class: giu-small
 1. In `src/components/Header.jsx`, add the highlighted lines: `import { Link }`, and the `<nav>`.
 2. At the **end** of `src/index.css`, paste the styles from the next slide.
 3. Save.
-
-`<Link to="/add">` looks like any link, but clicking it only changes the URL. No reload.
 
 ::right::
 
@@ -351,33 +525,6 @@ dense: true
 Something wrong? <Link to="fix-blank">**The page is blank**</Link>, in Troubleshooting at the end.
 
 ---
-layout: default
-icon: code
-flow:
-  width: 860
-  height: 210
-  groups:
-    - { id: pages, x: 160, y: 96, w: 600, h: 114, label: The pages, icon: file, tone: green }
-  nodes:
-    - { id: app, x: 330, y: 0, w: 260, h: 56, label: App, sub: "listings, addListing, deleteListing", icon: code, tone: amber }
-    - { id: home, x: 180, y: 142, w: 170, h: 50, label: HomePage, sub: "listings, onDelete", icon: file, tone: green }
-    - { id: one, x: 375, y: 142, w: 170, h: 50, label: ListingPage, sub: "listings", icon: file, tone: green }
-    - { id: add, x: 570, y: 142, w: 170, h: 50, label: AddListingPage, sub: "onAdd", icon: file, tone: green }
-  edges:
-    - { from: app, to: home, fromSide: b, toSide: t, fromAt: 0.15 }
-    - { from: app, to: one, fromSide: b, toSide: t, fromAt: 0.5 }
-    - { from: app, to: add, fromSide: b, toSide: t, fromAt: 0.85 }
----
-
-# Where the listings live
-
-Three pages need the listings, so they live **above** all three, in `App`, as **state**.
-
-<Diagram v-bind="$frontmatter.flow" />
-
-Each page gets the props under its name. Data goes **down** (`listings`); a change goes **up** by calling a function from `App` (`onAdd`, `onDelete`).
-
----
 layout: split
 title: "Step 3 of 7: the listings become state"
 dense: true
@@ -404,29 +551,6 @@ Save. The page looks the same, but now `App` can **change** the list. Step 4 doe
 <<< @/snippets/lab-07/steps/App-step3.jsx#state
 
 ---
-layout: default
-icon: code
-dense: true
----
-
-# A form React controls
-
-In the workbook, a form kept its own values, and you read them out on submit. In React, **state** holds them:
-
-```jsx
-const [title, setTitle] = useState("");
-
-<input value={title} onChange={(e) => setTitle(e.target.value)} />
-```
-
-- `value={title}`: the input **shows** the state.
-- `onChange`: every key you press **updates** the state, and React redraws the input.
-
-That is a **controlled input**. On submit, the values are already in `title` and `price`, ready to use.
-
-<div class="giu-refs__note"><code>event.preventDefault()</code> stops the browser's default for a form: reloading the page, which would wipe everything.</div>
-
----
 layout: split
 title: "Step 4 of 7: the form"
 dense: true
@@ -441,27 +565,7 @@ class: giu-small
 
 <<< @/snippets/lab-07/frontend/src/pages/AddListingPage.jsx#bottom
 
----
-layout: split
-title: "Step 4 of 7: what the form does"
-dense: true
----
-
-On **submit**, `handleSubmit`:
-
-1. Stops the reload: `event.preventDefault()`.
-2. Builds a listing, in the same shape as the others: an `_id`, a `title`, a `pricePerNight`.
-3. Gives it to `onAdd`, a function from `App`. **`App` adds it**: the form doesn't own the list.
-4. Goes back home: `navigate("/")`.
-
-::right::
-
-Two details:
-
-- `Number(price)`: an input's value is always **text**. `"75"` becomes `75`.
-- `crypto.randomUUID()`: a random, unique id, built into the browser. In Lab 8, MongoDB makes the `_id` instead.
-
-`required` on both inputs: the browser won't submit the form while one is empty.
+Click `pages`, then **New File**. Type `AddListingPage.jsx`, **Enter**. Paste the left column first. Save.
 
 ---
 layout: split
@@ -478,9 +582,7 @@ In `src/App.jsx`:
 import AddListingPage from "./pages/AddListingPage.jsx";
 ```
 
-2. Under the `useState` line, add `addListing`: on the right.
-
-`[...listings, listing]` is a **new** array: every listing so far, then the new one. React redraws when it gets a **new** value. Change the old array with `push`, and React may not notice.
+2. Under the `useState` line, add `addListing`: on the right. Save.
 
 ::right::
 
@@ -528,11 +630,7 @@ dense: true
 class: giu-small
 ---
 
-Deleting is the other way round from adding: a **new** array with every listing **but** that one.
-
-In `src/App.jsx`, under `addListing`, add `deleteListing`: on the right.
-
-`.filter(...)` keeps every listing whose `_id` is **not** the one to delete, in a new array. Like `[...listings, listing]` for adding, it never changes the old array.
+In `src/App.jsx`, under `addListing`, add `deleteListing`: on the right. Save.
 
 ::right::
 
@@ -551,7 +649,7 @@ class: giu-small
 
 <<< @/snippets/lab-07/steps/App-step5.jsx#routes {5}
 
-The `/` route now also gives `HomePage` the function, as `onDelete`.
+The `/` route now also gives `HomePage` the function, as `onDelete`. Save.
 ---
 layout: split
 title: "Step 5 of 7: HomePage passes it on"
@@ -559,9 +657,7 @@ dense: true
 class: giu-small
 ---
 
-`App` has `deleteListing`, but the button will be in `ListingCard`, two levels down. So the function is passed down, a prop at each level.
-
-In `src/pages/HomePage.jsx`: take `onDelete`, and give it to every card.
+In `src/pages/HomePage.jsx`: take `onDelete`, and give it to every card. Save.
 
 ::right::
 
@@ -579,7 +675,7 @@ class: giu-small
 
 <<< @/snippets/lab-07/steps/ListingCard-step5.jsx#file {3,13}
 
-
+Save. Every card has a **Delete** button now.
 
 ---
 layout: split
@@ -588,13 +684,9 @@ dense: true
 class: giu-small
 ---
 
-One page that shows **any** listing: which one comes from the URL.
+Click `pages`. Click the **New File** icon, type `ListingPage.jsx`, press **Enter**. Paste the code on the right. Save.
 
-- In the route, `path="/listings/:id"`: the `:` makes `id` a **parameter**, like `:id` in Express in Lab 3.
-- `useParams()` reads it: for `/listings/a2`, `id` is `"a2"`.
-- `.find(...)` looks for the listing with that `_id`. No match? Say so.
-
-In `pages`, **New File** `ListingPage.jsx`, and paste the code on the right.
+Nothing links to it yet. The next two slides do.
 
 ::right::
 
@@ -613,7 +705,7 @@ class: giu-small
 
 <<< @/snippets/lab-07/steps/App-step6.jsx#routes {6}
 
-And at the top: `import ListingPage from "./pages/ListingPage.jsx";`
+And at the top: `import ListingPage from "./pages/ListingPage.jsx";`. Save.
 
 ---
 layout: code
@@ -621,11 +713,9 @@ title: "Step 6 of 7: link each card to its page"
 dense: true
 class: giu-small
 ---
-<FileTag name="src/components/ListingCard.jsx: import Link, make the title a link" state="edit" />
+<FileTag name="src/components/ListingCard.jsx: import Link, make the title a link, save" state="edit" />
 
 <<< @/snippets/lab-07/frontend/src/components/ListingCard.jsx#file {2,10}
-
-
 
 ---
 layout: split
@@ -634,12 +724,11 @@ dense: true
 class: giu-small
 ---
 
-Some code isn't about drawing the page: setting the tab's title, or, in Lab 8, **fetching from the API**. That goes in `useEffect`.
+In `src/App.jsx`:
 
-- The function runs **after** React draws the page.
-- `[listings]`: run it again **whenever `listings` changes**, and only then.
-
-In `src/App.jsx`: add `useEffect` to the import from `"react"`, and the highlighted block **under** `deleteListing`. Save, then add a listing and watch the tab.
+1. Add `useEffect` to the import from `"react"`: `import { useEffect, useState } from "react";`
+2. Add the highlighted block **under** `deleteListing`.
+3. Save, then add a listing and watch the tab.
 
 ::right::
 
@@ -663,24 +752,11 @@ dense: true
 
 ::right::
 
-Why? State lives in the browser's memory, like the array in Lab 4 lived in the server's. Reload, and it starts again from `initialListings`.
+That is expected: state lives in the browser's memory, and a reload starts it again from `initialListings`.
 
-The fix is the same as in Lab 5: keep the data in **MongoDB**. Next lab, React asks **our API** for the listings, and adding one sends it there.
+Next lab, React asks **our API** for the listings, and they stay.
 
----
-layout: default
-icon: code
----
-
-# What you used today
-
-| | What it is | Today |
-|---|---|---|
-| **Route** | A path, and the page it shows | `/`, `/add`, `/listings/:id`, `*` |
-| **Link** | Change the URL without reloading | The header, each card's title |
-| **State in App** | Data several pages need | `listings`; `addListing` and `deleteListing` change it |
-| **Controlled input** | An input that shows and updates state | The title and the price |
-| **`useEffect`** | Code that runs after drawing, when something changes | The tab title; in Lab 8, the API |
+Something wrong? <Link to="fix-wrong">**It runs, but something is off**</Link> or <Link to="fix-delete">**Delete and the listing pages**</Link>, in Troubleshooting.
 
 ---
 layout: media
@@ -756,6 +832,7 @@ layout: default
 icon: tools
 dense: true
 class: giu-fix
+routeAlias: fix-delete
 ---
 
 # Delete and the listing pages
@@ -782,8 +859,6 @@ title: Useful references
 - [React: updating arrays in state](https://react.dev/learn/updating-arrays-in-state)
 - [React: reacting to input with state](https://react.dev/learn/reacting-to-input-with-state)
 - [React: synchronizing with effects](https://react.dev/learn/synchronizing-with-effects)
-
-<div class="giu-refs__note">Nothing on this slide is required.</div>
 
 ---
 layout: end
