@@ -226,17 +226,8 @@ For **Screen 1 (`index.html`)**, write the HTML boilerplate **by hand** to pract
 layout: split
 title: "Step 3 of 15: Screen 1 wrapper & header"
 dense: true
-class: giu-html-step
+class: giu-snap
 ---
-
-<style>
-.giu-html-step h1 { font-size: 1.44rem !important; line-height: 1.15 !important; margin-bottom: 0.45rem !important; max-width: none !important; }
-.giu-html-step .giu-split__grid { grid-template-columns: 1.44fr 0.56fr !important; gap: 1.25rem !important; align-items: start !important; }
-.giu-html-step p { font-size: 0.75rem !important; line-height: 1.42 !important; margin-top: 0.32rem !important; margin-bottom: 0.4rem !important; }
-.giu-html-step li { font-size: 0.74rem !important; line-height: 1.42 !important; margin-bottom: 0.28rem !important; }
-.giu-html-step .giu-snap-label { font-size: 0.62rem !important; line-height: 1.2 !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; color: #64748b !important; text-align: center !important; margin: 0 0 0.35rem 0 !important; white-space: nowrap !important; }
-.giu-html-step img { height: 18rem !important; max-height: 18rem !important; width: auto !important; margin: 0 auto !important; display: block !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; }
-</style>
 
 <FileTag name="index.html (inside &lt;body&gt;)" state="edit" />
 
@@ -252,7 +243,7 @@ Build the top of the Home screen:
 
 ::right::
 
-<div class="giu-snap-label">Timeline Snapshot — After Step 3</div>
+<div class="giu-snap-label">After Step 3</div>
 
 ![Step 3 browser snapshot](/img/lab-07/step-03.png)
 
@@ -260,17 +251,8 @@ Build the top of the Home screen:
 layout: split
 title: "Step 4 of 15: Screen 1 restaurants & links to all screens"
 dense: true
-class: giu-html-step
+class: giu-snap
 ---
-
-<style>
-.giu-html-step h1 { font-size: 1.44rem !important; line-height: 1.15 !important; margin-bottom: 0.45rem !important; max-width: none !important; }
-.giu-html-step .giu-split__grid { grid-template-columns: 1.44fr 0.56fr !important; gap: 1.25rem !important; align-items: start !important; }
-.giu-html-step p { font-size: 0.75rem !important; line-height: 1.42 !important; margin-top: 0.32rem !important; margin-bottom: 0.4rem !important; }
-.giu-html-step li { font-size: 0.74rem !important; line-height: 1.42 !important; margin-bottom: 0.28rem !important; }
-.giu-html-step .giu-snap-label { font-size: 0.62rem !important; line-height: 1.2 !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; color: #64748b !important; text-align: center !important; margin: 0 0 0.35rem 0 !important; white-space: nowrap !important; }
-.giu-html-step img { height: 18rem !important; max-height: 18rem !important; width: auto !important; margin: 0 auto !important; display: block !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; }
-</style>
 
 <FileTag name="index.html (inside &lt;div class=&quot;card&quot;&gt;)" state="edit" />
 
@@ -288,7 +270,7 @@ Below `<div class="header">`, add the two restaurant cards. **Each card holds it
 
 ::right::
 
-<div class="giu-snap-label">Timeline Snapshot — After Step 4</div>
+<div class="giu-snap-label">After Step 4</div>
 
 ![Step 4 browser snapshot](/img/lab-07/step-04.png)
 
@@ -296,16 +278,8 @@ Below `<div class="header">`, add the two restaurant cards. **Each card holds it
 layout: split
 title: "Step 5 of 15: Screen 1 restaurant photos"
 dense: true
-class: giu-photo-step
+class: giu-snap giu-small
 ---
-
-<style>
-.giu-photo-step h1 { font-size: 1.44rem !important; line-height: 1.15 !important; margin-bottom: 0.45rem !important; max-width: none !important; }
-.giu-photo-step .giu-split__grid { grid-template-columns: 1.55fr 0.45fr !important; gap: 1rem !important; align-items: start !important; }
-.giu-photo-step p, .giu-photo-step li { font-size: 0.74rem !important; line-height: 1.38 !important; margin-top: 0.22rem !important; margin-bottom: 0.25rem !important; }
-.giu-photo-step .giu-snap-label { font-size: 0.56rem !important; line-height: 1.2 !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; color: #64748b !important; text-align: center !important; margin: 0 0 0.35rem 0 !important; }
-.giu-photo-step .giu-split__grid img { max-height: 19rem !important; width: auto !important; margin: 0 auto !important; display: block !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; }
-</style>
 
 <FileTag name="index.html (inside each <div class=&quot;item&quot;>)" state="edit" />
 
@@ -335,21 +309,8 @@ sub: "Phase 2 — Style Screen 1 in style.css using CSS Selectors, Properties, a
 layout: split
 title: "Step 6 of 15: link style.css & style body and .card"
 dense: true
-class: giu-css-table
+class: giu-snap
 ---
-
-<style>
-.giu-css-table h1 { font-size: 1.44rem !important; line-height: 1.15 !important; margin-bottom: 0.45rem !important; max-width: none !important; }
-.giu-css-table .giu-split__grid { grid-template-columns: 1.44fr 0.56fr !important; gap: 1.25rem !important; align-items: start !important; }
-.giu-css-table p, .giu-css-table li { font-size: 0.74rem !important; line-height: 1.4 !important; margin-top: 0.28rem !important; margin-bottom: 0.32rem !important; }
-.giu-css-table table { font-size: 0.72rem !important; margin: 0.3rem 0 0 !important; line-height: 1.35 !important; width: 100% !important; }
-.giu-css-table th { padding: 0.32rem 0.45rem 0.32rem 0 !important; font-size: 0.74rem !important; white-space: nowrap !important; }
-.giu-css-table td { padding: 0.32rem 0.45rem 0.32rem 0 !important; vertical-align: middle !important; white-space: nowrap !important; }
-.giu-css-table td:first-child { width: auto !important; padding-right: 0.6rem !important; }
-.giu-css-table td code { font-size: 0.68rem !important; padding: 0.1rem 0.3rem !important; white-space: nowrap !important; }
-.giu-css-table .giu-snap-label { font-size: 0.62rem !important; line-height: 1.2 !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; color: #64748b !important; text-align: center !important; margin: 0 0 0.35rem 0 !important; white-space: nowrap !important; }
-.giu-css-table img { height: 18rem !important; max-height: 18rem !important; width: auto !important; margin: 0 auto !important; display: block !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; }
-</style>
 
 <FileTag name="index.html + style.css" state="edit" />
 
@@ -366,7 +327,7 @@ Inside `<head>` of `index.html`, add `<link rel="stylesheet" href="style.css">`.
 
 ::right::
 
-<div class="giu-snap-label">Timeline Snapshot — After Step 6</div>
+<div class="giu-snap-label">After Step 6</div>
 
 ![Step 6 browser snapshot](/img/lab-07/step-06.png)
 
@@ -374,21 +335,8 @@ Inside `<head>` of `index.html`, add `<link rel="stylesheet" href="style.css">`.
 layout: split
 title: "Step 7 of 15: style .header, header text & input"
 dense: true
-class: giu-css-table
+class: giu-snap
 ---
-
-<style>
-.giu-css-table h1 { font-size: 1.44rem !important; line-height: 1.15 !important; margin-bottom: 0.45rem !important; max-width: none !important; }
-.giu-css-table .giu-split__grid { grid-template-columns: 1.44fr 0.56fr !important; gap: 1.25rem !important; align-items: start !important; }
-.giu-css-table p, .giu-css-table li { font-size: 0.74rem !important; line-height: 1.4 !important; margin-top: 0.28rem !important; margin-bottom: 0.32rem !important; }
-.giu-css-table table { font-size: 0.72rem !important; margin: 0.3rem 0 0 !important; line-height: 1.35 !important; width: 100% !important; }
-.giu-css-table th { padding: 0.32rem 0.45rem 0.32rem 0 !important; font-size: 0.74rem !important; white-space: nowrap !important; }
-.giu-css-table td { padding: 0.32rem 0.45rem 0.32rem 0 !important; vertical-align: middle !important; white-space: nowrap !important; }
-.giu-css-table td:first-child { width: auto !important; padding-right: 0.6rem !important; }
-.giu-css-table td code { font-size: 0.68rem !important; padding: 0.1rem 0.3rem !important; white-space: nowrap !important; }
-.giu-css-table .giu-snap-label { font-size: 0.62rem !important; line-height: 1.2 !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; color: #64748b !important; text-align: center !important; margin: 0 0 0.35rem 0 !important; white-space: nowrap !important; }
-.giu-css-table img { height: 18rem !important; max-height: 18rem !important; width: auto !important; margin: 0 auto !important; display: block !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; }
-</style>
 
 <FileTag name="style.css" state="edit" />
 
@@ -407,7 +355,7 @@ Continue in `style.css` to style the orange Talabat header box (`.header`), its 
 
 ::right::
 
-<div class="giu-snap-label">Timeline Snapshot — After Step 7</div>
+<div class="giu-snap-label">After Step 7</div>
 
 ![Step 7 browser snapshot](/img/lab-07/step-07.png)
 
@@ -415,21 +363,8 @@ Continue in `style.css` to style the orange Talabat header box (`.header`), its 
 layout: split
 title: "Step 8 of 15: style h2, p, .item & .btn"
 dense: true
-class: giu-css-table
+class: giu-snap
 ---
-
-<style>
-.giu-css-table h1 { font-size: 1.44rem !important; line-height: 1.15 !important; margin-bottom: 0.45rem !important; max-width: none !important; }
-.giu-css-table .giu-split__grid { grid-template-columns: 1.44fr 0.56fr !important; gap: 1.25rem !important; align-items: start !important; }
-.giu-css-table p, .giu-css-table li { font-size: 0.74rem !important; line-height: 1.4 !important; margin-top: 0.28rem !important; margin-bottom: 0.32rem !important; }
-.giu-css-table table { font-size: 0.72rem !important; margin: 0.3rem 0 0 !important; line-height: 1.35 !important; width: 100% !important; }
-.giu-css-table th { padding: 0.32rem 0.45rem 0.32rem 0 !important; font-size: 0.74rem !important; white-space: nowrap !important; }
-.giu-css-table td { padding: 0.32rem 0.45rem 0.32rem 0 !important; vertical-align: middle !important; white-space: nowrap !important; }
-.giu-css-table td:first-child { width: auto !important; padding-right: 0.6rem !important; }
-.giu-css-table td code { font-size: 0.68rem !important; padding: 0.1rem 0.3rem !important; white-space: nowrap !important; }
-.giu-css-table .giu-snap-label { font-size: 0.62rem !important; line-height: 1.2 !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; color: #64748b !important; text-align: center !important; margin: 0 0 0.35rem 0 !important; white-space: nowrap !important; }
-.giu-css-table img { height: 18rem !important; max-height: 18rem !important; width: auto !important; margin: 0 auto !important; display: block !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; }
-</style>
 
 <FileTag name="style.css (bottom)" state="edit" />
 
@@ -450,7 +385,7 @@ Finish Screen 1 by adding the typography (`h2`, `p`), restaurant card and photo 
 
 ::right::
 
-<div class="giu-snap-label">Timeline Snapshot — After Step 8</div>
+<div class="giu-snap-label">After Step 8</div>
 
 ![Step 8 browser snapshot](/img/lab-07/step-08.png)
 
@@ -458,6 +393,7 @@ Finish Screen 1 by adding the typography (`h2`, `p`), restaurant card and photo 
 layout: split
 title: "Checkpoint 1: Screen 1 looks right & its links open"
 dense: true
+class: giu-snap
 ---
 
 <Activity label="Check before you continue">
@@ -471,6 +407,8 @@ dense: true
 Something different? See <Link to="fix-links">**Broken links**</Link>, <Link to="fix-styles">**Missing styles**</Link> or <Link to="fix-photos">**Photo problems**</Link>.
 
 ::right::
+
+<div class="giu-snap-label">Checkpoint 1</div>
 
 ![Expected result at Checkpoint 1](/img/lab-07/step-08.png)
 
@@ -531,17 +469,8 @@ Now that you wrote the HTML boilerplate by hand on Screen 1, use <Tool name="vsc
 layout: split
 title: "Step 10 of 15: Screen 2 header & back link"
 dense: true
-class: giu-html-step
+class: giu-snap
 ---
-
-<style>
-.giu-html-step h1 { font-size: 1.44rem !important; line-height: 1.15 !important; margin-bottom: 0.45rem !important; max-width: none !important; }
-.giu-html-step .giu-split__grid { grid-template-columns: 1.44fr 0.56fr !important; gap: 1.25rem !important; align-items: start !important; }
-.giu-html-step p { font-size: 0.75rem !important; line-height: 1.42 !important; margin-top: 0.32rem !important; margin-bottom: 0.4rem !important; }
-.giu-html-step li { font-size: 0.74rem !important; line-height: 1.42 !important; margin-bottom: 0.28rem !important; }
-.giu-html-step .giu-snap-label { font-size: 0.62rem !important; line-height: 1.2 !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; color: #64748b !important; text-align: center !important; margin: 0 0 0.35rem 0 !important; white-space: nowrap !important; }
-.giu-html-step img { height: 18rem !important; max-height: 18rem !important; width: auto !important; margin: 0 auto !important; display: block !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; }
-</style>
 
 <FileTag name="burger.html (inside &lt;body&gt;)" state="edit" />
 
@@ -555,7 +484,7 @@ Inside `<body>` of `burger.html`, build the top of Screen 2 (keep `<link>` out u
 
 ::right::
 
-<div class="giu-snap-label">Timeline Snapshot — After Step 10</div>
+<div class="giu-snap-label">After Step 10</div>
 
 ![Step 10 browser snapshot](/img/lab-07/step-10.png)
 
@@ -563,16 +492,8 @@ Inside `<body>` of `burger.html`, build the top of Screen 2 (keep `<link>` out u
 layout: split
 title: "Step 11 of 15: Screen 2 Today's Special"
 dense: true
-class: giu-photo-step
+class: giu-snap giu-small
 ---
-
-<style>
-.giu-photo-step h1 { font-size: 1.44rem !important; line-height: 1.15 !important; margin-bottom: 0.45rem !important; max-width: none !important; }
-.giu-photo-step .giu-split__grid { grid-template-columns: 1.55fr 0.45fr !important; gap: 1rem !important; align-items: start !important; }
-.giu-photo-step p, .giu-photo-step li { font-size: 0.74rem !important; line-height: 1.38 !important; margin-top: 0.22rem !important; margin-bottom: 0.25rem !important; }
-.giu-photo-step .giu-snap-label { font-size: 0.56rem !important; line-height: 1.2 !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; color: #64748b !important; text-align: center !important; margin: 0 0 0.35rem 0 !important; }
-.giu-photo-step .giu-split__grid img { max-height: 19rem !important; width: auto !important; margin: 0 auto !important; display: block !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; }
-</style>
 
 <FileTag name="burger.html (inside &lt;div class=&quot;card&quot;&gt;)" state="edit" />
 
@@ -598,21 +519,8 @@ Below `<div class="header">`, add today's dish and the order controls:
 layout: split
 title: "Step 12 of 15: link style.css to burger.html & style .back"
 dense: true
-class: giu-css-table
+class: giu-snap
 ---
-
-<style>
-.giu-css-table h1 { font-size: 1.44rem !important; line-height: 1.15 !important; margin-bottom: 0.45rem !important; max-width: none !important; }
-.giu-css-table .giu-split__grid { grid-template-columns: 1.44fr 0.56fr !important; gap: 1.25rem !important; align-items: start !important; }
-.giu-css-table p, .giu-css-table li { font-size: 0.74rem !important; line-height: 1.4 !important; margin-top: 0.28rem !important; margin-bottom: 0.32rem !important; }
-.giu-css-table table { font-size: 0.72rem !important; margin: 0.3rem 0 0 !important; line-height: 1.35 !important; width: 100% !important; }
-.giu-css-table th { padding: 0.32rem 0.45rem 0.32rem 0 !important; font-size: 0.74rem !important; white-space: nowrap !important; }
-.giu-css-table td { padding: 0.32rem 0.45rem 0.32rem 0 !important; vertical-align: middle !important; white-space: nowrap !important; }
-.giu-css-table td:first-child { width: auto !important; padding-right: 0.6rem !important; }
-.giu-css-table td code { font-size: 0.68rem !important; padding: 0.1rem 0.3rem !important; white-space: nowrap !important; }
-.giu-css-table .giu-snap-label { font-size: 0.62rem !important; line-height: 1.2 !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; color: #64748b !important; text-align: center !important; margin: 0 0 0.35rem 0 !important; white-space: nowrap !important; }
-.giu-css-table img { height: 18rem !important; max-height: 18rem !important; width: auto !important; margin: 0 auto !important; display: block !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; }
-</style>
 
 <FileTag name="burger.html + style.css" state="edit" />
 
@@ -631,7 +539,7 @@ Link the **shared stylesheet** to this page:
 
 ::right::
 
-<div class="giu-snap-label">Timeline Snapshot — After Step 12</div>
+<div class="giu-snap-label">After Step 12</div>
 
 ![Step 12 browser snapshot](/img/lab-07/step-12.png)
 
@@ -639,6 +547,7 @@ Link the **shared stylesheet** to this page:
 layout: split
 title: "Checkpoint 2: Screen 2 is styled & returns Home"
 dense: true
+class: giu-snap
 ---
 
 <Activity label="Check before you continue">
@@ -652,6 +561,8 @@ dense: true
 Something different? See <Link to="fix-links">**Broken links**</Link>, <Link to="fix-styles">**Missing styles**</Link> or <Link to="fix-photos">**Photo problems**</Link>.
 
 ::right::
+
+<div class="giu-snap-label">Checkpoint 2</div>
 
 ![Expected result at Checkpoint 2](/img/lab-07/step-12.png)
 
@@ -667,21 +578,8 @@ sub: "Phase 4 — Screen 3 (pizza.html) shares the exact same HTML structure as 
 layout: split
 title: "Step 13 of 15: copy burger.html into pizza.html & swap text"
 dense: true
-class: giu-pizza-table
+class: giu-snap
 ---
-
-<style>
-.giu-pizza-table h1 { font-size: 1.44rem !important; line-height: 1.15 !important; margin-bottom: 0.45rem !important; max-width: none !important; }
-.giu-pizza-table .giu-split__grid { grid-template-columns: 1.68fr 0.32fr !important; gap: 1.25rem !important; align-items: start !important; }
-.giu-pizza-table p, .giu-pizza-table li { font-size: 0.72rem !important; line-height: 1.38 !important; margin-top: 0.22rem !important; margin-bottom: 0.25rem !important; }
-.giu-pizza-table table { font-size: 0.69rem !important; margin: 0.25rem 0 0 !important; line-height: 1.3 !important; width: 100% !important; }
-.giu-pizza-table th { padding: 0.26rem 0.4rem 0.26rem 0 !important; font-size: 0.71rem !important; white-space: nowrap !important; }
-.giu-pizza-table td { padding: 0.26rem 0.4rem 0.26rem 0 !important; vertical-align: middle !important; white-space: nowrap !important; }
-.giu-pizza-table td:first-child { width: auto !important; padding-right: 0.5rem !important; }
-.giu-pizza-table td code { font-size: 0.65rem !important; padding: 0.08rem 0.26rem !important; white-space: nowrap !important; }
-.giu-pizza-table .giu-snap-label { font-size: 0.62rem !important; line-height: 1.2 !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; color: #64748b !important; text-align: center !important; margin: 0 0 0.35rem 0 !important; white-space: nowrap !important; }
-.giu-pizza-table img { height: auto !important; max-height: 18rem !important; max-width: 100% !important; width: auto !important; margin: 0 auto !important; display: block !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; }
-</style>
 
 <FileTag name="burger.html → pizza.html" state="edit" />
 
@@ -712,16 +610,8 @@ class: giu-pizza-table
 layout: split
 title: "Step 14 of 15: Screen 3 photo"
 dense: true
-class: giu-photo-step
+class: giu-snap giu-small
 ---
-
-<style>
-.giu-photo-step h1 { font-size: 1.44rem !important; line-height: 1.15 !important; margin-bottom: 0.45rem !important; max-width: none !important; }
-.giu-photo-step .giu-split__grid { grid-template-columns: 1.55fr 0.45fr !important; gap: 1rem !important; align-items: start !important; }
-.giu-photo-step p, .giu-photo-step li { font-size: 0.74rem !important; line-height: 1.38 !important; margin-top: 0.22rem !important; margin-bottom: 0.25rem !important; }
-.giu-photo-step .giu-snap-label { font-size: 0.56rem !important; line-height: 1.2 !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; color: #64748b !important; text-align: center !important; margin: 0 0 0.35rem 0 !important; }
-.giu-photo-step .giu-split__grid img { max-height: 19rem !important; width: auto !important; margin: 0 auto !important; display: block !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; }
-</style>
 
 <FileTag name="pizza.html (inside &lt;div class=&quot;item&quot;&gt;)" state="edit" />
 

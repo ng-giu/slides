@@ -45,12 +45,15 @@ const shots = {
 }
 
 const b = await chromium.launch()
-const p = await b.newPage({ viewport: { width: 448, height: 580 }, deviceScaleFactor: 2 })
+const p = await b.newPage({ viewport: { width: 448, height: 760 }, deviceScaleFactor: 2 })
 for (const [name, html] of Object.entries(shots)) {
   await p.setContent(html, { waitUntil: 'networkidle' })
   const broken = await p.evaluate(() => [...document.images].filter(x => !x.naturalWidth).map(x => x.src))
   if (broken.length) throw new Error(`${name}: broken ${broken}`)
-  await p.screenshot({ path: path.join(OUT, name), fullPage: true })
+  // Same canvas for every shot, so all snapshots show at one size and scale.
+  const tall = await p.evaluate(() => document.documentElement.scrollHeight)
+  if (tall > 760) throw new Error(`${name}: page is ${tall}px, taller than the canvas`)
+  await p.screenshot({ path: path.join(OUT, name) })
   console.log(name)
 }
 await b.close()

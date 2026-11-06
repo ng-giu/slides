@@ -112,3 +112,17 @@
 /* Lab 6: stacked VS Code screenshots in a split column, and a tall one */
 .ica6-stack p > img { max-height: 9rem; }
 .ica6-tall p > img { max-height: 21rem; }
+
+/* Step slides with a timeline snapshot on the right. Every snapshot sits in the
+   same fixed column at the same size. Put `class: giu-snap` in the frontmatter. */
+.slidev-layout.giu-snap h1 { font-size: 1.44rem !important; line-height: 1.15 !important; margin-bottom: 0.45rem !important; max-width: none !important; }
+.slidev-layout.giu-snap .giu-split__grid { grid-template-columns: minmax(0, 1fr) 10.6rem !important; gap: 1.25rem !important; align-items: start !important; }
+.slidev-layout.giu-snap p,
+.slidev-layout.giu-snap li { font-size: 0.74rem !important; line-height: 1.4 !important; margin-top: 0.25rem !important; margin-bottom: 0.3rem !important; }
+.slidev-layout.giu-snap table { font-size: 0.7rem !important; margin: 0.3rem 0 0 !important; line-height: 1.32 !important; width: 100% !important; }
+.slidev-layout.giu-snap th { padding: 0.28rem 0.45rem 0.28rem 0 !important; font-size: 0.72rem !important; white-space: nowrap !important; }
+.slidev-layout.giu-snap td { padding: 0.28rem 0.45rem 0.28rem 0 !important; vertical-align: middle !important; white-space: nowrap !important; }
+.slidev-layout.giu-snap td:first-child { width: auto !important; padding-right: 0.6rem !important; }
+.slidev-layout.giu-snap td code { font-size: 0.66rem !important; padding: 0.08rem 0.28rem !important; white-space: nowrap !important; }
+.slidev-layout.giu-snap .giu-snap-label { font-size: 0.62rem !important; line-height: 1.2 !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; color: #64748b !important; text-align: center !important; margin: 0 0 0.35rem 0 !important; white-space: nowrap !important; }
+.slidev-layout.giu-snap .giu-split__grid img { display: block !important; width: 100% !important; height: auto !important; max-width: 100% !important; max-height: none !important; margin: 0 !important; border-radius: 0.75rem !important; border: 1px solid #cbd5e1 !important; box-sizing: border-box !important; }
