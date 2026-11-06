@@ -438,7 +438,7 @@ Everyone starts from the same project: our back end from Lab 5, Part 2.
 
 1. [**Download ZIP**](https://github.com/ng-giu/ebd-bnb/archive/refs/heads/lab-05-part2.zip) and unzip it. You get a folder named `ebd-bnb-lab-05-part2`.
 2. In <Tool name="vscode" />: **File → Open Folder...**, and open `ebd-bnb-lab-05-part2`.
-3. The Explorer, on the left, shows `controllers`, `models`, `routes` and `server.js`. It shows one folder named `ebd-bnb-lab-05-part2` instead? Windows unzipped it into a second folder. Open the inner one.
+3. The Explorer shows `controllers`, `models`, `routes` and `server.js`. Only one folder, `ebd-bnb-lab-05-part2` again? Open that inner one instead.
 
 **You don't run the back end today.** No `.env`, no `npm install` in it: today is all front end. It runs again in Lab 8.
 
@@ -448,10 +448,9 @@ title: "Step 1 of 5: move the API into backend/"
 dense: true
 ---
 
-1. Click the empty space under the last file in the Explorer, so nothing is selected.
-2. Click the **New Folder** icon at the top of the Explorer. Type `backend`, press **Enter**. It appears next to `controllers`, not inside it.
-3. Click `controllers`, then **Shift+click** `server.js`, the last item. **Ctrl+click** `.gitignore` and `README.md` to leave them out (**Cmd+click** on Mac).
-4. Drag the selection onto `backend`. Confirm the move.
+1. Create a folder `backend` at the top of the project, next to `controllers` (not inside it).
+2. Select `controllers` to `server.js`, **except** `.gitignore` and `README.md`: **Shift+click** for the range, **Ctrl+click** (**Cmd** on Mac) to leave those two out.
+3. Drag the selection onto `backend`. Confirm the move.
 
 **Nothing to start:** the back end stays stopped today.
 
@@ -574,8 +573,8 @@ title: "Step 3 of 5: create Header"
 dense: true
 ---
 
-1. In the Explorer, click `src` (inside `frontend`). Click the **New Folder** icon, type `components`, press **Enter**.
-2. Click `components`. Click the **New File** icon, type `Header.jsx` (capital **H**), press **Enter**.
+1. In `frontend/src`, create a folder `components`.
+2. In `components`, create `Header.jsx` (capital **H**).
 3. Paste the code on the right. **Save.**
 
 Nothing changes on the page yet: nobody uses `Header`. That is the next slide.
@@ -610,9 +609,8 @@ title: "Step 4 of 5: the data"
 dense: true
 ---
 
-1. Click `src`. Click the **New Folder** icon, type `data`, press **Enter**.
-2. Click `data`. Click the **New File** icon, type `listings.js`, press **Enter**.
-3. Paste the code on the right. **Save.**
+1. In `src`, create a folder `data`, and in it `listings.js`.
+2. Paste the code on the right. **Save.**
 
 Three fake listings, shaped like the API's (Part 1, *Lists*). Real `_id`s are longer; any unique text works here.
 
@@ -630,7 +628,7 @@ title: "Step 4 of 5: create ListingCard"
 dense: true
 ---
 
-1. Click `components`. Click the **New File** icon, type `ListingCard.jsx` (capital **L** and **C**), press **Enter**.
+1. In `components`, create `ListingCard.jsx` (capital **L** and **C**).
 2. Paste the code on the right. **Save.**
 
 Nothing shows yet: nobody uses `ListingCard`. That is the next slide.

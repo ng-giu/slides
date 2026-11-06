@@ -341,11 +341,12 @@ Short sentences, second person, plain words. Bold the one thing to notice.
 pieces of a page"), no punchy closing lines. If it reads like marketing copy
 or an AI summary, cut it down to the noun. This applies across the repo.
 
-**File and folder steps that can't be misread.** Name the button or icon,
-what to type, which key to press, and where the result must appear ("Click
-`src`. Click the **New Folder** icon, type `pages`, press **Enter**. It
-appears inside `src`."). Use exact names, never descriptions of folders.
-Don't ask for renames you don't need. Lab 6 said "rename the folder with
+**File and folder steps: short, and impossible to misread.** Give the exact
+name and where it goes, and nothing more: "In `frontend/src`, create a folder
+`pages`", "In `pages`, create `HomePage.jsx`". Don't narrate the clicks
+("click the New File icon, type ..., press Enter"): that is babysitting, and
+it makes steps long and harder to follow. Never use a description where a
+name belongs, and don't ask for renames you don't need. Lab 6 said "rename the folder with
 `package.json` directly inside it to `ebd-bnb`", and students renamed their
 project folder to `package.json`. Students now open the unzipped folder under
 its own name (`ebd-bnb-lab-06`). Tell them what the Explorer should show, and

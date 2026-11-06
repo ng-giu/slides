@@ -379,7 +379,7 @@ Everyone starts from the same project: ebd bn'b at the end of Lab 6.
 
 1. [**Download ZIP**](https://github.com/ng-giu/ebd-bnb/archive/refs/heads/lab-06.zip) and unzip it. You get a folder named `ebd-bnb-lab-06`.
 2. In <Tool name="vscode" />: **File → Open Folder...**, and open `ebd-bnb-lab-06`.
-3. The Explorer, on the left, shows `backend` and `frontend`. It shows one folder named `ebd-bnb-lab-06` instead? Windows unzipped it into a second folder. Open the inner one.
+3. The Explorer shows `backend` and `frontend`. Only one folder, `ebd-bnb-lab-06` again? Open that inner one instead.
 4. **Terminal → New Terminal**: `cd frontend`, `npm install`, `npm run dev`. Open the `Local:` link: three cards.
 
 **You don't run the back end today.** It runs again in Lab 8.
@@ -417,9 +417,8 @@ dense: true
 class: giu-small
 ---
 
-1. In the Explorer, click `src` (inside `frontend`). Click the **New Folder** icon, type `pages`, press **Enter**.
-2. Click `pages`. Click the **New File** icon, type `HomePage.jsx`, press **Enter**.
-3. Paste the code on the right. Save.
+1. In `frontend/src`, create a folder `pages`.
+2. In `pages`, create `HomePage.jsx`. Paste the code on the right. Save.
 
 The cards code is the same as in `App.jsx`: it **moves** here. (The slide after next replaces `App.jsx` anyway.)
 
@@ -438,7 +437,7 @@ dense: true
 class: giu-small
 ---
 
-Click `pages`. Click the **New File** icon, type `NotFoundPage.jsx`, press **Enter**. Paste the code on the right. Save.
+In `pages`, create `NotFoundPage.jsx`. Paste the code on the right. Save.
 
 It is what we show for any address we have no page for, with a way back home.
 
@@ -565,7 +564,7 @@ class: giu-small
 
 <<< @/snippets/lab-07/frontend/src/pages/AddListingPage.jsx#bottom
 
-Click `pages`, then **New File**. Type `AddListingPage.jsx`, **Enter**. Paste the left column first. Save.
+In `pages`, create `AddListingPage.jsx`. Paste the left column first. Save.
 
 ---
 layout: split
@@ -684,7 +683,7 @@ dense: true
 class: giu-small
 ---
 
-Click `pages`. Click the **New File** icon, type `ListingPage.jsx`, press **Enter**. Paste the code on the right. Save.
+In `pages`, create `ListingPage.jsx`. Paste the code on the right. Save.
 
 Nothing links to it yet. The next two slides do.
 
