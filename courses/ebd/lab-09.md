@@ -35,11 +35,10 @@ alt: An hourglass
 
 | Duration | Topic |
 |---|---|
-| 10 min | Passwords, tokens and JWTs |
-| 20 min | Steps 1-2: users and protected routes, in the back end |
-| 20 min | Steps 3-4: log in, in the front end |
-| 15 min | Step 5: every listing has an owner |
-| 5 min | What AI-written code looks like |
+| 5 min | Recap: where we left ebd bn'b |
+| 10 min | **Part 1A — Passwords and tokens:** hashing, JWTs |
+| 15 min | **Part 1B — Users in ebd bn'b:** register and log in, `requireAuth`, owners, the front end |
+| 40 min | **Part 2 — Lab Manual:** the starter project, then 5 steps |
 | — | Next: your project |
 
 ---
@@ -47,7 +46,7 @@ layout: default
 icon: recap
 ---
 
-# Anyone can do anything
+# Where we left ebd bn'b
 
 ebd bn'b works end to end: React, the API, MongoDB. But right now:
 
@@ -63,30 +62,12 @@ Today, users: **registration** and **log in**, then routes only a logged-in user
 | **Authorization** | Are you allowed to do **this**? | Checking the token, then the owner |
 
 ---
-layout: media
-image: https://github.com/ng-giu/ebd-bnb/tree/lab-08
-side: right
-qr: true
----
-
-# Didn't finish Lab 8?
-
-Start from ours:
-
-1. [**Download ZIP**](https://github.com/ng-giu/ebd-bnb/archive/refs/heads/lab-08.zip) and unzip it.
-2. Put your `.env` from Atlas in `backend/`.
-3. Terminal 1: `cd backend`, `npm install`, `npm run dev`.
-4. Terminal 2: `cd frontend`, `npm install`, `npm run dev`.
-
-Today you change **both** halves.
-
----
 layout: section
 icon: intro
-sub: Two ideas, before any code
+sub: "Part 1 — Concepts: hashing, JWTs, and how a token works"
 ---
 
-# Passwords and tokens
+# 01 — Passwords and tokens
 
 ---
 layout: default
@@ -127,9 +108,9 @@ class: giu-jwt
 .giu-jwt td:first-child { white-space: nowrap; }
 </style>
 
-# A JWT: three parts, joined by dots
+# A JWT
 
-A **JSON Web Token** is what the API gives you at log in. A real one, from today's code:
+A **JSON Web Token** is what the API gives you at log in: three parts, joined by dots. A real one, from today's code:
 
 <div class="tok"><span class="h">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</span>.<span class="p">eyJpZCI6IjZhZGVkOTdhOTY5NzkxYTIyNDdlMjU1NCIsIm5hbWUiOiJOb3VyIiwiaWF0IjoxNzkyOTg5OTY4LCJleHAiOjE3OTMwNzYzNjh9</span>.<span class="s">Ati19-GIinztnEhlpzz78mK1tQgdvTLr-UnO_OTGdlM</span></div>
 
@@ -158,7 +139,7 @@ diagram:
     - { from: send, to: check }
 ---
 
-# Why a token works
+# How a token works
 
 <Diagram v-bind="$frontmatter.diagram" />
 
@@ -166,6 +147,137 @@ diagram:
 - **Anyone can read it, nobody can change it.** On [jwt.io](https://www.jwt.io) the payload is plain to see: never put a password in it. Change one letter: `401`.
 - **It expires**: after `exp`, log in again.
 - **`JWT_SECRET` is the key**: whoever has it can make a token for any user. `.env` only, never git.
+
+---
+layout: section
+icon: code
+sub: "Part 1 — Concepts: register and log in, requireAuth, owners, the front end"
+---
+
+# 02 — Users in ebd bn'b
+
+---
+layout: split
+title: Register and log in
+dense: true
+wideRight: true
+---
+
+A **User** model, the same shape as `Listing.js`. `email` is `unique`: MongoDB refuses two users with the same one. `password` holds the **hash**.
+
+Both routes answer with a **session**: a token (the user's `_id` and name, signed with `JWT_SECRET`, valid a day) and `user: { id, name }`. **Never** the password hash.
+
+`bcrypt.compare` checks a typed password against the stored hash.
+
+::right::
+
+| Request | Answer |
+|---|---|
+| `POST /api/auth/register` | `201` and a session |
+| ... a field missing | `400` |
+| ... the email is taken | `409` |
+| `POST /api/auth/login` | `200` and a session |
+| ... wrong email **or** password | `401` |
+
+Wrong email and wrong password get the **same** `401`, so nobody can test which emails exist.
+
+---
+layout: split
+title: requireAuth
+dense: true
+wideRight: true
+---
+
+**Middleware** (Lab 4) runs before a controller, and may stop the request. `requireAuth` lets it through only with a valid token:
+
+1. The token arrives in a header. It takes off `"Bearer "`.
+2. `jwt.verify` checks the signature **and** the expiry. If either fails, it throws: `401`.
+3. Valid: `req.user` is the payload (`id`, `name`), and `next()` goes on to the controller.
+
+::right::
+
+```text
+Authorization: Bearer eyJhbGciOiJIUzI1NiIs...
+```
+
+A route can run several functions, in order: `requireAuth` first, then the controller, only if `requireAuth` called `next()`.
+
+```js
+router.get("/", handleGetAll);
+router.post("/", requireAuth, handleCreate);
+```
+
+Reading stays open: anyone may look at listings.
+
+---
+layout: split
+title: Owners
+dense: true
+wideRight: true
+---
+
+Each listing gets an `owner`: the `_id` of the user who listed it. `ref: "User"` says which collection that `_id` belongs to.
+
+- The owner is **`req.user.id`**, from the token. Never from the body: anyone could send someone else's id there.
+- Delete and update: **find** the listing first; `404` if it doesn't exist; **`403`** if it isn't yours. Only then change it.
+- `String(listing.owner)`: `owner` is an `ObjectId`, `req.user.id` is text. Compare them as text.
+
+::right::
+
+| Code | Means |
+|---|---|
+| `401` | Who are you? Log in |
+| `403` | I know who you are. **Not yours** |
+
+```js
+if (String(listing.owner) !== req.user.id) {
+  return res.status(403)
+    .json({ error: "This is not your listing" });
+}
+```
+
+---
+layout: split
+title: Logged in, in React
+dense: true
+---
+
+- `api/auth.js` calls register and log in. When the API refuses, it throws **the API's** message (`data.error`), so the page can show it.
+- `App` keeps the `user` in state, and saves the token and the user in **`localStorage`**: a small store in the browser that **survives a reload**. It only holds text: `JSON.stringify` to save, `JSON.parse` to read. Log out = forget both.
+- `api/listings.js` adds `Authorization: Bearer <token>` to the requests that change data.
+
+::right::
+
+- `<Navigate to="/login" />`: a route that sends you somewhere else. Logged out, `/add` sends you to log in.
+- `user ? (...) : (...)`: the header shows **Hi, name** and Log out, or Log in and Register.
+- `user && listing.owner === user.id`: Delete only on your own cards. Logged out, there is no `user.id`.
+- `{error && <p>...</p>}`: show the message only when there is one.
+
+---
+layout: default
+icon: code
+---
+
+# In AI-written code, you'll also see...
+
+The ideas are the same as today's. The names and places differ:
+
+| You may see | It is | Today, we used |
+|---|---|---|
+| `AuthContext`, `useAuth()` | The user, shared without passing props | `user` in `App`, as a prop |
+| An **HTTP-only cookie** | The browser sends the token itself | `localStorage` and a header |
+| `GET /api/auth/me` | "Who am I?", asked at start | The user in `localStorage` |
+| `requireAdmin`, `role` | One more check after `requireAuth` | The `owner` check |
+
+In your project, use whichever you understand. You explain **every line** you hand in.
+
+---
+layout: section
+icon: activity
+sub: "Part 2 — Practice: five steps. 1-2 in the back end, 3-4 in the front end, 5 in both"
+---
+
+# 03 — Lab Manual: users and owners
 
 ---
 layout: split
@@ -176,12 +288,13 @@ class: giu-tree
 ---
 
 <style>
-/* The whole project tree must fit. Only styles this slide */
+/* The whole project tree must fit. Slide styles leak, so this hangs off the class */
 .giu-tree .giu-split__grid pre.shiki { font-size: 0.5rem !important; line-height: 1.12 !important; }
 </style>
 
 | Step | What |
 |---|---|
+| Start | The starter project, and your `.env` |
 | 1 | Users: register and log in (API) |
 | 2 | Routes that need a login (API) |
 | 3 | Log in and register pages |
@@ -190,12 +303,12 @@ class: giu-tree
 
 Each code slide says **which file**, **new** or **edit**, and where.
 
-<div class="giu-refs__note">Not shown: <code>node_modules/</code>, Vite's config files, and files that don't change today.</div>
+<div class="giu-refs__note">Not shown: files that don't change today.</div>
 
 ::right::
 
 ```text {4,5,7,9,10,12,13,14,15,16,19,20,22,23,25,26,27,28,29}
-ebd-bnb/
+ebd-bnb-lab-08/
 ├── backend/
 │   ├── controllers/
 │   │   ├── authController.js     NEW  Step 1
@@ -208,7 +321,7 @@ ebd-bnb/
 │   ├── routes/
 │   │   ├── authRoutes.js         NEW  Step 1
 │   │   └── listingRoutes.js      EDIT Step 2
-│   ├── .env                      EDIT Step 1
+│   ├── .env                      COPY Start, EDIT 1
 │   ├── package.json              EDIT Step 1
 │   └── server.js                 EDIT Step 1
 ├── frontend/src/
@@ -224,16 +337,28 @@ ebd-bnb/
 │   │   └── RegisterPage.jsx      NEW  Step 3
 │   ├── App.jsx                   EDIT Steps 3-5
 │   └── index.css                 EDIT Step 3
-└── .gitignore
+└── README.md
 ```
 
 ---
-layout: section
-icon: code
-sub: Five steps. 1-2 in the back end, 3-4 in the front end, 5 in both
+layout: media
+image: https://github.com/ng-giu/ebd-bnb/tree/lab-08
+side: right
+qr: true
+dense: true
 ---
 
-# Adding users
+# Getting started
+
+Everyone starts from ebd bn'b at the end of Lab 8.
+
+1. [**Download ZIP**](https://github.com/ng-giu/ebd-bnb/archive/refs/heads/lab-08.zip) and unzip it. You get a folder named `ebd-bnb-lab-08`.
+2. In <Tool name="vscode" />: **File → Open Folder...**, and open `ebd-bnb-lab-08`. The Explorer shows `backend` and `frontend`. Only one folder, `ebd-bnb-lab-08` again? Open that inner one instead.
+3. Copy your `.env` from Lab 5 into `backend`, next to `server.js`.
+4. **Terminal → New Terminal**: `cd backend`, `npm install`, `npm run dev`. Wait for `Connected to MongoDB` (or see <Link to="fix-db">**The back end won't connect**</Link>).
+5. **Terminal → New Terminal** again: `cd frontend`, `npm install`, `npm run dev`. Open the `Local:` link.
+
+**Today both halves run**: keep both terminals open.
 
 ---
 layout: default
@@ -243,7 +368,7 @@ dense: true
 
 # Step 1 of 5: two packages and a secret
 
-In **terminal 1**, stop the API (**Ctrl+C**), then in `backend/`:
+In **terminal 1**, stop the API (**Ctrl+C**), then, still in `backend`:
 
 ```bash
 npm install bcryptjs jsonwebtoken
@@ -258,6 +383,7 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 ```
 
 Add it to `backend/.env`, as a new last line: `JWT_SECRET="5f1c0e6a9b2d47c8a3e1..."`. Your **own**, never a classmate's: whoever knows it can log in as anyone.
+
 ---
 layout: split
 title: "Step 1 of 5: the User model"
@@ -265,13 +391,7 @@ dense: true
 class: giu-small
 ---
 
-In `backend/models`, **New File**: `User.js`.
-
-The same shape as `Listing.js`: a schema, a model, and the functions that touch the data.
-
-- `unique: true`: MongoDB refuses two users with the same email.
-- `password` holds the **hash**, never the password.
-- `findOne({ email })`: the first user with that email, or `null`.
+In `backend/models`, create `User.js`. Paste the code on the right. Save.
 
 ::right::
 
@@ -287,10 +407,9 @@ wideRight: true
 class: giu-small
 ---
 
-In `backend/controllers`, **New File**: `authController.js`. Paste the three blocks, in order: this one, then register, then log in.
+In `backend/controllers`, create `authController.js`.
 
-- `makeToken`: the payload is the user's `_id` and name. Signed with `JWT_SECRET`. Valid for a day.
-- `session`: what both register and log in answer with: the token, and who you are. **Never** the password hash.
+Paste the three blocks, in order: this one, then register (next slide), then log in.
 
 ::right::
 
@@ -305,11 +424,9 @@ dense: true
 class: giu-small
 ---
 
-<FileTag name="backend/controllers/authController.js (continued)" state="new" />
+<FileTag name="backend/controllers/authController.js (under the top block)" state="new" />
 
 <<< @/snippets/lab-09/backend/controllers/authController.js#register
-
-Check the fields (`400`), refuse a taken email (`409`), **hash** the password, save the user, answer `201` with a session.
 
 ---
 layout: code
@@ -318,11 +435,12 @@ dense: true
 class: giu-small
 ---
 
-<FileTag name="backend/controllers/authController.js (continued)" state="new" />
+<FileTag name="backend/controllers/authController.js (under register)" state="new" />
 
 <<< @/snippets/lab-09/backend/controllers/authController.js#login
 
-Find the user by email; `bcrypt.compare` checks the password against the hash. Wrong email **or** wrong password: the same `401`, so nobody can test which emails exist.
+Save.
+
 ---
 layout: split
 title: "Step 1 of 5: the routes"
@@ -330,7 +448,7 @@ dense: true
 class: giu-small
 ---
 
-1. In `backend/routes`, **New File**: `authRoutes.js`, with the code on the right.
+1. In `backend/routes`, create `authRoutes.js`, with the code on the right.
 2. In `backend/server.js`, import it and mount it, the same way as the listings:
 
 ```js
@@ -351,11 +469,11 @@ app.use("/api/auth", authRoutes);
 
 ---
 layout: activity
-title: "Checkpoint 1: users, in Thunder Client"
+title: "Checkpoint 1: users"
 dense: true
 ---
 
-1. Send each, and **predict the status first**:
+1. In Thunder Client, send each, and **predict the status first**:
 
 | Request | Body | Expect |
 |---|---|---|
@@ -371,18 +489,14 @@ Something wrong? <Link to="fix-api">**The API says no**</Link>, in Troubleshooti
 
 ---
 layout: split
-title: "Step 2 of 5: the gatekeeper"
+title: "Step 2 of 5: requireAuth"
 dense: true
 class: giu-small
 ---
 
-**Middleware** (Lab 4) runs before a controller, and may stop the request. `requireAuth` lets it through only with a valid token.
+In `backend`, create a folder `middleware`, and in it `auth.js`.
 
-In `backend`, **New Folder**: `middleware`. In it, **New File**: `auth.js`.
-
-- The token arrives in a header: `Authorization: Bearer eyJ...`. We take off `"Bearer "`.
-- `jwt.verify` checks the signature **and** the expiry. If either fails, it throws: `401`.
-- Valid: `req.user` is the payload (`id`, `name`), and `next()` goes on to the controller.
+Paste the code on the right. Save.
 
 ::right::
 
@@ -397,11 +511,9 @@ dense: true
 class: giu-xs
 ---
 
-In `backend/routes/listingRoutes.js`: **import** `requireAuth`, and put it **before** the controller on the three routes that change data.
+In `backend/routes/listingRoutes.js`: **import** `requireAuth`, and put it **before** the controller on the three routes that change data: the highlighted lines.
 
-A route can run several functions, in order: first `requireAuth`, then, only if it calls `next()`, the controller.
-
-Reading stays open: anyone may look at listings.
+Save.
 
 ::right::
 
@@ -439,11 +551,9 @@ wideRight: true
 class: giu-xs
 ---
 
-In `frontend/src/api`, **New File**: `auth.js`.
+In `frontend/src/api`, create `auth.js`.
 
-Like `listings.js`, but one difference: when the API refuses, we throw **its** message (`data.error`), e.g. `Wrong email or password`, so the page can show it as it is.
-
-Both `register` and `login` answer `{ token, user }`.
+Paste the code on the right. Save.
 
 ::right::
 
@@ -459,9 +569,9 @@ wideRight: true
 class: giu-small
 ---
 
-In `src/pages`, **New File**: `LoginPage.jsx`. Paste this, then the form on the next slide.
+In `src/pages`, create `LoginPage.jsx`.
 
-The same pattern as the Add a listing form. On success, `App` remembers the session; on failure, the API's message goes into `error`.
+Paste this, then the form on the next slide under it.
 
 ::right::
 
@@ -476,11 +586,12 @@ dense: true
 class: giu-small
 ---
 
-<FileTag name="src/pages/LoginPage.jsx (continued)" state="new" />
+<FileTag name="src/pages/LoginPage.jsx (under the top)" state="new" />
 
 <<< @/snippets/lab-09/frontend/src/pages/LoginPage.jsx#bottom
 
-`type="password"` hides what you type. `{error && ...}` shows the message only when there is one. `htmlFor` and `id` tie each label to its input: click the label, and the input gets the cursor.
+Save.
+
 ---
 layout: split
 title: "Step 3 of 5: the register page"
@@ -489,9 +600,9 @@ wideRight: true
 class: giu-small
 ---
 
-In `src/pages`, **New File**: `RegisterPage.jsx`. Paste this, then the next slide.
+In `src/pages`, create `RegisterPage.jsx`.
 
-The log in page, plus a `name`. Registering logs you in at once: the API sends a token back.
+Paste this, then the form on the next slide under it. It is the log in page, plus a `name`.
 
 ::right::
 
@@ -506,11 +617,12 @@ dense: true
 class: giu-small
 ---
 
-<FileTag name="src/pages/RegisterPage.jsx (continued)" state="new" />
+<FileTag name="src/pages/RegisterPage.jsx (under the top)" state="new" />
 
 <<< @/snippets/lab-09/frontend/src/pages/RegisterPage.jsx#bottom
 
-The log in form, with a **Name** field first.
+Save.
+
 ---
 layout: split
 title: "Step 3 of 5: App remembers who logged in"
@@ -518,13 +630,9 @@ dense: true
 class: giu-small
 ---
 
-In `frontend/src/App.jsx`, **under** the `useEffect`s, add the `user` state, `logIn` and `logOut`.
+In `frontend/src/App.jsx`, **under** the `useEffect`s, add the `user` state, `logIn` and `logOut`, on the right.
 
-- `localStorage`: a small store in the browser that **survives a reload**. We keep the token and the user there.
-- `useState(JSON.parse(...))`: start with whoever was saved, or `null`.
-- `JSON.stringify` / `JSON.parse`: `localStorage` only holds text.
-
-Log out = forget both.
+Save.
 
 ::right::
 
@@ -543,7 +651,7 @@ class: giu-xs
 
 <<< @/snippets/lab-09/steps/App-step3.jsx#routes {3,8,9}
 
-Import `LoginPage` and `RegisterPage` at the top, like the other pages. `Header` gets the user, and a way to log out.
+Import `LoginPage` and `RegisterPage` at the top, like the other pages. `Header` gets the user, and a way to log out. Save.
 
 ---
 layout: code
@@ -552,7 +660,7 @@ dense: true
 class: giu-xs
 ---
 
-<FileTag name="src/components/Header.jsx: replace the <nav>. {user ? (...) : (...)} = logged in, or not" state="edit" />
+<FileTag name="src/components/Header.jsx: replace the <nav>, then save" state="edit" />
 
 <<< @/snippets/lab-09/steps/Header-step3.jsx#file {3,10,11,12,13,14,15,16,17,18,19,20,21}
 
@@ -602,7 +710,7 @@ class: giu-xs
 
 <<< @/snippets/lab-09/steps/App-step4.jsx#routes {5,7}
 
-Logged out, `/add` sends you to log in. Add `Navigate` to the `"react-router"` import. `HomePage` gets `user`.
+Add `Navigate` to the `"react-router"` import. `HomePage` gets `user`. Save.
 
 ---
 layout: code
@@ -622,9 +730,9 @@ dense: true
 class: giu-small
 ---
 
-In `src/App.jsx`, wrap `deleteListing` in `try` / `catch`, like the form: if the API refuses, say why.
+In `src/App.jsx`, wrap `deleteListing` in `try` / `catch`, like the form: the highlighted lines.
 
-The API refuses with `401` when the token is missing or expired, and, from Step 5, with `403` when the listing isn't yours.
+Save.
 
 ::right::
 
@@ -649,7 +757,7 @@ dense: true
 
 But: register a **second** user, and they can delete **your** listings. Logged in is not enough.
 
-That's the last step: **authorization**.
+That's the last step: **owners**.
 
 ---
 layout: split
@@ -659,9 +767,9 @@ wideRight: true
 class: giu-small
 ---
 
-In `backend/models/Listing.js`: add `owner`, the `_id` of the user who listed it.
+In `backend/models/Listing.js`, add `owner` to the schema: the highlighted lines.
 
-`ref: "User"` says which collection that `_id` belongs to.
+Save.
 
 ::right::
 
@@ -680,7 +788,8 @@ class: giu-small
 
 <<< @/snippets/lab-09/backend/controllers/listingController.js#create {6,7,8,9,10,11}
 
-The owner is **`req.user.id`**, from the token. Never from the body: anyone could send someone else's id there.
+Save.
+
 ---
 layout: split
 title: "Step 5 of 5: only the owner may change it"
@@ -689,16 +798,11 @@ wideRight: true
 class: giu-small
 ---
 
-In `handleDelete` and `handleUpdate`: **find** the listing first; `404` if it doesn't exist; **`403`** if it isn't yours. Only then change it.
+In `backend/controllers/listingController.js`:
 
-`String(listing.owner)`: `owner` is an `ObjectId`, `req.user.id` is text. Compare them as text.
-
-| Code | Means |
-|---|---|
-| `401` | Who are you? Log in |
-| `403` | I know who you are. **Not yours** |
-
-`handleUpdate` gets the same check: the same three highlighted blocks.
+1. Change `handleDelete` as on the right: the highlighted lines.
+2. Give `handleUpdate` the same three highlighted blocks.
+3. Save.
 
 ::right::
 
@@ -713,7 +817,7 @@ dense: true
 class: giu-xs
 ---
 
-<FileTag name="src/components/ListingCard.jsx: Delete only on your own listings. user && ...: logged out, there's no user.id" state="edit" />
+<FileTag name="src/components/ListingCard.jsx: Delete only on your own listings, then save" state="edit" />
 
 <<< @/snippets/lab-09/frontend/src/components/ListingCard.jsx#file {6,7,16}
 
@@ -749,26 +853,6 @@ dense: true
 
 Listings from before today have **no owner**, so nobody sees Delete on them. Delete them in Atlas Data Explorer, or leave them.
 
-Same app, same data, two users, two views of it: that's authorization.
-
----
-layout: default
-icon: code
----
-
-# In AI-written code, you'll also see...
-
-The ideas are the same as today's. The names and places differ:
-
-| You may see | It is | Today, we used |
-|---|---|---|
-| `AuthContext`, `useAuth()` | The user, shared without passing props | `user` in `App`, as a prop |
-| An **HTTP-only cookie** | The browser sends the token itself | `localStorage` and a header |
-| `GET /api/auth/me` | "Who am I?", asked at start | The user in `localStorage` |
-| `requireAdmin`, `role` | One more check after `requireAuth` | The `owner` check |
-
-In your project, use whichever you understand. You explain **every line** you hand in.
-
 ---
 layout: media
 image: https://github.com/ng-giu/ebd-bnb/tree/lab-09
@@ -799,6 +883,23 @@ sub: Only if something went wrong. Find what you see, then the fix.
 ---
 
 # Troubleshooting
+
+---
+layout: default
+icon: tools
+dense: true
+class: giu-fix
+routeAlias: fix-db
+---
+
+# The back end won't connect
+
+| You see | Cause | Fix |
+|---|---|---|
+| `node: .env: not found` | No `.env` in `backend`, or it has another name | Copy your `.env` from Lab 5 next to `server.js`, named exactly `.env` |
+| `querySrv ECONNREFUSED` | Your network cannot look up Atlas | Switch to a **phone hotspot** |
+| Stuck on `Connecting to MongoDB...`, then `MongooseServerSelectionError` | Atlas does not allow your IP, **or** the network blocks MongoDB | In Atlas, check **IP Access List** has `0.0.0.0/0`, **Active**; then try a hotspot |
+| `bad auth : authentication failed` | The password in `.env` is wrong: edited, or reset since | **Database Users → Edit → Edit Password**, put the new one in `.env` |
 
 ---
 layout: default
@@ -858,7 +959,6 @@ title: Useful references
 - [MDN: 401 Unauthorized](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/401) and [403 Forbidden](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/403)
 - [MDN: localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
 
-<div class="giu-refs__note">Nothing on this slide is required.</div>
 
 ---
 layout: end
