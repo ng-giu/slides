@@ -3,7 +3,7 @@
 # web version of every deck.
 #
 # Usage:
-#   export-all.sh          -> dist/<course>/<deck>.pdf for all courses/*/{lab,assignment}-*.md
+#   export-all.sh          -> dist/<course>/<deck>.pdf for all courses/*/{lab,assignment,project}-*.md
 #   export-all.sh build    -> dist/web/<course>/<deck>/ for the same decks (see SITE_BASE in deck.sh)
 #
 set -e
@@ -15,7 +15,7 @@ mode=${1:-export}
 total=0
 for course_dir in courses/*/; do
   course=$(basename "$course_dir")
-  for kind in lab assignment; do
+  for kind in lab assignment project; do
     if ls "$course_dir"$kind-*.md >/dev/null 2>&1; then
       sh "$SCRIPT_DIR/deck.sh" "$mode" "$kind" "$course" all
       count=$(ls "$course_dir"$kind-*.md 2>/dev/null | wc -l)

@@ -54,7 +54,7 @@ function courseKey(course: string): string {
   if (!courseKeys.has(course)) {
     const dir = join('courses', course)
     const inputs = readdirSync(dir)
-      .filter((n) => !/^(lab|assignment)-.*\.md$/.test(n) && !['project', 'snippets', 'course.yml'].includes(n))
+      .filter((n) => !/^(lab|assignment|project)-.*\.md$/.test(n) && !['project', 'snippets', 'course.yml'].includes(n))
       .sort()
       .flatMap((n) => files(join(dir, n)))
     courseKeys.set(course, hash(inputs))
@@ -78,13 +78,13 @@ function run(args: string[]) {
   }
 }
 
-// Every deck, as deck.sh finds them: courses/<course>/{lab,assignment}-*.md
+// Every deck, as deck.sh finds them: courses/<course>/{lab,assignment,project}-*.md
 const all = readdirSync('courses')
   .filter((c) => statSync(join('courses', c)).isDirectory())
   .sort()
   .flatMap((c) =>
     readdirSync(join('courses', c))
-      .filter((n) => /^(lab|assignment)-.*\.md$/.test(n))
+      .filter((n) => /^(lab|assignment|project)-.*\.md$/.test(n))
       .sort()
       .map((n) => join('courses', c, n)),
   )

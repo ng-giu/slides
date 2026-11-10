@@ -23,9 +23,11 @@ and a number that is automatically zero-padded, so `bun run lab ica 2` and
 `bun run lab ica 02` both open `courses/ica/lab-02.md`. `bun run dev` is shorthand
 for EBD Lab 1.
 
-There are two deck kinds, living inside each course folder under `courses/<course>/`
+There are three deck kinds, living inside each course folder under `courses/<course>/`
 and sharing the same theme: `lab-0N.md` for weekly lab sessions, `assignment-0N.md`
-for a self-paced, front-to-back walkthrough of an assignment.
+for a self-paced, front-to-back walkthrough of an assignment, and `project-0N.md`
+for the course project brief as slides (`bun run project ica 1`,
+`bun run export:project ica 1`).
 
 A deck can have an optional companion, `lab-0N-<suffix>.md` (e.g. `lab-05-extra.md`,
 take-home material that would crowd the lab). Address it as `<n>-<suffix>`

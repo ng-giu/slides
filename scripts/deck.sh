@@ -34,8 +34,8 @@ case $mode in
 esac
 
 case $kind in
-  lab|assignment) ;;
-  *) echo "deck.sh: unknown kind '$kind' (expected lab or assignment)" >&2; exit 2 ;;
+  lab|assignment|project) ;;
+  *) echo "deck.sh: unknown kind '$kind' (expected lab, assignment or project)" >&2; exit 2 ;;
 esac
 
 # Resolve course and num/target

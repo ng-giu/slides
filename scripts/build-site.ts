@@ -20,9 +20,9 @@ import { readdirSync, existsSync, mkdirSync, rmSync, copyFileSync, cpSync, statS
 import { join, extname } from 'node:path'
 import { spawnSync } from 'node:child_process'
 
-const KINDS = ['lab', 'assignment'] as const
+const KINDS = ['lab', 'assignment', 'project'] as const
 type Kind = (typeof KINDS)[number]
-const KIND_HEADINGS: Record<Kind, string> = { lab: 'Labs', assignment: 'Assignments' }
+const KIND_HEADINGS: Record<Kind, string> = { lab: 'Labs', assignment: 'Assignments', project: 'Project' }
 
 const out = 'dist/site'
 
@@ -92,7 +92,7 @@ function collect(): Course[] {
 
     for (const name of readdirSync(dir)) {
       // lab-05.md, and companion decks such as lab-05-extra.md
-      const m = name.match(/^(lab|assignment)-(\d+)(-[a-z]+)?\.md$/)
+      const m = name.match(/^(lab|assignment|project)-(\d+)(-[a-z]+)?\.md$/)
       if (!m) continue
       const kind = m[1] as Kind
       const file = `${kind}-${m[2]}${m[3] ?? ''}`
@@ -102,7 +102,7 @@ function collect(): Course[] {
       // Titles read "BINF 503 - Lab 4 - Building a REST API"
       const parts = String(fm.title ?? '').split(' - ')
       const num = Number(m[2])
-      const label = parts.length >= 3 ? parts[1] : `${kind === 'lab' ? 'Lab' : 'Assignment'} ${num}`
+      const label = parts.length >= 3 ? parts[1] : ({ lab: 'Lab', assignment: 'Assignment', project: 'Project' } as const)[kind] + ` ${num}`
       const topic = parts.length >= 3 ? parts.slice(2).join(' - ') : parts.at(-1) || label
 
       const pdfPath = join('dist', slug, `${file}.pdf`)
@@ -331,7 +331,7 @@ h3 { color: var(--muted); font-size: 0.8rem; font-weight: 600; text-transform: u
   display: grid; grid-template-columns: 9.5rem 1fr auto; align-items: center; gap: 0.25rem 1rem;
   padding: 0.8rem 0 0.8rem 0.9rem; border-bottom: 1px solid var(--rule); border-left: 3px solid var(--strong);
 }
-.deck.is-assignment { border-left-color: var(--gold); }
+.deck.is-assignment, .deck.is-project { border-left-color: var(--gold); }
 .deck__label { color: var(--muted); font-size: 0.85rem; font-weight: 500; }
 .deck__topic { color: var(--strong); font-weight: 500; }
 .deck__links { display: grid; grid-template-columns: 6.25rem 8.25rem; gap: 0.5rem; }
