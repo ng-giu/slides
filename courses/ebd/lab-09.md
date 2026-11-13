@@ -38,7 +38,7 @@ alt: An hourglass
 | 5 min | Recap: where we left ebd bn'b |
 | 10 min | **Part 1A — Passwords and tokens:** hashing, JWTs |
 | 15 min | **Part 1B — Users in ebd bn'b:** register and log in, `requireAuth`, owners, the front end |
-| 40 min | **Part 2 — Lab Manual:** the starter project and your database, then 5 steps |
+| 40 min | **Part 2 — Lab Manual:** the starter project, then 5 steps |
 | — | Next: your project |
 
 ---
@@ -294,7 +294,7 @@ class: giu-tree
 
 | Step | What |
 |---|---|
-| Start | The starter project, your database, both halves running |
+| Start | The starter project, and your `.env` |
 | 1 | Users: register and log in (API) |
 | 2 | Routes that need a login (API) |
 | 3 | Log in and register pages |
@@ -321,7 +321,7 @@ ebd-bnb-lab-08/
 │   ├── routes/
 │   │   ├── authRoutes.js         NEW  Step 1
 │   │   └── listingRoutes.js      EDIT Step 2
-│   ├── .env                      NEW  Start, EDIT 1
+│   ├── .env                      COPY Start, EDIT 1
 │   ├── package.json              EDIT Step 1
 │   └── server.js                 EDIT Step 1
 ├── frontend/src/
@@ -354,11 +354,32 @@ Everyone starts from ebd bn'b at the end of Lab 8.
 
 1. [**Download ZIP**](https://github.com/ng-giu/ebd-bnb/archive/refs/heads/lab-08.zip) and unzip it. You get a folder named `ebd-bnb-lab-08`.
 2. In <Tool name="vscode" />: **File → Open Folder...**, and open `ebd-bnb-lab-08`. The Explorer shows `backend` and `frontend`. Only one folder, `ebd-bnb-lab-08` again? Open that inner one instead.
-3. The back end needs your database. The next slide shows how, whether or not you still have your Lab 5 files.
+3. Put your `.env` in `backend`, next to `server.js`: see the next slide.
+4. **Terminal → New Terminal**: `cd backend`, `npm install`, `npm run dev`. Wait for `Connected to MongoDB` (or see <Link to="fix-db">**The back end won't connect**</Link>).
+5. **Terminal → New Terminal** again: `cd frontend`, `npm install`, `npm run dev`. Open the `Local:` link.
+
+**Today both halves run**: keep both terminals open.
 
 ---
-src: ./shared/database.md
+layout: default
+dense: true
+routeAlias: db-env
 ---
+
+# Your .env
+
+The back end needs your database credentials, in **`backend/.env`**.
+
+**Still have your `.env` from Lab 5?** Copy it into `backend`. Done.
+
+**Don't have it?**
+
+1. Log in to [Atlas](https://cloud.mongodb.com).
+2. **Clusters** → **Connect** on Cluster0 → **Drivers**: copy the connection string.
+3. **Database & Network Access** → **Database Users** → **Edit** → **Edit Password** → **Autogenerate**, copy it, **Update User**.
+4. In `backend`, create `.env` with one line: `MONGODB_URI="..."`, the string, with the new password in place of `<db_password>`.
+
+**Never set up Atlas?** Follow "Your database on Atlas" in Lab 5 (on the CMS), then come back.
 
 ---
 layout: default
@@ -885,8 +906,21 @@ sub: Only if something went wrong. Find what you see, then the fix.
 # Troubleshooting
 
 ---
-src: ./shared/database-fix.md
+layout: default
+icon: tools
+dense: true
+class: giu-fix
+routeAlias: fix-db
 ---
+
+# The back end won't connect
+
+| You see | Cause | Fix |
+|---|---|---|
+| `node: .env: not found` | No `.env` in `backend`, or it has another name | <Link to="db-env">**Your .env**</Link>, next to `server.js`, named exactly `.env` |
+| `querySrv ECONNREFUSED` | Your network cannot look up Atlas | Switch to a **phone hotspot** |
+| Stuck on `Connecting to MongoDB...`, then `MongooseServerSelectionError` | Atlas does not allow your IP, **or** the network blocks MongoDB | In Atlas, check **IP Access List** has `0.0.0.0/0`, **Active**; then try a hotspot |
+| `bad auth : authentication failed` | The password in `.env` is wrong: edited, or reset since | New password, as in <Link to="db-env">**Your .env**</Link> |
 
 ---
 layout: default
