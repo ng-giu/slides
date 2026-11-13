@@ -3,7 +3,6 @@ theme: ../../theme
 title: BINF 301 - Project - Course Project Brief
 courseTitle: Information and Communication Architecture
 course: BINF 301
-track: Web Design and Information Architecture
 semester: W2026
 lineNumbers: false
 layout: cover
@@ -27,27 +26,27 @@ title: Contacts
 layout: default
 icon: intro
 dense: true
-journey:
-  - { title: "PD1: Idea, user stories & wireframes", code: "19 Nov", sub: "" }
-  - { title: "PD2: Clickable Figma prototype", code: "26 Nov", sub: "" }
-  - { title: "PD3: Website + live API, report & poster", code: "10 Dec", sub: "" }
-  - { title: "Presentation: Live demo & printed poster", code: "12–17 Dec", sub: "" }
+class: giu-wide
 ---
 
 # The project
 
-Your team picks a web app idea and takes it **from concept to a working website**:
+Your team picks a web app idea and takes it **from concept to a working website**: user stories and wireframes, a clickable Figma prototype, the website itself, then a live demo.
 
-<Flow :steps="$frontmatter.journey" />
+<div class="p-3 rounded-lg bg-amber-50 border border-amber-200 text-amber-950 mb-3">
 
-- **Teams of 5 or 6.** You get an official **Team ID**. One member is the **point of contact**: they talk to your TA and submit for the team.
-- **One feature per member**, so 5 or 6 core features in total.
-- **Each member owns their feature end to end**, through every stage. You are graded on the team's work **and** on your own feature.
+**Be creative.** The idea is yours: pick a **real business domain** (food delivery, travel, health, education, retail, banking, events, ...), find a problem its customers have, and design a web app that solves it. An original idea that makes business sense scores higher than a copy of an app that already exists.
+
+</div>
+
+- **Teams of 5 or 6**, with an official **Team ID**. One member is the **point of contact**: they talk to your TA and submit for the team.
+- **One feature per member**, owned **end to end**. You are graded on the team's work **and** on your own feature.
 - **All deadlines are at 23:59**.
 
 ---
 layout: default
 icon: people
+class: giu-wide
 ---
 
 # Your feature, end to end
@@ -66,45 +65,99 @@ Write **your full name** next to every section, screen and page you made, in PD1
 ---
 layout: default
 icon: assignment
+class: giu-wide
 ---
 
 # Grading
 
 | Deliverable | Weight | Due |
 |---|---|---|
-| **PD1:** Concept, user stories & wireframes | 20% | Thu 19 Nov |
+| **PD1:** Concept, user stories & wireframes | 10% | Thu 19 Nov |
 | **PD2:** Clickable Figma prototype | 20% | Thu 26 Nov |
-| **PD3:** Website + live JavaScript API | 20% | Thu 10 Dec |
+| **PD3:** Website + live JavaScript API | 30% | Thu 10 Dec |
 | **Final Report**, with the AI prompts appendix | 10% | Thu 10 Dec |
-| **Final Presentation** | 15% | 12–17 Dec |
-| **Printed A1 Poster** | 5% | 12–17 Dec |
+| **Final Presentation:** 10% team, 10% individual | 20% | 12–17 Dec |
 
-Every skill you need is practiced step by step in the labs.
 
 ---
 layout: default
 icon: lifecycle
-dense: true
+class: "proj-timeline giu-wide"
 ---
 
 # Timeline
 
-| When | Lab | Project |
-|---|---|---|
-| Week 7 · 31 Oct – 5 Nov | Lab 6: CSS & Git/GitHub | Form your team and choose your idea |
-| Week 8 · 7 – 12 Nov | Lab 7: Multi-page web (graded) | Draft PD1 and your wireframes |
-| Week 9 · 14 – 19 Nov | Lab 8: JavaScript fundamentals | **Thu 19 Nov: submit PD1** |
-| Week 10 · 21 – 26 Nov | Lab 9: DOM & events | **Thu 26 Nov: submit PD2** |
-| Week 11 · 28 Nov – 3 Dec | No lab (activity week) | Build the website; send your **poster draft** to your TA |
-| Week 12 · 5 – 10 Dec | Lab 10: Web APIs & JSON | **Thu 10 Dec: submit PD3, report & digital poster** |
-| Week 13 · 12 – 17 Dec | | **Presentations** and printed poster |
+<div class="tl">
+  <div class="tl__line"></div>
+  <div class="tl__item">
+    <div class="tl__date">Now</div>
+    <div class="tl__dot"></div>
+    <div class="tl__card">
+      <div class="tl__tag">Start</div>
+      <div class="tl__title">Form your team</div>
+      <div class="tl__text">Get your Team ID and choose your idea</div>
+    </div>
+  </div>
+  <div class="tl__item">
+    <div class="tl__date">Thu 19 Nov</div>
+    <div class="tl__dot"></div>
+    <div class="tl__card">
+      <div class="tl__tag">PD1 · 10%</div>
+      <div class="tl__title">The idea on paper</div>
+      <div class="tl__text">Concept, user stories and wireframes</div>
+    </div>
+  </div>
+  <div class="tl__item">
+    <div class="tl__date">Thu 26 Nov</div>
+    <div class="tl__dot"></div>
+    <div class="tl__card">
+      <div class="tl__tag">PD2 · 20%</div>
+      <div class="tl__title">The design</div>
+      <div class="tl__text">A clickable Figma prototype</div>
+    </div>
+  </div>
+  <div class="tl__item">
+    <div class="tl__date">Thu 10 Dec</div>
+    <div class="tl__dot"></div>
+    <div class="tl__card">
+      <div><span class="tl__tag">PD3 · 30%</span> <span class="tl__tag">Report · 10%</span></div>
+      <div class="tl__title">The website</div>
+      <div class="tl__text">Working site with a live API, and the Final Report</div>
+    </div>
+  </div>
+  <div class="tl__item is-final">
+    <div class="tl__date">12–17 Dec</div>
+    <div class="tl__dot"></div>
+    <div class="tl__card">
+      <div class="tl__tag">Presentation · 20%</div>
+      <div class="tl__title">Show it live</div>
+      <div class="tl__text">Demo and Q&amp;A at your team's slot</div>
+    </div>
+  </div>
+</div>
 
-<div class="giu-refs__note">If the CMS announcement combines PD1 and PD2 into one submission, follow the announcement.</div>
+
+<style>
+.proj-timeline .tl { position: relative; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.7rem; margin: 2rem 0 1.6rem; }
+.proj-timeline .tl__line { position: absolute; left: 4%; right: 4%; top: 2.05rem; height: 4px; border-radius: 2px; background: linear-gradient(90deg, #cbd5e1, #e8a33d 60%, #e2001a); }
+.proj-timeline .tl__item { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.proj-timeline .tl__date { font-weight: 700; font-size: 0.9rem; color: #0f172a; height: 1.3rem; }
+.proj-timeline .tl__dot { width: 1.05rem; height: 1.05rem; margin: 0.25rem 0 0.8rem; border-radius: 50%; background: #fff; border: 4px solid #e8a33d; z-index: 1; }
+.proj-timeline .tl__item:first-of-type .tl__dot, .proj-timeline .tl__item:nth-of-type(2) .tl__dot { border-color: #94a3b8; }
+.proj-timeline .is-final .tl__dot { width: 1.4rem; height: 1.4rem; margin-top: 0.05rem; margin-bottom: 0.6rem; background: #e2001a; border-color: #fde2e4; }
+.proj-timeline .tl__card { width: 100%; flex: 1; padding: 0.7rem 0.55rem 0.8rem; border-radius: 0.6rem; background: #f8fafc; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+.proj-timeline .is-final .tl__card { background: #fff1f2; border-color: #fda4af; }
+.proj-timeline .tl__tag { display: inline-block; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; color: #8a5412; background: #fbf3e5; border-radius: 0.3rem; padding: 0.05rem 0.35rem; margin-bottom: 0.3rem; }
+.proj-timeline .is-final .tl__tag { color: #a30013; background: #fde2e4; }
+.proj-timeline .tl__title { font-weight: 700; font-size: 0.9rem; line-height: 1.2; margin-bottom: 0.2rem; }
+.proj-timeline .tl__text { font-size: 0.74rem; line-height: 1.35; color: #475569; }
+</style>
 
 ---
 layout: section
 icon: assignment
-sub: "Due Thursday 19 November, 23:59 · 20%"
+sub: "Due Thursday 19 November, 23:59 · 10%"
+class: giu-wide
 ---
 
 # PD1 — Concept, User Stories & Wireframes
@@ -113,6 +166,7 @@ sub: "Due Thursday 19 November, 23:59 · 20%"
 layout: default
 icon: assignment
 dense: true
+class: giu-wide
 ---
 
 # What PD1 contains
@@ -130,6 +184,7 @@ layout: split
 title: User stories & acceptance criteria
 icon: assignment
 dense: true
+class: giu-wide
 ---
 
 Write each user story in this format (Lab 1):
@@ -156,6 +211,7 @@ Each story gets **at least 3 acceptance criteria**:
 layout: section
 icon: assignment
 sub: "Due Thursday 26 November, 23:59 · 20%"
+class: giu-wide
 ---
 
 # PD2 — Clickable Figma Prototype
@@ -164,6 +220,7 @@ sub: "Due Thursday 26 November, 23:59 · 20%"
 layout: default
 icon: assignment
 dense: true
+class: giu-wide
 ---
 
 # What PD2 contains
@@ -181,15 +238,17 @@ Turn your PD1 wireframes into a **high-fidelity, clickable prototype** in Figma 
 ---
 layout: section
 icon: assignment
-sub: "Due Thursday 10 December, 23:59 · 20%"
+sub: "Due Thursday 10 December, 23:59 · 30%"
+class: giu-wide
 ---
 
-# PD3 — Website & Live JavaScript API
+# PD3 — Website &<br>Live JavaScript API
 
 ---
 layout: default
 icon: assignment
 dense: true
+class: giu-wide
 ---
 
 # What PD3 contains
@@ -198,26 +257,28 @@ Build your design as a real multi-page website (Labs 5–10):
 
 | Area | Requirement |
 |---|---|
-| **HTML & CSS** | Semantic HTML5: `index.html` plus each member's feature page(s), styled with **external** CSS (Flexbox, Grid, hover states, responsive layout) |
-| **Navigation** | Working `<a href="...">` links across **all** pages: no broken links, no page you can't reach |
-| **JavaScript & DOM** | Interactive behavior: select elements, `addEventListener`, update the page |
-| **Live API** | **At least one** free public API, called with `fetch()`, its JSON shown on the page (Lab 10). For example: weather (Open-Meteo), maps (OpenStreetMap / Nominatim), currency, news, recipes (DummyJSON, TheMealDB), quotes |
-| **GitHub** | **One team repository.** Each member commits their own pages **from their own GitHub account** |
+| **HTML & CSS** | A home page plus each member's feature page(s), with a **shared stylesheet**: a clear layout, hover effects, and pages that work on a phone too |
+| **Navigation** | Every page is reachable from the menu: no broken links, no dead ends |
+| **JavaScript** | The pages **react to the user**: clicking, typing or choosing changes what the page shows |
+| **Live API** | Live data from **at least one** free public service, shown on the page (Lab 10). For example: weather, maps, currency rates, news, recipes, quotes |
+| **GitHub** | **One team repository.** Each member uploads their own pages **from their own GitHub account** |
 
-**Submit:** the GitHub repository link **and** a `.zip` of all project files (`.html`, `.css`, `.js`, images, `README.md`). The repository is **frozen at the deadline**.
+**Submit:** the GitHub repository link **and** a zip of the whole project folder. The repository is **frozen at the deadline**.
 
 ---
 layout: section
 icon: assignment
-sub: "Report and digital poster due Thursday 10 December · presentations 12–17 December"
+sub: "Report due Thursday 10 December · presentations 12–17 December"
+class: giu-wide
 ---
 
-# Final Report, Poster & Presentation
+# Final Report & Presentation
 
 ---
 layout: default
 icon: assignment
 dense: true
+class: giu-wide
 ---
 
 # Final Report (10%)
@@ -247,52 +308,16 @@ One well-formatted **PDF** that documents the project from concept to code, in t
 
 ---
 layout: default
-icon: assignment
-dense: true
----
-
-# Printed A1 Poster (5%)
-
-**A1 portrait**: 59.4 × 84.1 cm, printed in **full color on foam cardboard**, shown in the BI corridor after presentation week.
-
-<div class="grid grid-cols-2 gap-x-8">
-<div>
-
-**On the poster**
-
-- The app's name and logo
-- The idea and the problem it solves
-- Key Figma or website screens: **sharp, in color**
-- **Full names and student IDs** of every member
-- BINF 301, Dr. Nourhan Hamdi, and your TA's name
-
-</div>
-<div>
-
-**Design**
-
-- Less text, more visuals: screens, icons, diagrams, callouts. No long paragraphs.
-
-**Before you print**
-
-1. Your point of contact sends the **digital poster** to your TA.
-2. Your TA approves it.
-3. **Only then** print it.
-
-</div>
-</div>
-
----
-layout: default
 icon: people
 dense: true
+class: giu-wide
 ---
 
-# Final Presentation (15%)
+# Final Presentation (20%)
 
 **Week 13, 12–17 December.** Your day, time and room are in the **Presentation Slots** sheet, under your Team ID.
 
-**8–10 minutes** of presentation, then **8–10 minutes** of questions. Show:
+**8–10 minutes** of presentation, then **8–10 minutes** of questions. **10%** is the team's grade, **10%** your own. Show:
 
 1. The idea and the problem it solves
 2. The clickable Figma prototype
@@ -306,6 +331,7 @@ Every member must understand **the whole project**, including how teammates' pag
 layout: section
 icon: questions
 sub: What you may use, and how to submit
+class: giu-wide
 ---
 
 # AI Tools & Rules
@@ -313,6 +339,7 @@ sub: What you may use, and how to submit
 ---
 layout: default
 icon: questions
+class: giu-wide
 ---
 
 # Using AI tools
@@ -333,6 +360,7 @@ image: /img/illustrations/rules.png
 side: left
 alt: A rule book
 dense: true
+class: giu-wide
 ---
 
 # Rules
@@ -341,13 +369,13 @@ dense: true
 - **One submission per team**, by the point of contact. Two submissions from one team score **zero**. Check every link and file before you submit.
 - **No plagiarism.** Copied code, templates, reports or projects score **zero for the whole team**.
 - **Credit your work.** Put your full name and ID next to everything you made, and commit from your own GitHub account.
-- **No printing without your TA's approval.**
 - **Deadlines are fixed.** Late submissions, and commits pushed after the deadline, are not graded.
 
 ---
 layout: default
 icon: assignment
 dense: true
+class: giu-wide
 ---
 
 # What to submit, and when
@@ -356,9 +384,8 @@ dense: true
 |---|---|
 | **Thu 19 Nov, 23:59** (PD1) | The PD1 document (PDF or Word), summarized in `README.md` |
 | **Thu 26 Nov, 23:59** (PD2) | The Figma prototype link (anyone with the link can view) and the exported screens |
-| **Week 11** | The **poster draft**, sent to your TA for review |
-| **Thu 10 Dec, 23:59** (PD3) | The GitHub link, the project `.zip`, the **Final Report** PDF and the **digital poster** |
-| **12–17 Dec** | Present at your slot, with the **printed** A1 poster |
+| **Thu 10 Dec, 23:59** (PD3) | The GitHub link, the project `.zip`, and the **Final Report** PDF |
+| **12–17 Dec** | Present at your slot |
 
 Questions? Your point of contact asks your TA, in the lab or by email.
 
