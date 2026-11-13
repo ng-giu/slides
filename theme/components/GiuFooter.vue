@@ -8,8 +8,10 @@ const { $slidev } = useSlideContext()
     <span>
       {{ $slidev.configs.courseTitle }} - {{ $slidev.configs.course }}
       <span class="giu-footer__sep">|</span>
-      {{ $slidev.configs.track }}
-      <span class="giu-footer__sep">|</span>
+      <template v-if="$slidev.configs.track">
+        {{ $slidev.configs.track }}
+        <span class="giu-footer__sep">|</span>
+      </template>
       GIU
     </span>
     <span class="giu-footer__page">{{ $slidev.nav.currentPage }}</span>

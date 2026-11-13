@@ -553,3 +553,18 @@
 .slidev-layout.giu-fix td code { white-space: normal; overflow-wrap: anywhere; }
 /* A ~30-line file on one slide: one step smaller still */
 .slidev-layout.giu-xs pre.shiki { font-size: 0.54rem !important; line-height: 1.26 !important; }
+
+/* class: giu-wide. Text runs the full width of the slide: no 72ch measure on
+   paragraphs and list items, no 22ch cap on the title. For slides whose lines
+   would otherwise wrap mid-slide next to empty space (the ICA project brief). */
+.slidev-layout.giu-wide h1,
+.slidev-layout.giu-wide p,
+.slidev-layout.giu-wide li { max-width: none; }
+
+/* class: giu-tree. A <Diagram> drawn as a compact tree (ICA Lab 8): one-line
+   nodes, the icon inline before the label, the sub (a code hint) after it. */
+.slidev-layout.giu-tree .giu-diagram__node { flex-direction: row; justify-content: flex-start; gap: 7px; padding: 0 10px; text-align: left; }
+.slidev-layout.giu-tree .giu-diagram__badge { position: static; width: auto; height: auto; border: 0; background: none; font-size: 13px; }
+.slidev-layout.giu-tree .giu-diagram__label { font-size: 12.5px; white-space: nowrap; }
+.slidev-layout.giu-tree .giu-diagram__sub { margin: 0 0 0 auto; font-family: 'Fira Code', ui-monospace, monospace; font-size: 10px; white-space: nowrap; }
+.slidev-layout.giu-tree .giu-diagram__node:has(.giu-diagram__badge) { background: var(--tint); border-width: 2px; }

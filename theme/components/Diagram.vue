@@ -24,7 +24,11 @@
  * An edge joins node or group ids. Sides are r, l, t, b (default r -> l);
  * `fromAt` / `toAt` place the end along that side (0 to 1, default 0.5).
  */
-import { computed } from 'vue'
+import { computed, useId } from 'vue'
+
+// Each diagram gets its own arrowhead id: with one shared id, Chrome draws no
+// arrowheads when the first diagram holding it sits on a hidden slide.
+const arrowId = `giu-diagram-arrow-${useId()}`
 
 type Tone = 'slate' | 'amber' | 'green' | 'navy' | 'red'
 type Box = { id: string; x: number; y: number; w: number; h: number; label: string; sub?: string; icon?: string; tone?: Tone }
@@ -131,11 +135,11 @@ const at = (b: Box) => ({ left: `${b.x}px`, top: `${b.y}px`, width: `${b.w}px`, 
 
     <svg class="giu-diagram__edges" :viewBox="`0 0 ${width} ${height}`" :width="width" :height="height" aria-hidden="true">
       <defs>
-        <marker id="giu-diagram-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <marker :id="arrowId" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
           <path d="M 1 1 L 9 5 L 1 9" fill="none" stroke="#3a3a3a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
         </marker>
       </defs>
-      <path v-for="(p, i) in paths" :key="i" :d="p.d" fill="none" stroke="#3a3a3a" stroke-width="1.4" marker-end="url(#giu-diagram-arrow)" />
+      <path v-for="(p, i) in paths" :key="i" :d="p.d" fill="none" stroke="#3a3a3a" stroke-width="1.4" :marker-end="`url(#${arrowId})`" />
     </svg>
 
     <div v-for="n in nodes" :key="n.id" class="giu-diagram__node" :class="`is-${n.tone || 'slate'}`" :style="at(n)">
