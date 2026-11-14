@@ -63,7 +63,7 @@ try {
   }, pts)
 
   const tab = await consoleTab.boundingBox()
-  const hello = await dt.getByText('Hello, Mariam', { exact: true }).last().boundingBox()
+  const hello = await dt.getByText("Burger Republic: today's dashboard", { exact: true }).last().boundingBox()
   const link = await dt.getByText(/^script\.js:\d+$/).last().boundingBox()
   await mark([
     { x: tab.x + tab.width / 2, y: tab.y + tab.height + 14, n: 1, ring: [tab.x - 3, tab.y - 3, tab.width + 6, tab.height + 6] },

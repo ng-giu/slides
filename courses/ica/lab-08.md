@@ -42,7 +42,7 @@ dense: true
 | 7 min | **Expressions:** operations and references |
 | 12 min | **Control flow:** conditionals and loops |
 | 6 min | **Input and output:** `console.log` and where your code runs |
-| 30 min | **Lab Manual:** your own program in VS Code (graded) |
+| 30 min | **Lab Manual:** a restaurant owner's dashboard in VS Code (graded) |
 
 ---
 layout: default
@@ -234,7 +234,7 @@ A **declaration** is a statement that defines an **identifier**: a name that lat
 
 <div class="flex flex-wrap items-start gap-2 font-mono text-[0.85rem] mt-1 mb-0">
   <div class="flex flex-col items-center"><span class="px-2 py-1 rounded-md border-2 border-indigo-400 bg-indigo-50">function</span><span class="mt-1 font-sans text-[0.62rem] font-semibold text-indigo-700">keyword</span></div>
-  <div class="flex flex-col items-center"><span class="px-2 py-1 rounded-md border-2 border-amber-400 bg-amber-50">lineTotal</span><span class="mt-1 font-sans text-[0.62rem] font-semibold text-amber-700">identifier</span></div>
+  <div class="flex flex-col items-center"><span class="px-2 py-1 rounded-md border-2 border-amber-400 bg-amber-50">itemTotal</span><span class="mt-1 font-sans text-[0.62rem] font-semibold text-amber-700">identifier</span></div>
   <div class="flex flex-col items-center"><span class="px-2 py-1 rounded-md border-2 border-slate-400 bg-slate-50">(price, quantity)</span><span class="mt-1 font-sans text-[0.62rem] font-semibold text-slate-700">parameters: its inputs</span></div>
   <div class="flex flex-col items-center"><span class="px-2 py-1 rounded-md border-2 border-emerald-400 bg-emerald-50">{ return price * quantity; }</span><span class="mt-1 font-sans text-[0.62rem] font-semibold text-emerald-700">body: the code it runs</span></div>
 </div>
@@ -307,7 +307,7 @@ diagram:
     - { id: cmp, x: 22, y: 144, w: 246, h: 30, label: Comparison, tone: amber, sub: "===  !==  <  >=" }
     - { id: refs, x: 290, y: 64, w: 250, h: 30, label: References, tone: amber }
     - { id: rvar, x: 312, y: 108, w: 246, h: 30, label: Variables, tone: amber, sub: cartTotal }
-    - { id: call, x: 312, y: 144, w: 246, h: 30, label: Function calls, tone: amber, sub: "lineTotal(180, 2)" }
+    - { id: call, x: 312, y: 144, w: 246, h: 30, label: Function calls, tone: amber, sub: "itemTotal(180, 2)" }
     - { id: expr, x: 170, y: 0, w: 200, h: 30, label: Expressions, tone: amber, icon: zap }
   edges:
     - { from: ops, to: math, fromSide: b, toSide: l, fromAt: 0.032 }
@@ -369,7 +369,7 @@ A **reference** uses an identifier from a declaration.
 | Reference | Written as | Its value |
 |---|---|---|
 | **Variable** | The name: `cartTotal` | The variable's current value |
-| **Function call** | The name, then `( )` with **arguments**: `lineTotal(180, 2)` | What the function **returns** |
+| **Function call** | The name, then `( )` with **arguments**: `itemTotal(180, 2)` | What the function **returns** |
 
 The arguments fill the parameters in order: `price` is `180`, `quantity` is `2`.
 
@@ -628,10 +628,10 @@ JavaScript lives in its own file, `script.js`. A page loads it with one line at 
 ---
 layout: section
 icon: assignment
-sub: "Part 2 — Practice: a program about you, in VS Code (graded in class)"
+sub: "Part 2 — Practice: a restaurant owner's dashboard, in VS Code (graded in class)"
 ---
 
-# 06 — Lab Manual: Your Student Program
+# 06 — Lab Manual: Restaurant Owner Dashboard
 
 ---
 layout: split
@@ -640,7 +640,7 @@ title: The plan
 dense: true
 ---
 
-You write **one program**, in `script.js`. It uses **your** name and **your** student ID, so your output is different from everyone else's.
+You own **Burger Republic** on Talabat. In `script.js`, you work out its money for today and the next 7 days, starting from **your** student ID.
 
 ```text
 ica-lab-08/
@@ -650,27 +650,29 @@ ica-lab-08/
 
 | Step | Adds | Part |
 |---|---|---|
-| 1 | Your name and ID digits | Declarations |
-| 2 | Calculations | Expressions |
-| 3 | `isEven`, a function | Declarations |
-| 4 | Even or odd? | Control flow: `if` |
-| 5 | A times table | Control flow: `for` |
+| 1 | The restaurant's numbers | Declarations |
+| 2 | Today's money | Expressions |
+| 3 | `dailyProfit`, a function | Declarations |
+| 4 | Rate the day | `if / else` |
+| 5 | The next 7 days | `for` loop |
 
 ::right::
 
-**The finished output** (for a student called Mariam, ID ending in **2345**):
+**The finished output** (for a student whose ID ends in **45**):
 
 ```text
-Hello, Mariam
-Last digit: 5
-Doubled: 4690
-false
-Mariam, your ID is odd
-5 x 1 = 5
-5 x 2 = 10
-5 x 3 = 15
-5 x 4 = 20
-5 x 5 = 25
+Burger Republic: today's dashboard
+Revenue: EGP 9000
+Talabat's commission: EGP 1800
+Profit: EGP 2200
+2200
+11000
+Normal day
+Day 1: EGP 2200
+Day 2: EGP 2680
+...
+Day 7: EGP 5080
+Week profit: EGP 25480
 ```
 
 This lab is **graded**: at the end, your TA checks your Console.
@@ -696,20 +698,22 @@ The Console is empty for now. Keep this tab open: after every save, **reload it*
 
 <<< @/snippets/lab-08/index.html
 
+
 ---
 layout: split
 class: giu-wide
-title: "Step 1 of 5: your details"
+title: "Step 1 of 5: the restaurant's numbers"
 wideRight: true
 dense: true
 ---
 
 1. Copy the code into `script.js`.
-2. Change `"Mariam"` to **your first name**.
-3. Change `2345` to the **last 4 digits of your student ID**. Leave out a leading zero: `0456` becomes `456`.
-4. Save, then reload the page in Chrome (`F5`).
+2. Change `45` to the **last 2 digits of your student ID**. Leave out a leading zero: `07` becomes `7`.
+3. Save, then reload the page in Chrome (`F5`).
 
 The **Console** tab **(1)** shows your output **(2)**, and the line of `script.js` that printed it **(3)**.
+
+Keep `let` on `ordersPerDay`: Step 5 changes it.
 
 ::right::
 
@@ -717,24 +721,28 @@ The **Console** tab **(1)** shows your output **(2)**, and the line of `script.j
 
 <<< @/snippets/lab-08/script.js#step1
 
-![The Console tab with Hello, Mariam printed by script.js line 4, numbered 1 to 3](/img/lab-08/console.png)
+![The Console tab with Burger Republic: today's dashboard printed by script.js line 7, numbered 1 to 3](/img/lab-08/console.png)
 
 ---
 layout: split
 class: giu-wide
-title: "Step 2 of 5: expressions"
+title: "Step 2 of 5: today's money"
+wideRight: true
 dense: true
 ---
 
 Add the code **at the bottom** of `script.js`, save, and reload the page (`F5`).
 
-**Console**: two new lines, with **your** last digit and **your** digits times 2.
+**Console**: three new lines. With `45` orders:
 
 ```text
-Hello, Mariam
-Last digit: 5
-Doubled: 4690
+Burger Republic: today's dashboard
+Revenue: EGP 9000
+Talabat's commission: EGP 1800
+Profit: EGP 2200
 ```
+
+A **negative** profit is correct if your orders are below 32: you are losing money.
 
 Output wrong? See <Link to="fix-output">**Wrong output**</Link>.
 
@@ -748,18 +756,18 @@ Output wrong? See <Link to="fix-output">**Wrong output**</Link>.
 layout: split
 class: giu-wide
 title: "Step 3 of 5: a function"
+wideRight: true
 dense: true
 ---
 
 Add the code **at the bottom** of `script.js`, save, and reload the page (`F5`).
 
-**Console**: one new line, `true` if your digits are even, `false` if they are odd.
+**Console**: two new lines. The first is **your profit again**, the same as the `Profit:` line. The second is the profit for 100 orders, `11000` for everyone.
 
 ```text
-Hello, Mariam
-Last digit: 5
-Doubled: 4690
-false
+Profit: EGP 2200
+2200
+11000
 ```
 
 ::right::
@@ -771,21 +779,22 @@ false
 ---
 layout: split
 class: giu-wide
-title: "Step 4 of 5: if / else"
+title: "Step 4 of 5: rate the day"
+wideRight: true
 dense: true
 ---
 
 Add the code **at the bottom** of `script.js`, save, and reload the page (`F5`).
 
-**Console**: one new line, with your name, and **even** or **odd**: it must agree with the `true` or `false` above it.
+**Console**: one new line, from your `profit`:
 
-```text
-Hello, Mariam
-Last digit: 5
-Doubled: 4690
-false
-Mariam, your ID is odd
-```
+| `profit` | Prints |
+|---|---|
+| `3000` or more | `Great day` |
+| `0` to `2999` | `Normal day` |
+| below `0` | `Losing money` |
+
+Predict yours **before** you reload.
 
 ::right::
 
@@ -796,21 +805,22 @@ Mariam, your ID is odd
 ---
 layout: split
 class: giu-wide
-title: "Step 5 of 5: a loop"
+title: "Step 5 of 5: the next 7 days"
+wideRight: true
 dense: true
 ---
 
 Add the code **at the bottom** of `script.js`, save, and reload the page (`F5`).
 
-**Console**: the same 5 lines as before (the last one is shown here), then five new lines: the times table of **your** last digit.
+**Console**: 8 new lines. Day 1 is today's profit, and each day has **3 more orders**, so EGP 480 more profit. The last line adds up the 7 days.
 
 ```text
-Mariam, your ID is odd
-5 x 1 = 5
-5 x 2 = 10
-5 x 3 = 15
-5 x 4 = 20
-5 x 5 = 25
+Normal day
+Day 1: EGP 2200
+Day 2: EGP 2680
+...
+Day 7: EGP 5080
+Week profit: EGP 25480
 ```
 
 ::right::
@@ -828,16 +838,17 @@ dense: true
 
 # Checkpoint: show your TA
 
-Save `script.js` and reload the page once more. The Console shows **10 lines** and **no red text**:
+Save `script.js` and reload the page once more. The Console shows **15 lines** and **no red text**:
 
 | Line | Shows |
 |---|---|
-| 1 | `Hello, ` and **your first name** |
-| 2 | `Last digit: ` and the **last digit of your ID** |
-| 3 | `Doubled: ` and **your 4 digits times 2** |
-| 4 | `true` if your digits are even, `false` if odd |
-| 5 | Your name, then `your ID is even` or `your ID is odd`, agreeing with line 4 |
-| 6–10 | The times table of your last digit, from `x 1` to `x 5` |
+| 1 | `Burger Republic: today's dashboard` |
+| 2–4 | Revenue (**your digits × 200**), commission, profit |
+| 5 | The same number as the `Profit:` line |
+| 6 | `11000` |
+| 7 | `Great day`, `Normal day` or `Losing money`, agreeing with your profit |
+| 8–14 | Day 1 to Day 7: Day 1 is your profit, and each day is EGP 480 more |
+| 15 | `Week profit:` and the 7 days added up |
 
 **Raise your hand**, and keep the tab open until your TA has checked it. Problems? See <Link to="fix-errors">**Red errors**</Link> or <Link to="fix-output">**Wrong output**</Link>.
 
@@ -862,12 +873,12 @@ Each error ends with the file and line: `script.js:5` is line 5 of `script.js`.
 
 | Error in the Console | Cause & fix |
 |---|---|
-| `Uncaught ReferenceError: studentname is not defined` | A name spelled differently from its declaration. Names are case-sensitive: `studentName`. |
+| `Uncaught ReferenceError: ordersperday is not defined` | A name spelled differently from its declaration. Names are case-sensitive: `ordersPerDay`. |
 | `Uncaught ReferenceError: Console is not defined` | Capital letter: write `console.log`, all lowercase. |
 | `Uncaught SyntaxError: Invalid or unexpected token` | A missing closing quote, or curly quotes (`“ ”`) from a word processor. Use straight quotes `" "`. |
-| `Uncaught SyntaxError: Unexpected token '{'` | A missing `)` before `{`, as in `if (isEven(idDigits) {`. |
+| `Uncaught SyntaxError: Unexpected token '{'` | A missing `)` before `{`, as in `if (profit >= 3000 {`. |
 | `Uncaught SyntaxError: Unexpected end of input` | A `{` without its closing `}`. Every block needs one. |
-| `Uncaught TypeError: Assignment to constant variable.` | A `const` got a new value with `=`. Use `let` for it. |
+| `Uncaught TypeError: Assignment to constant variable.` | A `const` got a new value with `=`. In Step 1, `ordersPerDay` must be `let`. |
 | `GET file:///…/ica-lab-08/script.js net::ERR_FILE_NOT_FOUND` | No file named exactly `script.js` next to `index.html`. The path before it is your own folder. |
 
 ---
@@ -881,12 +892,13 @@ dense: true
 
 | What you see | Cause & fix |
 |---|---|
-| `Doubled:` is not your digits times 2 (`0123` gives `166`) | Your digits start with `0`, which JavaScript reads differently. Leave out the leading zero: `123`. |
-| Negative numbers, like `Last digit: -9` | You typed the dash from your ID (`16-2345`), so JavaScript subtracted. Type only the last 4 digits. |
-| `Last digit: ${lastDigit}`, word for word | You used quotes. Template strings need **backticks** `` ` `` (left of `1`). |
-| `undefined` instead of `true` or `false` | The function has no `return`. Write `return number % 2 === 0;`. |
-| The Console doesn't change after your edit | Not saved: a dot on the file's tab means unsaved. Press `Ctrl+S`. |
-| Still no change after saving | The page doesn't reload by itself: press `F5` in Chrome after every save. |
+| A negative `Profit:` and `Losing money` | Correct if your digits are below 32: costs are more than your share. |
+| `Revenue: EGP ${revenue}`, word for word | You used quotes. Template strings need **backticks** `` ` `` (left of `1`). |
+| `undefined` instead of your profit, under `Profit:` | The function has no `return`. Its last line is `return income - cut - dailyCosts;`. |
+| `Normal day` when your profit is `3000` or more | The `if` checks the wrong number first. `profit >= 3000` comes **before** `profit >= 0`. |
+| Every day shows the same profit | The loop's last line is missing: `ordersPerDay = ordersPerDay + 3;`. |
+| `Week profit:` is only Day 7's profit | Write `weekProfit = weekProfit + dayProfit;`. |
+| The Console doesn't change after your edit | Not saved (a dot on the file's tab): press `Ctrl+S`. Then press `F5` in Chrome: the page doesn't reload by itself. |
 | No **Console** tab | Press `F12`. Tab hidden? Click `>>` next to the tabs, then **Console**. |
 
 ---

@@ -1,5 +1,18 @@
 /* Code surfaces. Shiki does the highlighting; this only sets the frame. */
 
+/* No ligatures: JetBrains Mono draws >=, !==, => as single glyphs (≥, ≠),
+   which students can't find on their keyboard. Show code as it is typed. */
+.slidev-layout code,
+.slidev-layout pre,
+.slidev-layout .shiki,
+.slidev-layout .font-mono,
+.slidev-layout .giu-diagram__sub,
+.giu-http__json,
+.giu-filetag {
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+
 .slidev-layout .slidev-code-wrapper,
 .slidev-layout .shiki {
   font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;

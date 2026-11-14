@@ -13,12 +13,12 @@ console.log(itemCount); // 2
 // #endregion variables
 
 // #region functions
-function lineTotal(price, quantity) {
+function itemTotal(price, quantity) {
   return price * quantity;
 }
 
-console.log(lineTotal(180, 2)); // 360
-console.log(lineTotal(95, 3));  // 285
+console.log(itemTotal(180, 2)); // 360
+console.log(itemTotal(95, 3));  // 285
 // #endregion functions
 
 // #region expressions
@@ -38,8 +38,8 @@ console.log(cartTotal);         // 280
 console.log(cartTotal + 20);    // 300
 
 // Calls: the result the function returns
-console.log(lineTotal(180, 2)); // 360
-console.log(lineTotal(95, 3));  // 285
+console.log(itemTotal(180, 2)); // 360
+console.log(itemTotal(95, 3));  // 285
 // #endregion references
 
 // #region conditionals
