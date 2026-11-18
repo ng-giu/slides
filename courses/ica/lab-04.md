@@ -3,7 +3,6 @@ theme: ../../theme
 title: BINF 301 - Lab 4 - Interactive Prototyping in Figma
 courseTitle: Information and Communication Architecture
 course: BINF 301
-track: Web Design and Information Architecture
 semester: W2026
 lab: 4
 lineNumbers: true

@@ -292,6 +292,13 @@ These failures come from real labs, so design against them:
   `atlas-credentials.env` if a student forgets to rename it.
 - A silent 30-second wait reads as "frozen". Print something before slow steps.
 
+## Footer
+
+ICA decks have **no `track:`** in their headmatter: the footer must not say
+"Web Design and Information Architecture" (the user's call, Nov 2026). Never
+add it back, in a new deck or an old one. The footer then reads
+`Information and Communication Architecture - BINF 301 | GIU`.
+
 ## Contacts slide
 
 The same `<PersonCard>` list opens every deck of a course. When a detail

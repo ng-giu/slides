@@ -3,7 +3,6 @@ theme: ../../theme
 title: BINF 301 - Assignment 2 - Multi-File Project & GitHub Workflow
 courseTitle: Information and Communication Architecture
 course: BINF 301
-track: Web Design and Information Architecture
 semester: W2026
 assignment: 2
 lineNumbers: true
