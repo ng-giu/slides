@@ -1,41 +1,39 @@
-// #region selectors
-// 1. Select one element by id="..."
-const title =
-  document.getElementById("menu-title");
+// #region console
+const title = document.querySelector("h1");
+title.textContent = "DOM Manipulated!";
+title.style.color = "crimson";
+// #endregion console
 
-// 2. Select first match for CSS selector
-const card =
-  document.querySelector(".dish-card");
+// #region select
+// The FIRST element that matches
+const button = document.querySelector("#add-btn");
+const heading = document.querySelector("h2");
 
-// 3. Select ALL matches (NodeList)
-const cards =
-  document.querySelectorAll(".dish-card");
-console.log("Count:", cards.length);
-// #endregion selectors
+// EVERY element that matches, as a list
+const orders = document.querySelectorAll("li");
+console.log(orders.length); // how many
+console.log(orders[0]);     // the first one
+// #endregion select
 
-// #region modify
-const promoMsg =
-  document.getElementById("promo-msg");
-
-// 1. Change visible text inside tag
-promoMsg.textContent = "EGP 50 off!";
-
-// 2. Change inline CSS property
-promoMsg.style.color = "#0d9488";
-
-// 3. Add a CSS class from style.css
-promoMsg.classList.add("applied");
-// #endregion modify
-
-// #region events
-const addBtn =
-  document.getElementById("add-bestie");
-const countEl =
-  document.getElementById("cart-count");
-let count = 0;
-
-addBtn.addEventListener("click", () => {
-  count = count + 1;
-  countEl.textContent = count;
+// #region listen
+//                      type     handler
+button.addEventListener("click", function () {
+  console.log("Clicked!");
 });
-// #endregion events
+
+const input = document.querySelector("#order-input");
+input.addEventListener("input", function () {
+  console.log("Typed something");
+});
+// #endregion listen
+
+// #region change
+// Replace the text inside the tag
+heading.textContent = "Today's orders";
+
+// Set one CSS property
+heading.style.color = "crimson";
+
+// Add the class if missing, remove it if there
+heading.classList.toggle("delivered");
+// #endregion change

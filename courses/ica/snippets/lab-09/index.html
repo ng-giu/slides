@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-<html>
-<head><link rel="stylesheet" href="style.css"></head>
+<html lang="en">
+<head>
+  <title>Burger Republic kitchen</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
-  <div class="app">
-    <h2 id="menu-title">Burger Republic</h2>
-    <div class="dish-card">
-      <span>Bestie Deal (EGP 600)</span>
-      <button id="add-bestie" class="btn">+ Add</button>
+  <main id="board">
+    <h2>Burger Republic kitchen</h2>
+    <p>Orders waiting: <b id="order-count">0</b></p>
+    <div class="buttons">
+      <button id="add-btn">New order</button>
+      <button id="serve-btn">Serve order</button>
     </div>
-    <p id="promo-msg">Have a promo?</p>
-    <button id="promo-btn" class="btn">EGP 50 Off</button>
-    <div class="cart-bar">
-      <span>Items: <b id="cart-count">0</b></span>
-      <span>Total: EGP <b id="cart-total">0</b></span>
-    </div>
-  </div>
-  <script src="script.js"></script>
+    <button id="close-btn">Close kitchen</button>
+  </main>
+  <script src="app.js"></script>
 </body>
 </html>

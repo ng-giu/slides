@@ -1,22 +1,22 @@
-body { font-family: sans-serif; background: #f8fafc; }
-.app {
-  width: 393px;
+body {
+  font-family: sans-serif;
+  width: 360px;
   margin: 20px auto;
-  background: #ffffff;
-  border-radius: 16px;
+}
+#board {
   padding: 16px;
+  border: 2px solid #ff5a00;
+  border-radius: 12px;
 }
-.dish-card, .cart-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 0;
-}
-.btn {
+p { font-size: 20px; }
+.buttons { display: flex; gap: 8px; margin-bottom: 8px; }
+button {
+  flex: 1;
   background: #ff5a00;
-  color: #ffffff;
-  border: none;
-  padding: 6px 12px;
+  color: #ffffff; border: none;
+  padding: 8px 12px;
   border-radius: 8px;
 }
-.applied { color: #0d9488; font-weight: bold; }
+#close-btn { width: 100%; background: #475569; }
+.closed { background: #e2e8f0; color: #64748b; }
+.closed h2::after { content: " (closed)"; }
